@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+
+    <Button
+        android:id="@+id/buttonFindSearch"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="Talált/elveszett állat bejelentése"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonWeb"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="További információ a honlapunkon"
+        android:textSize="20sp" />
+
+</LinearLayout>

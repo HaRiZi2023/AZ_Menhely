@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextNameRegister"
+        android:hint="Teljes név"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextEmailRegister"
+        android:hint="Email"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPasswordRegister"
+        android:hint="Jelszó"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPasswordRegister2"
+        android:hint="Jelszó megerősítése"
+        android:inputType="textPassword"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextGDPR"
+        android:text="Adatkezelési tájékoztató"/>
+
+
+    <CheckBox
+        android:id="@+id/editTextAszf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Általános szerződési feltételek" />
+
+    <Button
+        android:id="@+id/buttonFinalRegister"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="Regisztráció" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="Vissza" />
+
+</LinearLayout>
