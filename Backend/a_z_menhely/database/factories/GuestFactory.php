@@ -26,7 +26,7 @@ class GuestFactory extends Factory
             "g_in_place" => fake()->address(),
             "g_out_date" => fake()->date(),
             "g_adoption" => fake()->randomKey(['igen'=> 1, 'nem'=> 2]),
-            "other" => fake()->words(3, true),
+            "g_other" => fake()->words(3, true),
             "g_image" => fake()->image(null, 360, 360, 'animals', true),
 
         ];

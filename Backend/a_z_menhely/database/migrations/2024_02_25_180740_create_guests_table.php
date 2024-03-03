@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("g_in_place", 100);
             $table->date("g_out_date")->nullable();  // ->nullable() lehet nulla
             $table->enum("g_adoption", array("igen", "nem"));
-            $table->text("other")->nullable();
+            $table->text("g_other")->nullable();
             $table->binary("g_image")->nullable();
             $table->timestamps();
         });
