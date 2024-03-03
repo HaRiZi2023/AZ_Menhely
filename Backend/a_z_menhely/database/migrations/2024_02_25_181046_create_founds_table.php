@@ -17,8 +17,8 @@ return new class extends Migration
             $table->enum("f_species", array("kutya", "macska"));
             $table->enum("f_gender", array("nőstény", "hím", "ismeretlen"));
             $table->enum("f_injury", array("igen", "nem"));
-            $table->string("f_position", 50);
-            $table->string("u_name", 50);
+            $table->string("f_position", 100);
+            $table->string("u_name", 100);
             $table->text("f_other")->nullable();
             $table->binary("f_image")->nullable();
             $table->timestamps();

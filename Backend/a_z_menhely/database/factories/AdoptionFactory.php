@@ -19,7 +19,7 @@ class AdoptionFactory extends Factory
         return [
 
             "a_date"=> fake()->date(),
-            "g_name"=> fake()->lastName(),
+            "g_name"=> fake()->firstName(),
             "u_name"=> fake()->name(),
 
         ];

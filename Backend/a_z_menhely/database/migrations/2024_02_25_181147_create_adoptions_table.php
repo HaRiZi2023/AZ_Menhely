@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date("a_date");
             $table->string("g_name", 50);
-            $table->string("u_name", 50);
+            $table->string("u_name", 100);
             $table->timestamps();
         });
     }
