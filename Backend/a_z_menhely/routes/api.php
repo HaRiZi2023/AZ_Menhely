@@ -24,6 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource("/menhely", AdoptionControll::class);
-Route::apiResource("/menhely", FoundControll::class);
-Route::apiResource("/menhely", GuestControll::class);
-Route::apiResource("/menhely", WorkerControll::class);
+Route::apiResource("/found", FoundControll::class);  //ch
+//Route::apiResource("/guest", GuestControll::class);  //ch
+//Route::apiResource("/worker", WorkerControll::class);  //ch

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\API\WorkerController;
 use App\Http\Controllers\Controller;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\API\FoundController;
 use App\Http\Controllers\Controller;
+use App\Models\Found;
 use Illuminate\Http\Request;
 
 class FoundController extends Controller

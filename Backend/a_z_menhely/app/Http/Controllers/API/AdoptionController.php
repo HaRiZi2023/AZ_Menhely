@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\API\AdoptionController;
 use App\Http\Controllers\Controller;
+use App\Models\Adoption;
 use Illuminate\Http\Request;
 
 class AdoptionController extends Controller
