@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\GuestController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $guests = Guest::all();
+        return $guests;
     }
 
     /**
@@ -20,7 +22,8 @@ class GuestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guest = Guest::create($request->all());
+        return $guest;
     }
 
     /**
@@ -28,7 +31,11 @@ class GuestController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $guest = Guest::find($id);
+        if (is_null($guest)) {
+            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+        }
+        return $guest;
     }
 
     /**
@@ -36,7 +43,13 @@ class GuestController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $guest = Guest::find($id);
+        if (is_null($guest)) {
+            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+        }
+        $guest->fill($request->all());
+        $guest->save();
+        return $guest;
     }
 
     /**
@@ -44,6 +57,11 @@ class GuestController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $guest = Guest::find($id);
+        if (is_null($guest)) {
+            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+        }
+        $guest->delete();
+        return response()->noContent();
     }
 }

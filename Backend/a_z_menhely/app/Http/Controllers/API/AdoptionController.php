@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\AdoptionController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class AdoptionController extends Controller
      */
     public function index()
     {
-        //
+        $adoptions = Adoption::all();
+        return $adoptions;
     }
 
     /**
@@ -20,7 +22,9 @@ class AdoptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $adoption = Adoption::create($request->all());
+        return $adoption;
     }
 
     /**
@@ -28,7 +32,11 @@ class AdoptionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $adoption = Adoption::find($id);
+        if (is_null($adoption)) {
+            return response()->json(["message" => "Nincs örökbefogadás az alábbi azonosítóval: $id"], 404);
+        }
+        return $adoption;
     }
 
     /**
@@ -36,7 +44,13 @@ class AdoptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $aadoption= Adoption::find($id);
+        if (is_null($adoption)) {
+            return response()->json(["message" => "Nincs örökbefogadás az alábbi azonosítóval: $id"], 404);
+        }
+        $adoption->fill($request->all());
+        $adoption->save();
+        return $adoption;
     }
 
     /**
@@ -44,6 +58,11 @@ class AdoptionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $adoption = Adoption::find($id);
+        if (is_null($adoption)) {
+            return response()->json(["message" => "Nincs örökbefogadás az alábbi azonosítóval: $id"], 404);
+        }
+        $adoption->delete();
+        return response()->noContent();
     }
 }

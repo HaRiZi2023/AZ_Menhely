@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\FoundController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class FoundController extends Controller
      */
     public function index()
     {
-        //
+        $founds = Found::all();
+        return $founds;
     }
 
     /**
@@ -20,7 +22,8 @@ class FoundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $found = Found::create($request->all());
+        return $found;
     }
 
     /**
@@ -28,7 +31,11 @@ class FoundController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $found = Found::find($id);
+        if (is_null($found)) {
+            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+        }
+        return $found;
     }
 
     /**
@@ -36,7 +43,13 @@ class FoundController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $found = Found::find($id);
+        if (is_null($found)) {
+            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+        }
+        $found->fill($request->all());
+        $found->save();
+        return $found;
     }
 
     /**
@@ -44,6 +57,11 @@ class FoundController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $found = Found::find($id);
+        if (is_null($found)) {
+            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+        }
+        $found->delete();
+        return response()->noContent();
     }
 }
