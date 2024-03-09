@@ -33,7 +33,7 @@ class WorkerController extends Controller
     {
         $worker = Worker::find($id);
         if (is_null($worker)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         return $worker;
     }
@@ -45,7 +45,7 @@ class WorkerController extends Controller
     {
         $worker = Worker::find($id);
         if (is_null($worker)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         $worker->fill($request->all());
         $worker->save();
@@ -59,7 +59,7 @@ class WorkerController extends Controller
     {
         $worker = Worker::find($id);
         if (is_null($worker)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         $worker->delete();
         return response()->noContent();

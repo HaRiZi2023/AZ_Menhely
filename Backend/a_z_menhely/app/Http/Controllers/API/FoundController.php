@@ -33,7 +33,7 @@ class FoundController extends Controller
     {
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         return $found;
     }
@@ -45,7 +45,7 @@ class FoundController extends Controller
     {
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         $found->fill($request->all());
         $found->save();
@@ -59,7 +59,7 @@ class FoundController extends Controller
     {
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         $found->delete();
         return response()->noContent();

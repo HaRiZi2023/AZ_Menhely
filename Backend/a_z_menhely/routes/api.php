@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("/menhely", AdoptionControll::class);
-Route::apiResource("/found", FoundControll::class);  //ch
-//Route::apiResource("/guest", GuestControll::class);  //ch
-//Route::apiResource("/worker", WorkerControll::class);  //ch
+Route::apiResource("/adoption", AdoptionController::class);
+Route::apiResource("/found", FoundController::class);
+Route::apiResource("/guest", GuestController::class);
+Route::apiResource("/worker", WorkerController::class);

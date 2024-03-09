@@ -33,7 +33,7 @@ class GuestController extends Controller
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         return $guest;
     }
@@ -45,7 +45,7 @@ class GuestController extends Controller
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         $guest->fill($request->all());
         $guest->save();
@@ -59,7 +59,7 @@ class GuestController extends Controller
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
-            return response()->json(["message" => "Nincs hangya az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         $guest->delete();
         return response()->noContent();

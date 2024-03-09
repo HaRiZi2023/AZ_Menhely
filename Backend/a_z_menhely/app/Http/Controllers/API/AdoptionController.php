@@ -44,7 +44,7 @@ class AdoptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $aadoption= Adoption::find($id);
+        $adoption= Adoption::find($id);
         if (is_null($adoption)) {
             return response()->json(["message" => "Nincs örökbefogadás az alábbi azonosítóval: $id"], 404);
         }

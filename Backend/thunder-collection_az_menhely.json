@@ -1,0 +1,459 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "az_menhely",
+    "dateExported": "2024-03-09T14:25:01.285Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "012f232d-f513-42b2-a147-bacfcf322965",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Adoption",
+            "url": "http://localhost:8000/api/adoption/2",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-03-03T17:39:50.641Z",
+            "modified": "2024-03-09T13:05:31.264Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        },
+        {
+            "_id": "24ac772a-55a3-433a-9bac-55507c3f2938",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Adoption",
+            "url": "http://localhost:8000/api/adoption/1",
+            "method": "PATCH",
+            "sortNum": 70000,
+            "created": "2024-03-03T17:40:00.401Z",
+            "modified": "2024-03-09T13:06:20.034Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"g_name\" : \"MOMO\"\n}",
+                "form": []
+            },
+            "reqType": "patch",
+            "tests": []
+        },
+        {
+            "_id": "e1ee705e-b1b6-454a-b634-8f0f131bc514",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Adoption",
+            "url": "http://localhost:8000/api/adoption/4",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2024-03-03T17:40:09.169Z",
+            "modified": "2024-03-09T13:07:00.595Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"a_date\" : \"2024.01.02\",\n  \"g_name\" : \"BANKA\",\n  \"u_name\" : \"Kovács Józsefné\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "36375978-2dc7-4f60-b1ec-7e666a64a91e",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Adoption",
+            "url": "http://localhost:8000/api/adoption",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-03-03T17:40:29.285Z",
+            "modified": "2024-03-09T13:07:29.316Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"a_date\" : \"2024.03.08\",\n  \"g_name\" : \"GÜLSZIKE\",\n  \"u_name\" : \"ANDOR GÁBOR\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "0683fcf9-33b8-4104-b7a3-aa608d2bf57f",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Adoption",
+            "url": "http://localhost:8000/api/adoption",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-03-03T17:40:39.117Z",
+            "modified": "2024-03-06T19:00:42.086Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "56dbc8ec-111d-4d55-bcc8-fa0789a0e728",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Guest",
+            "url": "http://localhost:8000/api/guest/1",
+            "method": "PATCH",
+            "sortNum": 110000,
+            "created": "2024-03-03T17:44:48.641Z",
+            "modified": "2024-03-09T13:12:59.821Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"g_chip\" : \"912345678999999\"\n}",
+                "form": []
+            },
+            "reqType": "patch",
+            "tests": []
+        },
+        {
+            "_id": "8853a9b0-cbe0-4b2b-b87f-d33aec5a8e16",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Guest",
+            "url": "http://localhost:8000/api/guest/2",
+            "method": "PUT",
+            "sortNum": 120000,
+            "created": "2024-03-03T17:56:38.870Z",
+            "modified": "2024-03-09T13:11:31.262Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"g_chip\" : \"988888888881111\",\n  \"g_species\" : \"kutya\", \n  \"g_gender\" : \"hím\",\n  \"g_in_date\" : \"2024-01-03\",\n  \"g_in_place\" : \"bp\",\n  \"g_out_date\" : \"2024-03-03\",\n  \"g_adoption\" : \"igen\",\n  \"g_other\" : \"blablabla\",\n  \"g_image\" : \"guest-g_image.bin\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "6232ffe8-32f9-4233-a625-e56e57ee7b41",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Guest",
+            "url": "http://localhost:8000/api/guest",
+            "method": "POST",
+            "sortNum": 130000,
+            "created": "2024-03-03T17:57:53.799Z",
+            "modified": "2024-03-09T13:09:42.132Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"g_name\" : \"ALMA\",\n  \"g_chip\" : \"988888888888777\",\n  \"g_species\" : \"kutya\", \n  \"g_gender\" : \"hím\",\n  \"g_in_date\" : \"2024-01-03\",\n  \"g_in_place\" : \"bp\",\n  \"g_out_date\" : \"2024-03-03\",\n  \"g_adoption\" : \"nem\",\n  \"g_other\" : \"blablabla\",\n  \"g_image\" : \"guest-g_image.bin\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "9d28d9c8-9d4d-4e1f-9188-64359d50296e",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Guest",
+            "url": "http://localhost:8000/api/guest",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2024-03-03T17:58:42.707Z",
+            "modified": "2024-03-09T10:58:36.269Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "dee39b8b-8604-419a-94a3-6f1e12603f9e",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Guest",
+            "url": "http://localhost:8000/api/guest/5",
+            "method": "DELETE",
+            "sortNum": 150000,
+            "created": "2024-03-03T18:01:13.695Z",
+            "modified": "2024-03-09T13:08:26.746Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        },
+        {
+            "_id": "c4cdd8aa-f964-4d4a-85ef-17bd7865a93b",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Found",
+            "url": "http://localhost:8000/api/found",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2024-03-09T11:04:11.264Z",
+            "modified": "2024-03-09T13:25:29.242Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "08d49c3d-7878-4748-a826-03193f96b8f7",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Found",
+            "url": "http://localhost:8000/api/found",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2024-03-09T11:04:29.469Z",
+            "modified": "2024-03-09T13:35:42.771Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"f_choice\" : \"keres\",\n  \"f_species\" : \"kutya\",\n  \"f_gender\" : \"nőstény\",\n  \"f_injury\" : \"igen\",\n  \"f_position\" : \"zi\",\n  \"u_name\" : \"Döglöt Virág\",\n  \"f_other\" : \"Egyéb tudnivaló\",\n  \"f_image\" : \"guest-g_image.bin\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "7597b320-94df-4d9a-a31b-4d4534813f49",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Found",
+            "url": "http://localhost:8000/api/found/2",
+            "method": "PATCH",
+            "sortNum": 180000,
+            "created": "2024-03-09T11:05:03.562Z",
+            "modified": "2024-03-09T13:40:57.306Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"f_gender\" : \"hím\"\n}",
+                "form": []
+            },
+            "reqType": "patch",
+            "tests": []
+        },
+        {
+            "_id": "d11e03b9-73ed-4c63-8462-c5076d7ae224",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Found",
+            "url": "http://localhost:8000/api/found/1",
+            "method": "PUT",
+            "sortNum": 190000,
+            "created": "2024-03-09T11:05:19.953Z",
+            "modified": "2024-03-09T13:39:16.360Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"f_choice\" : \"keres\",\n  \"f_species\" : \"kutya\",\n  \"f_gender\" : \"nőstény\",\n  \"f_injury\" : \"igen\",\n  \"f_position\" : \"DÖGLÖTT LÓ\",\n  \"u_name\" : \"Döglöt Virág\",\n  \"f_other\" : \"Egyéb tudnivaló\",\n  \"f_image\" : \"guest-g_image.bin\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "72e12712-5f51-4de1-83c7-4818b23b8b98",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Found",
+            "url": "http://localhost:8000/api/found/4",
+            "method": "DELETE",
+            "sortNum": 200000,
+            "created": "2024-03-09T11:05:45.207Z",
+            "modified": "2024-03-09T13:41:52.425Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        },
+        {
+            "_id": "ef84dd36-74e1-45f9-8cf1-26383f35b5bf",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Worker",
+            "url": "http://localhost:8000/api/worker/4",
+            "method": "DELETE",
+            "sortNum": 210000,
+            "created": "2024-03-09T11:23:09.796Z",
+            "modified": "2024-03-09T13:31:45.687Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        },
+        {
+            "_id": "e2f277e4-3dbf-4df2-93e2-e94177a4bab2",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Worker",
+            "url": "http://localhost:8000/api/worker/4",
+            "method": "PATCH",
+            "sortNum": 220000,
+            "created": "2024-03-09T11:23:19.126Z",
+            "modified": "2024-03-09T13:30:47.527Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"w_name\" : \"DÖGLÖTT LÓ\"\n}",
+                "form": []
+            },
+            "reqType": "patch",
+            "tests": []
+        },
+        {
+            "_id": "80e0b2d0-d8f4-42de-aee6-0747de547ba6",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Worker",
+            "url": "http://localhost:8000/api/worker/5",
+            "method": "PUT",
+            "sortNum": 230000,
+            "created": "2024-03-09T11:23:26.810Z",
+            "modified": "2024-03-09T13:32:24.538Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"w_name\" : \"DÖGLÖTT Veréb\",\n  \"w_password\" : \"AAA\",\n  \"w_permission\" : \"felhasználó\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "tests": []
+        },
+        {
+            "_id": "5f219080-fa42-48d9-806c-eec97a372a97",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Worker",
+            "url": "http://localhost:8000/api/worker",
+            "method": "POST",
+            "sortNum": 240000,
+            "created": "2024-03-09T11:23:32.994Z",
+            "modified": "2024-03-09T13:27:50.601Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"w_name\" : \"DÖGLÖTT HÖRCSÖG\",\n  \"w_password\" : \"AAA\",\n  \"w_permission\" : \"felhasználó\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "47a8bdd8-fa4b-4ca4-9317-be264bad0b8f",
+            "colId": "2c9ea59e-adae-476c-b30e-112cb5a46631",
+            "containerId": "",
+            "name": "Worker",
+            "url": "http://localhost:8000/api/worker",
+            "method": "GET",
+            "sortNum": 250000,
+            "created": "2024-03-09T11:23:47.439Z",
+            "modified": "2024-03-09T13:26:54.992Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        }
+    ]
+}
