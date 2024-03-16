@@ -1,7 +1,6 @@
 package com.example.animalrescue;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.Nullable;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -17,15 +16,12 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity {
     private Button buttonLogin;
     private Button buttonRegister;
     private EditText editTextEmailLogin;
     private EditText editTextPasswordLogin;
-    private String url = ""; //ide jön az adatbázis elérése
+    private String requestUrl = "http://localhost:8000/api/a-z_menhely/users";
     private ProgressBar progressBar;
 
     @Override
@@ -42,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,
                             "Minden mező kitöltése kötelező", Toast.LENGTH_SHORT).show();
                 } else {
-                    RequestTask task = new RequestTask(url, "GET", email);
+                    RequestTask task = new RequestTask(requestUrl, "GET", email);
                     task.execute();
                 }
             }
@@ -115,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         response.getContent(), Users[].class);
                 if (felhasznalokArray.length > 0) {
                     Toast.makeText(MainActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LostOrFindActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

@@ -20,7 +20,7 @@ import android.widget.Spinner;
 
 import java.io.ByteArrayOutputStream;
 
-public class MenuActivity extends AppCompatActivity {
+public class LostOrFindActivity extends AppCompatActivity {
 
     private Spinner spinnerFindSearchSp, spinnerASpecies, spinnerAGender, spinnerAInjury;
     private static final String[] findsearch = {"Keres", "Talált"};
@@ -28,7 +28,7 @@ public class MenuActivity extends AppCompatActivity {
     private static final String[] gender = {"Ismeretlen", "Nőstény", "Hím"};
     private static final String[] injury = {"Ismeretlen", "Igen", "Nem"};
 
-    private EditText editTextAPosition, editTextSName, editTextSAdr, editTextCallSNumb;
+    private EditText editTextAPosition;
     private Button buttonAPosition, buttonFoto, buttonSave;
 
     private ImageView imageViewResult;
@@ -39,7 +39,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animal);
         init();
 
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(MenuActivity.this, android.R.layout.simple_spinner_item, findsearch);
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
 
         spinnerFindSearchSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -122,8 +122,8 @@ public class MenuActivity extends AppCompatActivity {
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { addAnimal();
-
+            public void onClick(View view) {
+                addAnimal();
             }
         });
 
@@ -186,13 +186,9 @@ public class MenuActivity extends AppCompatActivity {
         spinnerAInjury = findViewById(R.id.spinnerAInjury);
         editTextAPosition = findViewById(R.id.editTextAPosition);
         buttonAPosition = findViewById(R.id.buttonAPosition);
-        editTextSName = findViewById(R.id.editTextSName);
-        editTextSAdr = findViewById(R.id.editTextSAdr);
-        editTextCallSNumb = findViewById(R.id.editTextCallSNumb);
         buttonFoto = findViewById(R.id.buttonFoto);
         buttonSave = findViewById(R.id.buttonSave);
         imageViewResult = findViewById(R.id.imageViewResult);
-
     }
 
 }

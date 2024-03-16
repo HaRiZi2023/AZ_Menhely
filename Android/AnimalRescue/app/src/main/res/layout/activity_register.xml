@@ -25,6 +25,20 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/editTextAddressRegister"
+        android:hint="Cím"
+        android:inputType="textPostalAddress"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPhoneRegister"
+        android:hint="Telefonszám"
+        android:inputType="number" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/editTextPasswordRegister"
         android:hint="Jelszó"
         android:inputType="textPassword"/>

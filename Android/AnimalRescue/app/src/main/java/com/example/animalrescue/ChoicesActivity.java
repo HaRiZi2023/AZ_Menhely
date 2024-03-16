@@ -22,7 +22,7 @@ public class ChoicesActivity extends AppCompatActivity {
         buttonFindSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(ChoicesActivity.this, MenuActivity.class);
+                Intent intent= new Intent(ChoicesActivity.this, LostOrFindActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -34,7 +34,7 @@ public class ChoicesActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("http://www.teszt.hu"));
+                intent.setData(Uri.parse("http://www.google.hu"));
                 startActivity(intent);
                 finish();
             }

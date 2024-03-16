@@ -19,7 +19,10 @@ public class RegisterActivity extends AppCompatActivity {
     private Button buttonBack;
     private EditText editTextEmailRegister;
     private EditText editTextPasswordRegister;
-    private String url = "http://10.0.2.2:8000/api/;
+    private EditText editTextNameRegister;
+    private EditText editTextAddressRegister;
+    private EditText editTextPhoneRegister;
+    private String requestUrl = "http://127.0.0.1:8000/api/a-z_menhely/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +42,23 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = editTextEmailRegister.getText().toString();
                 String password = editTextPasswordRegister.getText().toString();
+                String name = editTextNameRegister.getText().toString();
+                String address = editTextAddressRegister.getText().toString();
+                String phone = editTextPhoneRegister.getText().toString();
 
-                if (email.isEmpty() || password.isEmpty()) {
+                if (email.isEmpty() || password.isEmpty() || name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                     Toast.makeText(RegisterActivity.this,
                             "Minden mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                int phone_Int = Integer.parseInt(phone);
+
                 //új felhasználó létrehozása
-                Users users = new Users(0,email,password);
+                Users users = new Users(0,email,password,name,address,phone_Int);
                 Gson jsonConverter = new Gson();
                 //Post kérés elküldése
-                RequestTask task = new RequestTask(url, "POST", jsonConverter.toJson(users));
+                RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(users));
                 //Kérés végrehajtása
                 task.execute();
             }
@@ -62,6 +70,9 @@ public class RegisterActivity extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBack);
         editTextEmailRegister = findViewById(R.id.editTextEmailRegister);
         editTextPasswordRegister = findViewById(R.id.editTextPasswordRegister);
+        editTextNameRegister = findViewById(R.id.editTextNameRegister);
+        editTextAddressRegister = findViewById(R.id.editTextAddressRegister);
+        editTextPhoneRegister = findViewById(R.id.editTextPhoneRegister);
     }
 
     private class RequestTask extends AsyncTask<Void, Void, Response> {

@@ -89,31 +89,6 @@
             android:id="@+id/buttonAPosition"
             android:text="Állat pozíció"/>
 
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextSName"
-            android:hint="Bejelentő neve (Teljes név)"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextSAdr"
-            android:hint="Bejelentő címe (Város, utca, házszám)"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextCallSNumb"
-            android:hint="Bejelentő mobilszáma (+36201234567)"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextComment"
-            android:hint="Megjegyzés"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

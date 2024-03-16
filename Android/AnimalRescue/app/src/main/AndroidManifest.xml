@@ -27,7 +27,7 @@
             android:name=".ChoicesActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".LostOrFindActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

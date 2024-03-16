@@ -8,16 +8,14 @@ public class Users {
     private String name;
     private String address;
     private int phone;
-    private String others;
 
-    public Users(int id, String email, String password, String name, String address, int phone, String others) {
+    public Users(int id, String email, String password, String name, String address, int phone) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.others = others;
     }
 
     public int getId() {
@@ -67,8 +65,4 @@ public class Users {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-
-    public String getOthers() { return others; }
-
-    public void setOthers(String others) { this.others = others; }
 }
