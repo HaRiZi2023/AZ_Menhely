@@ -18,9 +18,9 @@ class WorkerFactory extends Factory
     {
         return [
 
-            "w_name" => fake()->name(),
+            "w_name" => fake()->firstName(),
             "w_password" => fake()->lexify(),
-            "w_permission" => fake()->randomKey(['a'=> 1, 'b'=> 2, 'c'=> 3]),
+            "w_permission" => fake()->randomKey(['teljes'=> 1, 'szerkesztő'=> 2, 'felhasználó'=> 3]),
 
         ];
     }

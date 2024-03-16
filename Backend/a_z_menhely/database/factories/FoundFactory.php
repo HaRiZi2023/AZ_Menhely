@@ -18,24 +18,15 @@ class FoundFactory extends Factory
     {
         return [
 
-            "f_choice" => fake()->randomKey(['a'=> 1, 'b'=> 2]),
-            "f_species" => fake()->randomKey(['a'=> 1, 'b'=> 2]),
-            "f_gender" => fake()->randomKey(['a'=> 1, 'b'=> 2, 'c'=> 3]),
-            "f_injury" => fake()->randomKey(['a'=> 1, 'b'=> 2]),
+            "f_choice" => fake()->randomKey(['keres'=> 1, 'talált'=> 2]),
+            "f_species" => fake()->randomKey(['kutya'=> 1, 'macska'=> 2]),
+            "f_gender" => fake()->randomKey(['nőstény'=> 1, 'hím'=> 2, 'ismeretlen'=> 3]),
+            "f_injury" => fake()->randomKey(['igen'=> 1, 'nem'=> 2]),
             "f_position" => fake()->address(),
             "u_name" => fake()->name(),
-            "f_other" => fake()->words(3),
-            "f_image" => fake()->image(null, 360, 360, 'animals', true),   //
-
-
-
-
-
-            "name" => fake()->name(),
-            "szam" => fake()->randomNumber(4, true),
-            "enum" => fake()->randomKey(['a'=> 1, 'b'=> 2, 'c'=> 3]),
-            //"date" => fake()->year("-1 year), ha csak év kell
-            "date" => fake()->date(), //év-hó-nap
+            "f_other" => fake()->words(3, true),
+            "f_image" => fake()->image(null, 360, 360, 'animals', true),
+            
         ];
     }
 }

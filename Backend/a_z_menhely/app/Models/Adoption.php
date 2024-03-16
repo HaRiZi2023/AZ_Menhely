@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Adoption extends Model
 {
     use HasFactory;
+
+        protected $fillable = [
+            "a_date",
+            "g_name",
+            "u_name"
+        ];
+
+
+
+
 }

@@ -18,15 +18,15 @@ class GuestFactory extends Factory
     {
         return [
 
-            "g_name" => fake()->lastName(),
-            "g_chip" => fake()->randomNumber(15, true),
-            "g_species" => fake()->randomKey(['a'=> 1, 'b'=> 2]),
-            "g_gender" => fake()->randomKey(['a'=> 1, 'b'=> 2, 'c'=> 3]),
+            "g_name" => fake()->firstName(),
+            "g_chip" => fake()->numberBetween(900000000000001, 999999999999999), //randomNumber(5,true),   //(15, true),
+            "g_species" => fake()->randomKey(['kutya'=> 1, 'macska'=> 2]),
+            "g_gender" => fake()->randomKey(['nőstény'=> 1, 'hím'=> 2, 'ismeretlen'=> 3]),
             "g_in_date" => fake()->date(),
             "g_in_place" => fake()->address(),
             "g_out_date" => fake()->date(),
-            "g_adoption" => fake()->randomKey(['a'=> 1, 'b'=> 2]),
-            "other" => fake()->words(3),
+            "g_adoption" => fake()->randomKey(['igen'=> 1, 'nem'=> 2]),
+            "g_other" => fake()->words(3, true),
             "g_image" => fake()->image(null, 360, 360, 'animals', true),
 
         ];
