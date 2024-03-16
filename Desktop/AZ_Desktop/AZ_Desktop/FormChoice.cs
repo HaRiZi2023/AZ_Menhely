@@ -16,5 +16,12 @@ namespace AZ_Desktop
         {
             InitializeComponent();
         }
+
+        private void FormChoice_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

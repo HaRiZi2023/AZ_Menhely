@@ -29,87 +29,88 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox_MainChoice = new System.Windows.Forms.CheckBox();
+            this.groupBox_Main = new System.Windows.Forms.GroupBox();
+            this.checkBox_MainChip = new System.Windows.Forms.CheckBox();
+            this.button_Main = new System.Windows.Forms.Button();
+            this.checkBox_MainFound = new System.Windows.Forms.CheckBox();
+            this.checkBox_MainAdoption = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
+            this.groupBox_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // checkBox_MainChoice
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.checkBox1.Location = new System.Drawing.Point(98, 38);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(121, 30);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Vendégeink";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox_MainChoice.AutoSize = true;
+            this.checkBox_MainChoice.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.checkBox_MainChoice.Location = new System.Drawing.Point(98, 38);
+            this.checkBox_MainChoice.Name = "checkBox_MainChoice";
+            this.checkBox_MainChoice.Size = new System.Drawing.Size(121, 30);
+            this.checkBox_MainChoice.TabIndex = 0;
+            this.checkBox_MainChoice.Text = "Vendégeink";
+            this.checkBox_MainChoice.UseVisualStyleBackColor = false;
             // 
-            // groupBox1
+            // groupBox_Main
             // 
-            this.groupBox1.BackgroundImage = global::AZ_Desktop.Properties.Resources.Pasztel_szürke;
-            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox1.Location = new System.Drawing.Point(88, 64);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(393, 262);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Kérem válasszon!";
+            this.groupBox_Main.BackgroundImage = global::AZ_Desktop.Properties.Resources.Pasztel_szürke;
+            this.groupBox_Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox_Main.Controls.Add(this.checkBox_MainChip);
+            this.groupBox_Main.Controls.Add(this.button_Main);
+            this.groupBox_Main.Controls.Add(this.checkBox_MainFound);
+            this.groupBox_Main.Controls.Add(this.checkBox_MainAdoption);
+            this.groupBox_Main.Controls.Add(this.checkBox_MainChoice);
+            this.groupBox_Main.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox_Main.Location = new System.Drawing.Point(88, 64);
+            this.groupBox_Main.Name = "groupBox_Main";
+            this.groupBox_Main.Size = new System.Drawing.Size(393, 262);
+            this.groupBox_Main.TabIndex = 2;
+            this.groupBox_Main.TabStop = false;
+            this.groupBox_Main.Text = "Kérem válasszon!";
             // 
-            // checkBox4
+            // checkBox_MainChip
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.checkBox4.Location = new System.Drawing.Point(98, 168);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(188, 30);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Chip alapján keresés";
-            this.checkBox4.UseVisualStyleBackColor = false;
+            this.checkBox_MainChip.AutoSize = true;
+            this.checkBox_MainChip.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.checkBox_MainChip.Location = new System.Drawing.Point(98, 168);
+            this.checkBox_MainChip.Name = "checkBox_MainChip";
+            this.checkBox_MainChip.Size = new System.Drawing.Size(188, 30);
+            this.checkBox_MainChip.TabIndex = 3;
+            this.checkBox_MainChip.Text = "Chip alapján keresés";
+            this.checkBox_MainChip.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // button_Main
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(218, 212);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 35);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Választ";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button_Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button_Main.Location = new System.Drawing.Point(218, 212);
+            this.button_Main.Name = "button_Main";
+            this.button_Main.Size = new System.Drawing.Size(154, 35);
+            this.button_Main.TabIndex = 4;
+            this.button_Main.Text = "Választ";
+            this.button_Main.UseVisualStyleBackColor = false;
+            this.button_Main.Click += new System.EventHandler(this.button_Main_Click);
             // 
-            // checkBox3
+            // checkBox_MainFound
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.checkBox3.Location = new System.Drawing.Point(98, 125);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(186, 30);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Keresem / Találtam";
-            this.checkBox3.UseVisualStyleBackColor = false;
+            this.checkBox_MainFound.AutoSize = true;
+            this.checkBox_MainFound.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.checkBox_MainFound.Location = new System.Drawing.Point(98, 125);
+            this.checkBox_MainFound.Name = "checkBox_MainFound";
+            this.checkBox_MainFound.Size = new System.Drawing.Size(186, 30);
+            this.checkBox_MainFound.TabIndex = 2;
+            this.checkBox_MainFound.Text = "Keresem / Találtam";
+            this.checkBox_MainFound.UseVisualStyleBackColor = false;
             // 
-            // checkBox2
+            // checkBox_MainAdoption
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.checkBox2.Location = new System.Drawing.Point(98, 79);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(145, 30);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Örökbefogadás";
-            this.checkBox2.UseVisualStyleBackColor = false;
+            this.checkBox_MainAdoption.AutoSize = true;
+            this.checkBox_MainAdoption.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.checkBox_MainAdoption.Location = new System.Drawing.Point(98, 79);
+            this.checkBox_MainAdoption.Name = "checkBox_MainAdoption";
+            this.checkBox_MainAdoption.Size = new System.Drawing.Size(145, 30);
+            this.checkBox_MainAdoption.TabIndex = 1;
+            this.checkBox_MainAdoption.Text = "Örökbefogadás";
+            this.checkBox_MainAdoption.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -129,13 +130,13 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(604, 590);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox_Main);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "A-Z Menhely";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox_Main.ResumeLayout(false);
+            this.groupBox_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -143,12 +144,12 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox_MainChoice;
+        private System.Windows.Forms.GroupBox groupBox_Main;
+        private System.Windows.Forms.CheckBox checkBox_MainChip;
+        private System.Windows.Forms.CheckBox checkBox_MainFound;
+        private System.Windows.Forms.CheckBox checkBox_MainAdoption;
+        private System.Windows.Forms.Button button_Main;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

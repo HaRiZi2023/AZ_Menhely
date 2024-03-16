@@ -143,14 +143,14 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(307, 239);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 30);
+            this.textBox1.Size = new System.Drawing.Size(233, 30);
             this.textBox1.TabIndex = 11;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(307, 337);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 30);
+            this.textBox2.Size = new System.Drawing.Size(145, 30);
             this.textBox2.TabIndex = 12;
             // 
             // listBox1
@@ -203,7 +203,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(185, 95);
+            this.label8.Location = new System.Drawing.Point(209, 94);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 23);
             this.label8.TabIndex = 18;
