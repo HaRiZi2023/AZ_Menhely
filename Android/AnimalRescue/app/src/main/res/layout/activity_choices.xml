@@ -6,28 +6,36 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background10">
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:visibility="gone" />
 
 
     <Button
         android:id="@+id/buttonFindSearch"
-        android:layout_width="218dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@android:color/transparent"
         android:text="Talált/elveszett állat bejelentése"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/buttonWeb"
-        android:layout_width="218dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
         android:text="További információ a honlapunkon"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_height="80dp"
+        android:layout_margin="15dp"/>
 
 </LinearLayout>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:background="@drawable/background10">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -20,13 +21,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextNameRegister"
         android:hint="Teljes név"
-        android:inputType="textPersonName"/>
+        android:textColorHint="@color/black"
+        android:inputType="textPersonName" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextEmailRegister"
         android:hint="Email"
+        android:textColorHint="@color/black"
         android:inputType="textEmailAddress"/>
 
     <EditText
@@ -34,6 +37,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextAddressRegister"
         android:hint="Cím"
+        android:textColorHint="@color/black"
         android:inputType="textPostalAddress"/>
 
     <EditText
@@ -41,6 +45,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextPhoneRegister"
         android:hint="Telefonszám"
+        android:textColorHint="@color/black"
         android:inputType="number" />
 
     <EditText
@@ -48,6 +53,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextPasswordRegister"
         android:hint="Jelszó"
+        android:textColorHint="@color/black"
         android:inputType="textPassword" />
 
     <EditText
@@ -55,31 +61,45 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextPasswordRegister2"
         android:hint="Jelszó megerősítése"
+        android:textColorHint="@color/black"
         android:inputType="textPassword"/>
 
     <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/editTextGDPR"
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:gravity="top"
         android:text="Adatkezelési tájékoztató"/>
-
 
     <CheckBox
         android:id="@+id/editTextAszf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Általános szerződési feltételek" />
+        android:text="Általános szerződési feltételek"
+        android:gravity="top"/>
 
     <Button
         android:id="@+id/buttonFinalRegister"
-        android:layout_width="218dp"
+        android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:text="Regisztráció" />
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Regisztráció"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/buttonBack"
-        android:layout_width="218dp"
+        android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:text="Vissza" />
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Vissza"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 </LinearLayout>

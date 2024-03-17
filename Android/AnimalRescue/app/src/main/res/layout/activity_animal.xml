@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:background="@color/furasargazold"
     tools:context=".MainActivity">
     
     <LinearLayout
@@ -32,12 +32,14 @@
             android:textSize="20sp"
             android:id="@+id/textViewFindSearch"
             android:text="Elveszett/Talált"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerFindSearchSp"/>
+            android:id="@+id/spinnerFindSearchSp"
+            android:layout_margin="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -45,12 +47,14 @@
             android:id="@+id/textViewASpecies"
             android:textSize="20sp"
             android:gravity="center"
-            android:text="Állat faja"/>
+            android:text="Állat faja"
+            android:textColor="@color/black"/>
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerASpecies"/>
+            android:id="@+id/spinnerASpecies"
+            android:layout_margin="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -58,12 +62,14 @@
             android:id="@+id/textViewAGender"
             android:textSize="20sp"
             android:gravity="center"
-            android:text="Állat neme"/>
+            android:text="Állat neme"
+            android:textColor="@color/black"/>
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerAGender"/>
+            android:id="@+id/spinnerAGender"
+            android:layout_margin="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -71,38 +77,52 @@
             android:id="@+id/textViewAInjury"
             android:textSize="20sp"
             android:gravity="center"
-            android:text="Látható sérülés?"/>
+            android:textColor="@color/black"
+            android:text="Látható-e sérülés"/>
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerAInjury"/>
+            android:id="@+id/spinnerAInjury"
+            android:layout_margin="10dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextAPosition"
-            android:hint="Állat pozíció (Város, utca, házszám)"/>
+            android:hint="Állat pozíció (Város, utca, házszám)"
+            android:textColorHint="@color/black"
+            android:layout_margin="10dp"/>
 
         <TextView
             android:id="@+id/textViewlocation"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Jelenlegi GPS adatok"
-            android:textSize="24sp"
+            android:gravity="center"
             android:textStyle="bold"/>
 
         <Button
             android:id="@+id/buttonAPosition"
             android:text="Állat pozicíója"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:background="@drawable/button_border"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_margin="10dp"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonFoto"
-            android:text="Kép készítése"/>
+            android:text="Kép készítése"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:background="@drawable/button_border"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_margin="10dp"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -111,10 +131,15 @@
             android:id="@+id/imageViewResult"/>
 
         <Button
+            android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonSave"
-            android:text="Küldés"/>
+            android:background="@drawable/button_border"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Küldés"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
 
     </LinearLayout>
 
