@@ -16,7 +16,7 @@ namespace AZ_Desktop
 
         public static List<CheckBox> checkBoxes = new List<CheckBox>();
 
-        public static List<Guest> egyedek = new List<Guest>();
+        public static List<Guest> guests = new List<Guest>();
         public static FormMain formMain = null;
 
         public static FormChoice formChoice = null;

@@ -2,11 +2,13 @@
 using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace AZ_Desktop
 {
@@ -211,6 +213,133 @@ namespace AZ_Desktop
             }
             return egyedek;
         }
+
+        //**********************************************************************************
+        //************* Choice **************************** 
+
+        internal List<Guest> AllDog() // ezt a Program.cs ben adom meg
+        {
+            List<Guest> dogs = new List<Guest>();
+            sql.CommandText = "SELECT * FROM guests WHERE g_species = @kutya ";  // ok
+            sql.Parameters.AddWithValue("@kutya", "kutya");
+
+            try
+            {
+                connOpening();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        string g_name = dr.GetString("g_name");
+                        string g_chip = dr.GetString("g_chip");
+                        string g_species = dr.GetString("g_species");
+                        string g_gender = dr.GetString("g_gender"); //enum
+                        DateTime g_in_date = dr.GetDateTime("g_in_date");
+                        string g_in_place = dr.GetString("g_in_place");
+                        DateTime g_out_date = dr.GetDateTime("g_out_date");
+                        string g_adoption = dr.GetString("g_adoption");
+                        string g_other = dr.GetString("g_other");  //enum
+
+                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+            return dogs;
+        }
+
+        internal List<Guest> AllCat() // ezt a Program.cs ben adom meg
+        {
+            List<Guest> cats = new List<Guest>();
+            sql.CommandText = "SELECT * FROM guests WHERE g_species = @macska ";  // ok
+            sql.Parameters.AddWithValue("@macska", "macska");
+
+            try
+            {
+                connOpening();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        string g_name = dr.GetString("g_name");
+                        string g_chip = dr.GetString("g_chip");
+                        string g_species = dr.GetString("g_species");
+                        string g_gender = dr.GetString("g_gender"); //enum
+                        DateTime g_in_date = dr.GetDateTime("g_in_date");
+                        string g_in_place = dr.GetString("g_in_place");
+                        DateTime g_out_date = dr.GetDateTime("g_out_date");
+                        string g_adoption = dr.GetString("g_adoption");
+                        string g_other = dr.GetString("g_other");  //enum
+
+                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+            return cats;
+        }
+
+        //******************************* Guests *************************************************//
+
+        internal Guest chosenName(string guestName)
+        {
+            Guest guest = null;
+            sql.CommandText = "SELECT * FROM `guests` WHERE `g_name` = @name";
+            sql.Parameters.AddWithValue("@name", guestName);
+
+            try
+            {
+                connOpening();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        // Itt kérhetem le az összes szükséges adatot a vendéghez
+                        // Pl:
+                        // string g_chip = dr.GetString("g_chip");
+                        // 
+
+                        // A vendég példányosítása az adatokkal
+                        //guest = new Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+
+            return guest;
+        }
+
+
+
+
+
+
+
+
 
         internal void insertEgyed(Guest egyed)
         {

@@ -37,7 +37,6 @@ namespace AZ_Desktop
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
         }
 
         private void InitializeCheckBoxes()
