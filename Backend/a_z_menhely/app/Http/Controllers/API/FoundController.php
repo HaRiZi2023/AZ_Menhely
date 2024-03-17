@@ -4,7 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Found;
+use App\Http\Requests\StoreFoundRequest;
+use App\Http\Requests\UpdateFoundRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FoundController extends Controller
 {
@@ -13,55 +16,74 @@ class FoundController extends Controller
      */
     public function index()
     {
-        $founds = Found::all();
-        return $founds;
+        $founds=Found::all();
+        return response()->json($founds);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFoundRequest $request)
     {
-        $found = Found::create($request->all());
-        return $found;
+        $validator = Validator::make($request->all(), (new StoreFoundRequest())->rules());
+        if ($validator->fails()) {
+            $errormsg = "";
+            foreach ($validator->errors()->all() as $error) {
+                $errormsg .= $error . " ";
+            }
+            $errormsg = trim($errormsg);
+            return response()->json(["message" => $errormsg], 400);
+        }
+        $found = new Found();
+        $found->fill($request->all());
+        $found->save();
+        return response()->json($found, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "A megadott azonosítóval nem található állat."], 404);
         }
-        return $found;
+        return response()->json($found);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(UpdateFoundRequest $request, int $id)
     {
+        if ($request->isMethod('PUT')) {
+            $validator = Validator::make($request->all(), (new StoreFoundRequest())->rules());
+            if ($validator->fails()) {
+                $errormsg = "";
+                foreach ($validator->errors()->all() as $error) {
+                    $errormsg .= $error . " ";
+                }
+                $errormsg = trim($errormsg);
+                return response()->json($errormsg, 400);
+            }
+        }
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "A megadott azonosítóval nem található állat."], 404);
         }
         $found->fill($request->all());
         $found->save();
-        return $found;
+        return response()->json($found, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "A megadott azonosítóval nem található bor."], 404);
         }
-        $found->delete();
+        Found::destroy($id);
         return response()->noContent();
     }
 }

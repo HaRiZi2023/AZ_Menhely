@@ -23,6 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalRescue"
         tools:targetApi="31">
+
+
         <activity
             android:name=".ChoicesActivity"
             android:exported="false" />

@@ -1,11 +1,20 @@
 package com.example.animalrescue;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -16,22 +25,35 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.location.Location;
+
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
-public class LostOrFindActivity extends AppCompatActivity {
+public class LostOrFindActivity extends AppCompatActivity { //?? AppActivity or AppCompatActivity
 
     private Spinner spinnerFindSearchSp, spinnerASpecies, spinnerAGender, spinnerAInjury;
     private static final String[] findsearch = {"Keres", "Talált"};
     private static final String[] species = {"Kutya", "Macska"};
     private static final String[] gender = {"Ismeretlen", "Nőstény", "Hím"};
     private static final String[] injury = {"Ismeretlen", "Igen", "Nem"};
-
+    private double longitude;
+    private double latitude;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private String requestUrl = "http://10.0.2.2:8000/api/founds";
     private EditText editTextAPosition;
+    private TextView textViewlocation;
     private Button buttonAPosition, buttonFoto, buttonSave;
-
     private ImageView imageViewResult;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,94 +61,98 @@ public class LostOrFindActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animal);
         init();
 
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
 
+            textViewlocation.setText(R.string.no_gps_permission);
+
+            // Engedély kérés ablak megnyitása.
+            String[] permissions =
+                    new String[]{
+                            android.Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    };
+            ActivityCompat.requestPermissions(this, permissions, 0);
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                0, 0, locationListener);
+
+        ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
+        ArrayAdapter<String>adapter1 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, species);
+        ArrayAdapter<String>adapter2 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, gender);
+        ArrayAdapter<String>adapter3 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, injury);
+        spinnerFindSearchSp.setAdapter(adapter);
         spinnerFindSearchSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 }
 
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
+        spinnerASpecies.setAdapter(adapter1);
         spinnerASpecies.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                }
+                Log.v("item", (String) parent.getItemAtPosition(position));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+        spinnerAGender.setAdapter(adapter2);
         spinnerAGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                }
+                Log.v("item", (String) parent.getItemAtPosition(position));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+        spinnerAInjury.setAdapter(adapter3);
         spinnerAInjury.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                }
+                Log.v("item", (String) parent.getItemAtPosition(position));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
         buttonAPosition.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
+                locationListener = new LocationListener() {
+                    @Override
+                    public void onLocationChanged(@NonNull Location location) {
+                        longitude = location.getLongitude();
+                        latitude = location.getLatitude();
+                    }
+                };
             }
         });
-
         buttonFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {fenykepezes();
             }
         });
-
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addAnimal();
             }
         });
-
+        //editTextAPosition.getText(getCompleteAddressString()); //Hogy másolunk be edit textbe pl címet.
     }
 
     private void addAnimal(){
@@ -134,7 +160,8 @@ public class LostOrFindActivity extends AppCompatActivity {
         String species = spinnerASpecies.getSelectedItem().toString();
         String gender = spinnerAGender.getSelectedItem().toString();
         String injury = spinnerAInjury.getSelectedItem().toString();
-
+        String position = editTextAPosition.getText().toString();
+        //String image = // Bitmapot hogyan tudom elmenteni?
     }
 
     private void fenykepezes() {
@@ -178,6 +205,29 @@ public class LostOrFindActivity extends AppCompatActivity {
         // A kép visszaadása
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
+    private String getCompleteAddressString(double latitude, double longitude) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+                Log.w("My Current loction address", strReturnedAddress.toString());
+            } else {
+                Log.w("My Current loction address", "No Address returned!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.w("My Current loction address", "Cannot get Address!");
+        }
+        return strAdd;
+    }
 
     public void init(){
         spinnerFindSearchSp = findViewById(R.id.spinnerFindSearchSp);
@@ -186,9 +236,61 @@ public class LostOrFindActivity extends AppCompatActivity {
         spinnerAInjury = findViewById(R.id.spinnerAInjury);
         editTextAPosition = findViewById(R.id.editTextAPosition);
         buttonAPosition = findViewById(R.id.buttonAPosition);
+        textViewlocation = findViewById(R.id.textViewlocation);
         buttonFoto = findViewById(R.id.buttonFoto);
         buttonSave = findViewById(R.id.buttonSave);
         imageViewResult = findViewById(R.id.imageViewResult);
     }
 
+    private class RequestTask extends AsyncTask<Void, Void, Response> {
+        String requestUrl;
+        String requestType;
+        String requestParams;
+
+        public RequestTask(String requestUrl, String requestType, String requestParams) {
+            this.requestUrl = requestUrl;
+            this.requestType = requestType;
+            this.requestParams = requestParams;
+        }
+
+        //doInBackground metódus létrehozása a kérés elküldéséhez
+        @Override
+        protected Response doInBackground(Void... voids) {
+            Response response = null;
+            try {
+                switch (requestType) {
+                    case "POST":
+                        response = RequestHandler.post(requestUrl, requestParams);
+                        break;
+                }
+            } catch (IOException e) {
+                Toast.makeText(LostOrFindActivity.this,
+                        e.toString(), Toast.LENGTH_SHORT).show();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            buttonSave.setVisibility(View.VISIBLE);
+        }
+
+        //onPostExecute metódus létrehozása a válasz feldolgozásához
+        @Override
+        protected void onPostExecute(Response response) {
+            super.onPostExecute(response);
+            buttonSave.setEnabled(true);
+            if (response.getResponseCode() >= 400) {
+                Toast.makeText(LostOrFindActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (requestType.equals("POST")) {
+                Toast.makeText(LostOrFindActivity.this, "Sikeres rögzítés", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LostOrFindActivity.this, ChoicesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+    }
 }

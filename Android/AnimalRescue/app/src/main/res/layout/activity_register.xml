@@ -8,6 +8,13 @@
     android:gravity="center"
     tools:context=".RegisterActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +48,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextPasswordRegister"
         android:hint="Jelszó"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <EditText
         android:layout_width="match_parent"

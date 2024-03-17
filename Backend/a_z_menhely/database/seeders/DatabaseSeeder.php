@@ -16,13 +16,14 @@ class DatabaseSeeder extends Seeder
         $this->call(FoundSeeder::class);
         $this->call(GuestSeeder::class);
         $this->call(WorkerSeeder::class);
+        $this->call(UserSeeder::class);
 
         // ?? Bence: USER
 
 
 
 
-        
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

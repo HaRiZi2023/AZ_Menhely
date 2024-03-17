@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonRegister;
     private EditText editTextEmailLogin;
     private EditText editTextPasswordLogin;
-    private String requestUrl = "http://localhost:8000/api/a-z_menhely/users";
+    private String requestUrl = "http://10.0.2.2:8000/api/users";
     private ProgressBar progressBar;
 
     @Override

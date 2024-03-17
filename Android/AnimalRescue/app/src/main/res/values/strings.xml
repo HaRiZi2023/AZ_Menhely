@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">AnimalRescue</string>
+    <string name="location_format">Lat: %f \nLong:%f</string>
+    <string name="no_gps_permission">Nincs jogosultság a GPS koordináta lekérdezéséhez.</string>
+    <string name="search_gps">Koordináta keresés…</string>
     <string-array name="choice_array">
         <item>keres</item>
         <item>talált</item>

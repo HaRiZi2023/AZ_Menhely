@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -22,7 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextNameRegister;
     private EditText editTextAddressRegister;
     private EditText editTextPhoneRegister;
-    private String requestUrl = "http://127.0.0.1:8000/api/a-z_menhely/users";
+    private ProgressBar progressBar;
+    private String requestUrl = "http://10.0.2.2:8000/api/users"; //emulátor IP címje, 8000:mert itt fut a beckend
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

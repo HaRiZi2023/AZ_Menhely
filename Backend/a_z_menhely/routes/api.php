@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AdoptionController;
 use App\Http\Controllers\API\FoundController;
 use App\Http\Controllers\API\GuestController;
 use App\Http\Controllers\API\WorkerController;
+use App\Http\Controllers\API\UserController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("/adoption", AdoptionController::class);
-Route::apiResource("/found", FoundController::class);
-Route::apiResource("/guest", GuestController::class);
-Route::apiResource("/worker", WorkerController::class);
+
+Route::apiResource("/adoptions", AdoptionController::class);
+Route::apiResource("/founds", FoundController::class);
+Route::apiResource("/guests", GuestController::class);
+Route::apiResource("/workers", WorkerController::class);
+Route::apiResource("/users", UserController::class);

@@ -22,7 +22,13 @@ class UpdateFoundRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'f_choice'=>'required|string|max:100',
+            'f_species'=>'required|string|max:100',
+            'f_gender'=>'required|string|max:100',
+            'f_injury'=>'required|string|max:100',
+            'f_position'=>'required|string|max:100',
+            'f_other'=>'|string|max:500|',
+            'f_image'=>'|string|max:500|'
         ];
     }
 }

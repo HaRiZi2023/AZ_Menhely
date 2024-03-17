@@ -9,13 +9,7 @@ class Adoption extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
-            "a_date",
-            "g_name",
-            "u_name"
-        ];
-
-
-
-
+    protected $table = 'adoptions';
+    protected $fillable = ['a_date', 'g_name', 'u_name'];
+    protected $visible = ['id', 'a_date', 'g_name', 'u_name'];
 }
