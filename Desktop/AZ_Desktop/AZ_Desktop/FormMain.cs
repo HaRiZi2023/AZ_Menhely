@@ -95,19 +95,19 @@ namespace AZ_Desktop
 
             switch (selectedCheckBox.Name)
             {
-                case "checkBox1":
+                case "checkBox_MainChoice":
                     FormChoice formChoice = new FormChoice();
                     formChoice.Show();
                     break;
-                case "checkBox2":
+                case "checkBox_MainAdoption":
                     FormAdoption formAdoption = new FormAdoption();
                     formAdoption.Show();
                     break;
-                case "checkBox3":
+                case "checkBox_MainFound":
                     FormFound formFound = new FormFound();
                     formFound.Show();
                     break;
-                case "checkBox4":
+                case "checkBox_MainChip":
                     FormChip formChip = new FormChip();
                     formChip.Show();
                     break;

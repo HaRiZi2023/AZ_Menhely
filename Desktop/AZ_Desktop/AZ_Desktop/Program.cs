@@ -41,8 +41,8 @@ namespace AZ_Desktop
 
             //guests = database.getAllGuest(); //
 
-            formMain = new FormMain();  // FormMAin példányosítása
-            workers = database.getAllWorker();
+            formLogin = new FormLogin();  // FormMAin példányosítása
+            //workers = database.getAllWorker();
 
            Application.Run(new FormLogin());
         }

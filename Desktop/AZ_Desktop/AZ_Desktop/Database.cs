@@ -187,7 +187,7 @@ namespace AZ_Desktop
                     {
                         int g_id = dr.GetInt32("g_id");
                         string g_name = dr.GetString("g_name");
-                        int g_chip = dr.GetInt32("g_chip");
+                        string g_chip = dr.GetString("g_chip");
                         string g_species = dr.GetString("g_species");
                         string g_gender = dr.GetString("g_gender"); //enum
                         DateTime g_in_date = dr.GetDateTime("g_in_date");

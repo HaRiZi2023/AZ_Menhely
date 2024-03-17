@@ -8,9 +8,9 @@ namespace AZ_Desktop
 {
     internal class Guest
     {
-        int g_id;
+        int id;
         string g_name;
-        int g_chip;
+        string g_chip;
         //int gyartasiev; //year - int
         //DateTime forgalmiErvenyesseg;    //date Date Time
         string g_species;
@@ -24,9 +24,9 @@ namespace AZ_Desktop
 
         public Guest() { }
 
-        public Guest(int g_id, string g_name, int g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other)
+        public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other)
         {
-            this.g_id = g_id;
+            this.id = id;
             this.g_name = g_name;
             this.g_chip = g_chip;
             this.g_species = g_species;
@@ -38,9 +38,9 @@ namespace AZ_Desktop
             this.g_other = g_other;
         }
 
-        public int G_id { get => g_id; set => g_id = value; }
+        public int G_id { get => id; set => id = value; }
         public string G_name { get => g_name; set => g_name = value; }
-        public int G_chip { get => g_chip; set => g_chip = value; }
+        public string G_chip { get => g_chip; set => g_chip = value; }
         public string G_species { get => g_species; set => g_species = value; }
         public string G_gender { get => g_gender; set => g_gender = value; }
         public DateTime G_in_date { get => g_in_date; set => g_in_date = value; }
