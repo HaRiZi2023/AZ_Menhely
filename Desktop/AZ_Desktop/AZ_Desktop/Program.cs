@@ -8,6 +8,26 @@ namespace AZ_Desktop
 {
     internal static class Program
     {
+        public static Database database = null;
+
+
+        public static List<Worker> workers = new List<Worker>();
+        public static FormLogin formLogin = null;
+
+        public static List<CheckBox> checkBoxes = new List<CheckBox>();
+
+        public static List<Guest> egyedek = new List<Guest>();
+        public static FormMain formMain = null;
+
+        public static FormChoice formChoice = null;
+        public static FormGuest formGuest = null;
+
+        public static FormAdoption formAdoption = null;
+
+        //public static FormChip formChip = null;
+        //public static FormTalalt formTalalt = null;
+
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +36,15 @@ namespace AZ_Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+
+            database = new Database();
+
+            //guests = database.getAllGuest(); //
+
+            formMain = new FormMain();  // FormMAin példányosítása
+            workers = database.getAllWorker();
+
+           Application.Run(new FormLogin());
         }
     }
 }
