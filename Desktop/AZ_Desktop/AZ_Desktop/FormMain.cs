@@ -12,15 +12,16 @@ using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace AZ_Desktop
 {
+
     public partial class FormMain : Form
     {
         //private List<CheckBox> checkBoxes = new List<CheckBox>();
-        private CheckBox[] checkBoxes;
+        private CheckBox[] checkBoxes_Main;
 
         public FormMain()
         {
             InitializeComponent();
-            InitializeCheckBoxes();
+            InitializeCheckBoxes_Main();
 
             /*checkBox_MainChoice.CheckedChanged += checkBox_CheckedChanged;
             checkBox_MainAdoption.CheckedChanged += checkBox_CheckedChanged;
@@ -34,18 +35,17 @@ namespace AZ_Desktop
 
             button_Main.Click += button_Main_Click;  */
         }
-
+        
         private void FormMain_Load(object sender, EventArgs e)
         {
-
         }
 
-        private void InitializeCheckBoxes()
+        private void InitializeCheckBoxes_Main()
         {
-            checkBoxes = new CheckBox[] { checkBox_MainChoice, checkBox_MainAdoption, checkBox_MainFound, checkBox_MainChip };
+            checkBoxes_Main = new CheckBox[] { checkBox_MainChoice, checkBox_MainAdoption, checkBox_MainFound, checkBox_MainChip };
 
             // Előre beállítjuk a CheckBox-okat
-            foreach (var checkBox in checkBoxes)
+            foreach (var checkBox in checkBoxes_Main)
             {
                 checkBox.CheckedChanged += checkBox_CheckedChanged;
             }
@@ -57,7 +57,7 @@ namespace AZ_Desktop
 
             if (clickedCheckBox.Checked)
             {
-                foreach (var checkBox in checkBoxes)
+                foreach (var checkBox in checkBoxes_Main)
                 {
                     if (checkBox != clickedCheckBox)
                     {
@@ -73,7 +73,7 @@ namespace AZ_Desktop
             bool anyChecked = false;
             CheckBox selectedCheckBox = null;
 
-            foreach (var checkBox in checkBoxes)
+            foreach (var checkBox in checkBoxes_Main)
             {
                 if (checkBox.Checked)
                 {
@@ -93,21 +93,23 @@ namespace AZ_Desktop
                 MessageBox.Show("Nincs kiválasztott CheckBox!", "Hiányzó bejelölés!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            
+
             switch (selectedCheckBox.Name)
             {
-                case "checkBox1":
+                case "checkBox_MainChoice":
                     FormChoice formChoice = new FormChoice();
                     formChoice.Show();
                     break;
-                case "checkBox2":
+                case "checkBox_MainAdoption":
                     FormAdoption formAdoption = new FormAdoption();
                     formAdoption.Show();
                     break;
-                case "checkBox3":
+                case "checkBox_MainFound":
                     FormFound formFound = new FormFound();
                     formFound.Show();
                     break;
-                case "checkBox4":
+                case "checkBox_MainChip":
                     FormChip formChip = new FormChip();
                     formChip.Show();
                     break;

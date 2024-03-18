@@ -29,102 +29,120 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChoice));
-            this.Vendegek = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.listBox_Choice = new System.Windows.Forms.ListBox();
+            this.button_ChoiceInsert = new System.Windows.Forms.Button();
+            this.button__ChoiceUpdate = new System.Windows.Forms.Button();
+            this.button_ChoiceDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button_ChoiceChoice = new System.Windows.Forms.Button();
+            this.checkBox_ChoiceCat = new System.Windows.Forms.CheckBox();
+            this.checkBox_ChoiceDog = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // Vendegek
+            // listBox_Choice
             // 
-            this.Vendegek.FormattingEnabled = true;
-            this.Vendegek.ItemHeight = 23;
-            this.Vendegek.Location = new System.Drawing.Point(44, 171);
-            this.Vendegek.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Vendegek.Name = "Vendegek";
-            this.Vendegek.Size = new System.Drawing.Size(250, 556);
-            this.Vendegek.TabIndex = 0;
+            this.listBox_Choice.FormattingEnabled = true;
+            this.listBox_Choice.ItemHeight = 23;
+            this.listBox_Choice.Location = new System.Drawing.Point(44, 208);
+            this.listBox_Choice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listBox_Choice.Name = "listBox_Choice";
+            this.listBox_Choice.Size = new System.Drawing.Size(250, 556);
+            this.listBox_Choice.TabIndex = 0;
+            this.listBox_Choice.SelectedIndexChanged += new System.EventHandler(this.listBox_Choice_SelectedIndexChanged_1);
             // 
-            // button1
+            // button_ChoiceInsert
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button1.Location = new System.Drawing.Point(392, 300);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 41);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Felvitel";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button_ChoiceInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.button_ChoiceInsert.Location = new System.Drawing.Point(392, 300);
+            this.button_ChoiceInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button_ChoiceInsert.Name = "button_ChoiceInsert";
+            this.button_ChoiceInsert.Size = new System.Drawing.Size(94, 41);
+            this.button_ChoiceInsert.TabIndex = 1;
+            this.button_ChoiceInsert.Text = "Felvitel";
+            this.button_ChoiceInsert.UseVisualStyleBackColor = false;
+            this.button_ChoiceInsert.Click += new System.EventHandler(this.button_ChoiceInsert_Click);
             // 
-            // button2
+            // button__ChoiceUpdate
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button2.Location = new System.Drawing.Point(392, 367);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 41);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Módosítás";
-            this.button2.UseVisualStyleBackColor = false;
+            this.button__ChoiceUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
+            this.button__ChoiceUpdate.Location = new System.Drawing.Point(392, 367);
+            this.button__ChoiceUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button__ChoiceUpdate.Name = "button__ChoiceUpdate";
+            this.button__ChoiceUpdate.Size = new System.Drawing.Size(94, 41);
+            this.button__ChoiceUpdate.TabIndex = 2;
+            this.button__ChoiceUpdate.Text = "Módosítás";
+            this.button__ChoiceUpdate.UseVisualStyleBackColor = false;
+            this.button__ChoiceUpdate.Click += new System.EventHandler(this.button__ChoiceUpdate_Click);
             // 
-            // button3
+            // button_ChoiceDelete
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button3.Location = new System.Drawing.Point(392, 426);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 41);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Törlés";
-            this.button3.UseVisualStyleBackColor = false;
+            this.button_ChoiceDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
+            this.button_ChoiceDelete.Location = new System.Drawing.Point(392, 426);
+            this.button_ChoiceDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button_ChoiceDelete.Name = "button_ChoiceDelete";
+            this.button_ChoiceDelete.Size = new System.Drawing.Size(94, 41);
+            this.button_ChoiceDelete.TabIndex = 3;
+            this.button_ChoiceDelete.Text = "Törlés";
+            this.button_ChoiceDelete.UseVisualStyleBackColor = false;
+            this.button_ChoiceDelete.Click += new System.EventHandler(this.button_ChoiceDelete_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.BackgroundImage = global::AZ_Desktop.Properties.Resources.Pasztel_szürke;
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.button_ChoiceChoice);
+            this.groupBox1.Controls.Add(this.checkBox_ChoiceCat);
+            this.groupBox1.Controls.Add(this.checkBox_ChoiceDog);
             this.groupBox1.Location = new System.Drawing.Point(44, 25);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(250, 138);
+            this.groupBox1.Size = new System.Drawing.Size(250, 175);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Válasszon állatfajt";
             // 
-            // checkBox2
+            // button_ChoiceChoice
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(124, 66);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(82, 27);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "macska";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.button_ChoiceChoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button_ChoiceChoice.Location = new System.Drawing.Point(139, 115);
+            this.button_ChoiceChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button_ChoiceChoice.Name = "button_ChoiceChoice";
+            this.button_ChoiceChoice.Size = new System.Drawing.Size(94, 41);
+            this.button_ChoiceChoice.TabIndex = 7;
+            this.button_ChoiceChoice.Text = "Választás";
+            this.button_ChoiceChoice.UseVisualStyleBackColor = false;
+            this.button_ChoiceChoice.Click += new System.EventHandler(this.button_ChoiceChoice_Click);
             // 
-            // checkBox1
+            // checkBox_ChoiceCat
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(124, 31);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(70, 27);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "kutya";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox_ChoiceCat.AutoSize = true;
+            this.checkBox_ChoiceCat.Location = new System.Drawing.Point(77, 67);
+            this.checkBox_ChoiceCat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkBox_ChoiceCat.Name = "checkBox_ChoiceCat";
+            this.checkBox_ChoiceCat.Size = new System.Drawing.Size(82, 27);
+            this.checkBox_ChoiceCat.TabIndex = 6;
+            this.checkBox_ChoiceCat.Text = "macska";
+            this.checkBox_ChoiceCat.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_ChoiceDog
+            // 
+            this.checkBox_ChoiceDog.AutoSize = true;
+            this.checkBox_ChoiceDog.Location = new System.Drawing.Point(77, 32);
+            this.checkBox_ChoiceDog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkBox_ChoiceDog.Name = "checkBox_ChoiceDog";
+            this.checkBox_ChoiceDog.Size = new System.Drawing.Size(70, 27);
+            this.checkBox_ChoiceDog.TabIndex = 5;
+            this.checkBox_ChoiceDog.Text = "kutya";
+            this.checkBox_ChoiceDog.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button4.Location = new System.Drawing.Point(392, 492);
+            this.button4.Location = new System.Drawing.Point(392, 488);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 41);
@@ -154,10 +172,10 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.Vendegek);
+            this.Controls.Add(this.button_ChoiceDelete);
+            this.Controls.Add(this.button__ChoiceUpdate);
+            this.Controls.Add(this.button_ChoiceInsert);
+            this.Controls.Add(this.listBox_Choice);
             this.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -172,15 +190,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox Vendegek;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_ChoiceInsert;
+        private System.Windows.Forms.Button button__ChoiceUpdate;
+        private System.Windows.Forms.Button button_ChoiceDelete;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_ChoiceCat;
+        private System.Windows.Forms.CheckBox checkBox_ChoiceDog;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button_ChoiceChoice;
+        public System.Windows.Forms.ListBox listBox_Choice;
     }
 }

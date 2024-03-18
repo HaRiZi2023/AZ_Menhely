@@ -10,28 +10,33 @@ namespace AZ_Desktop
     {
         public static Database database = null;
 
-
-        public static List<Worker> workers = new List<Worker>();
         public static FormLogin formLogin = null;
+        public static List<Worker> workers = new List<Worker>();
 
-        public static List<CheckBox> checkBoxes = new List<CheckBox>();
-
-        public static List<Guest> egyedek = new List<Guest>();
         public static FormMain formMain = null;
+        public static List<CheckBox> checkBoxes_Main = new List<CheckBox>();
 
         public static FormChoice formChoice = null;
+        public static List<CheckBox> checkBoxes_Choice = new List<CheckBox>();
+        public static List<Guest> dogs = new List<Guest>();
+        public static List<Guest> cats = new List<Guest>();
+
         public static FormGuest formGuest = null;
+        public static List<Guest> guests = new List<Guest>();
+
+
 
         public static FormAdoption formAdoption = null;
-
-        //public static FormChip formChip = null;
-        //public static FormTalalt formTalalt = null;
+        
+        public static FormFound formFound = null;
+        
+        public static FormChip formChip = null;
 
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
+        //[STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
@@ -39,12 +44,12 @@ namespace AZ_Desktop
 
             database = new Database();
 
-            //guests = database.getAllGuest(); //
+            formLogin = new FormLogin();  // FormLogin példányosítása
 
-            formMain = new FormMain();  // FormMAin példányosítása
-            workers = database.getAllWorker();
+            guests = database.allGuest(); // ezek nem kellenek induláskor
+            //workers = database.getAllWorker();
 
-           Application.Run(new FormLogin());
+            Application.Run(new FormLogin());
         }
     }
 }

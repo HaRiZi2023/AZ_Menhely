@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGuest));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_GuestName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,18 +40,18 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dateTimePicker_GuestOut = new System.Windows.Forms.DateTimePicker();
+            this.comboBox_GuestSpecies = new System.Windows.Forms.ComboBox();
+            this.comboBox_GuestGender = new System.Windows.Forms.ComboBox();
+            this.comboBox_GuestAdoption = new System.Windows.Forms.ComboBox();
+            this.textBox_GuestChip = new System.Windows.Forms.TextBox();
+            this.dateTimePicker_GuestIn = new System.Windows.Forms.DateTimePicker();
+            this.comboBox_GuestInjury = new System.Windows.Forms.ComboBox();
+            this.textBox_GuestWhere = new System.Windows.Forms.TextBox();
+            this.button_GuestSending = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBox_GuestOther = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,13 +65,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "adatlapja";
             // 
-            // textBox1
+            // textBox_GuestName
             // 
-            this.textBox1.Location = new System.Drawing.Point(155, 143);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 30);
-            this.textBox1.TabIndex = 2;
+            this.textBox_GuestName.Location = new System.Drawing.Point(155, 143);
+            this.textBox_GuestName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox_GuestName.Name = "textBox_GuestName";
+            this.textBox_GuestName.Size = new System.Drawing.Size(125, 30);
+            this.textBox_GuestName.TabIndex = 2;
             // 
             // label2
             // 
@@ -160,104 +160,95 @@
             this.label10.TabIndex = 11;
             this.label10.Text = "Egyéb információ";
             // 
-            // dateTimePicker2
+            // dateTimePicker_GuestOut
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(36, 426);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(150, 30);
-            this.dateTimePicker2.TabIndex = 13;
+            this.dateTimePicker_GuestOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_GuestOut.Location = new System.Drawing.Point(36, 426);
+            this.dateTimePicker_GuestOut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dateTimePicker_GuestOut.Name = "dateTimePicker_GuestOut";
+            this.dateTimePicker_GuestOut.Size = new System.Drawing.Size(150, 30);
+            this.dateTimePicker_GuestOut.TabIndex = 13;
             // 
-            // comboBox1
+            // comboBox_GuestSpecies
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBox_GuestSpecies.FormattingEnabled = true;
+            this.comboBox_GuestSpecies.Items.AddRange(new object[] {
             "Igen",
             "Nem"});
-            this.comboBox1.Location = new System.Drawing.Point(35, 247);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(144, 31);
-            this.comboBox1.TabIndex = 14;
+            this.comboBox_GuestSpecies.Location = new System.Drawing.Point(35, 247);
+            this.comboBox_GuestSpecies.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox_GuestSpecies.Name = "comboBox_GuestSpecies";
+            this.comboBox_GuestSpecies.Size = new System.Drawing.Size(144, 31);
+            this.comboBox_GuestSpecies.TabIndex = 14;
             // 
-            // comboBox2
+            // comboBox_GuestGender
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboBox_GuestGender.FormattingEnabled = true;
+            this.comboBox_GuestGender.Items.AddRange(new object[] {
             "Igen",
             "Nem"});
-            this.comboBox2.Location = new System.Drawing.Point(207, 247);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(150, 31);
-            this.comboBox2.TabIndex = 15;
+            this.comboBox_GuestGender.Location = new System.Drawing.Point(207, 247);
+            this.comboBox_GuestGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox_GuestGender.Name = "comboBox_GuestGender";
+            this.comboBox_GuestGender.Size = new System.Drawing.Size(150, 31);
+            this.comboBox_GuestGender.TabIndex = 15;
             // 
-            // comboBox3
+            // comboBox_GuestAdoption
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.comboBox_GuestAdoption.FormattingEnabled = true;
+            this.comboBox_GuestAdoption.Items.AddRange(new object[] {
             "Igen",
             "Nem"});
-            this.comboBox3.Location = new System.Drawing.Point(564, 247);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(150, 31);
-            this.comboBox3.TabIndex = 16;
+            this.comboBox_GuestAdoption.Location = new System.Drawing.Point(564, 247);
+            this.comboBox_GuestAdoption.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox_GuestAdoption.Name = "comboBox_GuestAdoption";
+            this.comboBox_GuestAdoption.Size = new System.Drawing.Size(150, 31);
+            this.comboBox_GuestAdoption.TabIndex = 16;
             // 
-            // textBox2
+            // textBox_GuestChip
             // 
-            this.textBox2.Location = new System.Drawing.Point(398, 248);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 30);
-            this.textBox2.TabIndex = 18;
+            this.textBox_GuestChip.Location = new System.Drawing.Point(398, 248);
+            this.textBox_GuestChip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox_GuestChip.Name = "textBox_GuestChip";
+            this.textBox_GuestChip.Size = new System.Drawing.Size(150, 30);
+            this.textBox_GuestChip.TabIndex = 18;
             // 
-            // dateTimePicker1
+            // dateTimePicker_GuestIn
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(35, 338);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(150, 30);
-            this.dateTimePicker1.TabIndex = 19;
+            this.dateTimePicker_GuestIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_GuestIn.Location = new System.Drawing.Point(35, 338);
+            this.dateTimePicker_GuestIn.Name = "dateTimePicker_GuestIn";
+            this.dateTimePicker_GuestIn.Size = new System.Drawing.Size(150, 30);
+            this.dateTimePicker_GuestIn.TabIndex = 19;
             // 
-            // comboBox4
+            // comboBox_GuestInjury
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.comboBox_GuestInjury.FormattingEnabled = true;
+            this.comboBox_GuestInjury.Items.AddRange(new object[] {
             "Igen",
             "Nem"});
-            this.comboBox4.Location = new System.Drawing.Point(207, 336);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(150, 31);
-            this.comboBox4.TabIndex = 20;
+            this.comboBox_GuestInjury.Location = new System.Drawing.Point(207, 336);
+            this.comboBox_GuestInjury.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox_GuestInjury.Name = "comboBox_GuestInjury";
+            this.comboBox_GuestInjury.Size = new System.Drawing.Size(150, 31);
+            this.comboBox_GuestInjury.TabIndex = 20;
             // 
-            // textBox3
+            // textBox_GuestWhere
             // 
-            this.textBox3.Location = new System.Drawing.Point(398, 337);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(316, 30);
-            this.textBox3.TabIndex = 21;
+            this.textBox_GuestWhere.Location = new System.Drawing.Point(398, 337);
+            this.textBox_GuestWhere.Name = "textBox_GuestWhere";
+            this.textBox_GuestWhere.Size = new System.Drawing.Size(316, 30);
+            this.textBox_GuestWhere.TabIndex = 21;
             // 
-            // listBox1
+            // button_GuestSending
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 23;
-            this.listBox1.Location = new System.Drawing.Point(208, 426);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(506, 165);
-            this.listBox1.TabIndex = 22;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(239, 626);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 37);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Küldés";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button_GuestSending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button_GuestSending.Location = new System.Drawing.Point(239, 626);
+            this.button_GuestSending.Name = "button_GuestSending";
+            this.button_GuestSending.Size = new System.Drawing.Size(129, 37);
+            this.button_GuestSending.TabIndex = 23;
+            this.button_GuestSending.Text = "Küldés";
+            this.button_GuestSending.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -280,6 +271,14 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // richTextBox_GuestOther
+            // 
+            this.richTextBox_GuestOther.Location = new System.Drawing.Point(201, 426);
+            this.richTextBox_GuestOther.Name = "richTextBox_GuestOther";
+            this.richTextBox_GuestOther.Size = new System.Drawing.Size(504, 183);
+            this.richTextBox_GuestOther.TabIndex = 27;
+            this.richTextBox_GuestOther.Text = "";
+            // 
             // FormGuest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
@@ -288,17 +287,17 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(755, 692);
+            this.Controls.Add(this.richTextBox_GuestOther);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.button_GuestSending);
+            this.Controls.Add(this.textBox_GuestWhere);
+            this.Controls.Add(this.comboBox_GuestInjury);
+            this.Controls.Add(this.dateTimePicker_GuestIn);
+            this.Controls.Add(this.textBox_GuestChip);
+            this.Controls.Add(this.comboBox_GuestAdoption);
+            this.Controls.Add(this.comboBox_GuestGender);
+            this.Controls.Add(this.comboBox_GuestSpecies);
+            this.Controls.Add(this.dateTimePicker_GuestOut);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -308,7 +307,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_GuestName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -327,7 +326,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_GuestName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -337,16 +336,16 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_GuestOut;
+        private System.Windows.Forms.ComboBox comboBox_GuestSpecies;
+        private System.Windows.Forms.ComboBox comboBox_GuestGender;
+        private System.Windows.Forms.ComboBox comboBox_GuestAdoption;
+        private System.Windows.Forms.TextBox textBox_GuestChip;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_GuestIn;
+        private System.Windows.Forms.ComboBox comboBox_GuestInjury;
+        private System.Windows.Forms.TextBox textBox_GuestWhere;
+        private System.Windows.Forms.Button button_GuestSending;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox richTextBox_GuestOther;
     }
 }
