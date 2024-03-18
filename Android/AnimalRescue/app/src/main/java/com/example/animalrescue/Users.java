@@ -7,9 +7,9 @@ public class Users {
     private String password;
     private String name;
     private String address;
-    private int phone;
+    private String phone;
 
-    public Users(int id, String email, String password, String name, String address, int phone) {
+    public Users(int id, String email, String password, String name, String address, String phone) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -58,11 +58,11 @@ public class Users {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

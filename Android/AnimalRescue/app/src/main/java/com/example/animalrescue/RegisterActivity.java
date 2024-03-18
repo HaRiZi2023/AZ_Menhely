@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,10 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                int phone_Int = Integer.parseInt(phone);
-
                 //új felhasználó létrehozása
-                Users users = new Users(0,email,password,name,address,phone_Int);
+                Users users = new Users(0,email,password,name,address,phone);
                 Gson jsonConverter = new Gson();
                 //Post kérés elküldése
                 RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(users));
@@ -117,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
             super.onPostExecute(response);
             buttonFinalRegister.setEnabled(true);
             if (response.getResponseCode() >= 400) {
+                Log.d("Hiba",response.getContent());
                 Toast.makeText(RegisterActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 return;
             }

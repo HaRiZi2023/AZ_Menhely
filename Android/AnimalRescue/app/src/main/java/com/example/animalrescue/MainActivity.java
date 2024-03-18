@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         response.getContent(), Users[].class);
                 if (felhasznalokArray.length > 0) {
                     Toast.makeText(MainActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, LostOrFindActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ChoicesActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
