@@ -15,12 +15,12 @@ namespace AZ_Desktop
     public partial class FormMain : Form
     {
         //private List<CheckBox> checkBoxes = new List<CheckBox>();
-        private CheckBox[] checkBoxes;
+        private CheckBox[] checkBoxes_Main;
 
         public FormMain()
         {
             InitializeComponent();
-            InitializeCheckBoxes();
+            InitializeCheckBoxes_Main();
 
             /*checkBox_MainChoice.CheckedChanged += checkBox_CheckedChanged;
             checkBox_MainAdoption.CheckedChanged += checkBox_CheckedChanged;
@@ -39,12 +39,12 @@ namespace AZ_Desktop
         {
         }
 
-        private void InitializeCheckBoxes()
+        private void InitializeCheckBoxes_Main()
         {
-            checkBoxes = new CheckBox[] { checkBox_MainChoice, checkBox_MainAdoption, checkBox_MainFound, checkBox_MainChip };
+            checkBoxes_Main = new CheckBox[] { checkBox_MainChoice, checkBox_MainAdoption, checkBox_MainFound, checkBox_MainChip };
 
             // Előre beállítjuk a CheckBox-okat
-            foreach (var checkBox in checkBoxes)
+            foreach (var checkBox in checkBoxes_Main)
             {
                 checkBox.CheckedChanged += checkBox_CheckedChanged;
             }
@@ -56,7 +56,7 @@ namespace AZ_Desktop
 
             if (clickedCheckBox.Checked)
             {
-                foreach (var checkBox in checkBoxes)
+                foreach (var checkBox in checkBoxes_Main)
                 {
                     if (checkBox != clickedCheckBox)
                     {
@@ -72,7 +72,7 @@ namespace AZ_Desktop
             bool anyChecked = false;
             CheckBox selectedCheckBox = null;
 
-            foreach (var checkBox in checkBoxes)
+            foreach (var checkBox in checkBoxes_Main)
             {
                 if (checkBox.Checked)
                 {

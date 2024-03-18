@@ -34,11 +34,11 @@
             this.button__ChoiceUpdate = new System.Windows.Forms.Button();
             this.button_ChoiceDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_ChoiceChoice = new System.Windows.Forms.Button();
             this.checkBox_ChoiceCat = new System.Windows.Forms.CheckBox();
             this.checkBox_ChoiceDog = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button_ChoiceChoice = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -105,6 +105,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Válasszon állatfajt";
             // 
+            // button_ChoiceChoice
+            // 
+            this.button_ChoiceChoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button_ChoiceChoice.Location = new System.Drawing.Point(139, 115);
+            this.button_ChoiceChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button_ChoiceChoice.Name = "button_ChoiceChoice";
+            this.button_ChoiceChoice.Size = new System.Drawing.Size(94, 41);
+            this.button_ChoiceChoice.TabIndex = 7;
+            this.button_ChoiceChoice.Text = "Választás";
+            this.button_ChoiceChoice.UseVisualStyleBackColor = false;
+            this.button_ChoiceChoice.Click += new System.EventHandler(this.button_ChoiceChoice_Click);
+            // 
             // checkBox_ChoiceCat
             // 
             this.checkBox_ChoiceCat.AutoSize = true;
@@ -149,18 +161,6 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // button_ChoiceChoice
-            // 
-            this.button_ChoiceChoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button_ChoiceChoice.Location = new System.Drawing.Point(139, 115);
-            this.button_ChoiceChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_ChoiceChoice.Name = "button_ChoiceChoice";
-            this.button_ChoiceChoice.Size = new System.Drawing.Size(94, 41);
-            this.button_ChoiceChoice.TabIndex = 7;
-            this.button_ChoiceChoice.Text = "Választás";
-            this.button_ChoiceChoice.UseVisualStyleBackColor = false;
-            this.button_ChoiceChoice.Click += new System.EventHandler(this.button_ChoiceChoice_Click);
-            // 
             // FormChoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
@@ -190,8 +190,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBox_Choice;
         private System.Windows.Forms.Button button_ChoiceInsert;
         private System.Windows.Forms.Button button__ChoiceUpdate;
         private System.Windows.Forms.Button button_ChoiceDelete;
@@ -201,5 +199,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_ChoiceChoice;
+        public System.Windows.Forms.ListBox listBox_Choice;
     }
 }

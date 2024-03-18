@@ -48,11 +48,11 @@
             this.dateTimePicker_GuestIn = new System.Windows.Forms.DateTimePicker();
             this.comboBox_GuestInjury = new System.Windows.Forms.ComboBox();
             this.textBox_GuestWhere = new System.Windows.Forms.TextBox();
-            this.listBox_GuestOther = new System.Windows.Forms.ListBox();
             this.button_GuestSending = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_GuestFunction = new System.Windows.Forms.Label();
+            this.richTextBox_GuestOther = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,15 +241,6 @@
             this.textBox_GuestWhere.Size = new System.Drawing.Size(316, 30);
             this.textBox_GuestWhere.TabIndex = 21;
             // 
-            // listBox_GuestOther
-            // 
-            this.listBox_GuestOther.FormattingEnabled = true;
-            this.listBox_GuestOther.ItemHeight = 23;
-            this.listBox_GuestOther.Location = new System.Drawing.Point(208, 426);
-            this.listBox_GuestOther.Name = "listBox_GuestOther";
-            this.listBox_GuestOther.Size = new System.Drawing.Size(506, 165);
-            this.listBox_GuestOther.TabIndex = 22;
-            // 
             // button_GuestSending
             // 
             this.button_GuestSending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -287,8 +278,16 @@
             this.label_GuestFunction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_GuestFunction.Location = new System.Drawing.Point(12, 9);
             this.label_GuestFunction.Name = "label_GuestFunction";
-            this.label_GuestFunction.Size = new System.Drawing.Size(3, 31);
+            this.label_GuestFunction.Size = new System.Drawing.Size(2, 25);
             this.label_GuestFunction.TabIndex = 25;
+            // 
+            // richTextBox_GuestOther
+            // 
+            this.richTextBox_GuestOther.Location = new System.Drawing.Point(201, 426);
+            this.richTextBox_GuestOther.Name = "richTextBox_GuestOther";
+            this.richTextBox_GuestOther.Size = new System.Drawing.Size(504, 183);
+            this.richTextBox_GuestOther.TabIndex = 27;
+            this.richTextBox_GuestOther.Text = "";
             // 
             // FormGuest
             // 
@@ -298,10 +297,10 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(755, 692);
+            this.Controls.Add(this.richTextBox_GuestOther);
             this.Controls.Add(this.label_GuestFunction);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_GuestSending);
-            this.Controls.Add(this.listBox_GuestOther);
             this.Controls.Add(this.textBox_GuestWhere);
             this.Controls.Add(this.comboBox_GuestInjury);
             this.Controls.Add(this.dateTimePicker_GuestIn);
@@ -356,9 +355,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_GuestIn;
         private System.Windows.Forms.ComboBox comboBox_GuestInjury;
         private System.Windows.Forms.TextBox textBox_GuestWhere;
-        private System.Windows.Forms.ListBox listBox_GuestOther;
         private System.Windows.Forms.Button button_GuestSending;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label_GuestFunction;
+        private System.Windows.Forms.RichTextBox richTextBox_GuestOther;
     }
 }

@@ -23,7 +23,6 @@ namespace AZ_Desktop
 
         private void FormChoice_Load(object sender, EventArgs e)
         {
-
         }
 
         private void InitializecheckBoxes_Choice()
