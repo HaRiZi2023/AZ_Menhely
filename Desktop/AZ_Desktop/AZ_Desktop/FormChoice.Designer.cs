@@ -107,7 +107,7 @@
             // 
             // button_ChoiceChoice
             // 
-            this.button_ChoiceChoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button_ChoiceChoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button_ChoiceChoice.Location = new System.Drawing.Point(139, 115);
             this.button_ChoiceChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceChoice.Name = "button_ChoiceChoice";

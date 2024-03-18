@@ -16,5 +16,10 @@ namespace AZ_Desktop
         {
             InitializeComponent();
         }
+
+        private void FormFound_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

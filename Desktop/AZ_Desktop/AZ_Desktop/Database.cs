@@ -42,6 +42,14 @@ namespace AZ_Desktop
             }
         }
 
+        private void connOpening()
+        {
+            if (conn.State != System.Data.ConnectionState.Open)
+            {
+                conn.Open();
+            }
+        }
+
         private void connClosing()
         {
             if (conn.State != System.Data.ConnectionState.Closed)
@@ -50,13 +58,46 @@ namespace AZ_Desktop
             }
         }
 
-        private void connOpening()
+        //***********chip********************/
+
+        public DataTable ExecuteQuery(string query, object parameters = null)
         {
-            if (conn.State != System.Data.ConnectionState.Open)
+            DataTable dataTable = new DataTable();
+            try
             {
-                conn.Open();
+                using (MySqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = query;
+                    if (parameters != null)
+                    {
+                        // Paraméterek hozzáadása a lekérdezéshez
+                        foreach (var prop in parameters.GetType().GetProperties())
+                        {
+                            cmd.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters));
+                        }
+                    }
+
+                    conn.Open();
+                    // Lekérdezés végrehajtása és az eredmények lekérdezése
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Environment.Exit(0);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dataTable;
         }
+
 
         //**********************************************************************************
 
@@ -385,53 +426,38 @@ namespace AZ_Desktop
                 connClosing();
             }
         }
+ 
+    //************ Chip ****************//
+
+        internal void updateChipOther(string chipNumber, string otherValue) 
+        {
+            connOpening();
+
+            string query = "UPDATE guests SET g_other = @OtherValue WHERE g_chip = @ChipNumber";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@OtherValue", otherValue);
+                cmd.Parameters.AddWithValue("@ChipNumber", chipNumber);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Az adatok sikeresen frissítve lettek az adatbázisban.");
+                }
+                else
+                {
+                    MessageBox.Show("Hiba történt az adatok frissítése közben.");
+                }
+            }
+
+            connClosing();
+
+        }
     }
 }
-
-
 //**********************************************************************************
-
-//******************************* Guests *************************************************//
-
-/*     internal Guest chosenName(string guestName)
-     {
-         Guest guests = null;
-         sql.CommandText = "SELECT * FROM `guests` WHERE `g_name` = @name";
-         //sql.Parameters.AddWithValue("@name", guestName);
-
-         try
-         {
-             connOpening();
-             using (MySqlDataReader dr = sql.ExecuteReader())
-             {
-                 if (dr.Read())
-                 {
-                     int id = dr.GetInt32("id");
-                     string g_name = dr.GetString("g_name");
-                     string g_chip = dr.GetString("g_chip");
-                     string g_species = dr.GetString("g_species");
-                     string g_gender = dr.GetString("g_gender"); //enum
-                     DateTime g_in_date = dr.GetDateTime("g_in_date");
-                     string g_in_place = dr.GetString("g_in_place");
-                     DateTime g_out_date = dr.GetDateTime("g_out_date");
-                     string g_adoption = dr.GetString("g_adoption");
-                     string g_other = dr.GetString("g_other");  //enum
-
-                     guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
-                 }
-             }
-         }
-         catch (MySqlException ex)
-         {
-             MessageBox.Show(ex.Message);
-         }
-         finally
-         {
-             connClosing();
-         }
-
-         return guests;
-     } */
 
 
 

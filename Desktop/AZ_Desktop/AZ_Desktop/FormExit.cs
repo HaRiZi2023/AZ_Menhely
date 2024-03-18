@@ -16,5 +16,10 @@ namespace AZ_Desktop
         {
             InitializeComponent();
         }
+
+        private void FormExit_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
