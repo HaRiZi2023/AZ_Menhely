@@ -199,8 +199,9 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
+                        string g_images = dr.GetString("g_images");
 
-                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
+                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_images));
                     }
                 }
             }
@@ -236,10 +237,11 @@ namespace AZ_Desktop
                         DateTime g_in_date = dr.GetDateTime("g_in_date");
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
-                        string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other");  //enum
+                        string g_adoption = dr.GetString("g_adoption"); //enum
+                        string g_other = dr.GetString("g_other");  
+                        string g_images = dr.GetString("g_images");
 
-                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
+                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_images));
                     }
                 }
             }
@@ -276,8 +278,9 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
+                        string g_images = dr.GetString("g_images");
 
-                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
+                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_images));
                     }
                 }
             }
@@ -292,79 +295,26 @@ namespace AZ_Desktop
             return guests;
         }
 
-        //**********************************************************************************
-        
-        //******************************* Guests *************************************************//
-
-   /*     internal Guest chosenName(string guestName)
-        {
-            Guest guests = null;
-            sql.CommandText = "SELECT * FROM `guests` WHERE `g_name` = @name";
-            //sql.Parameters.AddWithValue("@name", guestName);
-
-            try
-            {
-                connOpening();
-                using (MySqlDataReader dr = sql.ExecuteReader())
-                {
-                    if (dr.Read())
-                    {
-                        int id = dr.GetInt32("id");
-                        string g_name = dr.GetString("g_name");
-                        string g_chip = dr.GetString("g_chip");
-                        string g_species = dr.GetString("g_species");
-                        string g_gender = dr.GetString("g_gender"); //enum
-                        DateTime g_in_date = dr.GetDateTime("g_in_date");
-                        string g_in_place = dr.GetString("g_in_place");
-                        DateTime g_out_date = dr.GetDateTime("g_out_date");
-                        string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other");  //enum
-
-                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                connClosing();
-            }
-
-            return guests;
-        } */
-
-
-
-
-
-
-
-
-
-        internal void insertEgyed(Guest egyed)
+        internal void insertGuest(Guest guest)
         {
             try
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `guests` (`g_id`, `g_name`, `g_chip`, `g_species`, `g_gender`, `g_in_date`, `g_in_place`, `g_out_date`, `g_adoption`, `g_other`) VALUES (`@g_id`, `@g_name`, `@g_chip`, `@g_species`, `@g_gender`, `@g_in_date`, `@g_in_place`, `@g_out_date`, `@g_adoption`, `@g_other`) ";
+                sql.CommandText = "INSERT INTO `guests` (`g_name`,`g_chip`,`g_species`,`g_gender`,`g_in_date`,`g_in_place`,`g_out_date`,`g_adoption`,`g_other`,`g_images`) VALUES (@g_name, @g_chip, @g_species, @g_gender, @g_in_date, @g_in_place, @g_out_date, @g_adoption, @g_other, @g_images)";
 
                 sql.Parameters.Clear();
 
-                sql.Parameters.AddWithValue("@g_id", egyed.G_id);
-                sql.Parameters.AddWithValue("@g_name", egyed.G_name);
-                sql.Parameters.AddWithValue("@g_chip", egyed.G_chip);
-                sql.Parameters.AddWithValue("@g_species", egyed.G_species);
-                sql.Parameters.AddWithValue("@g_gender", egyed.G_gender);
-                sql.Parameters.AddWithValue("@g_in_date", egyed.G_in_date);
-                sql.Parameters.AddWithValue("@g_in_place", egyed.G_in_place);
-                sql.Parameters.AddWithValue("@g_out_date", egyed.G_out_date);
-                sql.Parameters.AddWithValue("@g_adoption", egyed.G_adoption);
-                sql.Parameters.AddWithValue("@g_other", egyed.G_other);
-                //sql.Parameters.AddWithValue("@g_IMAGES, egyed.G_IMAGES);
+                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@g_species", guest.G_species);
+                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@g_in_date", guest.G_in_date);
+                sql.Parameters.AddWithValue("@g_in_place", guest.G_in_place);
+                sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
+                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
+                sql.Parameters.AddWithValue("@g_other", guest.G_other);
+                sql.Parameters.AddWithValue("@g_images", guest.G_images);
 
                 sql.ExecuteNonQuery();
             }
@@ -378,52 +328,26 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateEgyed(Guest egyed)  //ok
+        internal void updateGuest(Guest guest)
         {
             try
             {
                 connOpening();
 
-                sql.CommandText = "UPDATE `guests` SET `g_id`=@g_id,`g_chip`=@g_chip,`g_species`=@g_species,`g_gender`=@g_gender,`g_in_date`=@g_in_date,`g_in_place`=@g_in_place,`g_out_date`=@g_out_date, `g_adoption`=@g_adoption,`g_other`=@g_other, WHERE `g_name`=@g_name";
-
-
-                sql.Parameters.Clear();
-
-                sql.Parameters.AddWithValue("@g_id", egyed.G_id);
-                sql.Parameters.AddWithValue("@g_name", egyed.G_name);
-                sql.Parameters.AddWithValue("@g_chip", egyed.G_chip);
-                sql.Parameters.AddWithValue("@g_species", egyed.G_species);
-                sql.Parameters.AddWithValue("@g_gender", egyed.G_gender);
-                sql.Parameters.AddWithValue("@g_in_date", egyed.G_in_date);
-                sql.Parameters.AddWithValue("@g_in_place", egyed.G_in_place);
-                sql.Parameters.AddWithValue("@g_out_date", egyed.G_out_date);
-                sql.Parameters.AddWithValue("@g_adoption", egyed.G_adoption);
-                sql.Parameters.AddWithValue("@g_other", egyed.G_other);
-                //sql.Parameters.AddWithValue("@g_IMAGES, egyed.G_IMAGES);
-
-                sql.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                connClosing();
-            }
-        }
-
-        internal void deleteEgyed(Guest egyed)
-        {
-            try
-            {
-                connOpening();
-
-                sql.CommandText = "DELETE FROM `guests` WHERE `name`= @name";
+                sql.CommandText = "UPDATE `guests` SET `g_chip`=@g_chip,`g_species`=@g_species,`g_gender`=@g_gender,`g_in_date`= @g_in_date,`g_in_place`=@g_in_place,`g_out_date`=@g_out_date,`g_adoption`=@g_adoption,`g_other`=@g_other,`g_images`=@g_images WHERE `g_name`=@g_name";
 
                 sql.Parameters.Clear();
 
-                sql.Parameters.AddWithValue("g_name", egyed.G_name);
+                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@g_species", guest.G_species);
+                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@g_in_date", guest.G_in_date);
+                sql.Parameters.AddWithValue("@g_in_place", guest.G_in_place);
+                sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
+                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
+                sql.Parameters.AddWithValue("@g_other", guest.G_other);
+                sql.Parameters.AddWithValue("@g_images", guest.G_images);
 
                 sql.ExecuteNonQuery();
             }
@@ -438,7 +362,85 @@ namespace AZ_Desktop
         }
 
 
+        internal void deleteGuest(Guest guest)
+        {
+            try
+            {
+                connOpening();
 
+                sql.CommandText = "DELETE FROM `guests` WHERE `g_name`= @g_name";
 
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
     }
 }
+
+
+//**********************************************************************************
+
+//******************************* Guests *************************************************//
+
+/*     internal Guest chosenName(string guestName)
+     {
+         Guest guests = null;
+         sql.CommandText = "SELECT * FROM `guests` WHERE `g_name` = @name";
+         //sql.Parameters.AddWithValue("@name", guestName);
+
+         try
+         {
+             connOpening();
+             using (MySqlDataReader dr = sql.ExecuteReader())
+             {
+                 if (dr.Read())
+                 {
+                     int id = dr.GetInt32("id");
+                     string g_name = dr.GetString("g_name");
+                     string g_chip = dr.GetString("g_chip");
+                     string g_species = dr.GetString("g_species");
+                     string g_gender = dr.GetString("g_gender"); //enum
+                     DateTime g_in_date = dr.GetDateTime("g_in_date");
+                     string g_in_place = dr.GetString("g_in_place");
+                     DateTime g_out_date = dr.GetDateTime("g_out_date");
+                     string g_adoption = dr.GetString("g_adoption");
+                     string g_other = dr.GetString("g_other");  //enum
+
+                     guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other));
+                 }
+             }
+         }
+         catch (MySqlException ex)
+         {
+             MessageBox.Show(ex.Message);
+         }
+         finally
+         {
+             connClosing();
+         }
+
+         return guests;
+     } */
+
+
+
+
+
+
+
+
+
+
+
+

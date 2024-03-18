@@ -20,11 +20,12 @@ namespace AZ_Desktop
         DateTime g_out_date;    //date Date Time
         string g_adoption;  //enum  
         string g_other;
+        string g_images;
         //Image[] hazKepek = new Image[4];
 
         public Guest() { }
 
-        public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other)
+        public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other, string g_images)
         {
             this.id = id;
             this.g_name = g_name;
@@ -36,6 +37,7 @@ namespace AZ_Desktop
             this.g_out_date = g_out_date;
             this.g_adoption = g_adoption;
             this.g_other = g_other;
+            this.g_images = g_images;
         }
 
         public int G_id { get => id; set => id = value; }
@@ -48,6 +50,8 @@ namespace AZ_Desktop
         public DateTime G_out_date { get => g_out_date; set => g_out_date = value; }
         public string G_adoption { get => g_adoption; set => g_adoption = value; }
         public string G_other { get => g_other; set => g_other = value; }
+
+        public string G_images { get => g_images; set => g_images = value; }
 
         public override string ToString()
         {

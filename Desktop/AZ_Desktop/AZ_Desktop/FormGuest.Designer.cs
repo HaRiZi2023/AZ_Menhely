@@ -51,7 +51,6 @@
             this.button_GuestSending = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label_GuestFunction = new System.Windows.Forms.Label();
             this.richTextBox_GuestOther = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -272,15 +271,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label_GuestFunction
-            // 
-            this.label_GuestFunction.AutoSize = true;
-            this.label_GuestFunction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_GuestFunction.Location = new System.Drawing.Point(12, 9);
-            this.label_GuestFunction.Name = "label_GuestFunction";
-            this.label_GuestFunction.Size = new System.Drawing.Size(2, 25);
-            this.label_GuestFunction.TabIndex = 25;
-            // 
             // richTextBox_GuestOther
             // 
             this.richTextBox_GuestOther.Location = new System.Drawing.Point(201, 426);
@@ -298,7 +288,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(755, 692);
             this.Controls.Add(this.richTextBox_GuestOther);
-            this.Controls.Add(this.label_GuestFunction);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_GuestSending);
             this.Controls.Add(this.textBox_GuestWhere);
@@ -357,7 +346,6 @@
         private System.Windows.Forms.TextBox textBox_GuestWhere;
         private System.Windows.Forms.Button button_GuestSending;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label_GuestFunction;
         private System.Windows.Forms.RichTextBox richTextBox_GuestOther;
     }
 }

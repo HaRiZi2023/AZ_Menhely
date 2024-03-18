@@ -12,6 +12,7 @@ using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace AZ_Desktop
 {
+
     public partial class FormMain : Form
     {
         //private List<CheckBox> checkBoxes = new List<CheckBox>();
@@ -34,7 +35,7 @@ namespace AZ_Desktop
 
             button_Main.Click += button_Main_Click;  */
         }
-
+        
         private void FormMain_Load(object sender, EventArgs e)
         {
         }
@@ -91,6 +92,8 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs kiválasztott CheckBox!", "Hiányzó bejelölés!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+            
 
             switch (selectedCheckBox.Name)
             {

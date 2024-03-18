@@ -12,17 +12,19 @@ using CheckBox = System.Windows.Forms.CheckBox;
 namespace AZ_Desktop
 {
     public partial class FormChoice : Form
-    {
+    {             
         private CheckBox[] checkBoxes_Choice;
 
-        public FormChoice()
+        public FormChoice() //string options
         {
             InitializeComponent();
             InitializecheckBoxes_Choice();
+           
         }
 
         private void FormChoice_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void InitializecheckBoxes_Choice()
@@ -146,10 +148,10 @@ namespace AZ_Desktop
 
                 // A kiválasztott vendég adatainak lekérdezése a Database osztály segítségével
                 Database database = new Database();
-                Guest selectedGuest = database.chosenName(selectedGuestName);
+               // Guest selectedGuest = database.chosenName(selectedGuestName);
 
                 // Ha sikerült lekérdezni az adatokat
-                if (selectedGuest != null)
+                /*if (selectedGuest != null)
                 {
                     // FormGuest példányosítása
                     FormGuest formGuest = new FormGuest();
@@ -166,7 +168,7 @@ namespace AZ_Desktop
                 else
                 {
                     MessageBox.Show("Hiba történt a vendég adatainak lekérése közben.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                }*/
             }
             else
             {

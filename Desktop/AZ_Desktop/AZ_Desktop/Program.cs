@@ -46,7 +46,7 @@ namespace AZ_Desktop
 
             formLogin = new FormLogin();  // FormLogin példányosítása
 
-            //guests = database.getAllGuest(); // ezek nem kellenek induláskor
+            guests = database.allGuest(); // ezek nem kellenek induláskor
             //workers = database.getAllWorker();
 
             Application.Run(new FormLogin());
