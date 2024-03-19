@@ -47,17 +47,17 @@
             // 
             this.listBox_Choice.FormattingEnabled = true;
             this.listBox_Choice.ItemHeight = 23;
-            this.listBox_Choice.Location = new System.Drawing.Point(44, 208);
+            this.listBox_Choice.Location = new System.Drawing.Point(44, 220);
             this.listBox_Choice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBox_Choice.Name = "listBox_Choice";
-            this.listBox_Choice.Size = new System.Drawing.Size(250, 556);
+            this.listBox_Choice.Size = new System.Drawing.Size(220, 257);
             this.listBox_Choice.TabIndex = 0;
             this.listBox_Choice.SelectedIndexChanged += new System.EventHandler(this.listBox_Choice_SelectedIndexChanged_1);
             // 
             // button_ChoiceInsert
             // 
             this.button_ChoiceInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_ChoiceInsert.Location = new System.Drawing.Point(392, 300);
+            this.button_ChoiceInsert.Location = new System.Drawing.Point(332, 233);
             this.button_ChoiceInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceInsert.Name = "button_ChoiceInsert";
             this.button_ChoiceInsert.Size = new System.Drawing.Size(94, 41);
@@ -69,7 +69,7 @@
             // button__ChoiceUpdate
             // 
             this.button__ChoiceUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button__ChoiceUpdate.Location = new System.Drawing.Point(392, 367);
+            this.button__ChoiceUpdate.Location = new System.Drawing.Point(332, 282);
             this.button__ChoiceUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button__ChoiceUpdate.Name = "button__ChoiceUpdate";
             this.button__ChoiceUpdate.Size = new System.Drawing.Size(94, 41);
@@ -81,7 +81,7 @@
             // button_ChoiceDelete
             // 
             this.button_ChoiceDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_ChoiceDelete.Location = new System.Drawing.Point(392, 426);
+            this.button_ChoiceDelete.Location = new System.Drawing.Point(332, 331);
             this.button_ChoiceDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceDelete.Name = "button_ChoiceDelete";
             this.button_ChoiceDelete.Size = new System.Drawing.Size(94, 41);
@@ -96,11 +96,11 @@
             this.groupBox1.Controls.Add(this.button_ChoiceChoice);
             this.groupBox1.Controls.Add(this.checkBox_ChoiceCat);
             this.groupBox1.Controls.Add(this.checkBox_ChoiceDog);
-            this.groupBox1.Location = new System.Drawing.Point(44, 25);
+            this.groupBox1.Location = new System.Drawing.Point(44, 37);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(250, 175);
+            this.groupBox1.Size = new System.Drawing.Size(220, 175);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Válasszon állatfajt";
@@ -108,7 +108,7 @@
             // button_ChoiceChoice
             // 
             this.button_ChoiceChoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button_ChoiceChoice.Location = new System.Drawing.Point(139, 115);
+            this.button_ChoiceChoice.Location = new System.Drawing.Point(107, 111);
             this.button_ChoiceChoice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceChoice.Name = "button_ChoiceChoice";
             this.button_ChoiceChoice.Size = new System.Drawing.Size(94, 41);
@@ -142,7 +142,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button4.Location = new System.Drawing.Point(392, 488);
+            this.button4.Location = new System.Drawing.Point(332, 380);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 41);
@@ -168,7 +168,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(607, 751);
+            this.ClientSize = new System.Drawing.Size(604, 540);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);

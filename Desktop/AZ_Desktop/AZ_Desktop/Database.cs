@@ -217,7 +217,7 @@ namespace AZ_Desktop
 
         //************* Choice **************************** 
 
-        internal List<Guest> AllDog() // ezt a Program.cs ben adom meg
+        internal List<Guest> allDog() // ezt a Program.cs ben adom meg
         {
             List<Guest> dogs = new List<Guest>();
             sql.CommandText = "SELECT * FROM guests WHERE g_species = @kutya ";  // ok
@@ -240,9 +240,9 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
-                        string g_images = dr.GetString("g_images");
+                        string g_image = dr.GetString("g_image");
 
-                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_images));
+                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
                     }
                 }
             }
@@ -257,7 +257,7 @@ namespace AZ_Desktop
             return dogs;
         }
 
-        internal List<Guest> AllCat() // ezt a Program.cs ben adom meg
+        internal List<Guest> allCat() // ezt a Program.cs ben adom meg
         {
             List<Guest> cats = new List<Guest>();
             sql.CommandText = "SELECT * FROM guests WHERE g_species = @macska ";  // ok
@@ -280,9 +280,9 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption"); //enum
                         string g_other = dr.GetString("g_other");  
-                        string g_images = dr.GetString("g_images");
+                        string g_image = dr.GetString("g_image");
 
-                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_images));
+                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
                     }
                 }
             }
@@ -319,9 +319,9 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
-                        string g_images = dr.GetString("g_images");
+                        string g_image = dr.GetString("g_image");
 
-                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_images));
+                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
                     }
                 }
             }
@@ -342,7 +342,7 @@ namespace AZ_Desktop
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `guests` (`g_name`,`g_chip`,`g_species`,`g_gender`,`g_in_date`,`g_in_place`,`g_out_date`,`g_adoption`,`g_other`,`g_images`) VALUES (@g_name, @g_chip, @g_species, @g_gender, @g_in_date, @g_in_place, @g_out_date, @g_adoption, @g_other, @g_images)";
+                sql.CommandText = "INSERT INTO `guests` (`g_name`,`g_chip`,`g_species`,`g_gender`,`g_in_date`,`g_in_place`,`g_out_date`,`g_adoption`,`g_other`,`g_image`) VALUES (@g_name, @g_chip, @g_species, @g_gender, @g_in_date, @g_in_place, @g_out_date, @g_adoption, @g_other, @g_image)";
 
                 sql.Parameters.Clear();
 
@@ -355,7 +355,7 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
-                sql.Parameters.AddWithValue("@g_images", guest.G_images);
+                sql.Parameters.AddWithValue("@g_image", guest.G_image);
 
                 sql.ExecuteNonQuery();
             }
@@ -375,7 +375,7 @@ namespace AZ_Desktop
             {
                 connOpening();
 
-                sql.CommandText = "UPDATE `guests` SET `g_chip`=@g_chip,`g_species`=@g_species,`g_gender`=@g_gender,`g_in_date`= @g_in_date,`g_in_place`=@g_in_place,`g_out_date`=@g_out_date,`g_adoption`=@g_adoption,`g_other`=@g_other,`g_images`=@g_images WHERE `g_name`=@g_name";
+                sql.CommandText = "UPDATE `guests` SET `g_chip`=@g_chip,`g_species`=@g_species,`g_gender`=@g_gender,`g_in_date`= @g_in_date,`g_in_place`=@g_in_place,`g_out_date`=@g_out_date,`g_adoption`=@g_adoption,`g_other`=@g_other,`g_image`=@g_image WHERE `g_name`=@g_name";
 
                 sql.Parameters.Clear();
 
@@ -388,7 +388,7 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
-                sql.Parameters.AddWithValue("@g_images", guest.G_images);
+                sql.Parameters.AddWithValue("@g_image", guest.G_image);
 
                 sql.ExecuteNonQuery();
             }
@@ -401,7 +401,6 @@ namespace AZ_Desktop
                 connClosing();
             }
         }
-
 
         internal void deleteGuest(Guest guest)
         {
@@ -455,6 +454,99 @@ namespace AZ_Desktop
             connClosing();
 
         }
+
+        //************* Found ****************************
+
+        internal List<Found> allFound() // ezt a Program.cs ben adom meg
+        {
+            List<Found> founds = new List<Found>();
+            sql.CommandText = "SELECT * FROM `founds` ORDER BY `id`";  // ok
+            try
+            {
+                connOpening();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        string f_choice = dr.GetString("f_choice");
+                        string f_species = dr.GetString("f_species");
+                        string f_gender = dr.GetString("f_gender");
+                        string f_injury = dr.GetString("f_injury");
+                        string f_position = dr.GetString("f_position");
+                        string f_other = dr.GetString("f_other"); 
+                        string f_image = dr.GetString("f_image");
+
+                        founds.Add(new Found(id, f_choice, f_species, f_gender, f_injury, f_position, f_other, f_image));
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+            return founds;
+        }
+
+        internal void updateFound(Found found)
+        {
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "UPDATE `founds` SET `f_choice`=@f_choice,`f_species`=@f_species,`f_gender`=@f_gender,`f_injury`= @f_injury,`f_position`=@f_position,`f_other`=@f_other,`f_image`=@f_image WHERE `id`=@id";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@id", found.Id); 
+                sql.Parameters.AddWithValue("@f_choice", found.F_choice);
+                sql.Parameters.AddWithValue("@f_species", found.F_species);
+                sql.Parameters.AddWithValue("@f_gender", found.F_gender);
+                sql.Parameters.AddWithValue("@f_injury", found.F_injury);
+                sql.Parameters.AddWithValue("@f_position", found.F_position);
+                sql.Parameters.AddWithValue("@f_other", found.F_other);
+                sql.Parameters.AddWithValue("@f_image", found.F_image);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
+        internal void deleteFound(Found found)
+        {
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "DELETE FROM `founds` WHERE `id`= @id";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@id", found.Id);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
     }
 }
 //**********************************************************************************

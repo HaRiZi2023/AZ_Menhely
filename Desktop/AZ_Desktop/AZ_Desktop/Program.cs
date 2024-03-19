@@ -24,13 +24,21 @@ namespace AZ_Desktop
         public static FormGuest formGuest = null;
         public static List<Guest> guests = new List<Guest>();
 
+        public static FormFound formFound = null;
+        public static List<Found> founds = new List<Found>();
+
 
 
         public static FormAdoption formAdoption = null;
         
-        public static FormFound formFound = null;
-        
+       
         public static FormChip formChip = null;
+        
+        
+        //public static FormChip user = null;  
+
+
+
 
 
         /// <summary>
@@ -42,12 +50,15 @@ namespace AZ_Desktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            database = new Database();
+            //formLogin = new FormLogin();  // Ezt nem ,de minden más példányosítása
 
-            formLogin = new FormLogin();  // FormLogin példányosítása
-
-            guests = database.allGuest(); // ezek nem kellenek induláskor
-            //workers = database.getAllWorker();
+            formAdoption = new FormAdoption();
+            formChip = new FormChip();
+            formChoice = new FormChoice();
+            //formExit = new FormExit();
+            formFound = new FormFound();
+            formGuest = new FormGuest();
+            formMain = new FormMain();
 
             Application.Run(new FormLogin());
         }
