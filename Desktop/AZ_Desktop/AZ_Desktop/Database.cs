@@ -492,6 +492,36 @@ namespace AZ_Desktop
             return founds;
         }
 
+        internal void insertFound(Found found)
+        {
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "INSERT INTO `founds` (`f_choice`,`f_species`,`f_gender`,`f_injury`,`f_position`, `f_other`,`f_image`) VALUES ( @f_choice, @f_species, @f_gender, @f_injury, @f_position, @f_other, @f_image)";
+
+                sql.Parameters.Clear();
+                               
+                sql.Parameters.AddWithValue("@f_choice", found.F_choice);
+                sql.Parameters.AddWithValue("@f_species", found.F_species);
+                sql.Parameters.AddWithValue("@f_gender", found.F_gender);
+                sql.Parameters.AddWithValue("@f_injury", found.F_injury);
+                sql.Parameters.AddWithValue("@f_position", found.F_position);
+                sql.Parameters.AddWithValue("@f_other", found.F_other);
+                sql.Parameters.AddWithValue("@f_image", found.F_image);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
         internal void updateFound(Found found)
         {
             try

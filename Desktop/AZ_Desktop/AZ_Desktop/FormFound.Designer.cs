@@ -36,8 +36,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox_FoundGender = new System.Windows.Forms.ComboBox();
-            this.comboBox_FoundInjury = new System.Windows.Forms.ComboBox();
             this.textBox_FoundWhere = new System.Windows.Forms.TextBox();
             this.textBox_FoundUser = new System.Windows.Forms.TextBox();
             this.listBox_Found = new System.Windows.Forms.ListBox();
@@ -49,6 +47,8 @@
             this.textBox_FoundChoice = new System.Windows.Forms.TextBox();
             this.richTextBox_FoundOther = new System.Windows.Forms.RichTextBox();
             this.textBox_FoundSpecies = new System.Windows.Forms.TextBox();
+            this.textBox_FoundGender = new System.Windows.Forms.TextBox();
+            this.textBox_FoundInjury = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Found)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,26 +116,11 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Megjegyzés";
             // 
-            // comboBox_FoundGender
-            // 
-            this.comboBox_FoundGender.FormattingEnabled = true;
-            this.comboBox_FoundGender.Location = new System.Drawing.Point(437, 187);
-            this.comboBox_FoundGender.Name = "comboBox_FoundGender";
-            this.comboBox_FoundGender.Size = new System.Drawing.Size(145, 31);
-            this.comboBox_FoundGender.TabIndex = 9;
-            // 
-            // comboBox_FoundInjury
-            // 
-            this.comboBox_FoundInjury.FormattingEnabled = true;
-            this.comboBox_FoundInjury.Location = new System.Drawing.Point(437, 288);
-            this.comboBox_FoundInjury.Name = "comboBox_FoundInjury";
-            this.comboBox_FoundInjury.Size = new System.Drawing.Size(145, 31);
-            this.comboBox_FoundInjury.TabIndex = 10;
-            // 
             // textBox_FoundWhere
             // 
             this.textBox_FoundWhere.Location = new System.Drawing.Point(437, 239);
             this.textBox_FoundWhere.Name = "textBox_FoundWhere";
+            this.textBox_FoundWhere.ReadOnly = true;
             this.textBox_FoundWhere.Size = new System.Drawing.Size(233, 30);
             this.textBox_FoundWhere.TabIndex = 11;
             // 
@@ -143,6 +128,7 @@
             // 
             this.textBox_FoundUser.Location = new System.Drawing.Point(437, 337);
             this.textBox_FoundUser.Name = "textBox_FoundUser";
+            this.textBox_FoundUser.ReadOnly = true;
             this.textBox_FoundUser.Size = new System.Drawing.Size(145, 30);
             this.textBox_FoundUser.TabIndex = 12;
             // 
@@ -208,6 +194,7 @@
             // 
             this.textBox_FoundChoice.Location = new System.Drawing.Point(437, 94);
             this.textBox_FoundChoice.Name = "textBox_FoundChoice";
+            this.textBox_FoundChoice.ReadOnly = true;
             this.textBox_FoundChoice.Size = new System.Drawing.Size(145, 30);
             this.textBox_FoundChoice.TabIndex = 19;
             // 
@@ -223,8 +210,23 @@
             // 
             this.textBox_FoundSpecies.Location = new System.Drawing.Point(437, 142);
             this.textBox_FoundSpecies.Name = "textBox_FoundSpecies";
+            this.textBox_FoundSpecies.ReadOnly = true;
             this.textBox_FoundSpecies.Size = new System.Drawing.Size(145, 30);
             this.textBox_FoundSpecies.TabIndex = 21;
+            // 
+            // textBox_FoundGender
+            // 
+            this.textBox_FoundGender.Location = new System.Drawing.Point(437, 188);
+            this.textBox_FoundGender.Name = "textBox_FoundGender";
+            this.textBox_FoundGender.Size = new System.Drawing.Size(145, 30);
+            this.textBox_FoundGender.TabIndex = 22;
+            // 
+            // textBox_FoundInjury
+            // 
+            this.textBox_FoundInjury.Location = new System.Drawing.Point(437, 289);
+            this.textBox_FoundInjury.Name = "textBox_FoundInjury";
+            this.textBox_FoundInjury.Size = new System.Drawing.Size(145, 30);
+            this.textBox_FoundInjury.TabIndex = 23;
             // 
             // FormFound
             // 
@@ -234,6 +236,8 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(774, 740);
+            this.Controls.Add(this.textBox_FoundInjury);
+            this.Controls.Add(this.textBox_FoundGender);
             this.Controls.Add(this.textBox_FoundSpecies);
             this.Controls.Add(this.richTextBox_FoundOther);
             this.Controls.Add(this.textBox_FoundChoice);
@@ -245,8 +249,6 @@
             this.Controls.Add(this.listBox_Found);
             this.Controls.Add(this.textBox_FoundUser);
             this.Controls.Add(this.textBox_FoundWhere);
-            this.Controls.Add(this.comboBox_FoundInjury);
-            this.Controls.Add(this.comboBox_FoundGender);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -275,11 +277,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox_FoundGender;
-        private System.Windows.Forms.ComboBox comboBox_FoundInjury;
         private System.Windows.Forms.TextBox textBox_FoundWhere;
         private System.Windows.Forms.TextBox textBox_FoundUser;
-        private System.Windows.Forms.ListBox listBox_Found;
         private System.Windows.Forms.PictureBox pictureBox_Found;
         private System.Windows.Forms.Button button_FoundUpdate;
         private System.Windows.Forms.Button button_FoundDelete;
@@ -288,5 +287,8 @@
         private System.Windows.Forms.TextBox textBox_FoundChoice;
         private System.Windows.Forms.RichTextBox richTextBox_FoundOther;
         private System.Windows.Forms.TextBox textBox_FoundSpecies;
+        public System.Windows.Forms.ListBox listBox_Found;
+        private System.Windows.Forms.TextBox textBox_FoundGender;
+        private System.Windows.Forms.TextBox textBox_FoundInjury;
     }
 }
