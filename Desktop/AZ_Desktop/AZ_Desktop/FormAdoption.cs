@@ -26,5 +26,10 @@ namespace AZ_Desktop
         {
 
         }
+
+        private void FormAdoption_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

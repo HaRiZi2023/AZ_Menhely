@@ -24,7 +24,7 @@ namespace AZ_Desktop
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button_Login_Click(object sender, EventArgs e)

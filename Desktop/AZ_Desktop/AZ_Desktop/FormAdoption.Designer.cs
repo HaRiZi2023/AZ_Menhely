@@ -298,6 +298,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAdoption";
             this.Text = "A-Z Menhely";
+            this.Load += new System.EventHandler(this.FormAdoption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

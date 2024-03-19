@@ -86,7 +86,7 @@ namespace AZ_Desktop
             {
                 case "checkBox_ChoiceDog":
                     // Az adatbázisból kutyák lekérdezése
-                    var dogs = database.AllDog();
+                    var dogs = database.allDog();
 
                     foreach (Guest dog in dogs)
                     {
@@ -96,7 +96,7 @@ namespace AZ_Desktop
 
                 case "checkBox_ChoiceCat":
                     // Az adatbázisból macskák lekérdezése
-                    var cats = database.AllCat();
+                    var cats = database.allCat();
 
                     foreach (Guest cat in cats)
                     {
@@ -105,7 +105,7 @@ namespace AZ_Desktop
                     break;
             }
         }
-                
+                // lent mi az 1?  //
         private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             // Ellenőrizzük, hogy van-e kiválasztott elem a ListBox-ban
@@ -131,7 +131,7 @@ namespace AZ_Desktop
                 //this.Hide(); // Elrejti a bejelentkezési ablakot
 
                 // Most itt lehet feldolgozni a kiválasztott értéket
-                MessageBox.Show("Kiválasztott elem: 222 " + selectedGuestName); //guest en jön elő
+                MessageBox.Show("Kiválasztott elem: 222 " + selectedGuestName); //guest-en látható
             }
             else
             {
