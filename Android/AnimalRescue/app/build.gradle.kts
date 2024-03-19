@@ -39,8 +39,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.google.android.gms:play-services-tasks:18.1.0")
     implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("androidx.activity:activity:1.8.0")
     //implementation("androidx.annotation:annotation-jvm:1.7.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("com.airbnb.android:lottie:6.0.0")
 }

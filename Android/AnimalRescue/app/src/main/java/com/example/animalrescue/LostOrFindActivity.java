@@ -36,7 +36,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class LostOrFindActivity extends AppCompatActivity { //?? AppActivity or AppCompatActivity
+public class LostOrFindActivity extends AppCompatActivity {
 
     private Spinner spinnerFindSearchSp, spinnerASpecies, spinnerAGender, spinnerAInjury;
     private static final String[] findsearch = {"Keres", "Talált"};
@@ -52,7 +52,6 @@ public class LostOrFindActivity extends AppCompatActivity { //?? AppActivity or 
     private TextView textViewlocation;
     private Button buttonAPosition, buttonFoto, buttonSave;
     private ImageView imageViewResult;
-
 
 
     @Override
@@ -77,8 +76,8 @@ public class LostOrFindActivity extends AppCompatActivity { //?? AppActivity or 
             ActivityCompat.requestPermissions(this, permissions, 0);
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                0, 0, locationListener);
+        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+        //        0, 0, locationListener);
 
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
         ArrayAdapter<String>adapter1 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, species);
@@ -152,7 +151,7 @@ public class LostOrFindActivity extends AppCompatActivity { //?? AppActivity or 
                 addAnimal();
             }
         });
-        //editTextAPosition.getText(getCompleteAddressString()); //Hogy másolunk be edit textbe pl címet.
+
     }
 
     private void addAnimal(){

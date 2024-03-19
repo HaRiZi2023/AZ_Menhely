@@ -46,7 +46,7 @@
         android:id="@+id/editTextPhoneRegister"
         android:hint="Telefonszám"
         android:textColorHint="@color/black"
-        android:inputType="number" />
+        android:inputType="phone" />
 
     <EditText
         android:layout_width="match_parent"
