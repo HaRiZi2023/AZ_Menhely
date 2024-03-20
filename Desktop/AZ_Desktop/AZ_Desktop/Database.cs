@@ -605,8 +605,84 @@ namespace AZ_Desktop
             }
         }
 
+        //********** adoption ***************
+
+        internal List<Guest> allAdoptableAnimal()
+        {
+            List<Guest> adoptables = new List<Guest>();
+            sql.CommandText = "SELECT * FROM `guests` WHERE `g_adoption` = \"igen\"; ";   // ok
+            try
+            {
+                connOpening();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        string g_name = dr.GetString("g_name");
+                        string g_chip = dr.GetString("g_chip");
+                        string g_species = dr.GetString("g_species");
+                        string g_gender = dr.GetString("g_gender"); //enum
+                        DateTime g_in_date = dr.GetDateTime("g_in_date");
+                        string g_in_place = dr.GetString("g_in_place");
+                        DateTime g_out_date = dr.GetDateTime("g_out_date");
+                        string g_adoption = dr.GetString("g_adoption");
+                        string g_other = dr.GetString("g_other");  //enum
+                        string g_image = dr.GetString("g_image");
+
+                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+            return adoptables;
+        }
+
+
+        internal List<User> allUser()
+        {
+            List<User> users = new List<User>();
+            sql.CommandText = "SELECT * FROM `users` ORDER BY `name`";  // ok
+            try
+            {
+                connOpening();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        string name = dr.GetString("name");
+                        string email = dr.GetString("email");
+                        string password = dr.GetString("password");
+                        string address = dr.GetString("address");
+                        int phone = dr.GetInt32("phone");
+
+                        users.Add(new User(id, name, email, password, address, phone));
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+            return users;
+        }
+
+
     }
 }
+    
 //**********************************************************************************
 
 

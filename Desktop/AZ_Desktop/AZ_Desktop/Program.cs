@@ -30,8 +30,9 @@ namespace AZ_Desktop
 
 
         public static FormAdoption formAdoption = null;
-        
-       
+        public static List<Adoption> adoptables = new List<Adoption>();
+        public static List<User> users = new List<User>();
+
         public static FormChip formChip = null;
         
         
@@ -59,6 +60,7 @@ namespace AZ_Desktop
             formFound = new FormFound();
             formGuest = new FormGuest();
             formMain = new FormMain();
+            formLogin = new FormLogin();
 
             Application.Run(new FormLogin());
         }
