@@ -30,5 +30,10 @@ namespace AZ_Desktop
         {
             return $"{this.w_name}";
         }
+
+        public Worker()
+        {
+            // Alapértelmezett konstruktor, lehet üres.
+        }
     }
 }

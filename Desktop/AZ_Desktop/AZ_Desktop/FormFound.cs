@@ -118,7 +118,7 @@ namespace AZ_Desktop
         }
 
 
-        //****** Ez majd nem kell *********
+        //****** Ez majd nem kell inserthez + üres konstruktor *********
         private bool validateInput()
         {
             if (string.IsNullOrEmpty(textBox_FoundChoice.Text) ||

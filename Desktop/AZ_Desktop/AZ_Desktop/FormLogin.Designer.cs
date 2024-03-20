@@ -148,6 +148,7 @@
             this.button_LoginInsert.Text = "Felvitel";
             this.button_LoginInsert.UseVisualStyleBackColor = false;
             this.button_LoginInsert.Visible = false;
+            this.button_LoginInsert.Click += new System.EventHandler(this.button_LoginInsert_Click);
             // 
             // button_LoginDelete
             // 
@@ -159,6 +160,7 @@
             this.button_LoginDelete.Text = "Törlés";
             this.button_LoginDelete.UseVisualStyleBackColor = false;
             this.button_LoginDelete.Visible = false;
+            this.button_LoginDelete.Click += new System.EventHandler(this.button_LoginDelete_Click);
             // 
             // button_LoginUpdate
             // 
@@ -170,10 +172,14 @@
             this.button_LoginUpdate.Text = "Módosít";
             this.button_LoginUpdate.UseVisualStyleBackColor = false;
             this.button_LoginUpdate.Visible = false;
+            this.button_LoginUpdate.Click += new System.EventHandler(this.button_LoginUpdate_Click);
             // 
             // comboBox_LoginPermission
             // 
             this.comboBox_LoginPermission.FormattingEnabled = true;
+            this.comboBox_LoginPermission.Items.AddRange(new object[] {
+            "teljes",
+            "felhasználó"});
             this.comboBox_LoginPermission.Location = new System.Drawing.Point(271, 258);
             this.comboBox_LoginPermission.Name = "comboBox_LoginPermission";
             this.comboBox_LoginPermission.Size = new System.Drawing.Size(244, 31);

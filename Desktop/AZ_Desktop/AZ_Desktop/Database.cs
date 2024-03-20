@@ -142,11 +142,11 @@ namespace AZ_Desktop
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `workers` (`id`, `w_name`, `w_password`, `w_permission`) VALUES (`@w_id`, `@w_name`, `@w_password`, `@w_permission`) ";
+                sql.CommandText = "INSERT INTO `workers` (`w_name`, `w_password`, `w_permission`) VALUES (@w_name, @w_password, @w_permission) ";
 
                 sql.Parameters.Clear();
 
-                sql.Parameters.AddWithValue("@id", worker.Id);
+               
                 sql.Parameters.AddWithValue("@w_name", worker.W_name);
                 sql.Parameters.AddWithValue("@w_password", worker.W_password);
                 sql.Parameters.AddWithValue("@w_permission", worker.W_permission);
@@ -163,21 +163,49 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateWorker(Worker worker)  //ok
+        internal bool CheckWorkerExists(string workerName) //up és delhez
         {
             try
             {
                 connOpening();
 
-                sql.CommandText = "UPDATE `workers` SET `id`=@id,`w_password`=@w_password,`w_permission`=@w_permission,`, WHERE `g_name`=@g_name";
+                sql.CommandText = "SELECT COUNT(*) FROM `workers` WHERE `w_name` = @w_name";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@w_name", workerName);
+
+                int count = Convert.ToInt32(sql.ExecuteScalar());
+
+                return count > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
+        internal void updateWorker(string workerNameUpdate, string workerPasswordUpdate, string workerPermissionUpdate)  
+        {
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "UPDATE `workers` SET `w_password`=@workerPasswordUpdate,`w_permission`=@workerPermissionUpdate WHERE `w_name`=@workerNameUpdate";
 
 
                 sql.Parameters.Clear();
 
-                sql.Parameters.AddWithValue("@id", worker.Id);
-                sql.Parameters.AddWithValue("@w_name", worker.W_name);
-                sql.Parameters.AddWithValue("@w_password", worker.W_password);
-                sql.Parameters.AddWithValue("@w_permission", worker.W_permission);
+                //sql.Parameters.AddWithValue("@id", worker.Id);
+                
+                sql.Parameters.AddWithValue("@workerPasswordUpdate", workerPasswordUpdate);
+                sql.Parameters.AddWithValue("@workerPermissionUpdate", workerPermissionUpdate);
+                sql.Parameters.AddWithValue("@workerNameUpdate", workerNameUpdate);
 
                 sql.ExecuteNonQuery();
             }
@@ -191,17 +219,17 @@ namespace AZ_Desktop
             }
         }
 
-        internal void deleteWorker(Worker worker)
+        internal void deleteWorker(string workerName)
         {
             try
             {
                 connOpening();
 
-                sql.CommandText = "DELETE FROM `workers` WHERE `name`= @name";
+                sql.CommandText = "DELETE FROM `workers` WHERE `w_name`= @w_name";
 
                 sql.Parameters.Clear();
 
-                sql.Parameters.AddWithValue("w_name", worker.W_name);
+                sql.Parameters.AddWithValue("w_name", workerName);
 
                 sql.ExecuteNonQuery();
             }
