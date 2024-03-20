@@ -109,10 +109,11 @@ namespace AZ_Desktop
 
         private void button_LoginService_Click(object sender, EventArgs e)
         {
+            
             string w_name = textBox_LoginName.Text;
             string w_password = textBox_LoginPass.Text;
             //string w_permission = comboBox_LoginPermission.Text;
-
+           /*
             if (string.IsNullOrEmpty(textBox_LoginName.Text))
             {
                 MessageBox.Show("Kérjük adja meg a nevét!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -131,23 +132,26 @@ namespace AZ_Desktop
                 textBox_LoginPass.Select();
                 return;
             }
+          */
             if (checkPermission(w_name, w_password))
             {
                 //if (w_permission == "teljes") 
                 {
-                    MessageBox.Show("Sikeres bejelentkezés!");
+                    MessageBox.Show("Sikeres szervíz bejelentkezés!");
 
-                     // A TextBox-ok láthatóvá tétele
+                     // A Button-ok láthatóvá tétele
                     comboBox_LoginPermission.Visible = true;
                     button_LoginInsert.Visible = true;
                     button_LoginUpdate.Visible = true;
                     button_LoginDelete.Visible = true;
 
+                    emptyFields();
+                    /*
                     // Kiürítjük a mezőket
                     textBox_LoginName.Text = "";
                     textBox_LoginPass.Text = "";
                     //comboBox_LoginPermission.Text = "";
-
+                    */
                     //openFormMain();
                 }
 
@@ -167,6 +171,9 @@ namespace AZ_Desktop
                 string.IsNullOrEmpty(comboBox_LoginPermission.Text))
             {
                 MessageBox.Show("Kérjük, töltse ki az összes kötelező mezőt!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                this.ActiveControl = textBox_LoginName;
+
                 return false;
             }
             return true;
@@ -189,6 +196,7 @@ namespace AZ_Desktop
             if (database.CheckWorkerExists(workerInsert))
             {
                 MessageBox.Show("Van már ilyen nevű dolgozó az adtbázisban!", "Ellenőrizze!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox_LoginName.Text = "";
             }
 
                 // Ellenőrizze, hogy minden kötelező mező kitöltve van-e
@@ -225,12 +233,12 @@ namespace AZ_Desktop
             string workerPermissionUpdate = comboBox_LoginPermission.Text;
 
             if (database.CheckWorkerExists(workerNameUpdate))
-            // Ellenőrizd, hogy van-e találat
+            // Ellenőrizzük, hogy van-e ilyen nevű dolgozó
             {  //van találat
 
                 database.updateWorker(workerNameUpdate, workerPasswordUpdate, workerPermissionUpdate);
 
-                MessageBox.Show("Dolgozó adata módosítva lett az adatbázisból.");
+                MessageBox.Show("Dolgozó adata módosítva lett az adatbázisban.");
             }
             else
             {
