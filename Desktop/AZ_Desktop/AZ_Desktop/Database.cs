@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,20 @@ namespace AZ_Desktop
             try
             {
                 connOpening();
+
+                //******* nekem segítség, hogy kiírja ha nincs adatbázis kapcsolat. Majd törlendő
+                
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    MessageBox.Show("Adatbáziskapcsolat létrehozva és megnyitva.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Nem sikerült megnyitni az adatbáziskapcsolatot.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //******* nekem segítség, hogy kiírja ha nincs adatbázis kapcsolat.
+
             }
             catch (MySqlException ex)
             {
@@ -97,9 +112,6 @@ namespace AZ_Desktop
 
             return dataTable;
         }
-
-
-        //**********************************************************************************
 
         //**************  workers  **********************
 
@@ -454,7 +466,7 @@ namespace AZ_Desktop
             }
         }
  
-    //************ Chip ****************//
+        //************ Chip ****************//
 
         internal void updateChipOther(string chipNumber, string otherValue) 
         {
@@ -630,13 +642,14 @@ namespace AZ_Desktop
                         string g_other = dr.GetString("g_other");  //enum
                         string g_image = dr.GetString("g_image");
 
-                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
+                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));    /*g_image*/
                     }
                 }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                return adoptables; // Visszaadunk egy üres listát hiba esetén
             }
             finally
             {
@@ -644,7 +657,6 @@ namespace AZ_Desktop
             }
             return adoptables;
         }
-
 
         internal List<User> allUser()
         {
@@ -679,7 +691,81 @@ namespace AZ_Desktop
             return users;
         }
 
+        internal void insertAdoption(Adoption adoption)
+        {
+            try
+            {
+                connOpening();
 
+                sql.CommandText = "INSERT INTO `adoptions` (`a_date`,`g_name`,`u_name`,`f_injury`,`f_position`, `f_other`,`f_image`) VALUES ( @a_date, @g_name, @u_name, @f_injury, @f_position, @f_other, @f_image)";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@a_date", adoption.A_date);
+                sql.Parameters.AddWithValue("@g_name", adoption.G_name);
+                sql.Parameters.AddWithValue("@u_name", adoption.U_name);
+               
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
+        internal void updateAdoption(Adoption adoption)
+        {
+            try
+            {               
+                connOpening();
+
+                sql.CommandText = "UPDATE `adoptions` SET `a_date` = @a_date,`g_name` = @g_name,`u_name` = @u_name WHERE `id`=@id";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@a_date", adoption.A_date);
+                sql.Parameters.AddWithValue("@g_name", adoption.G_name);
+                sql.Parameters.AddWithValue("@u_name", adoption.U_name);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
+        internal void deleteAdoption(Adoption adoption)
+        {
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "DELETE FROM `adoptions` WHERE `id`= @id";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@id", adoption.Id);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
     }
 }
     

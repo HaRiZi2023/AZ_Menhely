@@ -15,10 +15,16 @@ namespace AZ_Desktop
     public partial class FormAdoption : Form
     {
         private Database database;
+        private List<Guest> allAnimals;
+        private List<User> allUsers;
+
         public FormAdoption()
         {
             InitializeComponent();
+
             database = new Database();
+            allAnimals = database.allAdoptableAnimal();
+            allUsers = database.allUser();
             uploadingAnimalName();
             uploadingUserName();
         }
@@ -30,99 +36,84 @@ namespace AZ_Desktop
 
         private void uploadingAnimalName()
         {
-            comboBox_AdoptionGName.Items.Clear();
-            //Database database = new Database();
-            /*
-            var founds = database.allFound();
-
-            foreach (Found found in founds)
+            if (comboBox_AdoptionGName.Items.Count > 0)
+                comboBox_AdoptionGName.Items.Clear();
+            if (allAnimals != null && allAnimals.Count > 0)
             {
-                listBox_Found.Items.Add(found); //.ToString());
+                foreach (Guest animal in allAnimals)
+                {
+                    if (!string.IsNullOrWhiteSpace(animal.G_name))  //Name
+                        comboBox_AdoptionGName.Items.Add(animal.G_name); // Változtasd meg az állatok nevének megfelelő tulajdonságra
+                }
             }
-            
-
-
-
-
-            // Adatbázis kapcsolat létrehozása
-            using (SqlConnection connection = new SqlConnection("your_connection_string_here"))
+            else
             {
-                // SQL parancs létrehozása
-                string query = "SELECT column_name FROM your_table_name";
-                SqlCommand command = new SqlCommand(query, connection);
-
-                try
-                {
-                    // Adatbázis kapcsolat megnyitása
-                    connection.Open();
-
-                    // Adatok olvasása
-                    SqlDataReader reader = command.ExecuteReader();
-                    List<string> guestList = new List<string>();
-
-                    // Adatok hozzáadása a listához
-                    while (reader.Read())
-                    {
-                        guestList.Add(reader["column_name"].ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Hiba történt az adatbázisból való adatok lekérdezésekor: " + ex.Message);
-                }
-            }*/
+                MessageBox.Show("Nincs elérhető adat az állatokhoz.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         } 
 
         private void uploadingUserName()
         {
-            comboBox_AdoptionUName.Items.Clear();
-            //Database database = new Database();
-            /*
-            var founds = database.allFound();
+            if (comboBox_AdoptionUName.Items.Count > 0)
+                comboBox_AdoptionUName.Items.Clear();
 
-            foreach (Found found in founds)
+            if (allUsers != null && allUsers.Count > 0)
             {
-                listBox_Found.Items.Add(found); //.ToString());
-            }
-            */
-            
-
-
-
-            // Adatbázis kapcsolat létrehozása
-            using (SqlConnection connection = new SqlConnection("Server=localhost;UserID=root;Password= ,Database=menhely;CharacterSet=utf8;"))
-            {
-                // SQL parancs létrehozása
-                string query = "SELECT 'name' FROM `users`";
-                SqlCommand command = new SqlCommand(query, connection);
-
-                try
+                foreach (User user in allUsers)
                 {
-                    // Adatbázis kapcsolat megnyitása
-                    connection.Open();
-
-                    // Adatok olvasása
-                    SqlDataReader reader = command.ExecuteReader();
-                    List<string> userList = new List<string>();
-
-                    // Adatok hozzáadása a listához
-                    while (reader.Read())
-                    {
-                        userList.Add(reader["name"].ToString());
-                    }
-
-                    // ComboBox frissítése az elemekkel
-                    comboBox_AdoptionUName.DataSource = userList;
+                    if (!string.IsNullOrWhiteSpace(user.Name))
+                        comboBox_AdoptionUName.Items.Add(user.Name);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Hiba történt az adatbázisból való adatok lekérdezésekor: " + ex.Message);
+            }
+            else
+            {
+                MessageBox.Show("Nincs elérhető adat a felhasználókhoz.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
+        }
+
+        private void comboBox_AdoptionGName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_AdoptionGName.SelectedItem != null)
+            {
+                // választott
+                string selectedAnimalName = comboBox_AdoptionGName.SelectedItem.ToString();
+
+                // név alapján listában 
+                Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == selectedAnimalName);
+
+                // Ha meg van, akkor kitöltjük a TextBoxokat
+                if (selectedAnimal != null)
+                {                    
+                    textBox_AdoptionSpecies.Text = selectedAnimal.G_species;
+                    textBox_AdoptionGender.Text = selectedAnimal.G_gender;
+                    textBox_AdoptionChip.Text = selectedAnimal.G_chip;
                 }
             }
         }
 
+        private void comboBox_AdoptionUName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_AdoptionUName.SelectedItem != null)
+            {
+                // választott
+                string selectedUserName = comboBox_AdoptionUName.SelectedItem.ToString();
 
+                // név alapján listában 
+                User selectedUser = allUsers.Find(user => user.Name == selectedUserName);
 
+                // Ha meg van, akkor kitöltjük a TextBoxokat
+                if (selectedUser != null)
+                {
+                    textBox_AdoptionAddress.Text = selectedUser.Address;
+                    textBox_AdoptionEmail.Text = selectedUser.Email;
+                    textBox_AdoptionPhone.Text = selectedUser.Phone.ToString();
+                }
+            }
+        }
 
+        private void dateTimePicker_AdoptionDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

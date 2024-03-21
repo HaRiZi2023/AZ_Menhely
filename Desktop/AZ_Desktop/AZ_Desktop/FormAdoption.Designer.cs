@@ -174,6 +174,7 @@
             this.dateTimePicker_AdoptionDate.Name = "dateTimePicker_AdoptionDate";
             this.dateTimePicker_AdoptionDate.Size = new System.Drawing.Size(147, 30);
             this.dateTimePicker_AdoptionDate.TabIndex = 13;
+            this.dateTimePicker_AdoptionDate.ValueChanged += new System.EventHandler(this.dateTimePicker_AdoptionDate_ValueChanged);
             // 
             // textBox_AdoptionSpecies
             // 
@@ -252,6 +253,7 @@
             this.comboBox_AdoptionGName.Name = "comboBox_AdoptionGName";
             this.comboBox_AdoptionGName.Size = new System.Drawing.Size(121, 31);
             this.comboBox_AdoptionGName.TabIndex = 24;
+            this.comboBox_AdoptionGName.SelectedIndexChanged += new System.EventHandler(this.comboBox_AdoptionGName_SelectedIndexChanged);
             // 
             // comboBox_AdoptionUName
             // 
@@ -260,6 +262,7 @@
             this.comboBox_AdoptionUName.Name = "comboBox_AdoptionUName";
             this.comboBox_AdoptionUName.Size = new System.Drawing.Size(287, 31);
             this.comboBox_AdoptionUName.TabIndex = 25;
+            this.comboBox_AdoptionUName.SelectedIndexChanged += new System.EventHandler(this.comboBox_AdoptionUName_SelectedIndexChanged);
             // 
             // FormAdoption
             // 
