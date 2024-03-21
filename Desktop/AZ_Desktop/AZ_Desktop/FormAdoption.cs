@@ -65,9 +65,6 @@ namespace AZ_Desktop
                     {
                         guestList.Add(reader["column_name"].ToString());
                     }
-
-                    // ComboBox frissítése az elemekkel
-                    comboBox_AdoptionGName.DataSource = guestList;
                 }
                 catch (Exception ex)
                 {
