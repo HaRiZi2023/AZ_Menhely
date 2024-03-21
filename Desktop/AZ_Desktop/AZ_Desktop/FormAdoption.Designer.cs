@@ -53,6 +53,10 @@
             this.pictureBox_Adoption = new System.Windows.Forms.PictureBox();
             this.comboBox_AdoptionGName = new System.Windows.Forms.ComboBox();
             this.comboBox_AdoptionUName = new System.Windows.Forms.ComboBox();
+            this.button_AdoptionInsert = new System.Windows.Forms.Button();
+            this.button_AdoptionUpdate = new System.Windows.Forms.Button();
+            this.button_AdoptionDelete = new System.Windows.Forms.Button();
+            this.button_AdoptionAgain = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Adoption)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,7 +178,6 @@
             this.dateTimePicker_AdoptionDate.Name = "dateTimePicker_AdoptionDate";
             this.dateTimePicker_AdoptionDate.Size = new System.Drawing.Size(147, 30);
             this.dateTimePicker_AdoptionDate.TabIndex = 13;
-            this.dateTimePicker_AdoptionDate.ValueChanged += new System.EventHandler(this.dateTimePicker_AdoptionDate_ValueChanged);
             // 
             // textBox_AdoptionSpecies
             // 
@@ -220,13 +223,14 @@
             // 
             // button_AdoptionContract
             // 
-            this.button_AdoptionContract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button_AdoptionContract.Location = new System.Drawing.Point(446, 375);
+            this.button_AdoptionContract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button_AdoptionContract.Location = new System.Drawing.Point(446, 421);
             this.button_AdoptionContract.Name = "button_AdoptionContract";
             this.button_AdoptionContract.Size = new System.Drawing.Size(122, 36);
             this.button_AdoptionContract.TabIndex = 22;
             this.button_AdoptionContract.Text = "Szerződés";
             this.button_AdoptionContract.UseVisualStyleBackColor = false;
+            this.button_AdoptionContract.Click += new System.EventHandler(this.button_AdoptionContract_Click);
             // 
             // button2
             // 
@@ -264,6 +268,48 @@
             this.comboBox_AdoptionUName.TabIndex = 25;
             this.comboBox_AdoptionUName.SelectedIndexChanged += new System.EventHandler(this.comboBox_AdoptionUName_SelectedIndexChanged);
             // 
+            // button_AdoptionInsert
+            // 
+            this.button_AdoptionInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.button_AdoptionInsert.Location = new System.Drawing.Point(446, 192);
+            this.button_AdoptionInsert.Name = "button_AdoptionInsert";
+            this.button_AdoptionInsert.Size = new System.Drawing.Size(122, 36);
+            this.button_AdoptionInsert.TabIndex = 26;
+            this.button_AdoptionInsert.Text = "Rögzítés";
+            this.button_AdoptionInsert.UseVisualStyleBackColor = false;
+            this.button_AdoptionInsert.Click += new System.EventHandler(this.button_AdoptionInsert_Click);
+            // 
+            // button_AdoptionUpdate
+            // 
+            this.button_AdoptionUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
+            this.button_AdoptionUpdate.Location = new System.Drawing.Point(163, 584);
+            this.button_AdoptionUpdate.Name = "button_AdoptionUpdate";
+            this.button_AdoptionUpdate.Size = new System.Drawing.Size(122, 36);
+            this.button_AdoptionUpdate.TabIndex = 27;
+            this.button_AdoptionUpdate.Text = "Módosítás";
+            this.button_AdoptionUpdate.UseVisualStyleBackColor = false;
+            // 
+            // button_AdoptionDelete
+            // 
+            this.button_AdoptionDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
+            this.button_AdoptionDelete.Location = new System.Drawing.Point(291, 584);
+            this.button_AdoptionDelete.Name = "button_AdoptionDelete";
+            this.button_AdoptionDelete.Size = new System.Drawing.Size(122, 36);
+            this.button_AdoptionDelete.TabIndex = 28;
+            this.button_AdoptionDelete.Text = "Törlés";
+            this.button_AdoptionDelete.UseVisualStyleBackColor = false;
+            // 
+            // button_AdoptionAgain
+            // 
+            this.button_AdoptionAgain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button_AdoptionAgain.Location = new System.Drawing.Point(446, 240);
+            this.button_AdoptionAgain.Name = "button_AdoptionAgain";
+            this.button_AdoptionAgain.Size = new System.Drawing.Size(122, 36);
+            this.button_AdoptionAgain.TabIndex = 29;
+            this.button_AdoptionAgain.Text = "Újra";
+            this.button_AdoptionAgain.UseVisualStyleBackColor = false;
+            this.button_AdoptionAgain.Click += new System.EventHandler(this.button_AdoptionAgain_Click);
+            // 
             // FormAdoption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
@@ -272,6 +318,10 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(619, 632);
+            this.Controls.Add(this.button_AdoptionAgain);
+            this.Controls.Add(this.button_AdoptionDelete);
+            this.Controls.Add(this.button_AdoptionUpdate);
+            this.Controls.Add(this.button_AdoptionInsert);
             this.Controls.Add(this.comboBox_AdoptionUName);
             this.Controls.Add(this.comboBox_AdoptionGName);
             this.Controls.Add(this.button2);
@@ -334,5 +384,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox_AdoptionGName;
         private System.Windows.Forms.ComboBox comboBox_AdoptionUName;
+        private System.Windows.Forms.Button button_AdoptionInsert;
+        private System.Windows.Forms.Button button_AdoptionUpdate;
+        private System.Windows.Forms.Button button_AdoptionDelete;
+        private System.Windows.Forms.Button button_AdoptionAgain;
     }
 }

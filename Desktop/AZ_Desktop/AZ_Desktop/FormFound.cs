@@ -57,38 +57,45 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_FoundUpdate_Click(object sender, EventArgs e)
+        private void button_FoundUpdate_Click(object sender, EventArgs e)  // ??? mezőtörlés végére  ????
         {
-            // Ellenőrizze, hogy van-e kiválasztott elem a ListBox-ban
-            if (listBox_Found.SelectedIndex != -1)
+            if (validateInputFound())  // ki vannak-e töltve
             {
-                // Hozzon létre egy Found objektumot az űrlap adataiból
-                Found updatedFound = (Found)listBox_Found.SelectedItem;
+                // Ellenőrizze, hogy van-e kiválasztott elem a ListBox-ban
+                if (listBox_Found.SelectedIndex != -1)
                 {
-                    //Id = ((Found)listBox_Found.SelectedItem).Id, // Frissítés esetén fontos az azonosító megtartása
-                    updatedFound.F_choice = textBox_FoundChoice.Text;
-                    updatedFound.F_species = textBox_FoundSpecies.Text;
-                    updatedFound.F_gender = textBox_FoundGender.Text;
-                    updatedFound.F_injury = textBox_FoundInjury.Text;
-                    updatedFound.F_position = textBox_FoundWhere.Text;
-                    updatedFound.F_other = richTextBox_FoundOther.Text;
-                    //updatedFound.F_image = ((Found)listBox_Found.SelectedItem).F_image // A képet nem frissítjük
+                    // Hozzon létre egy Found objektumot az űrlap adataiból
+                    Found updatedFound = (Found)listBox_Found.SelectedItem;
+                    {
+                        //Id = ((Found)listBox_Found.SelectedItem).Id, // Frissítés esetén fontos az azonosító megtartása
+                        updatedFound.F_choice = textBox_FoundChoice.Text;
+                        updatedFound.F_species = textBox_FoundSpecies.Text;
+                        updatedFound.F_gender = textBox_FoundGender.Text;
+                        updatedFound.F_injury = textBox_FoundInjury.Text;
+                        updatedFound.F_position = textBox_FoundWhere.Text;
+                        updatedFound.F_other = richTextBox_FoundOther.Text;
+                        //updatedFound.F_image = ((Found)listBox_Found.SelectedItem).F_image // A képet nem frissítjük
 
-                    // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
-                    database.updateFound(updatedFound);
+                        // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
+                        database.updateFound(updatedFound);
 
-                    // Frissítse a ListBox-ot a frissített elemmel
-                    allFoundList();
+                        // Frissítse a ListBox-ot a frissített elemmel
+                        allFoundList();
 
-                    // Üzenet a felhasználónak a sikeres frissítésről
-                    MessageBox.Show("Az elem sikeresen frissítve lett.", "Sikeres frissítés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+                        // Üzenet a felhasználónak a sikeres frissítésről
+                        MessageBox.Show("Az elem sikeresen frissítve lett.", "Sikeres frissítés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-            }
-            else
-            {
-                // Ha nincs kiválasztott elem a ListBox-ban, jelenítse meg a figyelmeztető üzenetet
-                MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    // Ha nincs kiválasztott elem a ListBox-ban, jelenítse meg a figyelmeztető üzenetet
+                    MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                }
             }
         }
 
@@ -119,7 +126,7 @@ namespace AZ_Desktop
 
 
         //****** Ez majd nem kell inserthez + üres konstruktor *********
-        private bool validateInput()
+        private bool validateInputFound()
         {
             if (string.IsNullOrEmpty(textBox_FoundChoice.Text) ||
                 string.IsNullOrEmpty(textBox_FoundSpecies.Text) ||
@@ -133,10 +140,10 @@ namespace AZ_Desktop
             }
             return true;
         }
-        private void button_FoundInsert_Click(object sender, EventArgs e)
+        private void button_FoundInsert_Click(object sender, EventArgs e) 
         {
             // Ellenőrizze, hogy minden kötelező mező kitöltve van-e
-            if (validateInput())
+            if (validateInputFound())
             {
                 // Hozzon létre egy új Found objektumot az űrlap adataiból
                 Found newFound = new Found

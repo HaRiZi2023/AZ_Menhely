@@ -193,6 +193,16 @@ namespace AZ_Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kutya_macska1 {
+            get {
+                object obj = ResourceManager.GetObject("kutya-macska1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Login___out {
             get {
                 object obj = ResourceManager.GetObject("Login - out", resourceCulture);

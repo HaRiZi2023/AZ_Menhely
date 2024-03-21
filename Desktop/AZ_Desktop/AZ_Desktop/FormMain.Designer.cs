@@ -67,6 +67,7 @@
             this.groupBox_Main.TabIndex = 2;
             this.groupBox_Main.TabStop = false;
             this.groupBox_Main.Text = "Kérem válasszon!";
+            this.groupBox_Main.Enter += new System.EventHandler(this.groupBox_Main_Enter);
             // 
             // checkBox_MainChip
             // 

@@ -100,6 +100,12 @@
   <ItemGroup>
     <Compile Include="Adoption.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="FormContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContract.Designer.cs">
+      <DependentUpon>FormContract.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChoice.resx">
       <DependentUpon>FormChoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContract.resx">
+      <DependentUpon>FormContract.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExit.resx">
       <DependentUpon>FormExit.cs</DependentUpon>
@@ -267,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Chip2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kutya-macska1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

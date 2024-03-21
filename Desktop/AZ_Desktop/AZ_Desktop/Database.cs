@@ -691,19 +691,58 @@ namespace AZ_Desktop
             return users;
         }
 
+        internal void adoptionStatusChange(Guest guest)
+        { // ?????????????
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "UPDATE `guests` SET`g_adoption`= 'nem' @g_adoption WHERE `g_name`=@g_name";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+                
+                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@g_species", guest.G_species);
+                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@g_in_date", guest.G_in_date);
+                sql.Parameters.AddWithValue("@g_in_place", guest.G_in_place);
+                sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
+               
+                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
+               
+                sql.Parameters.AddWithValue("@g_other", guest.G_other);
+                sql.Parameters.AddWithValue("@g_image", guest.G_image);
+               
+
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
         internal void insertAdoption(Adoption adoption)
         {
             try
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `adoptions` (`a_date`,`g_name`,`u_name`,`f_injury`,`f_position`, `f_other`,`f_image`) VALUES ( @a_date, @g_name, @u_name, @f_injury, @f_position, @f_other, @f_image)";
+                sql.CommandText = "INSERT INTO `adoptions` (`a_date`,`g_name`,`u_name`, `created_at`, `updated_at`) VALUES ( @a_date, @g_name, @u_name, @created_at, @updated_at)";
 
                 sql.Parameters.Clear();
 
                 sql.Parameters.AddWithValue("@a_date", adoption.A_date);
                 sql.Parameters.AddWithValue("@g_name", adoption.G_name);
                 sql.Parameters.AddWithValue("@u_name", adoption.U_name);
+                sql.Parameters.AddWithValue("@created_at", adoption.Created_at);
+                sql.Parameters.AddWithValue("@updated_at", adoption.Updated_at);
                
                 sql.ExecuteNonQuery();
             }

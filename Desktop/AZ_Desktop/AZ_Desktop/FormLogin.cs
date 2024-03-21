@@ -19,7 +19,7 @@ namespace AZ_Desktop
     public partial class FormLogin : Form
     {
         private Database database;
-        private string connectionString = "Server=localhost;Database=menhely;Userid=root;Pwd= ;";
+        private string connectionString =    "Server=localhost;Database=menhely;Userid=root;Pwd= ;";   //?????? 
 
         public FormLogin()
         {
@@ -172,7 +172,7 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Kérjük, töltse ki az összes kötelező mezőt!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                this.ActiveControl = textBox_LoginName;
+                this.ActiveControl = textBox_LoginName;  // fokusz ide!
 
                 return false;
             }

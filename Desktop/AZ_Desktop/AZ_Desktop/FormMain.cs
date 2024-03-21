@@ -115,6 +115,11 @@ namespace AZ_Desktop
                     break;
             }
         }
+
+        private void groupBox_Main_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
