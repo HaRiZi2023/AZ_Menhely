@@ -12,7 +12,8 @@ using CheckBox = System.Windows.Forms.CheckBox;
 namespace AZ_Desktop
 {
     public partial class FormChoice : Form
-    {             
+    {
+        private Database database;
         private CheckBox[] checkBoxes_Choice;
 
         public FormChoice() //string options
@@ -54,7 +55,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_ChoiceChoice_Click(object sender, EventArgs e)
+        private void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás
         {
             listBox_Choice.Items.Clear();
             // Ellenőrizzük, hogy van-e kiválasztott CheckBox
@@ -119,19 +120,19 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_ChoiceInsert_Click(object sender, EventArgs e)
+        public void DisplayText(string text)
+        {
+            // Ide tedd azt a kódot, amely megjeleníti a kapott szöveget
+            MessageBox.Show(text);
+        }
+
+        private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel
         {
             if (listBox_Choice.SelectedIndex != -1)
             {
                 FormGuest formGuest = new FormGuest();
-                // Leolvassuk a kiválasztott elemet
-                string selectedGuestName = listBox_Choice.SelectedItem.ToString();
-
+                formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése
                 formGuest.Show();
-                //this.Hide(); // Elrejti a bejelentkezési ablakot
-
-                // Most itt lehet feldolgozni a kiválasztott értéket
-                MessageBox.Show("Kiválasztott elem: 222 " + selectedGuestName); //guest-en látható
             }
             else
             {
@@ -139,7 +140,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void button__ChoiceUpdate_Click(object sender, EventArgs e)
+        private void button_ChoiceUpdate_Click(object sender, EventArgs e)
         {
             if (listBox_Choice.SelectedIndex != -1)
             {
@@ -148,19 +149,19 @@ namespace AZ_Desktop
 
                 // A kiválasztott vendég adatainak lekérdezése a Database osztály segítségével
                 Database database = new Database();
-               // Guest selectedGuest = database.chosenName(selectedGuestName);
+                Guest selectedGuest = database.chosenName(selectedGuestName);
 
                 // Ha sikerült lekérdezni az adatokat
-                /*if (selectedGuest != null)
+                if (selectedGuest != null)
                 {
                     // FormGuest példányosítása
                     FormGuest formGuest = new FormGuest();
 
                     // FormGuest adatok beállítása
-                    //formGuest.guestDataTransfer(selectedGuest);    ////////////////////////////////////////////
+                    formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése
 
                     // A korábbi oldalon lenyomott gomb szövegének átadása
-                    formGuest.functionDisplay(button_ChoiceChoice.Text);
+        //            formGuest.functionDisplay(button_ChoiceChoice.Text);
 
                     // FormGuest megjelenítése
                     formGuest.Show();
@@ -168,7 +169,7 @@ namespace AZ_Desktop
                 else
                 {
                     MessageBox.Show("Hiba történt a vendég adatainak lekérése közben.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+                }
             }
             else
             {
@@ -183,8 +184,6 @@ namespace AZ_Desktop
                 // Leolvassuk a kiválasztott elemet
                 string selectedGuestName = listBox_Choice.SelectedItem.ToString();
 
-               
-
                 // Most itt lehet feldolgozni a kiválasztott értéket
                 MessageBox.Show("Kiválasztott elem: " + selectedGuestName);
             }
@@ -193,5 +192,14 @@ namespace AZ_Desktop
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        //********* törlendő **********
+
+        private void button__ChoiceUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

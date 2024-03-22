@@ -337,6 +337,49 @@ namespace AZ_Desktop
             return cats;
         }
 
+        internal Guest chosenName(string name)
+        {
+            Guest selectedGuest = null;
+
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "SELECT * FROM `guests` WHERE `g_name` = @g_name";
+                sql.Parameters.AddWithValue("@g_name", name);
+
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        int id = dr.GetInt32("id");
+                        string g_name = dr.GetString("g_name");
+                        string g_chip = dr.GetString("g_chip");
+                        string g_species = dr.GetString("g_species");
+                        string g_gender = dr.GetString("g_gender");
+                        DateTime g_in_date = dr.GetDateTime("g_in_date");
+                        string g_in_place = dr.GetString("g_in_place");
+                        DateTime g_out_date = dr.GetDateTime("g_out_date");
+                        string g_adoption = dr.GetString("g_adoption");
+                        string g_other = dr.GetString("g_other");
+                        string g_image = dr.GetString("g_image");
+
+                        selectedGuest = new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connClosing();
+            }
+
+            return selectedGuest;
+        }
+
         //***************** guests ****************
         internal List<Guest> allGuest() // ezt a Program.cs ben adom meg
         {
