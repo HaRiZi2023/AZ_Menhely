@@ -28,16 +28,16 @@ namespace AZ_Desktop
         public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other, string g_image)
         {
             this.id = id;
-            this.g_name = g_name;
-            this.g_chip = g_chip;
-            this.g_species = g_species;
-            this.g_gender = g_gender;
-            this.g_in_date = g_in_date;
-            this.g_in_place = g_in_place;
-            this.g_out_date = g_out_date;
-            this.g_adoption = g_adoption;
-            this.g_other = g_other;
-            this.g_image = g_image;
+            this.G_name = g_name;
+            this.G_chip = g_chip;
+            this.G_species = g_species;
+            this.G_gender = g_gender;
+            this.G_in_date = g_in_date;
+            this.G_in_place = g_in_place;
+            this.G_out_date = g_out_date;
+            this.G_adoption = g_adoption;
+            this.G_other = g_other;
+            this.G_image = g_image;
         }
 
         public int G_id { get => id; set => id = value; }

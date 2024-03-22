@@ -18,6 +18,8 @@ namespace AZ_Desktop
 
 
         //string options;  //*
+
+
         public FormGuest()
         {
             InitializeComponent();
@@ -32,13 +34,13 @@ namespace AZ_Desktop
         {
             uploadData();
         }
-
+        /*
         public void DisplayText(string text)  // ???
         {
             // Ide tedd azt a kódot, amely megjeleníti a kapott szöveget
             MessageBox.Show(text);
         }
-
+        */
         public void uploadData()  //*
         {
             if (Program.formChoice.listBox_Choice.SelectedItem != null)

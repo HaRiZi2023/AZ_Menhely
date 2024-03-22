@@ -119,25 +119,23 @@ namespace AZ_Desktop
                 MessageBox.Show("Kiválasztott elem: 111" + selectedGuestName);
             }
         }
-
+        /*
         public void DisplayText(string text)
         {
             // Ide tedd azt a kódot, amely megjeleníti a kapott szöveget
             MessageBox.Show(text);
         }
+        */
 
         private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel
         {
-            if (listBox_Choice.SelectedIndex != -1)
-            {
+            
+            
                 FormGuest formGuest = new FormGuest();
-                formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése
+                //formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése
                 formGuest.Show();
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+           
+            
         }
 
         private void button_ChoiceUpdate_Click(object sender, EventArgs e)
