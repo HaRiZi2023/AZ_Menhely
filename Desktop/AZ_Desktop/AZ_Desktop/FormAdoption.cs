@@ -40,7 +40,7 @@ namespace AZ_Desktop
             comboBox_AdoptionUName.Text = "Kérem válasszon!";
         }  
 
-        private void uploadingAnimalName() // nevek feltöltése
+        private void uploadingAnimalName() // nevek feltöltése cb
         {
             if (comboBox_AdoptionGName.Items.Count > 0)
                 comboBox_AdoptionGName.Items.Clear();
@@ -58,7 +58,7 @@ namespace AZ_Desktop
             }
         }   
 
-        private void uploadingUserName()  // nevek feltöltése
+        private void uploadingUserName()  // nevek feltöltése cb
         {
             if (comboBox_AdoptionUName.Items.Count > 0)
                 comboBox_AdoptionUName.Items.Clear();
@@ -118,11 +118,17 @@ namespace AZ_Desktop
         }
 
         //**************
-
+        // ez nem jó a kérem válasszont is kitöltöttnek veszi?!
         private bool validateInputAdoption() // kitöltés ell.
         {
             if (string.IsNullOrEmpty(comboBox_AdoptionGName.Text) ||
-                string.IsNullOrEmpty(comboBox_AdoptionUName.Text)) 
+                string.IsNullOrEmpty(textBox_AdoptionSpecies.Text) ||
+                string.IsNullOrEmpty(textBox_AdoptionGender.Text) ||
+                string.IsNullOrEmpty(textBox_AdoptionChip.Text) ||
+                string.IsNullOrEmpty(comboBox_AdoptionUName.Text) ||
+                string.IsNullOrEmpty(textBox_AdoptionAddress.Text) ||
+                string.IsNullOrEmpty(textBox_AdoptionEmail.Text) ||
+                string.IsNullOrEmpty(textBox_AdoptionPhone.Text)) 
             {
                 MessageBox.Show("Kérjük, töltse ki az összes kötelező mezőt!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -147,13 +153,13 @@ namespace AZ_Desktop
 
         
 
-        private void button_AdoptionInsert_Click(object sender, EventArgs e)
+        private void button_AdoptionInsert_Click(object sender, EventArgs e)  //rögzítés
         {
             
-            // Ellenőrizze, hogy minden kötelező mező kitöltve van-e
+            // Ell., hogy minden kötelező mező ki van-e töltve 
             if (validateInputAdoption())
             {
-                //  új Adoption objektumot az űrlap adataiból
+                //  új Adoption obj. az űrlap adatatokból
                 Adoption newAdoption = new Adoption
                 {
                     A_date = dateTimePicker_AdoptionDate.Value,
@@ -167,10 +173,10 @@ namespace AZ_Desktop
 
                 try
                 {
-                    // Hívja meg az insertAdoption metódust az adatbázisba való beszúráshoz
+                    //insertAdoption metódus meghívása az adatbázisba való beszúráshoz
                     database.insertAdoption(newAdoption);
 
-                    // Ha a beszúrás sikeres volt, folytathatod a további műveleteket
+                    // Ha a beszúrás sikeres volt, folytatható a további műveleteket elvégzése
 
                     // Frissítse a ListBox-ot a frissen beszúrt elemmel
                     //allAdoptionList(); ??????????????????????????????????????
@@ -184,7 +190,7 @@ namespace AZ_Desktop
                     Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == comboBox_AdoptionGName.Text);
 
 
-                    if (selectedAnimal != null && selectedAnimal.G_adoption == "igen")
+                if (selectedAnimal != null && selectedAnimal.G_adoption == "igen")
                     {
                         selectedAnimal.G_adoption = "nem";
                         database.adoptionStatusChange(selectedAnimal);
@@ -192,18 +198,14 @@ namespace AZ_Desktop
                         // Most frissítem az adatbázist is, hogy ez az állat mostantól "nem"-re legyen állítva  Vagy inkáb archiv
                         //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva
                     }
-                    //********************************
-                    //*******************************
 
-                    //database.adoptionStatusChange(selectedAnimal);
+                    allAnimals = database.allAdoptableAnimal();
+                   
                     emptyFieldsAdoption();
                     placeholderAdoption();
-                    //allAnimals = database.allAdoptionList();
 
-
-
-
-
+                    uploadingAnimalName();
+                    uploadingUserName();
                 }
                 catch (Exception ex)
                 {
@@ -214,13 +216,9 @@ namespace AZ_Desktop
                 /*
 
 
-                // Ki kell venned a kiválasztott állatot
+                // Ki kell vennem a kiválasztottat
                 Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == comboBox_AdoptionGName.Text);
 
-                // Ha a kiválasztott állat nem null és a g_adoption értéke "igen", akkor állítsd át "nem"-re
-                if (selectedAnimal != null && selectedAnimal.G_adoption == "igen")
-                {
-                    selectedAnimal.G_adoption = "nem";
 
                     // Most frissítem az adatbázist is, hogy ez az állat mostantól "nem"-re legyen állítva  Vagy inkáb archiv
                     //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva

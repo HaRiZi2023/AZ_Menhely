@@ -16,23 +16,17 @@ namespace AZ_Desktop
     {
         private Database database;
 
-
-        //string options;  //*
-
-
         public FormGuest()
         {
             InitializeComponent();
             database = new Database();
             //listBox_Choice.SelectedIndexChanged += listBox_Choice_SelectedIndexChanged; // Ez a sor fontos
 
-
-            //this.options = options; //*
         }
 
         private void FormGuest_Load(object sender, EventArgs e)
         {
-            uploadData();
+            uploadData(); // adat feltöltése
         }
         /*
         public void DisplayText(string text)  // ???
@@ -41,8 +35,8 @@ namespace AZ_Desktop
             MessageBox.Show(text);
         }
         */
-        public void uploadData()  //*
-        {
+        public void uploadData()  // adat feltöltése () üres upload
+        {            
             if (Program.formChoice.listBox_Choice.SelectedItem != null)
             {
                 Guest guest = (Guest)Program.formChoice.listBox_Choice.SelectedItem;
@@ -69,8 +63,10 @@ namespace AZ_Desktop
             guest.G_species = comboBox_GuestSpecies.Text;
             guest.G_gender = comboBox_GuestGender.Text;
             guest.G_adoption = comboBox_GuestAdoption.Text;
-            guest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
-            guest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
+            //guest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
+            guest.G_in_date = dateTimePicker_GuestIn.Value;
+            //guest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
+            guest.G_out_date = dateTimePicker_GuestOut.Value;
             guest.G_other = richTextBox_GuestOther.Text;
 
             Program.database.insertGuest(guest);
@@ -82,14 +78,15 @@ namespace AZ_Desktop
             if (Program.formChoice.listBox_Choice.SelectedItem != null)
             {
                 Guest guest = (Guest)Program.formChoice.listBox_Choice.SelectedItem;
+                
                 guest.G_name = textBox_GuestName.Text;
                 guest.G_chip = textBox_GuestChip.Text;
                 guest.G_in_place = textBox_GuestWhere.Text;
                 guest.G_species = comboBox_GuestSpecies.Text;
                 guest.G_gender = comboBox_GuestGender.Text;
                 guest.G_adoption = comboBox_GuestAdoption.Text;
-                guest.G_in_date = dateTimePicker_GuestIn.Value;
-                guest.G_out_date = dateTimePicker_GuestOut.Value;
+                guest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
+                guest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
                 guest.G_other = richTextBox_GuestOther.Text;
 
                 Program.database.updateGuest(guest);

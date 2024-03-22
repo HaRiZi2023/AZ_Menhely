@@ -73,46 +73,6 @@ namespace AZ_Desktop
             }
         }
 
-        //***********chip********************/
-
-        public DataTable ExecuteQuery(string query, object parameters = null)
-        {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                using (MySqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = query;
-                    if (parameters != null)
-                    {
-                        // Paraméterek hozzáadása a lekérdezéshez
-                        foreach (var prop in parameters.GetType().GetProperties())
-                        {
-                            cmd.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters));
-                        }
-                    }
-
-                    conn.Open();
-                    // Lekérdezés végrehajtása és az eredmények lekérdezése
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        dataTable.Load(reader);
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                Environment.Exit(0);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return dataTable;
-        }
-
         //**************  workers  **********************
 
         internal List<Worker> getAllWorker() // ezt a Program.cs ben adom meg
@@ -337,7 +297,7 @@ namespace AZ_Desktop
             return cats;
         }
 
-        internal Guest chosenName(string name)
+        internal Guest chosenName(string G_name) //kiválasztott név adatainak lekérdezése                      name
         {
             Guest selectedGuest = null;
 
@@ -346,7 +306,7 @@ namespace AZ_Desktop
                 connOpening();
 
                 sql.CommandText = "SELECT * FROM `guests` WHERE `g_name` = @g_name";
-                sql.Parameters.AddWithValue("@g_name", name);
+                sql.Parameters.AddWithValue("@g_name", G_name);  // name votl
 
                 using (MySqlDataReader dr = sql.ExecuteReader())
                 {
@@ -508,8 +468,46 @@ namespace AZ_Desktop
                 connClosing();
             }
         }
- 
+
         //************ Chip ****************//
+
+        public DataTable ExecuteQuery(string query, object parameters = null)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (MySqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = query;
+                    if (parameters != null)
+                    {
+                        // Paraméterek hozzáadása a lekérdezéshez
+                        foreach (var prop in parameters.GetType().GetProperties())
+                        {
+                            cmd.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters));
+                        }
+                    }
+
+                    conn.Open();
+                    // Lekérdezés végrehajtása és az eredmények lekérdezése
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Environment.Exit(0);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dataTable;
+        }
 
         internal void updateChipOther(string chipNumber, string otherValue) 
         {
@@ -734,13 +732,13 @@ namespace AZ_Desktop
             return users;
         }
 
-        internal void adoptionStatusChange(Guest guest)
-        { // ?????????????
+        internal void adoptionStatusChange(Guest guest) // nem-re állításhoz
+        { 
             try
             {
                 connOpening();
 
-                sql.CommandText = "UPDATE `guests` SET`g_adoption`= 'nem' @g_adoption WHERE `g_name`=@g_name";
+                sql.CommandText = "UPDATE `guests` SET`g_adoption`= @g_adoption WHERE `g_name`=@g_name";
 
                 sql.Parameters.Clear();
 

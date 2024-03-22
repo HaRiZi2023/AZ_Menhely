@@ -27,7 +27,7 @@ namespace AZ_Desktop
 
         public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other, string g_image)
         {
-            this.id = id;
+            this.Id = id;
             this.G_name = g_name;
             this.G_chip = g_chip;
             this.G_species = g_species;
@@ -40,7 +40,7 @@ namespace AZ_Desktop
             this.G_image = g_image;
         }
 
-        public int G_id { get => id; set => id = value; }
+        public int Id { get => id; set => id = value; }
         public string G_name { get => g_name; set => g_name = value; }
         public string G_chip { get => g_chip; set => g_chip = value; }
         public string G_species { get => g_species; set => g_species = value; }
@@ -50,12 +50,11 @@ namespace AZ_Desktop
         public DateTime G_out_date { get => g_out_date; set => g_out_date = value; }
         public string G_adoption { get => g_adoption; set => g_adoption = value; }
         public string G_other { get => g_other; set => g_other = value; }
-
         public string G_image { get => g_image; set => g_image = value; }
 
         public override string ToString()
         {
-            return $"{this.g_species} - {this.g_name}";
+            return $"{this.G_species} - {this.G_name}";
         }
 
 

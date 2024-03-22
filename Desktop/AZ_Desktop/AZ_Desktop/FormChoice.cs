@@ -39,7 +39,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void checkBox_CheckedChangedChoice(object sender, EventArgs e)
+        private void checkBox_CheckedChangedChoice(object sender, EventArgs e) //cb bejlölés változás
         {
             var clickedCheckBox = (CheckBox)sender;
 
@@ -55,7 +55,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás
+        private void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
             listBox_Choice.Items.Clear();
             // Ellenőrizzük, hogy van-e kiválasztott CheckBox
@@ -119,20 +119,10 @@ namespace AZ_Desktop
                 MessageBox.Show("Kiválasztott elem: 111" + selectedGuestName);
             }
         }
-        /*
-        public void DisplayText(string text)
+       
+        private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb
         {
-            // Ide tedd azt a kódot, amely megjeleníti a kapott szöveget
-            MessageBox.Show(text);
-        }
-        */
-
-        private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel
-        {
-            
-            
                 FormGuest formGuest = new FormGuest();
-                //formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése
                 formGuest.Show();
            
             
@@ -152,17 +142,26 @@ namespace AZ_Desktop
                 // Ha sikerült lekérdezni az adatokat
                 if (selectedGuest != null)
                 {
-                    // FormGuest példányosítása
-                    FormGuest formGuest = new FormGuest();
+                    MessageBox.Show("chosen ok adatokat sikerült lekérdezni", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    FormGuest formGuest = new FormGuest();   // FormGuest példányosítása
+
+                    MessageBox.Show("példányosítás ok", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // adat feltöltése
+                    formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése  -  FormGuest adatok beállítása
+
+                    MessageBox.Show("betöltés ok", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                    //ÚJ  
                     // FormGuest adatok beállítása
-                    formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése
+                    //FormGuest.uploadData(selectedGuest); //CS1501 hiba
 
-                    // A korábbi oldalon lenyomott gomb szövegének átadása
-        //            formGuest.functionDisplay(button_ChoiceChoice.Text);
 
-                    // FormGuest megjelenítése
-                    formGuest.Show();
+
+
+                    formGuest.Show();   // FormGuest megjelenítése
                 }
                 else
                 {
