@@ -30,6 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormContract));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox_ContractAdress = new System.Windows.Forms.TextBox();
+            this.textBox_ContractEmail = new System.Windows.Forms.TextBox();
+            this.textBox_ContractPhone = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox_ContractUName = new System.Windows.Forms.TextBox();
+            this.textBox_ContractChip = new System.Windows.Forms.TextBox();
+            this.textBox_ContractGender = new System.Windows.Forms.TextBox();
+            this.textBox_ContractSpecies = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,22 +57,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox_ContractSpecies = new System.Windows.Forms.TextBox();
-            this.textBox_ContractGender = new System.Windows.Forms.TextBox();
-            this.textBox_ContractChip = new System.Windows.Forms.TextBox();
-            this.textBox_ContractAdress = new System.Windows.Forms.TextBox();
-            this.textBox_ContractEmail = new System.Windows.Forms.TextBox();
-            this.textBox_ContractPhone = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox_ContractUName = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.button_ContractPDF = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -97,6 +97,142 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1099, 987);
             this.panel1.TabIndex = 0;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(97, 899);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(133, 22);
+            this.textBox9.TabIndex = 30;
+            // 
+            // textBox_ContractAdress
+            // 
+            this.textBox_ContractAdress.Location = new System.Drawing.Point(587, 431);
+            this.textBox_ContractAdress.Name = "textBox_ContractAdress";
+            this.textBox_ContractAdress.Size = new System.Drawing.Size(491, 22);
+            this.textBox_ContractAdress.TabIndex = 29;
+            // 
+            // textBox_ContractEmail
+            // 
+            this.textBox_ContractEmail.Location = new System.Drawing.Point(587, 465);
+            this.textBox_ContractEmail.Name = "textBox_ContractEmail";
+            this.textBox_ContractEmail.Size = new System.Drawing.Size(491, 22);
+            this.textBox_ContractEmail.TabIndex = 28;
+            // 
+            // textBox_ContractPhone
+            // 
+            this.textBox_ContractPhone.Location = new System.Drawing.Point(138, 465);
+            this.textBox_ContractPhone.Name = "textBox_ContractPhone";
+            this.textBox_ContractPhone.Size = new System.Drawing.Size(372, 22);
+            this.textBox_ContractPhone.TabIndex = 27;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label14.Location = new System.Drawing.Point(33, 468);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(100, 16);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "Telefonszám:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Location = new System.Drawing.Point(530, 434);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(37, 16);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "Cím:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(530, 468);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 16);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "E-mail:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(33, 434);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(39, 16);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Név:";
+            // 
+            // textBox_ContractUName
+            // 
+            this.textBox_ContractUName.Location = new System.Drawing.Point(138, 431);
+            this.textBox_ContractUName.Name = "textBox_ContractUName";
+            this.textBox_ContractUName.Size = new System.Drawing.Size(372, 22);
+            this.textBox_ContractUName.TabIndex = 22;
+            // 
+            // textBox_ContractChip
+            // 
+            this.textBox_ContractChip.Location = new System.Drawing.Point(518, 326);
+            this.textBox_ContractChip.Name = "textBox_ContractChip";
+            this.textBox_ContractChip.Size = new System.Drawing.Size(210, 22);
+            this.textBox_ContractChip.TabIndex = 21;
+            // 
+            // textBox_ContractGender
+            // 
+            this.textBox_ContractGender.Location = new System.Drawing.Point(518, 357);
+            this.textBox_ContractGender.Name = "textBox_ContractGender";
+            this.textBox_ContractGender.Size = new System.Drawing.Size(210, 22);
+            this.textBox_ContractGender.TabIndex = 20;
+            // 
+            // textBox_ContractSpecies
+            // 
+            this.textBox_ContractSpecies.Location = new System.Drawing.Point(138, 357);
+            this.textBox_ContractSpecies.Name = "textBox_ContractSpecies";
+            this.textBox_ContractSpecies.Size = new System.Drawing.Size(210, 22);
+            this.textBox_ContractSpecies.TabIndex = 19;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.Location = new System.Drawing.Point(33, 359);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(33, 16);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Faj:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(373, 329);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(127, 16);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Microchip száma:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(373, 359);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 16);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Nem:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(33, 328);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 16);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Név:";
             // 
             // label6
             // 
@@ -203,142 +339,6 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(33, 328);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 16);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Név:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(373, 359);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 16);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Nem:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label11.Location = new System.Drawing.Point(373, 329);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(127, 16);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "Microchip száma:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label12.Location = new System.Drawing.Point(33, 359);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(33, 16);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Faj:";
-            // 
-            // textBox_ContractSpecies
-            // 
-            this.textBox_ContractSpecies.Location = new System.Drawing.Point(138, 357);
-            this.textBox_ContractSpecies.Name = "textBox_ContractSpecies";
-            this.textBox_ContractSpecies.Size = new System.Drawing.Size(210, 22);
-            this.textBox_ContractSpecies.TabIndex = 19;
-            // 
-            // textBox_ContractGender
-            // 
-            this.textBox_ContractGender.Location = new System.Drawing.Point(518, 357);
-            this.textBox_ContractGender.Name = "textBox_ContractGender";
-            this.textBox_ContractGender.Size = new System.Drawing.Size(210, 22);
-            this.textBox_ContractGender.TabIndex = 20;
-            // 
-            // textBox_ContractChip
-            // 
-            this.textBox_ContractChip.Location = new System.Drawing.Point(518, 326);
-            this.textBox_ContractChip.Name = "textBox_ContractChip";
-            this.textBox_ContractChip.Size = new System.Drawing.Size(210, 22);
-            this.textBox_ContractChip.TabIndex = 21;
-            // 
-            // textBox_ContractAdress
-            // 
-            this.textBox_ContractAdress.Location = new System.Drawing.Point(587, 431);
-            this.textBox_ContractAdress.Name = "textBox_ContractAdress";
-            this.textBox_ContractAdress.Size = new System.Drawing.Size(491, 22);
-            this.textBox_ContractAdress.TabIndex = 29;
-            // 
-            // textBox_ContractEmail
-            // 
-            this.textBox_ContractEmail.Location = new System.Drawing.Point(587, 465);
-            this.textBox_ContractEmail.Name = "textBox_ContractEmail";
-            this.textBox_ContractEmail.Size = new System.Drawing.Size(491, 22);
-            this.textBox_ContractEmail.TabIndex = 28;
-            // 
-            // textBox_ContractPhone
-            // 
-            this.textBox_ContractPhone.Location = new System.Drawing.Point(138, 465);
-            this.textBox_ContractPhone.Name = "textBox_ContractPhone";
-            this.textBox_ContractPhone.Size = new System.Drawing.Size(372, 22);
-            this.textBox_ContractPhone.TabIndex = 27;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label14.Location = new System.Drawing.Point(33, 468);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(100, 16);
-            this.label14.TabIndex = 26;
-            this.label14.Text = "Telefonszám:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(530, 434);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(37, 16);
-            this.label15.TabIndex = 25;
-            this.label15.Text = "Cím:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label16.Location = new System.Drawing.Point(530, 468);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 16);
-            this.label16.TabIndex = 24;
-            this.label16.Text = "E-mail:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(33, 434);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(39, 16);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "Név:";
-            // 
-            // textBox_ContractUName
-            // 
-            this.textBox_ContractUName.Location = new System.Drawing.Point(138, 431);
-            this.textBox_ContractUName.Name = "textBox_ContractUName";
-            this.textBox_ContractUName.Size = new System.Drawing.Size(372, 22);
-            this.textBox_ContractUName.TabIndex = 22;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(97, 899);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(133, 22);
-            this.textBox9.TabIndex = 30;
-            // 
             // button_ContractPDF
             // 
             this.button_ContractPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(165)))), ((int)(((byte)(100)))));
@@ -348,6 +348,7 @@
             this.button_ContractPDF.TabIndex = 31;
             this.button_ContractPDF.Text = "PDF";
             this.button_ContractPDF.UseVisualStyleBackColor = false;
+            this.button_ContractPDF.Click += new System.EventHandler(this.button_ContractPDF_Click);
             // 
             // FormContract
             // 
@@ -359,6 +360,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormContract";
             this.Text = "A-Z Menhely";
+            this.Load += new System.EventHandler(this.FormContract_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

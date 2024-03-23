@@ -81,7 +81,12 @@ namespace AZ_Desktop
         private void openFormMain()
         {
             FormMain formMain = new FormMain();
+            formMain.FormClosed += (obj,args) =>
+            {
+                this.Show();
+            };
             formMain.Show();
+
             this.Hide();
         }
 

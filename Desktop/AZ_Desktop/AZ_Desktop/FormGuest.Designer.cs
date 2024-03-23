@@ -173,8 +173,8 @@
             // 
             this.comboBox_GuestSpecies.FormattingEnabled = true;
             this.comboBox_GuestSpecies.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "kutya",
+            "macska"});
             this.comboBox_GuestSpecies.Location = new System.Drawing.Point(35, 247);
             this.comboBox_GuestSpecies.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestSpecies.Name = "comboBox_GuestSpecies";
@@ -185,8 +185,9 @@
             // 
             this.comboBox_GuestGender.FormattingEnabled = true;
             this.comboBox_GuestGender.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "nőstény",
+            "hím",
+            "ismeretlen"});
             this.comboBox_GuestGender.Location = new System.Drawing.Point(207, 247);
             this.comboBox_GuestGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestGender.Name = "comboBox_GuestGender";
@@ -197,8 +198,8 @@
             // 
             this.comboBox_GuestAdoption.FormattingEnabled = true;
             this.comboBox_GuestAdoption.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "igen",
+            "nem"});
             this.comboBox_GuestAdoption.Location = new System.Drawing.Point(564, 247);
             this.comboBox_GuestAdoption.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestAdoption.Name = "comboBox_GuestAdoption";
@@ -225,8 +226,8 @@
             // 
             this.comboBox_GuestInjury.FormattingEnabled = true;
             this.comboBox_GuestInjury.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "igen",
+            "nem"});
             this.comboBox_GuestInjury.Location = new System.Drawing.Point(207, 336);
             this.comboBox_GuestInjury.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestInjury.Name = "comboBox_GuestInjury";

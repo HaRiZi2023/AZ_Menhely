@@ -224,7 +224,7 @@
             // button_AdoptionContract
             // 
             this.button_AdoptionContract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button_AdoptionContract.Location = new System.Drawing.Point(446, 421);
+            this.button_AdoptionContract.Location = new System.Drawing.Point(446, 297);
             this.button_AdoptionContract.Name = "button_AdoptionContract";
             this.button_AdoptionContract.Size = new System.Drawing.Size(122, 36);
             this.button_AdoptionContract.TabIndex = 22;

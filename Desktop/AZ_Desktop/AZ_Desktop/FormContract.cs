@@ -13,9 +13,22 @@ namespace AZ_Desktop
 {
     public partial class FormContract : Form
     {
+        
         public FormContract()
         {
             InitializeComponent();
+            //button_ContractPDF.Click += button_ContractPDF_Click;
+        }
+
+        private void FormContract_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void button_ContractPDF_Click(object sender, EventArgs e)
+        {
+           // string filePath = @"C:\Users\Zita\Desktop\VIZSGAREMEK\AZ_Menhely\Desktop\AZ_Desktop.pdf"; // A PDF fájl elérési útvonalának beállítása
+
+            //OpenPDFWithEdge(filePath);
         }
 
         public void OpenPDFWithEdge(string filePath)
@@ -30,19 +43,11 @@ namespace AZ_Desktop
                 Console.WriteLine("Hiba történt a PDF megnyitása során: " + ex.Message);
             }
         }
-
-        private void button_OpenPDF_Click(object sender, EventArgs e)
+        /*
+        public static void Main()
         {
-        //C: \Users\Zita\Desktop\VIZSGAREMEK\AZ_Menhely\Desktop\AZ_Desktop
-            string filePath = "C:C: \\Users\\Zita\\Desktop\\VIZSGAREMEK\\AZ_Menhely\\Desktop\\AZ_Desktop.pdf"; // Az elérési útvonalat helyettesítsd a saját fájlod elérési útvonalával
-
-            OpenPDFWithEdge(filePath);
+            //Application.Run(new FormContact());
         }
-
-        //****************************
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        */
     }
 }
