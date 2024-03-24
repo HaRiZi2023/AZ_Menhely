@@ -22,7 +22,7 @@ namespace AZ_Desktop
         //public static List<Guest> dogs = new List<Guest>();
         //public static List<Guest> cats = new List<Guest>();
 
-        //public static FormGuest formGuest = null;
+        public static FormGuest formGuest = null;
         //public static List<Guest> guests = new List<Guest>();
 
         //public static FormFound formFound = null;
@@ -63,6 +63,10 @@ namespace AZ_Desktop
             formMain = new FormMain();
             formLogin = new FormLogin();
             */
+
+            database = new Database();
+            formChoice = new FormChoice();
+            formGuest = new FormGuest();
 
             Application.Run(new FormLogin());
         }
