@@ -90,10 +90,11 @@ namespace AZ_Desktop
                         string w_name = dr.GetString("w_name");
                         string w_password = dr.GetString("w_password");
                         string w_permission = dr.GetString("w_permission"); //enum
+                        DateTime created_at = DateTime.Now;
+                        DateTime updated_at = DateTime.Now;
 
 
-
-                        workers.Add(new Worker(id, w_name, w_password, w_permission));
+                        workers.Add(new Worker(id, w_name, w_password, w_permission, created_at, updated_at));
                     }
                 }
             }
@@ -114,7 +115,7 @@ namespace AZ_Desktop
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `workers` (`w_name`, `w_password`, `w_permission`) VALUES (@w_name, @w_password, @w_permission) ";
+                sql.CommandText = "INSERT INTO `workers` (`w_name`, `w_password`, `w_permission`, `created_at`, `updated_at`) VALUES (@w_name, @w_password, @w_permission, @created_at , @updated_at) ";
 
                 sql.Parameters.Clear();
 
@@ -122,6 +123,8 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@w_name", worker.W_name);
                 sql.Parameters.AddWithValue("@w_password", worker.W_password);
                 sql.Parameters.AddWithValue("@w_permission", worker.W_permission);
+                sql.Parameters.AddWithValue("@created_at", worker.Created_at);
+                sql.Parameters.AddWithValue("@updated_at", worker.Updated_at);
 
                 sql.ExecuteNonQuery();
             }
@@ -178,7 +181,7 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@workerPasswordUpdate", workerPasswordUpdate);
                 sql.Parameters.AddWithValue("@workerPermissionUpdate", workerPermissionUpdate);
                 sql.Parameters.AddWithValue("@workerNameUpdate", workerNameUpdate);
-
+                
                 sql.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -241,8 +244,10 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
                         string g_image = dr.GetString("g_image");
+                        DateTime created_at = dr.GetDateTime("created_at");
+                        DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
+                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));
                     }
                 }
             }
@@ -281,8 +286,11 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption"); //enum
                         string g_other = dr.GetString("g_other");  
                         string g_image = dr.GetString("g_image");
+                        DateTime created_at = dr.GetDateTime("created_at");
+                        DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
+
+                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at,updated_at));
                     }
                 }
             }
@@ -323,8 +331,10 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
                         string g_image = dr.GetString("g_image");
+                        DateTime created_at = dr.GetDateTime("created_at");
+                        DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        selectedGuest = new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image);
+                        selectedGuest = new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at);
                     }
                 }
             }
@@ -352,7 +362,7 @@ namespace AZ_Desktop
                 {
                     while (dr.Read())
                     {
-                        int id = dr.GetInt32("id");
+                        int id = dr.GetInt32("id"); // bigint??
                         string g_name = dr.GetString("g_name");
                         string g_chip = dr.GetString("g_chip");
                         string g_species = dr.GetString("g_species");
@@ -363,8 +373,10 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
                         string g_image = dr.GetString("g_image");
+                        DateTime created_at = dr.GetDateTime("created_at");
+                        DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));
+                        guests.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));
                     }
                 }
             }
@@ -385,7 +397,7 @@ namespace AZ_Desktop
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `guests` (`g_name`,`g_chip`,`g_species`,`g_gender`,`g_in_date`,`g_in_place`,`g_out_date`,`g_adoption`,`g_other`,`g_image`) VALUES (@g_name, @g_chip, @g_species, @g_gender, @g_in_date, @g_in_place, @g_out_date, @g_adoption, @g_other, @g_image)";
+                sql.CommandText = "INSERT INTO `guests` (`g_name`,`g_chip`,`g_species`,`g_gender`,`g_in_date`,`g_in_place`,`g_out_date`,`g_adoption`,`g_other`,`g_image`, `created_at`, `updated_at`) VALUES (@g_name, @g_chip, @g_species, @g_gender, @g_in_date, @g_in_place, @g_out_date, @g_adoption, @g_other, @g_image, @created_at, @updated_at)";
 
                 sql.Parameters.Clear();
 
@@ -399,6 +411,8 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
                 sql.Parameters.AddWithValue("@g_image", guest.G_image);
+                sql.Parameters.AddWithValue("@created_at", guest.Created_at);
+                sql.Parameters.AddWithValue("@updated_at", guest.Updated_at);
 
                 sql.ExecuteNonQuery();
             }
@@ -682,8 +696,10 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
                         string g_image = dr.GetString("g_image");
+                        DateTime created_at = dr.GetDateTime("created_at");
+                        DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image));    /*g_image*/
+                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));    /*g_image*/
                     }
                 }
             }

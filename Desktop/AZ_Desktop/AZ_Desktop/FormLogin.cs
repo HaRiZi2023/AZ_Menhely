@@ -213,7 +213,8 @@ namespace AZ_Desktop
                     W_name = textBox_LoginName.Text,
                     W_password = textBox_LoginPass.Text,
                     W_permission = comboBox_LoginPermission.Text,
-
+                    Created_at = DateTime.Now,
+                    Updated_at = DateTime.Now,
                 };
 
                 // Hívja meg az insertWorker metódust az adatbázisba való beszúráshoz
@@ -236,6 +237,7 @@ namespace AZ_Desktop
             string workerNameUpdate = textBox_LoginName.Text;
             string workerPasswordUpdate = textBox_LoginPass.Text;
             string workerPermissionUpdate = comboBox_LoginPermission.Text;
+           
 
             if (database.CheckWorkerExists(workerNameUpdate))
             // Ellenőrizzük, hogy van-e ilyen nevű dolgozó
