@@ -153,7 +153,7 @@ namespace AZ_Desktop
 
         
 
-        private void button_AdoptionInsert_Click(object sender, EventArgs e)  //rögzítés
+        private void button_AdoptionInsert_Click(object sender, EventArgs e)  //rögzítés gomb
         {
             
             // Ell., hogy minden kötelező mező ki van-e töltve 
@@ -206,6 +206,36 @@ namespace AZ_Desktop
 
                     uploadingAnimalName();
                     uploadingUserName();
+
+                    FormContract formContract = new FormContract();
+                    formContract.ShowDialog();
+
+
+                    /*
+                    // TextBox-ok értékeinek átadása a második formnak
+                    
+                    string data1 = comboBox_AdoptionGName.Text;
+                    string data2 = textBox_AdoptionSpecies.Text;
+                    string data3 = textBox_AdoptionGender.Text;
+                    string data4 = textBox_AdoptionChip.Text;
+
+                    string data5 = comboBox_AdoptionUName.Text;
+                    string data6 = textBox_AdoptionAddress.Text;
+                    string data7 = textBox_AdoptionEmail.Text;
+                    string data8 = textBox_AdoptionPhone.Text;
+                    string data9 = dateTimePicker_AdoptionDate.Text;
+                    */
+
+                    //FormContract formContract = new FormContract(comboBox_AdoptionGName.SelectedItem.ToString()()); 
+                    
+                    
+                    //ext, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
+        //comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
+
+                    formContract.Show();
+
+
+
                 }
                 catch (Exception ex)
                 {
@@ -213,6 +243,12 @@ namespace AZ_Desktop
                     MessageBox.Show("Hiba történt a beszúrás során: " + ex.Message, "Beszúrás hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
     
+
+
+
+
+
+
                 /*
 
 
@@ -226,36 +262,12 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_AdoptionAgain_Click(object sender, EventArgs e)
+        private void button_AdoptionAgain_Click(object sender, EventArgs e)  // újra gomb
         {
             emptyFieldsAdoption();
             placeholderAdoption();
         }
-        private void button_AdoptionContract_Click(object sender, EventArgs e)
-        {
-            FormContract formContract = new FormContract();
-            formContract.ShowDialog();
-            
-        }
 
-
-        //****************** ezt nem biztos hogy megycsinálom
-
-        private void button_AdoptionUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_AdoptionDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker_AdoptionDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
+ 
     }
 }

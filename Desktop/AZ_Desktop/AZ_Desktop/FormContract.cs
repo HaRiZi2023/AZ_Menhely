@@ -21,6 +21,20 @@ namespace AZ_Desktop
         public FormContract()
         {
             InitializeComponent();
+            /*
+            textBox_ContractGName = data1;
+            textBox_ContractSpecies = data2;
+            textBox_ContractChip = data3;
+            textBox_ContractGender = data4;
+
+            textBox_ContractUName = data5;
+            textBox_ContractAddress = data6;
+            textBox_ContractEmail = data7;
+            textBox_ContractPhone = data8;
+
+            textBox_ContractDate = data9;
+            */
+
         }
 
         private void FormContract_Load(object sender, EventArgs e)
@@ -30,7 +44,39 @@ namespace AZ_Desktop
         private void button_ContractPDF_Click(object sender, EventArgs e)
         {
 
-            // ez marad! pdf csak + ?esetleg a g_name legyen contract után? 
+            // ennek is lemarad a széle csak panel!!
+
+
+            // Kép létrehozása a panel tartalmából
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(panel_Contract.Width, panel_Contract.Height);
+            panel_Contract.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, panel_Contract.Width, panel_Contract.Height)); 
+
+            // Kép mentése
+            string imagePath = @"C:\Users\Zita\Desktop\VIZSGAREMEK\contract_image.jpg";
+            bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            // PDF fájl elérési útvonalának és nevének generálása
+            string pdfFileName = $"contract_{DateTime.Now.ToString("yyyy.MM.dd.HHmmss")}.pdf";
+            string pdfFilePath = Path.Combine(@"C:\Users\Zita\Desktop\", pdfFileName);
+
+            // PDF létrehozása és tartalom hozzáadása
+            Document document = new Document();
+            PdfWriter.GetInstance(document, new FileStream(pdfFilePath, FileMode.Create));
+            document.Open();
+
+            // Kép hozzáadása a PDF-hez
+            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //Image img = Image.GetInstance(imagePath);
+            document.Add(img);
+
+            document.Close();
+
+            // PDF megnyitása alapértelmezett PDF olvasó alkalmazásban
+            System.Diagnostics.Process.Start(pdfFilePath);
+        }    
+            
+            /*
+            // ez marad! pdf csak lemarad a széle + ?esetleg a g_name legyen contract után? 
 
             // PDF fájl elérési útvonalának és nevének generálása
             string pdfFileName = $"contract_{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss")}.pdf";
@@ -58,7 +104,7 @@ namespace AZ_Desktop
 
             MessageBox.Show("A PDF sikeresen elkészült: " + pdfFilePath);
 
-        }
+        } */
 
 
 

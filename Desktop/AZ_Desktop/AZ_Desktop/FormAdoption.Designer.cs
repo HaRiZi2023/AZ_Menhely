@@ -48,14 +48,10 @@
             this.textBox_AdoptionAddress = new System.Windows.Forms.TextBox();
             this.textBox_AdoptionEmail = new System.Windows.Forms.TextBox();
             this.textBox_AdoptionPhone = new System.Windows.Forms.TextBox();
-            this.button_AdoptionContract = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.pictureBox_Adoption = new System.Windows.Forms.PictureBox();
             this.comboBox_AdoptionGName = new System.Windows.Forms.ComboBox();
             this.comboBox_AdoptionUName = new System.Windows.Forms.ComboBox();
             this.button_AdoptionInsert = new System.Windows.Forms.Button();
-            this.button_AdoptionUpdate = new System.Windows.Forms.Button();
-            this.button_AdoptionDelete = new System.Windows.Forms.Button();
             this.button_AdoptionAgain = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Adoption)).BeginInit();
             this.SuspendLayout();
@@ -221,27 +217,6 @@
             this.textBox_AdoptionPhone.Size = new System.Drawing.Size(122, 30);
             this.textBox_AdoptionPhone.TabIndex = 21;
             // 
-            // button_AdoptionContract
-            // 
-            this.button_AdoptionContract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button_AdoptionContract.Location = new System.Drawing.Point(446, 297);
-            this.button_AdoptionContract.Name = "button_AdoptionContract";
-            this.button_AdoptionContract.Size = new System.Drawing.Size(122, 36);
-            this.button_AdoptionContract.TabIndex = 22;
-            this.button_AdoptionContract.Text = "Szerződés";
-            this.button_AdoptionContract.UseVisualStyleBackColor = false;
-            this.button_AdoptionContract.Click += new System.EventHandler(this.button_AdoptionContract_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button2.Location = new System.Drawing.Point(446, 512);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 36);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Vissza";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // pictureBox_Adoption
             // 
             this.pictureBox_Adoption.Location = new System.Drawing.Point(41, 116);
@@ -279,26 +254,6 @@
             this.button_AdoptionInsert.UseVisualStyleBackColor = false;
             this.button_AdoptionInsert.Click += new System.EventHandler(this.button_AdoptionInsert_Click);
             // 
-            // button_AdoptionUpdate
-            // 
-            this.button_AdoptionUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button_AdoptionUpdate.Location = new System.Drawing.Point(163, 584);
-            this.button_AdoptionUpdate.Name = "button_AdoptionUpdate";
-            this.button_AdoptionUpdate.Size = new System.Drawing.Size(122, 36);
-            this.button_AdoptionUpdate.TabIndex = 27;
-            this.button_AdoptionUpdate.Text = "Módosítás";
-            this.button_AdoptionUpdate.UseVisualStyleBackColor = false;
-            // 
-            // button_AdoptionDelete
-            // 
-            this.button_AdoptionDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_AdoptionDelete.Location = new System.Drawing.Point(291, 584);
-            this.button_AdoptionDelete.Name = "button_AdoptionDelete";
-            this.button_AdoptionDelete.Size = new System.Drawing.Size(122, 36);
-            this.button_AdoptionDelete.TabIndex = 28;
-            this.button_AdoptionDelete.Text = "Törlés";
-            this.button_AdoptionDelete.UseVisualStyleBackColor = false;
-            // 
             // button_AdoptionAgain
             // 
             this.button_AdoptionAgain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -319,13 +274,9 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(619, 632);
             this.Controls.Add(this.button_AdoptionAgain);
-            this.Controls.Add(this.button_AdoptionDelete);
-            this.Controls.Add(this.button_AdoptionUpdate);
             this.Controls.Add(this.button_AdoptionInsert);
             this.Controls.Add(this.comboBox_AdoptionUName);
             this.Controls.Add(this.comboBox_AdoptionGName);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button_AdoptionContract);
             this.Controls.Add(this.textBox_AdoptionPhone);
             this.Controls.Add(this.textBox_AdoptionEmail);
             this.Controls.Add(this.textBox_AdoptionAddress);
@@ -380,13 +331,9 @@
         private System.Windows.Forms.TextBox textBox_AdoptionAddress;
         private System.Windows.Forms.TextBox textBox_AdoptionEmail;
         private System.Windows.Forms.TextBox textBox_AdoptionPhone;
-        private System.Windows.Forms.Button button_AdoptionContract;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox_AdoptionGName;
         private System.Windows.Forms.ComboBox comboBox_AdoptionUName;
         private System.Windows.Forms.Button button_AdoptionInsert;
-        private System.Windows.Forms.Button button_AdoptionUpdate;
-        private System.Windows.Forms.Button button_AdoptionDelete;
         private System.Windows.Forms.Button button_AdoptionAgain;
     }
 }
