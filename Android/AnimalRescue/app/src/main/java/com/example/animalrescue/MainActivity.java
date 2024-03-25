@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonRegister);
         editTextEmailLogin = findViewById(R.id.editTextEmailLogin);
         editTextPasswordLogin = findViewById(R.id.editTextPasswordLogin);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar1);
     }
 
     private class RequestTask extends AsyncTask<Void, Void, Response> {

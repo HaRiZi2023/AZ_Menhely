@@ -30,6 +30,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.location.Location;
 
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -48,8 +49,8 @@ public class LostOrFindActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
     private String requestUrl = "http://10.0.2.2:8000/api/founds";
-    private EditText editTextAPosition;
-    private TextView textViewlocation;
+    private EditText editTextAPosition, editTextANote;
+    private TextView textViewlocation, textViewBase64;
     private Button buttonAPosition, buttonFoto, buttonSave;
     private ImageView imageViewResult;
 
@@ -59,7 +60,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal);
         init();
-
+/*
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -78,6 +79,8 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
         //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
         //        0, 0, locationListener);
+
+ */
 
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
         ArrayAdapter<String>adapter1 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, species);
@@ -128,9 +131,10 @@ public class LostOrFindActivity extends AppCompatActivity {
             }
         });
 
+        /*
         buttonAPosition.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 locationListener = new LocationListener() {
                     @Override
                     public void onLocationChanged(@NonNull Location location) {
@@ -140,33 +144,49 @@ public class LostOrFindActivity extends AppCompatActivity {
                 };
             }
         });
+
+
         buttonFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {fenykepezes();
             }
         });
+        */
+
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addAnimal();
+                String choice = spinnerFindSearchSp.getSelectedItem().toString();
+                String species = spinnerASpecies.getSelectedItem().toString();
+                String gender = spinnerAGender.getSelectedItem().toString();
+                String injury = spinnerAInjury.getSelectedItem().toString();
+                String position = editTextAPosition.getText().toString();
+                String other = editTextANote.getText().toString();
+                String image = textViewBase64.getText().toString();
+
+                if (choice.isEmpty() || species.isEmpty() || gender.isEmpty() || injury.isEmpty() || position.isEmpty()) {
+                    Toast.makeText(LostOrFindActivity.this,
+                            "A cím mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //új állat létrehozása
+                Animals animals = new Animals(0,choice,species,gender,injury,position,other,image);
+                Gson jsonConverter = new Gson();
+                //Post kérés elküldése
+                RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(animals));
+                //Kérés végrehajtása
+                task.execute();
             }
         });
-
     }
 
-    private void addAnimal(){
-        String choice = spinnerFindSearchSp.getSelectedItem().toString();
-        String species = spinnerASpecies.getSelectedItem().toString();
-        String gender = spinnerAGender.getSelectedItem().toString();
-        String injury = spinnerAInjury.getSelectedItem().toString();
-        String position = editTextAPosition.getText().toString();
-        //String image = // Bitmapot hogyan tudom elmenteni?
-    }
-
+    /*
     private void fenykepezes() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 1);
     }
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Ha a kamera visszatért
@@ -178,6 +198,7 @@ public class LostOrFindActivity extends AppCompatActivity {
             String base64Bitmap = convertImageToBase64(elsoBitmap);
             Bitmap masodikBitmap = convertBase64ToImage(base64Bitmap);
             imageViewResult.setImageBitmap(masodikBitmap);
+            textViewBase64.setText(base64Bitmap);
         }
     }
 
@@ -204,6 +225,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         // A kép visszaadása
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
+
     private String getCompleteAddressString(double latitude, double longitude) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -227,17 +249,19 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
         return strAdd;
     }
-
+*/
     public void init(){
         spinnerFindSearchSp = findViewById(R.id.spinnerFindSearchSp);
         spinnerASpecies = findViewById(R.id.spinnerASpecies);
         spinnerAGender = findViewById(R.id.spinnerAGender);
         spinnerAInjury = findViewById(R.id.spinnerAInjury);
         editTextAPosition = findViewById(R.id.editTextAPosition);
+        editTextANote = findViewById(R.id.editTextANote);
         buttonAPosition = findViewById(R.id.buttonAPosition);
         textViewlocation = findViewById(R.id.textViewlocation);
         buttonFoto = findViewById(R.id.buttonFoto);
         buttonSave = findViewById(R.id.buttonSave);
+        textViewBase64 = findViewById(R.id.textViewBase64);
         imageViewResult = findViewById(R.id.imageViewResult);
     }
 
@@ -272,7 +296,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            buttonSave.setVisibility(View.VISIBLE);
+            buttonSave.setEnabled(false);
         }
 
         //onPostExecute metódus létrehozása a válasz feldolgozásához
@@ -281,6 +305,7 @@ public class LostOrFindActivity extends AppCompatActivity {
             super.onPostExecute(response);
             buttonSave.setEnabled(true);
             if (response.getResponseCode() >= 400) {
+                Log.d("Hiba",response.getContent());
                 Toast.makeText(LostOrFindActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 return;
             }

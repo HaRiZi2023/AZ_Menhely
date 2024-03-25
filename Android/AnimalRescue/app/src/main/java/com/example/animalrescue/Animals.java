@@ -8,15 +8,17 @@ public class Animals {
     private String gender;
     private String injury;
     private String position;
-    private long image;
+    private String other;
+    private String image;
 
-    public Animals(int id, String choice, String species, String gender, String injury, String name, String position, long image) {
+    public Animals(int id, String choice, String species, String gender, String injury, String position, String other, String image) {
         this.id = id;
         this.choice = choice;
         this.species = species;
         this.gender = gender;
         this.injury = injury;
         this.position = position;
+        this.other = other;
         this.image = image;
     }
 
@@ -68,11 +70,17 @@ public class Animals {
         this.position = position;
     }
 
-    public long getImage() {
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) { this.other = other; }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(long image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

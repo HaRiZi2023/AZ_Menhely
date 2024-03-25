@@ -40,6 +40,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-tasks:18.1.0")
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("androidx.activity:activity:1.8.0")
+    implementation("com.android.volley:volley:1.2.1")
     //implementation("androidx.annotation:annotation-jvm:1.7.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

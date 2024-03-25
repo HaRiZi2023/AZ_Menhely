@@ -94,6 +94,14 @@
             android:textColorHint="@color/black"
             android:layout_margin="10dp"/>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextANote"
+            android:hint="Megjegyzés"
+            android:textColorHint="@color/black"
+            android:layout_margin="10dp"/>
+
         <TextView
             android:id="@+id/textViewlocation"
             android:layout_width="match_parent"
@@ -112,6 +120,13 @@
             android:background="@drawable/button_border"
             android:backgroundTint="@android:color/transparent"
             android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewBase64"
+            android:text="Base64 kód:"
+            android:textSize="10sp"/>
 
         <Button
             android:layout_width="match_parent"
