@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormContract));
             this.panel_Contract = new System.Windows.Forms.Panel();
+            this.textBox_ContractEmail = new System.Windows.Forms.TextBox();
+            this.textBox_ContractGName = new System.Windows.Forms.TextBox();
+            this.textBox_ContractSpecies = new System.Windows.Forms.TextBox();
+            this.textBox_ContractGender = new System.Windows.Forms.TextBox();
+            this.textBox_ContractChip = new System.Windows.Forms.TextBox();
             this.textBox_ContractDate = new System.Windows.Forms.TextBox();
             this.textBox_ContractAddress = new System.Windows.Forms.TextBox();
             this.textBox_ContractPhone = new System.Windows.Forms.TextBox();
@@ -53,11 +58,6 @@
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button_ContractPDF = new System.Windows.Forms.Button();
-            this.textBox_ContractChip = new System.Windows.Forms.TextBox();
-            this.textBox_ContractGender = new System.Windows.Forms.TextBox();
-            this.textBox_ContractSpecies = new System.Windows.Forms.TextBox();
-            this.textBox_ContractGName = new System.Windows.Forms.TextBox();
-            this.textBox_ContractEmail = new System.Windows.Forms.TextBox();
             this.panel_Contract.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Contract)).BeginInit();
             this.SuspendLayout();
@@ -97,6 +97,42 @@
             this.panel_Contract.Name = "panel_Contract";
             this.panel_Contract.Size = new System.Drawing.Size(816, 987);
             this.panel_Contract.TabIndex = 0;
+            this.panel_Contract.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Contract_Paint);
+            // 
+            // textBox_ContractEmail
+            // 
+            this.textBox_ContractEmail.Location = new System.Drawing.Point(464, 465);
+            this.textBox_ContractEmail.Name = "textBox_ContractEmail";
+            this.textBox_ContractEmail.Size = new System.Drawing.Size(330, 22);
+            this.textBox_ContractEmail.TabIndex = 35;
+            // 
+            // textBox_ContractGName
+            // 
+            this.textBox_ContractGName.Location = new System.Drawing.Point(138, 322);
+            this.textBox_ContractGName.Name = "textBox_ContractGName";
+            this.textBox_ContractGName.Size = new System.Drawing.Size(246, 22);
+            this.textBox_ContractGName.TabIndex = 34;
+            // 
+            // textBox_ContractSpecies
+            // 
+            this.textBox_ContractSpecies.Location = new System.Drawing.Point(138, 353);
+            this.textBox_ContractSpecies.Name = "textBox_ContractSpecies";
+            this.textBox_ContractSpecies.Size = new System.Drawing.Size(246, 22);
+            this.textBox_ContractSpecies.TabIndex = 33;
+            // 
+            // textBox_ContractGender
+            // 
+            this.textBox_ContractGender.Location = new System.Drawing.Point(464, 353);
+            this.textBox_ContractGender.Name = "textBox_ContractGender";
+            this.textBox_ContractGender.Size = new System.Drawing.Size(330, 22);
+            this.textBox_ContractGender.TabIndex = 32;
+            // 
+            // textBox_ContractChip
+            // 
+            this.textBox_ContractChip.Location = new System.Drawing.Point(464, 322);
+            this.textBox_ContractChip.Name = "textBox_ContractChip";
+            this.textBox_ContractChip.Size = new System.Drawing.Size(330, 22);
+            this.textBox_ContractChip.TabIndex = 31;
             // 
             // textBox_ContractDate
             // 
@@ -289,7 +325,7 @@
             // richTextBox3
             // 
             this.richTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(255)))), ((int)(((byte)(215)))));
-            this.richTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.richTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.richTextBox3.Location = new System.Drawing.Point(25, 144);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(641, 134);
@@ -316,41 +352,6 @@
             this.button_ContractPDF.Text = "PDF";
             this.button_ContractPDF.UseVisualStyleBackColor = false;
             this.button_ContractPDF.Click += new System.EventHandler(this.button_ContractPDF_Click);
-            // 
-            // textBox_ContractChip
-            // 
-            this.textBox_ContractChip.Location = new System.Drawing.Point(464, 322);
-            this.textBox_ContractChip.Name = "textBox_ContractChip";
-            this.textBox_ContractChip.Size = new System.Drawing.Size(330, 22);
-            this.textBox_ContractChip.TabIndex = 31;
-            // 
-            // textBox_ContractGender
-            // 
-            this.textBox_ContractGender.Location = new System.Drawing.Point(464, 353);
-            this.textBox_ContractGender.Name = "textBox_ContractGender";
-            this.textBox_ContractGender.Size = new System.Drawing.Size(330, 22);
-            this.textBox_ContractGender.TabIndex = 32;
-            // 
-            // textBox_ContractSpecies
-            // 
-            this.textBox_ContractSpecies.Location = new System.Drawing.Point(138, 353);
-            this.textBox_ContractSpecies.Name = "textBox_ContractSpecies";
-            this.textBox_ContractSpecies.Size = new System.Drawing.Size(246, 22);
-            this.textBox_ContractSpecies.TabIndex = 33;
-            // 
-            // textBox_ContractGName
-            // 
-            this.textBox_ContractGName.Location = new System.Drawing.Point(138, 322);
-            this.textBox_ContractGName.Name = "textBox_ContractGName";
-            this.textBox_ContractGName.Size = new System.Drawing.Size(246, 22);
-            this.textBox_ContractGName.TabIndex = 34;
-            // 
-            // textBox_ContractEmail
-            // 
-            this.textBox_ContractEmail.Location = new System.Drawing.Point(464, 465);
-            this.textBox_ContractEmail.Name = "textBox_ContractEmail";
-            this.textBox_ContractEmail.Size = new System.Drawing.Size(330, 22);
-            this.textBox_ContractEmail.TabIndex = 35;
             // 
             // FormContract
             // 

@@ -11,6 +11,7 @@ using System.Diagnostics; //-------
 using iTextSharp.text.pdf;  //
 using iTextSharp.text;  //
 using System.IO;  //
+using System.Drawing.Imaging; //
 
 
 namespace AZ_Desktop
@@ -43,6 +44,18 @@ namespace AZ_Desktop
 
         private void button_ContractPDF_Click(object sender, EventArgs e)
         {
+            //Csak JPG jól működik!!!
+           // FormContract képének elmentése
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
+            string imagePath = $@"C:\Users\Zita\Desktop\VIZSGAREMEK\contract_image_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
+            bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
+
+
+            
+            /*
 
             // ennek is lemarad a széle csak panel!!
 
@@ -73,84 +86,90 @@ namespace AZ_Desktop
 
             // PDF megnyitása alapértelmezett PDF olvasó alkalmazásban
             System.Diagnostics.Process.Start(pdfFilePath);
-        }    
-            
-            /*
-            // ez marad! pdf csak lemarad a széle + ?esetleg a g_name legyen contract után? 
+            */
+        }
 
-            // PDF fájl elérési útvonalának és nevének generálása
-            string pdfFileName = $"contract_{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss")}.pdf";
-            string pdfFilePath = System.IO.Path.Combine(@"C:\Users\Zita\Desktop\Vizsgaremek", pdfFileName);
+        private void panel_Contract_Paint(object sender, PaintEventArgs e)
+        {
+            // nem kell
+        }
 
-            // PDF létrehozása és tartalom hozzáadása
-            Document document = new Document();
-            PdfWriter.GetInstance(document, new System.IO.FileStream(pdfFilePath, System.IO.FileMode.Create));
-            document.Open();
-            //document.Add(new Paragraph("Ez egy példa PDF generálásra az iTextSharp segítségével."));
+        /*
+        // ez marad! pdf csak lemarad a széle + ?esetleg a g_name legyen contract után? 
 
-            // Kép hozzáadása a PDF-hez
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
-            this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
+        // PDF fájl elérési útvonalának és nevének generálása
+        string pdfFileName = $"contract_{DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss")}.pdf";
+        string pdfFilePath = System.IO.Path.Combine(@"C:\Users\Zita\Desktop\Vizsgaremek", pdfFileName);
 
+        // PDF létrehozása és tartalom hozzáadása
+        Document document = new Document();
+        PdfWriter.GetInstance(document, new System.IO.FileStream(pdfFilePath, System.IO.FileMode.Create));
+        document.Open();
+        //document.Add(new Paragraph(""));
 
-            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Jpeg);
-            img.ScaleToFit(document.PageSize.Width, document.PageSize.Height);
-            document.Add(img);
-
-            document.Close();
-
-            // PDF megnyitása alapértelmezett PDF olvasó alkalmazásban
-            System.Diagnostics.Process.Start(pdfFilePath);
-
-            MessageBox.Show("A PDF sikeresen elkészült: " + pdfFilePath);
-
-        } */
+        // Kép hozzáadása a PDF-hez
+        System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
+        this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
 
 
+        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Jpeg);
+        img.ScaleToFit(document.PageSize.Width, document.PageSize.Height);
+        document.Add(img);
 
+        document.Close();
 
-            /*
-            // Ez teljesen jó PDF és JPG-t is készít.
+        // PDF megnyitása alapértelmezett PDF olvasó alkalmazásban
+        System.Diagnostics.Process.Start(pdfFilePath);
 
-            // FormContract képének elmentése
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
-            this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
+        MessageBox.Show("A PDF sikeresen elkészült: " + pdfFilePath);
 
-            string imagePath = $@"C:\Users\Zita\Desktop\contract_image_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
-            bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-            // PDF fájl elérési útvonalának és nevének generálása
-            string pdfFileName = $"contract_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
-            string pdfFilePath = Path.Combine(@"C:\Users\Zita\Desktop\", pdfFileName);
-
-            // PDF létrehozása és tartalom hozzáadása
-            Document document = new Document();
-            PdfWriter.GetInstance(document, new FileStream(pdfFilePath, FileMode.Create));
-            document.Open();
-            document.Add(new Paragraph(""));
-
-            // Kép hozzáadása a PDF-hez
-            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(imagePath);
-            img.ScaleToFit(document.PageSize.Width, document.PageSize.Height);
-            document.Add(img);
-
-            document.Close();
-
-            // PDF megnyitása alapértelmezett PDF olvasó alkalmazásban
-            System.Diagnostics.Process.Start(pdfFilePath);
-
-            MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
-        }  */
+    } */
 
 
 
 
+        /*
+        // Ez teljesen jó PDF, de lemarad a széle és JPG-t is készít.
+
+        // FormContract képének elmentése
+        System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
+        this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
+
+        string imagePath = $@"C:\Users\Zita\Desktop\contract_image_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
+        bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+        // PDF fájl elérési útvonalának és nevének generálása
+        string pdfFileName = $"contract_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
+        string pdfFilePath = Path.Combine(@"C:\Users\Zita\Desktop\", pdfFileName);
+
+        // PDF létrehozása és tartalom hozzáadása
+        Document document = new Document();
+        PdfWriter.GetInstance(document, new FileStream(pdfFilePath, FileMode.Create));
+        document.Open();
+        document.Add(new Paragraph(""));
+
+        // Kép hozzáadása a PDF-hez
+        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(imagePath);
+        img.ScaleToFit(document.PageSize.Width, document.PageSize.Height);
+        document.Add(img);
+
+        document.Close();
+
+        // PDF megnyitása alapértelmezett PDF olvasó alkalmazásban
+        System.Diagnostics.Process.Start(pdfFilePath);
+
+        MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
+    }  */
 
 
 
 
 
-        /*  Csak JPG jól működik!!!
+
+
+
+        /*
+         Csak JPG jól működik!!!
         // FormContract képének elmentése
         System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
         this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
@@ -159,7 +178,7 @@ namespace AZ_Desktop
 
         MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
 
-    }*/
+    //}
 
 
 
