@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('founds', function (Blueprint $table) {
             $table->id();
-            $table->string("f_choice", 100);
-            $table->string("f_species", 100);
-            $table->string("f_gender", 100);
-            $table->string("f_injury", 100);
-            $table->string("f_position", 100);
-            $table->text("f_other")->nullable();
-            $table->binary("f_image")->nullable();
+            $table->string("choice", 100);
+            $table->string("species", 100);
+            $table->string("gender", 100);
+            $table->string("injury", 100);
+            $table->string("position", 100);
+            $table->string("other", 100)->nullable();
+            $table->binary("image")->nullable();
             $table->timestamps();
         });
     }
