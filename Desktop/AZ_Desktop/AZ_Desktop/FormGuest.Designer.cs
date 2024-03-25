@@ -48,10 +48,11 @@
             this.dateTimePicker_GuestIn = new System.Windows.Forms.DateTimePicker();
             this.comboBox_GuestInjury = new System.Windows.Forms.ComboBox();
             this.textBox_GuestWhere = new System.Windows.Forms.TextBox();
-            this.button_GuestSending = new System.Windows.Forms.Button();
+            this.button_GuestInsert = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox_GuestOther = new System.Windows.Forms.RichTextBox();
+            this.button_GuestUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,8 +174,8 @@
             // 
             this.comboBox_GuestSpecies.FormattingEnabled = true;
             this.comboBox_GuestSpecies.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "kutya",
+            "macska"});
             this.comboBox_GuestSpecies.Location = new System.Drawing.Point(35, 247);
             this.comboBox_GuestSpecies.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestSpecies.Name = "comboBox_GuestSpecies";
@@ -185,8 +186,9 @@
             // 
             this.comboBox_GuestGender.FormattingEnabled = true;
             this.comboBox_GuestGender.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "nőstény",
+            "hím",
+            "ismeretlen"});
             this.comboBox_GuestGender.Location = new System.Drawing.Point(207, 247);
             this.comboBox_GuestGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestGender.Name = "comboBox_GuestGender";
@@ -197,8 +199,8 @@
             // 
             this.comboBox_GuestAdoption.FormattingEnabled = true;
             this.comboBox_GuestAdoption.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "igen",
+            "nem"});
             this.comboBox_GuestAdoption.Location = new System.Drawing.Point(564, 247);
             this.comboBox_GuestAdoption.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestAdoption.Name = "comboBox_GuestAdoption";
@@ -225,8 +227,8 @@
             // 
             this.comboBox_GuestInjury.FormattingEnabled = true;
             this.comboBox_GuestInjury.Items.AddRange(new object[] {
-            "Igen",
-            "Nem"});
+            "igen",
+            "nem"});
             this.comboBox_GuestInjury.Location = new System.Drawing.Point(207, 336);
             this.comboBox_GuestInjury.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_GuestInjury.Name = "comboBox_GuestInjury";
@@ -240,25 +242,27 @@
             this.textBox_GuestWhere.Size = new System.Drawing.Size(316, 30);
             this.textBox_GuestWhere.TabIndex = 21;
             // 
-            // button_GuestSending
+            // button_GuestInsert
             // 
-            this.button_GuestSending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button_GuestSending.Location = new System.Drawing.Point(239, 626);
-            this.button_GuestSending.Name = "button_GuestSending";
-            this.button_GuestSending.Size = new System.Drawing.Size(129, 37);
-            this.button_GuestSending.TabIndex = 23;
-            this.button_GuestSending.Text = "Küldés";
-            this.button_GuestSending.UseVisualStyleBackColor = false;
+            this.button_GuestInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.button_GuestInsert.Location = new System.Drawing.Point(201, 630);
+            this.button_GuestInsert.Name = "button_GuestInsert";
+            this.button_GuestInsert.Size = new System.Drawing.Size(129, 37);
+            this.button_GuestInsert.TabIndex = 23;
+            this.button_GuestInsert.Text = "Küldés";
+            this.button_GuestInsert.UseVisualStyleBackColor = false;
+            this.button_GuestInsert.Click += new System.EventHandler(this.button_GuestInsert_Click);
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button2.Location = new System.Drawing.Point(387, 626);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
+            this.button2.Location = new System.Drawing.Point(576, 630);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(129, 37);
             this.button2.TabIndex = 24;
-            this.button2.Text = "Vissza";
+            this.button2.Text = "Törlés";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button_GuestDelete_Click);
             // 
             // pictureBox1
             // 
@@ -279,6 +283,17 @@
             this.richTextBox_GuestOther.TabIndex = 27;
             this.richTextBox_GuestOther.Text = "";
             // 
+            // button_GuestUpdate
+            // 
+            this.button_GuestUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
+            this.button_GuestUpdate.Location = new System.Drawing.Point(387, 630);
+            this.button_GuestUpdate.Name = "button_GuestUpdate";
+            this.button_GuestUpdate.Size = new System.Drawing.Size(129, 37);
+            this.button_GuestUpdate.TabIndex = 28;
+            this.button_GuestUpdate.Text = "Módosítás";
+            this.button_GuestUpdate.UseVisualStyleBackColor = false;
+            this.button_GuestUpdate.Click += new System.EventHandler(this.button_GuestUpdate_Click);
+            // 
             // FormGuest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
@@ -287,9 +302,10 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(755, 692);
+            this.Controls.Add(this.button_GuestUpdate);
             this.Controls.Add(this.richTextBox_GuestOther);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button_GuestSending);
+            this.Controls.Add(this.button_GuestInsert);
             this.Controls.Add(this.textBox_GuestWhere);
             this.Controls.Add(this.comboBox_GuestInjury);
             this.Controls.Add(this.dateTimePicker_GuestIn);
@@ -344,8 +360,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_GuestIn;
         private System.Windows.Forms.ComboBox comboBox_GuestInjury;
         private System.Windows.Forms.TextBox textBox_GuestWhere;
-        private System.Windows.Forms.Button button_GuestSending;
+        private System.Windows.Forms.Button button_GuestInsert;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox richTextBox_GuestOther;
+        private System.Windows.Forms.Button button_GuestUpdate;
     }
 }

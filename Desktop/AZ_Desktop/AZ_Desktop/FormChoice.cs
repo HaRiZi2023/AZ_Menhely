@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.itextpdf.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,8 @@ using CheckBox = System.Windows.Forms.CheckBox;
 namespace AZ_Desktop
 {
     public partial class FormChoice : Form
-    {             
+    {
+        //private Database database;
         private CheckBox[] checkBoxes_Choice;
 
         public FormChoice() //string options
@@ -31,14 +33,14 @@ namespace AZ_Desktop
         {
             checkBoxes_Choice = new CheckBox[] { checkBox_ChoiceDog, checkBox_ChoiceCat };
 
-            // Előre beállítjuk a CheckBox-okat
+            // CheckBox-ok eseménykezelője (hozzáadása)
             foreach (var checkBox in checkBoxes_Choice)
             {
                 checkBox.CheckedChanged += checkBox_CheckedChangedChoice;
             }
         }
 
-        private void checkBox_CheckedChangedChoice(object sender, EventArgs e)
+        private void checkBox_CheckedChangedChoice(object sender, EventArgs e) //cb bejlölés változás
         {
             var clickedCheckBox = (CheckBox)sender;
 
@@ -54,7 +56,17 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_ChoiceChoice_Click(object sender, EventArgs e)
+        private Guest GetSelectedGuest()
+        {
+            if (listBox_Choice.SelectedIndex != -1)
+            {
+                string selectedIndex = listBox_Choice.SelectedItem.ToString();
+                return Program.database.chosenName(selectedIndex);
+            }
+            return null;
+        }
+
+        private void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
             listBox_Choice.Items.Clear();
             // Ellenőrizzük, hogy van-e kiválasztott CheckBox
@@ -70,7 +82,6 @@ namespace AZ_Desktop
                         MessageBox.Show("Kérem válasszon egy CheckBox-ot!");
                         return;
                     }
-
                     anyChecked = true;
                     selectedCheckBox = checkBox;
                 }
@@ -89,7 +100,7 @@ namespace AZ_Desktop
                     var dogs = database.allDog();
 
                     foreach (Guest dog in dogs)
-                    {
+                    {   // listbox feltöltése
                         listBox_Choice.Items.Add(dog.G_name); // Feltételezve, hogy a Guest osztályban van egy Name property
                     }
                     break;
@@ -99,15 +110,15 @@ namespace AZ_Desktop
                     var cats = database.allCat();
 
                     foreach (Guest cat in cats)
-                    {
+                    {       // listbox feltöltése
                         listBox_Choice.Items.Add(cat.G_name); // Feltételezve, hogy a Guest osztályban van egy Name property
                     }
                     break;
             }
         }
-                // lent mi az 1?  //
+                // nincs ?????
         private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
+        { /*
             // Ellenőrizzük, hogy van-e kiválasztott elem a ListBox-ban
             if (listBox_Choice.SelectedIndex != -1)
             {
@@ -115,83 +126,124 @@ namespace AZ_Desktop
                 string selectedGuestName = listBox_Choice.SelectedItem.ToString();
 
                 // Most itt lehet feldolgozni a kiválasztott értéket
-                MessageBox.Show("Kiválasztott elem: 111" + selectedGuestName);
+                MessageBox.Show("Kiválasztott elem: 111 - " + selectedGuestName);
             }
+            */
         }
 
-        private void button_ChoiceInsert_Click(object sender, EventArgs e)
+       
+
+        private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb
         {
-            if (listBox_Choice.SelectedIndex != -1)
-            {
+                    //Új vendég hozzáadása
                 FormGuest formGuest = new FormGuest();
-                // Leolvassuk a kiválasztott elemet
-                string selectedGuestName = listBox_Choice.SelectedItem.ToString();
-
                 formGuest.Show();
-                //this.Hide(); // Elrejti a bejelentkezési ablakot
+           
+            
+        }
 
-                // Most itt lehet feldolgozni a kiválasztott értéket
-                MessageBox.Show("Kiválasztott elem: 222 " + selectedGuestName); //guest-en látható
+        private void button_ChoiceUpdate_Click(object sender, EventArgs e)
+        {
+               // Kiválasztott módosítása
+            Guest selectedGuest = GetSelectedGuest();
+            if (selectedGuest != null)
+            {
+                FormGuest formGuest = new FormGuest(selectedGuest);
+                formGuest.Show();
             }
             else
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
 
-        private void button__ChoiceUpdate_Click(object sender, EventArgs e)
-        {
-            if (listBox_Choice.SelectedIndex != -1)
-            {
-                // Kiválasztott vendég nevének lekérdezése
-                string selectedGuestName = listBox_Choice.SelectedItem.ToString();
 
-                // A kiválasztott vendég adatainak lekérdezése a Database osztály segítségével
-                Database database = new Database();
-               // Guest selectedGuest = database.chosenName(selectedGuestName);
 
-                // Ha sikerült lekérdezni az adatokat
-                /*if (selectedGuest != null)
+            /*
+                if (listBox_Choice.SelectedIndex != -1)
                 {
-                    // FormGuest példányosítása
-                    FormGuest formGuest = new FormGuest();
 
-                    // FormGuest adatok beállítása
-                    //formGuest.guestDataTransfer(selectedGuest);    ////////////////////////////////////////////
 
-                    // A korábbi oldalon lenyomott gomb szövegének átadása
-                    formGuest.functionDisplay(button_ChoiceChoice.Text);
+                    // Kiválasztott vendég nevének lekérdezése
+                    string selectedGuestName = listBox_Choice.SelectedItem.ToString();
 
-                    // FormGuest megjelenítése
-                    formGuest.Show();
+                    // A kiválasztott vendég adatainak lekérdezése a Database osztály segítségével
+                    Database database = new Database();
+                    Guest selectedGuest = database.chosenName(selectedGuestName); //chosenName(string G_name) ---> kiválasztott név adatainak lekérdezése                     
+
+                    // Ha sikerült lekérdezni az adatokat
+                    if (selectedGuest != null)
+                    {
+                        MessageBox.Show("chosen ok adatokat sikerült lekérdezni " + selectedGuestName, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        FormGuest formGuest = new FormGuest();   // FormGuest példányosítása (listBox_Choice.SelectedItem.ToString());
+
+                        MessageBox.Show("példányosítás ok " + selectedGuestName, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        // adat feltöltése
+                        formGuest.uploadData(); // A kiválasztott vendég adatainak betöltése  -  FormGuest adatok beállítása
+
+                        MessageBox.Show("betöltés ok " + selectedGuestName, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                        //ÚJ  
+                        // FormGuest adatok beállítása
+                        //FormGuest.uploadData(selectedGuest); //CS1501 hiba
+
+
+
+
+                        formGuest.Show();   // FormGuest megjelenítése
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hiba történt a vendég adatainak lekérése közben.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Hiba történt a vendég adatainak lekérése közben.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                    MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                } 
+
+            */
+
+
         }
 
         private void button_ChoiceDelete_Click(object sender, EventArgs e)
         {
-            if (listBox_Choice.SelectedIndex != -1)
+            Guest selectedGuest = GetSelectedGuest();
+            if (selectedGuest != null)
             {
-                // Leolvassuk a kiválasztott elemet
-                string selectedGuestName = listBox_Choice.SelectedItem.ToString();
-
-               
-
-                // Most itt lehet feldolgozni a kiválasztott értéket
-                MessageBox.Show("Kiválasztott elem: " + selectedGuestName);
+                FormGuest formGuest = new FormGuest(selectedGuest);
+                formGuest.Show();
             }
             else
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+
+
+
+
+            /*
+                if (listBox_Choice.SelectedIndex != -1)
+                {
+                    // Leolvassuk a kiválasztott elemet
+                    string selectedGuestName = listBox_Choice.SelectedItem.ToString();
+
+                    // Most itt lehet feldolgozni a kiválasztott értéket
+                    MessageBox.Show("Kiválasztott elem: " + selectedGuestName);
+
+                }
+                else
+                {
+                    MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                FormGuest formGuest = new FormGuest();
+                formGuest.Show();
+              */
         }
     }
 }

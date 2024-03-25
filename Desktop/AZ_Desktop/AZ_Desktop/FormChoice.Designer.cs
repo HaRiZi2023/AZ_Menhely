@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChoice));
             this.listBox_Choice = new System.Windows.Forms.ListBox();
             this.button_ChoiceInsert = new System.Windows.Forms.Button();
-            this.button__ChoiceUpdate = new System.Windows.Forms.Button();
+            this.button_ChoiceUpdate = new System.Windows.Forms.Button();
             this.button_ChoiceDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_ChoiceChoice = new System.Windows.Forms.Button();
@@ -66,17 +66,17 @@
             this.button_ChoiceInsert.UseVisualStyleBackColor = false;
             this.button_ChoiceInsert.Click += new System.EventHandler(this.button_ChoiceInsert_Click);
             // 
-            // button__ChoiceUpdate
+            // button_ChoiceUpdate
             // 
-            this.button__ChoiceUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button__ChoiceUpdate.Location = new System.Drawing.Point(332, 282);
-            this.button__ChoiceUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button__ChoiceUpdate.Name = "button__ChoiceUpdate";
-            this.button__ChoiceUpdate.Size = new System.Drawing.Size(94, 41);
-            this.button__ChoiceUpdate.TabIndex = 2;
-            this.button__ChoiceUpdate.Text = "Módosítás";
-            this.button__ChoiceUpdate.UseVisualStyleBackColor = false;
-            this.button__ChoiceUpdate.Click += new System.EventHandler(this.button__ChoiceUpdate_Click);
+            this.button_ChoiceUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
+            this.button_ChoiceUpdate.Location = new System.Drawing.Point(332, 282);
+            this.button_ChoiceUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button_ChoiceUpdate.Name = "button_ChoiceUpdate";
+            this.button_ChoiceUpdate.Size = new System.Drawing.Size(94, 41);
+            this.button_ChoiceUpdate.TabIndex = 2;
+            this.button_ChoiceUpdate.Text = "Módosítás";
+            this.button_ChoiceUpdate.UseVisualStyleBackColor = false;
+            this.button_ChoiceUpdate.Click += new System.EventHandler(this.button_ChoiceUpdate_Click);
             // 
             // button_ChoiceDelete
             // 
@@ -173,7 +173,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_ChoiceDelete);
-            this.Controls.Add(this.button__ChoiceUpdate);
+            this.Controls.Add(this.button_ChoiceUpdate);
             this.Controls.Add(this.button_ChoiceInsert);
             this.Controls.Add(this.listBox_Choice);
             this.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -191,7 +191,7 @@
 
         #endregion
         private System.Windows.Forms.Button button_ChoiceInsert;
-        private System.Windows.Forms.Button button__ChoiceUpdate;
+        private System.Windows.Forms.Button button_ChoiceUpdate;
         private System.Windows.Forms.Button button_ChoiceDelete;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox_ChoiceCat;

@@ -33,13 +33,14 @@ namespace AZ_Desktop
             if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text))
             {
                 MessageBox.Show("Kérem, írja be a chip számot!");
-                return; // Kilépés a metódusból
+                return;
+                // Kilépés a metódusból
             }
 
             string userChipNumber = textBox_ChipNumber.Text;
 
                            // SQL lekérdezés az adatbázis ellenőrzésére
-            string query = "SELECT `g_name`, `g_species`, `g_other` FROM `guests` WHERE `g_chip`= @userChipNumber";   //`g_name`, `g_species`, `g_other`
+            string query = "SELECT `g_name`, `g_species`, `g_other` FROM `guests` WHERE `g_chip`= @userChipNumber";   //`g_name`, `g_species`, `g_other`kell csak
 
             var parameters = new { UserChipNumber = userChipNumber };
 

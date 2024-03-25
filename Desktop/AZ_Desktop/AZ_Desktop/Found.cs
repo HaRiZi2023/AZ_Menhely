@@ -42,7 +42,10 @@ namespace AZ_Desktop
         {
             return $"{this.id} - {this.f_choice} - {this.f_species} - {this.f_position}";
         }
-    }
 
-    
+        public Found()
+        {
+            // Alapértelmezett konstruktor, lehet üres.
+        }
+    }
 }
