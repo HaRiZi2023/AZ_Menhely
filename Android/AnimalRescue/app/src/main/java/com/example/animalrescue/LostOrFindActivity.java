@@ -156,22 +156,22 @@ public class LostOrFindActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String choice = spinnerFindSearchSp.getSelectedItem().toString();
-                String species = spinnerASpecies.getSelectedItem().toString();
-                String gender = spinnerAGender.getSelectedItem().toString();
-                String injury = spinnerAInjury.getSelectedItem().toString();
-                String position = editTextAPosition.getText().toString();
-                String other = editTextANote.getText().toString();
-                String image = textViewBase64.getText().toString();
+                String f_choice = spinnerFindSearchSp.getSelectedItem().toString();
+                String f_species = spinnerASpecies.getSelectedItem().toString();
+                String f_gender = spinnerAGender.getSelectedItem().toString();
+                String f_injury = spinnerAInjury.getSelectedItem().toString();
+                String f_position = editTextAPosition.getText().toString();
+                String f_other = editTextANote.getText().toString();
+                String f_image = textViewBase64.getText().toString();
 
-                if (choice.isEmpty() || species.isEmpty() || gender.isEmpty() || injury.isEmpty() || position.isEmpty()) {
+                if (f_choice.isEmpty() || f_species.isEmpty() || f_gender.isEmpty() || f_injury.isEmpty() || f_position.isEmpty()) {
                     Toast.makeText(LostOrFindActivity.this,
                             "A cím mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 //új állat létrehozása
-                Animals animals = new Animals(0,choice,species,gender,injury,position,other,image);
+                Animals animals = new Animals(0,f_choice,f_species,f_gender,f_injury,f_position,f_other,f_image);
                 Gson jsonConverter = new Gson();
                 //Post kérés elküldése
                 RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(animals));

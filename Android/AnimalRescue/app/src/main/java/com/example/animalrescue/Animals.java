@@ -3,23 +3,23 @@ package com.example.animalrescue;
 
 public class Animals {
     private int id;
-    private String choice;
-    private String species;
-    private String gender;
-    private String injury;
-    private String position;
-    private String other;
-    private String image;
+    private String f_choice;
+    private String f_species;
+    private String f_gender;
+    private String f_injury;
+    private String f_position;
+    private String f_other;
+    private String f_image;
 
-    public Animals(int id, String choice, String species, String gender, String injury, String position, String other, String image) {
+    public Animals(int id, String f_choice, String f_species, String f_gender, String f_injury, String f_position, String f_other, String f_image) {
         this.id = id;
-        this.choice = choice;
-        this.species = species;
-        this.gender = gender;
-        this.injury = injury;
-        this.position = position;
-        this.other = other;
-        this.image = image;
+        this.f_choice = f_choice;
+        this.f_species = f_species;
+        this.f_gender = f_gender;
+        this.f_injury = f_injury;
+        this.f_position = f_position;
+        this.f_other = f_other;
+        this.f_image = f_image;
     }
 
     public int getId() {
@@ -31,57 +31,57 @@ public class Animals {
     }
 
     public String getChoice() {
-        return choice;
+        return f_choice;
     }
 
-    public void setChoice(String choice) {
-        this.choice = choice;
+    public void setChoice(String f_choice) {
+        this.f_choice = f_choice;
     }
 
     public String getSpecies() {
-        return species;
+        return f_species;
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
+    public void setSpecies(String f_species) {
+        this.f_species = f_species;
     }
 
     public String getGender() {
-        return gender;
+        return f_gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(String f_gender) {
+        this.f_gender = f_gender;
     }
 
     public String getInjury() {
-        return injury;
+        return f_injury;
     }
 
-    public void setInjury(String injury) {
-        this.injury = injury;
+    public void setInjury(String f_injury) {
+        this.f_injury = f_injury;
     }
 
     public String getPosition() {
-        return position;
+        return f_position;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPosition(String f_position) {
+        this.f_position = f_position;
     }
 
     public String getOther() {
-        return other;
+        return f_other;
     }
 
-    public void setOther(String other) { this.other = other; }
+    public void setOther(String f_other) { this.f_other = f_other; }
 
     public String getImage() {
-        return image;
+        return f_image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String f_image) {
+        this.f_image = f_image;
     }
 }
 

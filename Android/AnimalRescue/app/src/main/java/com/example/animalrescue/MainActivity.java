@@ -7,20 +7,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private Button buttonLogin;
-    private Button buttonRegister;
-    private EditText editTextEmailLogin;
-    private EditText editTextPasswordLogin;
+    private MaterialButton buttonLogin, buttonRegister;
+    private TextInputLayout textInputEditTextPwd, textInputEditTextEmail;
     private String requestUrl = "http://10.0.2.2:8000/api/users";
     private ProgressBar progressBar;
 
@@ -32,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String email = editTextEmailLogin.getText().toString();
-                String password = editTextPasswordLogin.getText().toString();
+                String email = textInputEditTextEmail.getEditText().getText().toString();
+                String password = textInputEditTextPwd.getEditText().getText().toString();
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this,
                             "Minden mező kitöltése kötelező", Toast.LENGTH_SHORT).show();
@@ -58,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
-        editTextEmailLogin = findViewById(R.id.editTextEmailLogin);
-        editTextPasswordLogin = findViewById(R.id.editTextPasswordLogin);
+        textInputEditTextEmail = findViewById(R.id.textInputEditTextEmail);
+        textInputEditTextPwd = findViewById(R.id.textInputEditTextPwd);
         progressBar = findViewById(R.id.progressBar1);
     }
 
