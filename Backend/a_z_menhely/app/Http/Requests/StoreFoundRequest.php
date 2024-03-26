@@ -22,13 +22,13 @@ class StoreFoundRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'choice'=>'required|string|max:100',
-            'species'=>'required|string|max:100',
-            'gender'=>'required|string|max:100',
-            'injury'=>'required|string|max:100',
-            'position'=>'required|string|max:100',
-            'other'=>'nullable|string|max:500|',
-            'image'=>'string|max:500|'
+            'f_choice'=>'required|string|max:100',
+            'f_species'=>'required|string|max:100',
+            'f_gender'=>'required|string|max:100',
+            'f_injury'=>'required|string|max:100',
+            'f_position'=>'required|string|max:100',
+            'f_other'=>'nullable|string|max:500|',
+            'f_image'=>'string|max:500|'
         ];
     }
 }
