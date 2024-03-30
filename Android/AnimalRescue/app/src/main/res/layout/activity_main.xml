@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:padding="20sp">
+        android:padding="20sp"
+        android:background="@android:color/transparent">
 
         <ProgressBar
             android:id="@+id/progressBar1"
@@ -22,12 +23,12 @@
             android:visibility="gone" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
             android:layout_gravity="center"
             app:cardCornerRadius="25dp"
-            app:cardElevation="10dp">
+            app:cardBackgroundColor="@android:color/transparent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,13 +37,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Üdvözöllek az AZ Menhely Appon"
-                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Belépés"
+                    android:textSize="20dp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputEditTextEmail"
@@ -53,7 +55,6 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:hint="Email cím"
                         android:inputType="textEmailAddress"
                         android:textSize="20sp" />
@@ -64,12 +65,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
-                    app:passwordToggleEnabled="true">
+                    app:passwordToggleEnabled="true"
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:hint="Jelszó"
                         android:inputType="textPassword"
                         android:textSize="20sp" />
@@ -85,7 +86,9 @@
             app:cornerRadius="35dp"
             android:layout_gravity="right"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRegister"
@@ -95,6 +98,8 @@
             app:cornerRadius="35dp"
             android:layout_gravity="right"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
     </LinearLayout>
 </ScrollView>

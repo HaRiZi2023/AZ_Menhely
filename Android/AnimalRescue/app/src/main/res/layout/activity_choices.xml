@@ -1,41 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".ChoicesActivity"
     android:background="@drawable/background10">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="gone" />
+        android:orientation="vertical"
+        android:padding="20sp">
 
+         <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
-    <Button
-        android:id="@+id/buttonFindSearch"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:background="@drawable/button_border"
-        android:backgroundTint="@android:color/transparent"
-        android:text="Talált/elveszett állat bejelentése"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
 
-    <Button
-        android:id="@+id/buttonWeb"
-        android:layout_width="350dp"
-        android:text="További információ a honlapunkon"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:background="@drawable/button_border"
-        android:backgroundTint="@android:color/transparent"
-        android:layout_height="80dp"
-        android:layout_margin="15dp"/>
+            app:cardBackgroundColor="@android:color/transparent">
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:background="@android:color/transparent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Szolgáltatásaink"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/white"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonFindSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Talált/elveszett állat bejelentése"
+                app:cornerRadius="35dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonWeb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="További információ a honlapunkon"
+                app:cornerRadius="35dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

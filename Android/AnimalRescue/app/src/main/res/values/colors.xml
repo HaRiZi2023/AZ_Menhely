@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="furasargazold">#c3c6a8</color>
+    <color name="dimgrey">#696969</color>
+    <color name="grey">#808080</color>
+    <color name="silvergrey">#c0c0c0c0</color>
+    <color name="lightgrey">#d3d3d3</color>
+    <color name="wheat">#f5deb3</color>
 </resources>
+

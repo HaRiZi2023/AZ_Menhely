@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/furasargazold"
-    tools:context=".LostOrFindActivity">
+    tools:context=".LostOrFindActivity"
+    android:background="@color/furasargazold">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,149 +13,201 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <ProgressBar
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar2"
-            android:visibility="gone"/>
+            android:layout_margin="15dp"
+            app:cardCornerRadius="25dp"
+            app:cardBackgroundColor="@color/furasargazold">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextId"
-            android:visibility="gone"
-            android:hint="Id"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/textViewFindSearch"
-            android:text="Elveszett/Talált"
-            android:gravity="center"
-            android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Elveszett / Talált állat bejelentése"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/black"/>
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerFindSearchSp"
-            android:layout_margin="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Elveszett/Talált"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinnerFindSearchSp"
+                        android:layout_margin="5dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewASpecies"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:text="Állat faja"
-            android:textColor="@color/black"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerASpecies"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewAGender"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:text="Állat neme"
-            android:textColor="@color/black"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerAGender"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewAInjury"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="Látható-e sérülés"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerAInjury"
-            android:layout_margin="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextAPosition"
-            android:hint="Állat pozíció (Város, utca, házszám)"
-            android:textColorHint="@color/black"
-            android:layout_margin="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextANote"
-            android:hint="Megjegyzés"
-            android:textColorHint="@color/black"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:id="@+id/textViewlocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jelenlegi GPS adatok"
-            android:gravity="center"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/buttonAPosition"
-            android:text="Állat pozicíója"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:background="@drawable/button_border"
-            android:backgroundTint="@android:color/transparent"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewBase64"
-            android:text="Base64 kód:"
-            android:textSize="10sp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonFoto"
-            android:text="Kép készítése"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:background="@drawable/button_border"
-            android:backgroundTint="@android:color/transparent"
-            android:layout_margin="10dp"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:id="@+id/imageViewResult"/>
-
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_border"
-            android:backgroundTint="@android:color/transparent"
-            android:text="Küldés"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Állat faja"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinnerASpecies"
+                        android:layout_margin="5dp"/>
 
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Állat neme"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinnerAGender"
+                        android:layout_margin="5dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Látható-e sérülés"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/black"/>
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinnerAInjury"
+                        android:layout_margin="5dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputEditTextAPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Állat helyzete (Város, utca, házszám)"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputEditTextLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:hint="GPS koordináták"
+                        android:textSize="15sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewLongitude"
+                    android:text="Hosszúság:"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewLatitude"
+                    android:text="Szélesség:"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id= "@+id/buttonAPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/lightgrey"
+                    android:text="Állat pozicíója"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:cornerRadius="35dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputEditTextANote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Megjegyzés"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewBase64"
+                    android:text="Base64 kód:"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kép készítése"
+                    app:cornerRadius="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/lightgrey"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/imageViewResult"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Küldés"
+                    app:cornerRadius="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/black"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
-
 </ScrollView>

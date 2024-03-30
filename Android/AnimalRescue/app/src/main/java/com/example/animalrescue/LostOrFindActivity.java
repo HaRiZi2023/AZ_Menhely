@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,6 +21,8 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +33,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.location.Location;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
@@ -49,38 +54,42 @@ public class LostOrFindActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
     private String requestUrl = "http://10.0.2.2:8000/api/founds";
-    private EditText editTextAPosition, editTextANote;
-    private TextView textViewlocation, textViewBase64;
-    private Button buttonAPosition, buttonFoto, buttonSave;
+    private TextInputLayout textInputEditTextAPosition, textInputEditTextANote, textInputEditTextLocation;
+    private TextView textViewBase64, textViewLongitude, textViewLatitude;
+    private MaterialButton buttonAPosition, buttonFoto, buttonSave;
     private ImageView imageViewResult;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_animal);
         init();
-/*
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
 
-            textViewlocation.setText(R.string.no_gps_permission);
+            textInputEditTextLocation.setTextDirection(R.string.no_gps_permission);
 
             // Engedély kérés ablak megnyitása.
             String[] permissions =
                     new String[]{
-                            android.Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION
                     };
             ActivityCompat.requestPermissions(this, permissions, 0);
             return;
         }
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-        //        0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                0, 0, locationListener);
 
- */
+
 
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
         ArrayAdapter<String>adapter1 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, species);
@@ -131,16 +140,27 @@ public class LostOrFindActivity extends AppCompatActivity {
             }
         });
 
-        /*
+
         buttonAPosition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                locationListener = new LocationListener() {
-                    @Override
-                    public void onLocationChanged(@NonNull Location location) {
-                        longitude = location.getLongitude();
-                        latitude = location.getLatitude();
-                    }
+                //LocationManager
+                //Ez felelős a hely lekérdezésért.
+                locationManager =
+                        (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                //LocationListener:
+                //LocationManager eseménykezelője, megmondja, hogy mi történjen, amikor helyadatot kér le.
+                //Létrehozásakor lambdát alkalmazható:
+                locationListener = location -> {
+                    longitude = location.getLongitude();
+                    latitude = location.getLatitude();
+
+                String finalLongitude = new Double(longitude).toString();
+                String finalLatitude = new Double(latitude).toString();
+
+                textViewLatitude.setText(finalLongitude);
+                textViewLatitude.setText(finalLatitude);
                 };
             }
         });
@@ -151,7 +171,7 @@ public class LostOrFindActivity extends AppCompatActivity {
             public void onClick(View view) {fenykepezes();
             }
         });
-        */
+
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,8 +180,8 @@ public class LostOrFindActivity extends AppCompatActivity {
                 String f_species = spinnerASpecies.getSelectedItem().toString();
                 String f_gender = spinnerAGender.getSelectedItem().toString();
                 String f_injury = spinnerAInjury.getSelectedItem().toString();
-                String f_position = editTextAPosition.getText().toString();
-                String f_other = editTextANote.getText().toString();
+                String f_position = textInputEditTextAPosition.getEditText().getText().toString();
+                String f_other = textInputEditTextANote.getEditText().getText().toString();
                 String f_image = textViewBase64.getText().toString();
 
                 if (f_choice.isEmpty() || f_species.isEmpty() || f_gender.isEmpty() || f_injury.isEmpty() || f_position.isEmpty()) {
@@ -181,7 +201,6 @@ public class LostOrFindActivity extends AppCompatActivity {
         });
     }
 
-    /*
     private void fenykepezes() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 1);
@@ -249,20 +268,22 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
         return strAdd;
     }
-*/
+
     public void init(){
         spinnerFindSearchSp = findViewById(R.id.spinnerFindSearchSp);
         spinnerASpecies = findViewById(R.id.spinnerASpecies);
         spinnerAGender = findViewById(R.id.spinnerAGender);
         spinnerAInjury = findViewById(R.id.spinnerAInjury);
-        editTextAPosition = findViewById(R.id.editTextAPosition);
-        editTextANote = findViewById(R.id.editTextANote);
+        textInputEditTextAPosition = findViewById(R.id.textInputEditTextAPosition);
+        textInputEditTextANote = findViewById(R.id.textInputEditTextANote);
         buttonAPosition = findViewById(R.id.buttonAPosition);
-        textViewlocation = findViewById(R.id.textViewlocation);
+        textInputEditTextLocation = findViewById(R.id.textInputEditTextLocation);
         buttonFoto = findViewById(R.id.buttonFoto);
         buttonSave = findViewById(R.id.buttonSave);
         textViewBase64 = findViewById(R.id.textViewBase64);
         imageViewResult = findViewById(R.id.imageViewResult);
+        textViewLatitude = findViewById(R.id.textViewLatitude);
+        textViewLongitude = findViewById(R.id.textViewLongitude);
     }
 
     private class RequestTask extends AsyncTask<Void, Void, Response> {

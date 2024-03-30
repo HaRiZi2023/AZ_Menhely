@@ -1,99 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".RegisterActivity"
     android:background="@drawable/background10">
 
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextNameRegister"
-        android:hint="Teljes név"
-        android:textColorHint="@color/black"
-        android:inputType="textPersonName" />
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:padding="10sp"
+        android:background="@android:color/transparent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextEmailRegister"
-        android:hint="Email"
-        android:textColorHint="@color/black"
-        android:inputType="textEmailAddress"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="25dp"
+            app:cardBackgroundColor="@android:color/transparent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAddressRegister"
-        android:hint="Cím"
-        android:textColorHint="@color/black"
-        android:inputType="textPostalAddress"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:background="@android:color/transparent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextPhoneRegister"
-        android:hint="Telefonszám"
-        android:textColorHint="@color/black"
-        android:inputType="phone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Regisztráció"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextPasswordRegister"
-        android:hint="Jelszó"
-        android:textColorHint="@color/black"
-        android:inputType="textPassword" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEditTextNameRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextPasswordRegister2"
-        android:hint="Jelszó megerősítése"
-        android:textColorHint="@color/black"
-        android:inputType="textPassword"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Teljes név"
+                    android:inputType="textPersonName"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
-        android:id="@+id/editTextGDPR"
-        android:layout_width="232dp"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:text="Adatkezelési tájékoztató"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEditTextEmailRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false">
 
-    <CheckBox
-        android:id="@+id/editTextAszf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Általános szerződési feltételek"
-        android:gravity="top"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email cím"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonFinalRegister"
-        android:layout_width="163dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="10dp"
-        android:background="@drawable/button_border"
-        android:backgroundTint="@android:color/transparent"
-        android:text="Regisztráció"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEditTextAddressRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false">
 
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="163dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="10dp"
-        android:background="@drawable/button_border"
-        android:backgroundTint="@android:color/transparent"
-        android:text="Vissza"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Lakcím"
+                    android:inputType="textPostalAddress"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-</LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEditTextPhoneRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Telefonszám"
+                    android:inputType="phone"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEditTextPasswordRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Jelszó"
+                    android:inputType="textPassword"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEditTextPasswordRegister2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="Jelszó megerősítése"
+                    android:inputType="textPassword"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/editTextGDPR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:buttonTint="@color/cardview_light_background"
+                android:text="Adatkezelési tájékoztató és ÁSZF"
+                android:textColor="@color/cardview_light_background"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonFinalRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/black"
+                android:text="Regisztráció"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cornerRadius="35dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vissza"
+                app:cornerRadius="35dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
