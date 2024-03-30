@@ -28,7 +28,7 @@ class StoreFoundRequest extends FormRequest
             'f_injury'=>'required|string|max:100',
             'f_position'=>'required|string|max:100',
             'f_other'=>'nullable|string|max:500|',
-            'f_image'=>'string|max:500|'
+            'f_image'=>'nullable|string'
         ];
     }
 }
