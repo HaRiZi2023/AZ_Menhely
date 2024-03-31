@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:orientation="vertical"
-        android:padding="10sp"
+        android:padding="20sp"
         android:background="@android:color/transparent">
 
         <androidx.cardview.widget.CardView
@@ -37,8 +37,8 @@
                 android:text="Regisztráció"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"/>
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputEditTextNameRegister"

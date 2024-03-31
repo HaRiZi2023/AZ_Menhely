@@ -6,16 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -25,8 +23,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Spinner;
@@ -40,7 +36,13 @@ import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class LostOrFindActivity extends AppCompatActivity {
 
@@ -49,15 +51,27 @@ public class LostOrFindActivity extends AppCompatActivity {
     private static final String[] species = {"Kutya", "Macska"};
     private static final String[] gender = {"Ismeretlen", "Nőstény", "Hím"};
     private static final String[] injury = {"Ismeretlen", "Igen", "Nem"};
-    private double longitude;
-    private double latitude;
-    private LocationManager locationManager;
-    private LocationListener locationListener;
+    private String check;
+    private String longitude;
+    private String latitude;
+    public static final int DEFAULT_UPDATE_INTERVAL = 30;
+    public static final int FAST_UPDATE_INTERVAL = 5;
+    private static final int PERMISSIONS_FINE_LOCATION = 99;
     private String requestUrl = "http://10.0.2.2:8000/api/founds";
     private TextInputLayout textInputEditTextAPosition, textInputEditTextANote, textInputEditTextLocation;
-    private TextView textViewBase64, textViewLongitude, textViewLatitude;
+    private TextView textViewBase64, textViewLongitude, textViewLatitude, textViewAddress, textViewUpdate, textViewAddressCheck;
     private MaterialButton buttonAPosition, buttonFoto, buttonSave;
     private ImageView imageViewResult;
+
+    //Variable to remember if tracking is on.
+    boolean updateOn = true;
+
+    LocationRequest locationRequest;
+    LocationCallback locationCallback;
+
+    //Googles API for location services. the Majority of this apps functions using this class
+    FusedLocationProviderClient fusedLocationProviderClient;
+    private FusedLocationProviderClient fusedLocationClient;
 
 
     @Override
@@ -68,28 +82,8 @@ public class LostOrFindActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_animal);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         init();
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-
-            textInputEditTextLocation.setTextDirection(R.string.no_gps_permission);
-
-            // Engedély kérés ablak megnyitása.
-            String[] permissions =
-                    new String[]{
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    };
-            ActivityCompat.requestPermissions(this, permissions, 0);
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                0, 0, locationListener);
-
-
 
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, findsearch);
         ArrayAdapter<String>adapter1 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, species);
@@ -140,30 +134,59 @@ public class LostOrFindActivity extends AppCompatActivity {
             }
         });
 
+        //set all properties of locationRequest
+
+        locationRequest = new LocationRequest();
+
+        //HOW often the default location check should occur
+        locationRequest.setInterval(1000 * DEFAULT_UPDATE_INTERVAL);
+
+        //how often does the location check offur when set to the most frequent update
+
+        locationRequest.setFastestInterval(1000 * FAST_UPDATE_INTERVAL);
+
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+        locationCallback = new LocationCallback() {
+
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                //save the location
+                updateUIValues(locationResult.getLastLocation());
+
+            }
+        };
 
         buttonAPosition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //LocationManager
-                //Ez felelős a hely lekérdezésért.
-                locationManager =
-                        (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-                //LocationListener:
-                //LocationManager eseménykezelője, megmondja, hogy mi történjen, amikor helyadatot kér le.
-                //Létrehozásakor lambdát alkalmazható:
-                locationListener = location -> {
-                    longitude = location.getLongitude();
-                    latitude = location.getLatitude();
-
-                String finalLongitude = new Double(longitude).toString();
-                String finalLatitude = new Double(latitude).toString();
-
-                textViewLatitude.setText(finalLongitude);
-                textViewLatitude.setText(finalLatitude);
-                };
+                if (buttonAPosition.isPressed()) {
+                    // most accurate - use GPS
+                    locationRequest.setPriority(locationRequest.PRIORITY_HIGH_ACCURACY);
+                } else {
+                    locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                }
+                if (buttonAPosition.isPressed()) {
+                    StartLocationUpdates();
+                } else {
+                    stopLocationUpdates();
+                }
+                if(buttonAPosition.isPressed()){
+                    if (textViewAddress.getText().toString() == "Nem létezik címadat"){
+                        check = latitude + ", " + longitude;
+                    }else{
+                        check = textViewAddress.getText().toString();
+                    }
+                }
+                textInputEditTextAPosition.getEditText().setText(check);
+                textInputEditTextLocation.getEditText().setText(latitude + ", " + longitude);
             }
         });
+
+        updateGPS();
+
 
 
         buttonFoto.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +194,6 @@ public class LostOrFindActivity extends AppCompatActivity {
             public void onClick(View view) {fenykepezes();
             }
         });
-
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,7 +208,7 @@ public class LostOrFindActivity extends AppCompatActivity {
 
                 if (f_choice.isEmpty() || f_species.isEmpty() || f_gender.isEmpty() || f_injury.isEmpty() || f_position.isEmpty()) {
                     Toast.makeText(LostOrFindActivity.this,
-                            "A cím mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
+                            "A minden mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -201,6 +223,82 @@ public class LostOrFindActivity extends AppCompatActivity {
         });
     }
 
+    //Lokáció
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case PERMISSIONS_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    updateGPS();
+                } else {
+                    Toast.makeText(this, "Az applikációnak szüksége van az engedélyekre a működéshez.", Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
+
+    private void updateGPS() {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(LostOrFindActivity.this);
+
+        if (ActivityCompat.checkSelfPermission(LostOrFindActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    updateUIValues(location);
+                }
+            });
+        } else {
+            //if permission is not granted yet
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_FINE_LOCATION);
+            }
+        };
+    };
+
+    private void updateUIValues(Location location) {
+
+        if (location != null) {
+
+            textViewLatitude.setText(String.valueOf(location.getLatitude()));
+            textViewLongitude.setText(String.valueOf(location.getLongitude()));
+            longitude = textViewLongitude.getText().toString();
+            latitude = textViewLatitude.getText().toString();
+
+            Geocoder geocoder = new Geocoder(LostOrFindActivity.this);
+
+            try {
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                textViewAddress.setText(addresses.get(0).getAddressLine(0));
+            }
+            catch (Exception e) {
+                textViewAddress.setText("Nem létezik címadat");
+            };
+
+        } else {
+            textViewLatitude.setText("NA");
+            textViewLongitude.setText("NA");
+        }
+    }
+
+    private void StartLocationUpdates() {
+        textViewUpdate.setText("Követve vagy");
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+    private void stopLocationUpdates() {
+        textViewUpdate.setText("Nem elérhető");
+        textViewLatitude.setText("Nem elérhető");
+        textViewLongitude.setText("Nem elérhető");
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+
+
+    //Fényképezés
     private void fenykepezes() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 1);
@@ -245,30 +343,6 @@ public class LostOrFindActivity extends AppCompatActivity {
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 
-    private String getCompleteAddressString(double latitude, double longitude) {
-        String strAdd = "";
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses != null) {
-                Address returnedAddress = addresses.get(0);
-                StringBuilder strReturnedAddress = new StringBuilder("");
-
-                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
-                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
-                }
-                strAdd = strReturnedAddress.toString();
-                Log.w("My Current loction address", strReturnedAddress.toString());
-            } else {
-                Log.w("My Current loction address", "No Address returned!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.w("My Current loction address", "Cannot get Address!");
-        }
-        return strAdd;
-    }
-
     public void init(){
         spinnerFindSearchSp = findViewById(R.id.spinnerFindSearchSp);
         spinnerASpecies = findViewById(R.id.spinnerASpecies);
@@ -284,8 +358,11 @@ public class LostOrFindActivity extends AppCompatActivity {
         imageViewResult = findViewById(R.id.imageViewResult);
         textViewLatitude = findViewById(R.id.textViewLatitude);
         textViewLongitude = findViewById(R.id.textViewLongitude);
+        textViewAddress = findViewById(R.id.textViewAddress);
+        textViewUpdate = findViewById(R.id.textViewUpdate);
     }
 
+    //Mentés, Küldés
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;
