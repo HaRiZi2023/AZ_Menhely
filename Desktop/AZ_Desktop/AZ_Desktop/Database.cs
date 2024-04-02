@@ -243,7 +243,7 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
-                        string g_image = dr.GetString("g_image");
+                        byte[] g_image = (byte[])dr["g_image"];
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -284,8 +284,8 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption"); //enum
-                        string g_other = dr.GetString("g_other");  
-                        string g_image = dr.GetString("g_image");
+                        string g_other = dr.GetString("g_other");
+                        byte[] g_image = (byte[])dr["g_image"];
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -330,7 +330,7 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
-                        string g_image = dr.GetString("g_image");
+                        byte[] g_image = (byte[])dr["g_image"];
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -372,7 +372,7 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
-                        string g_image = dr.GetString("g_image");
+                        byte[] g_image = (byte[])dr["g_image"];
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -695,7 +695,7 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
-                        string g_image = dr.GetString("g_image");
+                        byte[] g_image = (byte[])dr["g_image"];
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 

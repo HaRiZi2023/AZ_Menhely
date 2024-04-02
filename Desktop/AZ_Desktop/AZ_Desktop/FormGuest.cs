@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,11 +94,11 @@ namespace AZ_Desktop
         }
         
         public void uploadData()  // adat feltöltése () üres upload
-        {   
-            
-            if (selectedGuest != null) 
+        {
+
+            if (selectedGuest != null)
             //if (Program.formChoice.listBox_Choice.SelectedItem != null)
-            { 
+            {
                 //Guest guest = (Guest)Program.formChoice.listBox_Choice.SelectedItem;
 
                 textBox_GuestName.Text = selectedGuest.G_name.ToString();
@@ -109,6 +110,71 @@ namespace AZ_Desktop
                 dateTimePicker_GuestIn.Value = selectedGuest.G_in_date;
                 dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
                 richTextBox_GuestOther.Text = selectedGuest.G_other.ToString();
+
+                try
+                {
+                    using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
+                    {
+                        pictureBox_GuestImage.Image = Image.FromStream(ms);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+
+                /*
+                if (selectedGuest.G_image != null && selectedGuest.G_image.Length > 0)
+                {
+                    try
+                    {
+                        // Kép betöltése byte tömbből
+                        using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
+                        {
+                            pictureBox_GuestImage.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hiba a kép megjelenítésekor: " + ex.Message);
+                    }
+                }*/
+
+
+                /*
+                // Kép megjelenítése a PictureBox kontrollon
+                if (!string.IsNullOrEmpty(selectedGuest.G_image))
+                {
+                    try
+                    {
+                        // Kép betöltése byte tömbből
+                        byte[] imageData = Convert.FromBase64String(selectedGuest.G_image);
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            pictureBox_GuestImage.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hiba a kép megjelenítésekor: " + ex.Message);
+                    }
+                }
+                */
+                /*
+                if (selectedGuest.G_image != null)
+                {
+                    using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
+                    {
+                        pictureBox_GuestImage.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    pictureBox_GuestImage.Image = null;
+                    //pictureBox_GuestImage.Image = selectedGuest.G_image.;
+                }*/
             }
         }
 

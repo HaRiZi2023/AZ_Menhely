@@ -50,10 +50,10 @@
             this.textBox_GuestWhere = new System.Windows.Forms.TextBox();
             this.button_GuestInsert = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_GuestImage = new System.Windows.Forms.PictureBox();
             this.richTextBox_GuestOther = new System.Windows.Forms.RichTextBox();
             this.button_GuestUpdate = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_GuestImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -264,16 +264,16 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button_GuestDelete_Click);
             // 
-            // pictureBox1
+            // pictureBox_GuestImage
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(306, 46);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(125, 135);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_GuestImage.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox_GuestImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox_GuestImage.Location = new System.Drawing.Point(306, 46);
+            this.pictureBox_GuestImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox_GuestImage.Name = "pictureBox_GuestImage";
+            this.pictureBox_GuestImage.Size = new System.Drawing.Size(125, 135);
+            this.pictureBox_GuestImage.TabIndex = 0;
+            this.pictureBox_GuestImage.TabStop = false;
             // 
             // richTextBox_GuestOther
             // 
@@ -325,14 +325,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_GuestName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox_GuestImage);
             this.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormGuest";
             this.Text = "A-Z Menhely";
             this.Load += new System.EventHandler(this.FormGuest_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_GuestImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,7 +340,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox_GuestImage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_GuestName;
         private System.Windows.Forms.Label label2;

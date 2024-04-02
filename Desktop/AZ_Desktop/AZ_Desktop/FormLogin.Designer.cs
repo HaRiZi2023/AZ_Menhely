@@ -117,7 +117,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::AZ_Desktop.Properties.Resources.kutya_macska;
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackgroundImage = global::AZ_Desktop.Properties.Resources.logo;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(12, 14);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
