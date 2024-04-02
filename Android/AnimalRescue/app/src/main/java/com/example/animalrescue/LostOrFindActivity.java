@@ -60,7 +60,7 @@ public class LostOrFindActivity extends AppCompatActivity {
     private String requestUrl = "http://10.0.2.2:8000/api/founds";
     private TextInputLayout textInputEditTextAPosition, textInputEditTextANote, textInputEditTextLocation;
     private TextView textViewBase64, textViewLongitude, textViewLatitude, textViewAddress, textViewUpdate, textViewAddressCheck;
-    private MaterialButton buttonAPosition, buttonFoto, buttonSave;
+    private MaterialButton buttonAPosition, buttonFoto, buttonSave, buttonBack;
     private ImageView imageViewResult;
 
     //Variable to remember if tracking is on.
@@ -221,6 +221,14 @@ public class LostOrFindActivity extends AppCompatActivity {
                 task.execute();
             }
         });
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LostOrFindActivity.this, ChoicesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     //Lokáció
@@ -360,6 +368,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         textViewLongitude = findViewById(R.id.textViewLongitude);
         textViewAddress = findViewById(R.id.textViewAddress);
         textViewUpdate = findViewById(R.id.textViewUpdate);
+        buttonBack = findViewById(R.id.buttonBack);
     }
 
     //Mentés, Küldés
