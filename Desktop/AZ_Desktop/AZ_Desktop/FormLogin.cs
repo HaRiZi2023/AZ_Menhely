@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iTextSharp.xmp.impl;
+using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AZ_Desktop
-{   
+{
     public partial class FormLogin : Form
     {
         private Database database;
-        private string connectionString =    "Server=localhost;Database=menhely;Userid=root;Pwd= ;";   //?????? 
+        private string connectionString = "Server=localhost;Database=menhely;Userid=root;Pwd= ;";   //?????? ezt
 
         public FormLogin()
         {
@@ -61,10 +62,10 @@ namespace AZ_Desktop
                 return;
             }
         }
-
+        // ezt 
         private bool checkLogin(string w_name, string w_password)
         {
-            using(MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
                 string query = "SELECT COUNT(*) FROM `workers` WHERE `w_name` = @w_name AND `w_password`= @w_password";
@@ -81,31 +82,30 @@ namespace AZ_Desktop
         private void openFormMain()
         {
             FormMain formMain = new FormMain();
-            formMain.FormClosed += (obj,args) =>
+            /*formMain.FormClosed += (obj,args) =>
             {
                 this.Show();
-            };
+            };*/
             formMain.Show();
 
             this.Hide();
         }
-
+        /********************/
         private bool checkPermission(string w_name, string w_password)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                //string query = "SELECT w_permission FROM `workers` WHERE `w_name` = @w_name AND `w_password` = `teljes`";
 
                 string query = "SELECT COUNT(*) FROM `workers` WHERE `w_name` = @w_name AND `w_password` = @w_password AND `w_permission` = 'teljes'";
-                /*string query = "SELECT COUNT(*) FROM `workers` WHERE `w_name` = @w_name AND `w_password` = @w_password AND `w_permission` = @w_permission"; //'" + w_permission + "'";*/
+
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@w_name", w_name);
                     command.Parameters.AddWithValue("@w_password", w_password);
                     /* command.Parameters.AddWithValue("@w_permission", w_permission);*/
-                     int count = Convert.ToInt32(command.ExecuteScalar());
-                     return count > 0; 
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
                     /*string permission = command.ExecuteScalar() as string;
                     return permission;*/
                 }
@@ -114,50 +114,44 @@ namespace AZ_Desktop
 
         private void button_LoginService_Click(object sender, EventArgs e)
         {
-            
+
             string w_name = textBox_LoginName.Text;
             string w_password = textBox_LoginPass.Text;
             //string w_permission = comboBox_LoginPermission.Text;
-           /*
-            if (string.IsNullOrEmpty(textBox_LoginName.Text))
-            {
-                MessageBox.Show("Kérjük adja meg a nevét!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox_LoginName.Select();
-                return;
-            }
-            if (string.IsNullOrEmpty(textBox_LoginPass.Text))
-            {
-                MessageBox.Show("Kérjük adja meg a jelszavát!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox_LoginPass.Select();
-                return;
-            }
-            if (string.IsNullOrEmpty(comboBox_LoginPermission.Text))
-            {
-                MessageBox.Show("Kérjük adja meg a jogosultságát!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox_LoginPass.Select();
-                return;
-            }
-          */
+            /*
+             if (string.IsNullOrEmpty(textBox_LoginName.Text))
+             {
+                 MessageBox.Show("Kérjük adja meg a nevét!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 textBox_LoginName.Select();
+                 return;
+             }
+             if (string.IsNullOrEmpty(textBox_LoginPass.Text))
+             {
+                 MessageBox.Show("Kérjük adja meg a jelszavát!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 textBox_LoginPass.Select();
+                 return;
+             }
+             if (string.IsNullOrEmpty(comboBox_LoginPermission.Text))
+             {
+                 MessageBox.Show("Kérjük adja meg a jogosultságát!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 textBox_LoginPass.Select();
+                 return;
+             }
+           */
             if (checkPermission(w_name, w_password))
             {
-                //if (w_permission == "teljes") 
+                //Ha w_permission ==> "teljes" 
                 {
                     MessageBox.Show("Sikeres szervíz bejelentkezés!");
 
-                     // A Button-ok láthatóvá tétele
+                    // A gombok megjelennek
                     comboBox_LoginPermission.Visible = true;
                     button_LoginInsert.Visible = true;
                     button_LoginUpdate.Visible = true;
                     button_LoginDelete.Visible = true;
 
                     emptyFields();
-                    /*
-                    // Kiürítjük a mezőket
-                    textBox_LoginName.Text = "";
-                    textBox_LoginPass.Text = "";
-                    //comboBox_LoginPermission.Text = "";
-                    */
-                    //openFormMain();
+
                 }
 
             }
@@ -181,11 +175,14 @@ namespace AZ_Desktop
 
                 return false;
             }
+
+
             return true;
         }
 
         private void emptyFields()
         {
+            // Kiürítjük a mezőket
             textBox_LoginName.Text = "";
             textBox_LoginPass.Text = "";
             comboBox_LoginPermission.Text = "";
@@ -202,9 +199,10 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Van már ilyen nevű dolgozó az adtbázisban!", "Ellenőrizze!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox_LoginName.Text = "";
+                this.ActiveControl = textBox_LoginName;  // fokusz ide!
             }
 
-                // Ellenőrizze, hogy minden kötelező mező kitöltve van-e
+            // Ellenőrizze, hogy minden kötelező mező kitöltve van-e
             if (validateInput())
             {
                 // Hozzon létre egy új Worker objektumot az űrlap adataiból
@@ -225,35 +223,53 @@ namespace AZ_Desktop
             }
             emptyFields();
         }
-             
+
         private void button_LoginUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox_LoginName.Text))
+            /*if (string.IsNullOrWhiteSpace(textBox_LoginName.Text))
             {
                 MessageBox.Show("Kérem, írja be a dolgozó nevét!");
                 return; // Kilépés a metódusból
-            }
+            }*/
 
-            string workerNameUpdate = textBox_LoginName.Text;
-            string workerPasswordUpdate = textBox_LoginPass.Text;
-            string workerPermissionUpdate = comboBox_LoginPermission.Text;
-           
 
-            if (database.CheckWorkerExists(workerNameUpdate))
-            // Ellenőrizzük, hogy van-e ilyen nevű dolgozó
-            {  //van találat
+            string workerUpdate = textBox_LoginName.Text;
+            if (database.CheckWorkerExists(workerUpdate)) //van dolgozó
+            {
+                if (validateInput())
+                {
+                    string workerNameUpdate = textBox_LoginName.Text;
+                    string workerPasswordUpdate = textBox_LoginPass.Text;
+                    string workerPermissionUpdate = comboBox_LoginPermission.Text;
 
-                database.updateWorker(workerNameUpdate, workerPasswordUpdate, workerPermissionUpdate);
+                    if (database.CheckWorkerExists(workerNameUpdate))
+                    // Ellenőrizzük, hogy van-e ilyen nevű dolgozó
+                    {  //van találat
 
-                MessageBox.Show("Dolgozó adata módosítva lett az adatbázisban.");
+                        database.updateWorker(workerNameUpdate, workerPasswordUpdate, workerPermissionUpdate);
+
+                        // Üzenet a felhasználónak a sikeres beszúrási műveletről
+                        MessageBox.Show("A dolgozó adatai sikeresen módosítva!", "Sikeres módosítás", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    /*
+
+                    // Hívja meg az updateWorker metódust az adatbázisba való beszúráshoz
+                    database.updateWorker(newWorker);
+
+                // Üzenet a felhasználónak a sikeres beszúrási műveletről
+                MessageBox.Show("A dolgozó adatai sikeresen módosítva!", "Sikeres módosítás", MessageBoxButtons.OK, MessageBoxIcon.Information); */
+                }
+                emptyFields();
             }
             else
             {
-                MessageBox.Show("Nincs találat az adatbázisban.");
+                MessageBox.Show("Nincs ilyen nevű dolgozó az adtbázisban!", "Ellenőrizze!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_LoginName.Text = "";
+                this.ActiveControl = textBox_LoginName;  // fokusz ide!
             }
-            emptyFields();
         }
-               
+
         private void button_LoginDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox_LoginName.Text))
@@ -262,7 +278,7 @@ namespace AZ_Desktop
                 return; // Kilépés a metódusból
             }
 
-            string workerToDelete = textBox_LoginName.Text;
+            string workerDelete = textBox_LoginName.Text;
             /*
             // SQL lekérdezés az adatbázis ellenőrzésére
             string query = "SELECT `w_name` FROM `workes` WHERE `w_name`= @workerName";   //
@@ -270,15 +286,15 @@ namespace AZ_Desktop
             var parameters = new { WorkerToDelete = workerToDelete };
 
             var dataTable = database.ExecuteQuery(query, parameters);
-            
+
             if (dataTable.Rows.Count > 0)
             */
 
-            if (database.CheckWorkerExists(workerToDelete))
+            if (database.CheckWorkerExists(workerDelete))
             // Ellenőrizd, hogy van-e találat
             {  //van találat
-               
-                database.deleteWorker(workerToDelete);
+
+                database.deleteWorker(workerDelete);
 
                 MessageBox.Show("Dolgozó törölve lett az adatbázisból.");
             }
@@ -289,4 +305,6 @@ namespace AZ_Desktop
             emptyFields();
         }   // ok
     }
+
 }
+       

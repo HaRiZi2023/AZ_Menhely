@@ -23,6 +23,9 @@ namespace AZ_Desktop
             InitializeComponent();
             InitializeCheckBoxes_Main();
 
+            
+
+
             /*checkBox_MainChoice.CheckedChanged += checkBox_CheckedChanged;
             checkBox_MainAdoption.CheckedChanged += checkBox_CheckedChanged;
             checkBox_MainFound.CheckedChanged += checkBox_CheckedChanged;
@@ -116,10 +119,41 @@ namespace AZ_Desktop
             }
         }
 
-        private void groupBox_Main_Enter(object sender, EventArgs e)
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Ellenőrzöm, hogy az 'X' gombbal be akarták-e zárni az ablakot
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                FormExit formExit = new FormExit();
+                formExit.Show();
 
+                // Add meg a kívánt viselkedést az ablak bezárásához
+                // Például:
+                //e.Cancel = true; // Megakadályozza az ablak bezárását
+                // vagy:
+                //this.Hide(); // Rejtse el az ablakot
+            }
         }
+
+        /*private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Ellenőrzöm, hogy az 'X' gombbal be akarták-e zárni az ablakot
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                FormExit formExit = new FormExit();
+                formExit.Show();
+
+                // Add meg a kívánt viselkedést az ablak bezárásához
+                // Például:
+                //e.Cancel = true; // Megakadályozza az ablak bezárását
+                // vagy:
+                //this.Hide(); // Rejtse el az ablakot
+            }
+        }*/
+
+
+
+
     }
 }
 

@@ -49,10 +49,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Segoe Print", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(307, 32);
+            this.label1.Font = new System.Drawing.Font("Segoe Print", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(308, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 40);
+            this.label1.Size = new System.Drawing.Size(184, 49);
             this.label1.TabIndex = 0;
             this.label1.Text = "Üdvözöljük!";
             // 
@@ -192,7 +192,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Login___out1;
+            this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Login___out;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(779, 688);
             this.Controls.Add(this.comboBox_LoginPermission);

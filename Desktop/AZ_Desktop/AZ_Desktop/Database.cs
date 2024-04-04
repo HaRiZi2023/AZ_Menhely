@@ -75,7 +75,7 @@ namespace AZ_Desktop
 
         //**************  workers  **********************
 
-        internal List<Worker> getAllWorker() // ezt a Program.cs ben adom meg
+        internal List<Worker> allWorker() // ezt a Program.cs ben adom meg
         {
             List<Worker> workers = new List<Worker>();
             sql.CommandText = "SELECT * FROM `workers` ORDER BY `w_name`";  // ok
