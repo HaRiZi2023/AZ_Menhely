@@ -19,7 +19,7 @@ namespace AZ_Desktop
         private Database database;
         private List<Guest> allAnimals;
         private List<User> allUsers;
-        //private User selectedUser;  //????????????????
+        private User selectedUser;  //????????????????
 
         public FormAdoption()
         {
@@ -216,7 +216,9 @@ namespace AZ_Desktop
                         //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva
                     }
 
-                    FormContract formContract = new FormContract();
+                    User selectedUser = allUsers.Find(user => user.Name == comboBox_AdoptionUName.Text);
+
+                    FormContract formContract = new FormContract(selectedAnimal, selectedUser);
 
                     formContract.fillData(comboBox_AdoptionGName.Text, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
                                   comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);

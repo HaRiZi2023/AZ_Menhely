@@ -18,14 +18,14 @@ namespace AZ_Desktop
 {
     public partial class FormContract : Form
     {
-        //private Guest selectedAnimal;
-        //private User selectedUser;
+        private Guest selectedAnimal;
+        private User selectedUser;
        
-        public FormContract()
+        public FormContract(Guest selectedAnimal, User selectedUser)
         {
             InitializeComponent();
-            //this.selectedAnimal = selectedAnimal;
-            //this.selectedUser = selectedUser;
+            this.selectedAnimal = selectedAnimal;
+            this.selectedUser = selectedUser;
             uploadDataContract();                   //  
         }
 
@@ -35,6 +35,18 @@ namespace AZ_Desktop
 
         private void button_ContractPDF_Click(object sender, EventArgs e)
         {
+            string animalName = selectedAnimal.G_name.Replace(" ", "_");
+            string userName = selectedUser.Name.Replace(" ", "_");
+            string imageName = $"contract_image_{userName}_{animalName}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
+
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
+            string imagePath = Path.Combine(@"C:\Users\Zita\Desktop\VIZSGAREMEK\", imageName);
+            bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
+
+            /*
             //Csak JPG jól működik!!!
             // FormContract képének elmentése
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
@@ -43,21 +55,27 @@ namespace AZ_Desktop
             bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
             MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
+            */
 
 
             /*
-            if (selectedAnimal != null)
+            // ez nem készít képet
+            if (selectedAnimal != null && selectedUser != null)
             {
-                string animalName = selectedAnimal.G_name.Replace(" ", "_"); // Eltávolítjuk a szóközöket és helyettesítjük az aláhúzás karakterrel
-                string imageName = $"contract_image_{animalName}_{DateTime.Now.ToString("yyyyMMdd")}.jpg"; // Fájl név összeállítása a választott állat nevével
-                //Csak JPG jól működik!!!
-                // FormContract képének elmentése
+                string animalName = selectedAnimal.G_name.Replace(" ", "_");
+                string userName = selectedUser.Name.Replace(" ", "_");
+                string imageName = $"contract_image_{userName}_{animalName}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
+
                 System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
                 this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
                 string imagePath = Path.Combine(@"C:\Users\Zita\Desktop\VIZSGAREMEK\", imageName);
                 bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
+            }
+            else
+            {
+                MessageBox.Show("Nincs kiválasztott állat vagy felhasználó!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             */
         }
