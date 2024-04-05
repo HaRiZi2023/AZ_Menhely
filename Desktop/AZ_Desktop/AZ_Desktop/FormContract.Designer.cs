@@ -97,7 +97,6 @@
             this.panel_Contract.Name = "panel_Contract";
             this.panel_Contract.Size = new System.Drawing.Size(816, 987);
             this.panel_Contract.TabIndex = 0;
-            this.panel_Contract.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Contract_Paint);
             // 
             // textBox_ContractEmail
             // 
@@ -349,7 +348,7 @@
             this.button_ContractPDF.Name = "button_ContractPDF";
             this.button_ContractPDF.Size = new System.Drawing.Size(205, 45);
             this.button_ContractPDF.TabIndex = 31;
-            this.button_ContractPDF.Text = "PDF";
+            this.button_ContractPDF.Text = "JPG";
             this.button_ContractPDF.UseVisualStyleBackColor = false;
             this.button_ContractPDF.Click += new System.EventHandler(this.button_ContractPDF_Click);
             // 
