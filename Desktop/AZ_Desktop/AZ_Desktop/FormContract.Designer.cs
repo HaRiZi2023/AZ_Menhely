@@ -314,7 +314,7 @@
             // 
             // pictureBox_Contract
             // 
-            this.pictureBox_Contract.BackgroundImage = global::AZ_Desktop.Properties.Resources.kutya_macska1;
+            this.pictureBox_Contract.BackgroundImage = global::AZ_Desktop.Properties.Resources.logo;
             this.pictureBox_Contract.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_Contract.Location = new System.Drawing.Point(672, 148);
             this.pictureBox_Contract.Name = "pictureBox_Contract";
