@@ -359,7 +359,7 @@ namespace AZ_Desktop
 
         //***************** guests ****************
 
-        public byte[] ImageToByteArray(Image imageIn)
+        public byte[] ImageToByteArray(Image imageIn) // kell-e
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -368,7 +368,32 @@ namespace AZ_Desktop
             }
         }
 
+        internal bool CheckGuestExists(string guestName) //up és delhez is
+        {
+            try
+            {
+                connOpening();
 
+                sql.CommandText = "SELECT COUNT(*) FROM `guests` WHERE `g_name` = @g_name";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@g_name", guestName);
+
+                int count = Convert.ToInt32(sql.ExecuteScalar()); // mit 
+
+                return count > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
 
         internal List<Guest> allGuest() // ezt a Program.cs ben adom meg
         {
@@ -432,7 +457,13 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
 
+
                 sql.Parameters.AddWithValue("@g_image", guest.G_image);
+
+
+                //byte[] imageBytes = Convert.FromBase64String(guest.G_image);
+                //sql.Parameters.AddWithValue("@g_image", imageBytes);
+               
 
                 sql.Parameters.AddWithValue("@created_at", guest.Created_at);
                 sql.Parameters.AddWithValue("@updated_at", guest.Updated_at);
@@ -448,7 +479,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatok mentése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

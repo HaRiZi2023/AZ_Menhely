@@ -23,7 +23,6 @@ namespace AZ_Desktop
         {
             InitializeComponent();
             InitializecheckBoxes_Choice();  
-           
         }
 
         private void FormChoice_Load(object sender, EventArgs e)
@@ -133,7 +132,7 @@ namespace AZ_Desktop
         }
 
         /********************/
-        /*private void emptyFieldsChoice()
+        private void emptyFieldsChoice()
         {
             // Kiürítjük a mezőket
           
@@ -143,7 +142,7 @@ namespace AZ_Desktop
             listBox_Choice.Items.Clear();
             //CheckBox selectedCheckBox = null;
         }
-        */
+        
 
         /******************/
 
@@ -155,7 +154,7 @@ namespace AZ_Desktop
             formGuest.Show();
             
 
-            //emptyFieldsChoice();
+            emptyFieldsChoice();
 
 
         }
@@ -173,7 +172,7 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            //emptyFieldsChoice();
+            emptyFieldsChoice();
             //selectedGuest = GetSelectedGuest();
 
             /*
@@ -241,7 +240,7 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            //emptyFieldsChoice();
+            emptyFieldsChoice();
 
 
 

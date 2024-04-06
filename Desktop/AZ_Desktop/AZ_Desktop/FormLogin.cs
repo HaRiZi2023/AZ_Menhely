@@ -270,7 +270,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_LoginDelete_Click(object sender, EventArgs e)
+        private void button_LoginDelete_Click(object sender, EventArgs e)  // ide még checkWorkerEx !!!!!!!!!! 
         {
             if (string.IsNullOrWhiteSpace(textBox_LoginName.Text))
             {

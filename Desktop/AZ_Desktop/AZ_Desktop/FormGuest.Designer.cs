@@ -243,7 +243,7 @@
             // 
             // pictureBox_GuestImage
             // 
-            this.pictureBox_GuestImage.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox_GuestImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.pictureBox_GuestImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_GuestImage.Location = new System.Drawing.Point(306, 46);
             this.pictureBox_GuestImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -251,6 +251,7 @@
             this.pictureBox_GuestImage.Size = new System.Drawing.Size(125, 135);
             this.pictureBox_GuestImage.TabIndex = 0;
             this.pictureBox_GuestImage.TabStop = false;
+            this.pictureBox_GuestImage.Click += new System.EventHandler(this.pictureBox_GuestImage_Click);
             // 
             // richTextBox_GuestOther
             // 

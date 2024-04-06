@@ -43,16 +43,8 @@ namespace AZ_Desktop
                 listBox_Found.Items.Add(found); //.ToString());
             }
         }
-        /*
-        public byte[] ImageToByteArray(Image imageIn)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
-        }*/
-
+        
+        
         private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok
         {
             // MessageBox.Show("ListBox elem kiválasztva!");
