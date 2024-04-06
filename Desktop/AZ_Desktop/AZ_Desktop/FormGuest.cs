@@ -76,6 +76,9 @@ namespace AZ_Desktop
                 dateTimePicker_GuestIn.Value = selectedGuest.G_in_date;
                 dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
                 richTextBox_GuestOther.Text = selectedGuest.G_other.ToString();
+
+                loadImage(selectedGuest.G_image); // Pass the image byte array to loadImage method
+                /*
                 pictureBox_GuestImage.Text = selectedGuest.G_image.ToString();
 
                 if (selectedGuest != null && imageData.Length > 0)
@@ -99,7 +102,7 @@ namespace AZ_Desktop
                     // Ha az imageData null vagy üres, betöltsünk egy alapértelmezett képet
                     pictureBox_GuestImage.Image = Properties.Resources.DefaultImage; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
                 }
-
+                */
 
                 /*
                 if (selectedGuest.G_image != null && selectedGuest.G_image.Length > 0)
@@ -151,6 +154,29 @@ namespace AZ_Desktop
                     pictureBox_GuestImage.Image = null;
                     //pictureBox_GuestImage.Image = selectedGuest.G_image.;
                 }*/
+            }
+        }
+
+        private void loadImage(byte[] imageData)  // vagy selectedGuest.G_image byte helyett
+        {
+            if (imageData != null && imageData.Length > 0)
+            {
+                try
+                {
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        pictureBox_GuestImage.Image = Image.FromStream(ms);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Ha az imageData null vagy üres, betöltsünk egy alapértelmezett képet
+                pictureBox_GuestImage.Image = Properties.Resources.DefaultImage; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
             }
         }
 
