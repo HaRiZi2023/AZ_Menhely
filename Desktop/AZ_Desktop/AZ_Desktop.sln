@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A423496A-8C94-4012-B7AB-346DD6AD5227}"
 	ProjectSection(SolutionItems) = preProject
 		Desktop images\DefaultImage.ico = Desktop images\DefaultImage.ico
+		Desktop images\DefaultImage.png = Desktop images\DefaultImage.png
 	EndProjectSection
 EndProject
 Global
