@@ -78,19 +78,27 @@ namespace AZ_Desktop
                 richTextBox_GuestOther.Text = selectedGuest.G_other.ToString();
                 pictureBox_GuestImage.Text = selectedGuest.G_image.ToString();
 
-                /*
-                try
+                if (selectedGuest != null && imageData.Length > 0)
                 {
-                    using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
+
+
+                    try
                     {
-                        pictureBox_GuestImage.Image = Image.FromStream(ms);
+                        using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
+                        {
+                            pictureBox_GuestImage.Image = Image.FromStream(ms);
+                        }
                     }
-                }
-                catch (Exception ex)
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }   
+                else
                 {
-                    MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Ha az imageData null vagy üres, betöltsünk egy alapértelmezett képet
+                    pictureBox_GuestImage.Image = Properties.Resources.DefaultImage; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
                 }
-                */
 
 
                 /*
