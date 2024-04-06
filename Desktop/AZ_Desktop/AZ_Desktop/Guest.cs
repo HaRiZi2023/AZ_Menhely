@@ -18,7 +18,7 @@ namespace AZ_Desktop
         DateTime g_out_date;    
         string g_adoption; 
         string g_other;
-        byte [] g_image;
+        string g_image;
         DateTime created_at;
         DateTime updated_at;
 
@@ -28,7 +28,7 @@ namespace AZ_Desktop
             this.Updated_at = DateTime.Now; // Az utolsó frissítés időpontja
         }
 
-        public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other, byte[] g_image, DateTime created_at, DateTime updated_at)
+        public Guest(int id, string g_name, string g_chip, string g_species, string g_gender, DateTime g_in_date, string g_in_place, DateTime g_out_date, string g_adoption, string g_other, string g_image, DateTime created_at, DateTime updated_at)
         {
             this.Id = id;
             this.G_name = g_name;
@@ -55,7 +55,7 @@ namespace AZ_Desktop
         public DateTime G_out_date { get => g_out_date; set => g_out_date = value; }
         public string G_adoption { get => g_adoption; set => g_adoption = value; }
         public string G_other { get => g_other; set => g_other = value; }
-        public byte[] G_image { get => g_image; set => g_image = value; }
+        public string G_image { get => g_image; set => g_image = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
 

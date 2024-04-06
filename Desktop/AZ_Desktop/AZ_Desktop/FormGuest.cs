@@ -51,15 +51,22 @@ namespace AZ_Desktop
 
         private void FormGuest_Load(object sender, EventArgs e)
         {
-            
-            /*
-                    this.Text = "Felvitel";
-                    button_GuestInsert.Text = "Felvitel";
-                    button_GuestInsert.BackColor = Color.Yellow;
-                    button_GuestInsert.Click += new EventHandler(insertGuest);
-            */
+            button_GuestInsert.Visible = false;
+            button_GuestUpdate.Visible = false;
+            button_GuestDelete.Visible = false;
+
+
 
             
+                    this.Text = "Felvitel";
+                    button_GuestInsert.Text = "Felvitel";
+                    button_GuestInsert.Visible = true;
+                    //button_GuestInsert.Click += new EventHandler(insertGuest);
+            /*
+            button_GuestInsert.Visible = true;
+            button_GuestUpdate.Visible = true;
+            button_GuestDelete.Visible = true;
+            */
         }
 
         public void uploadData()  // adat feltöltése () üres upload
@@ -290,22 +297,6 @@ namespace AZ_Desktop
             //button_GuestInsert.Visible = true;
             //button_GuestUpdate.Visible = false;
             //button_GuestDelete.Visible = false;
-
-            /*
-            Guest guest = new Guest();
-
-            guest.G_name = textBox_GuestName.Text;
-            guest.G_chip = textBox_GuestChip.Text;
-            guest.G_in_place = textBox_GuestWhere.Text;
-            guest.G_species = comboBox_GuestSpecies.Text;
-            guest.G_gender = comboBox_GuestGender.Text;
-            guest.G_adoption = comboBox_GuestAdoption.Text;
-            //guest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
-            guest.G_in_date = dateTimePicker_GuestIn.Value;
-            //guest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
-            guest.G_out_date = dateTimePicker_GuestOut.Value;
-            guest.G_other = richTextBox_GuestOther.Text;
-            */
 
             // Gomb kattintás eseménykezelője a kép adatbázisba mentéséhez base64-ként
 
