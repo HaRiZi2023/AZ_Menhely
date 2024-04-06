@@ -176,7 +176,7 @@ namespace AZ_Desktop
             else
             {
                 // Ha az imageData null vagy üres, betöltsünk egy alapértelmezett képet
-                pictureBox_GuestImage.Image = Properties.Resources.DefaultImage; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
+                pictureBox_GuestImage.Image = Properties.Resources.Picture; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
             }
         }
 
