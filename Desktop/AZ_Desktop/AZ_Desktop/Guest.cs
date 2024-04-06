@@ -22,7 +22,6 @@ namespace AZ_Desktop
         DateTime created_at;
         DateTime updated_at;
 
-
         public Guest()
         {
             this.Created_at = DateTime.Now; // Az objektum létrehozásának időpontja
@@ -56,7 +55,7 @@ namespace AZ_Desktop
         public DateTime G_out_date { get => g_out_date; set => g_out_date = value; }
         public string G_adoption { get => g_adoption; set => g_adoption = value; }
         public string G_other { get => g_other; set => g_other = value; }
-        public byte[] G_image { get; set; }//{ get => g_image; set => g_image = value; }
+        public byte[] G_image { get => g_image; set => g_image = value; }
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
 
@@ -66,7 +65,5 @@ namespace AZ_Desktop
             string name = string.IsNullOrEmpty(this.G_name) ? "Nincs? Probléma a névvel!" : this.G_name;
             return $"{this.G_species} - {this.G_name}";
         }
-
-
     }
 }

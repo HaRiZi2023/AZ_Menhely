@@ -19,7 +19,7 @@ namespace AZ_Desktop
         private Database database;
         private List<Guest> allAnimals;
         private List<User> allUsers;
-        private User selectedUser;  //????????????????
+        //private User selectedUser;  //????????????????
 
         public FormAdoption()
         {
@@ -96,19 +96,29 @@ namespace AZ_Desktop
                     textBox_AdoptionSpecies.Text = selectedAnimal.G_species;
                     textBox_AdoptionGender.Text = selectedAnimal.G_gender;
                     textBox_AdoptionChip.Text = selectedAnimal.G_chip;
-                    
-                    try
+
+                    // Ellenőrizd, hogy a kép nem üres
+                    if (selectedAnimal.G_image != null && selectedAnimal.G_image.Length > 0)
                     {
-                        using (MemoryStream ms = new MemoryStream(selectedAnimal.G_image))
+                        try
                         {
-                            pictureBox_Adoption.Image = Image.FromStream(ms);
+                            // Konvertáld a byte tömböt MemoryStreammé
+                            using (MemoryStream ms = new MemoryStream(selectedAnimal.G_image))
+                            {
+                                // Betöltjük a PictureBox-ba az Image-t a MemoryStreamből
+                                pictureBox_Adoption.Image = Image.FromStream(ms);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Ha a kép üres, töröld a PictureBox tartalmát
+                        pictureBox_Adoption.Image = null;
                     }
-
                 }
             }
         }

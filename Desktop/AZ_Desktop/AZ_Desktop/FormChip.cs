@@ -25,7 +25,6 @@ namespace AZ_Desktop
 
         private void FormChip_Load(object sender, EventArgs e)
         {
-
         }  //ok
 
         private void button_ChipControl_Click(object sender, EventArgs e)

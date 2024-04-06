@@ -17,7 +17,7 @@ namespace AZ_Desktop
     public partial class FormGuest : Form
     {
         private Guest selectedGuest;
-       
+        
         //private Database database;
 
 
@@ -25,10 +25,11 @@ namespace AZ_Desktop
         {
             InitializeComponent();
 
+            
             //this.selectedGuest = selectedGuest;
 
             //uploadData();
-            
+
 
 
             //database = new Database();
@@ -40,59 +41,24 @@ namespace AZ_Desktop
         {
             InitializeComponent();
             this.selectedGuest = selectedGuest;
+            
             uploadData();
         }
 
         private void FormGuest_Load(object sender, EventArgs e)
         {
-            this.Text = "Felvitel";
-            button_GuestInsert.Text = "Felvitel";
-            button_GuestInsert.BackColor = Color.LightGreen;
-            button_GuestInsert.Click += new EventHandler(insertGuest);
-            /*
-            this.Text = "Módosítás";
-            button_GuestSending.Text = "Módosítás";
-            button_GuestSending.BackColor = Color.LightBlue;
-            button_GuestSending.Click += new EventHandler(insertGuest);
-
-            this.Text = "Törlés";
-            button_GuestSending.Text = "Törlés";
-            button_GuestSending.BackColor = Color.LightSalmon;
-            button_GuestSending.Click += new EventHandler(insertGuest);
-            */
-
-
-
-            /*
-            switch (options)
-            {
-                case "Insert":
-                    this.Text = "Felvitel";
-                    button_GuestSending.Text = "Felvitel";
-                    button_GuestSending.BackColor = Color.LightGreen;
-                    button_GuestSending.Click += new EventHandler(insertGuest);
-                    break;
-                case "Update":
-                    this.Text = "Módosítás";
-                    button_GuestSending.Text = "Módosítás";
-                    button_GuestSending.BackColor = Color.LightBlue;
-                    button_GuestSending.Click += new EventHandler(updateGuest);
-                    uploadData();
-                    break;
-                case "Delete":
-                    this.Text = "Törlés";
-                    button_GuestSending.Text = "Törlés";
-                    button_GuestSending.BackColor = Color.LightSalmon;
-                    button_GuestSending.Click += new EventHandler(deleteGuest);
-                    uploadData();
-                    break;
             
 
+                    /*
+                    this.Text = "Felvitel";
+                    button_GuestInsert.Text = "Felvitel";
+                    button_GuestInsert.BackColor = Color.LightGreen;
+                    button_GuestInsert.Click += new EventHandler(insertGuest);*/
 
-                    //uploadData(); // adat feltöltése
-            }*/
+
+            
         }
-        
+
         public void uploadData()  // adat feltöltése () üres upload
         {
 
@@ -110,7 +76,9 @@ namespace AZ_Desktop
                 dateTimePicker_GuestIn.Value = selectedGuest.G_in_date;
                 dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
                 richTextBox_GuestOther.Text = selectedGuest.G_other.ToString();
+                pictureBox_GuestImage.Text = selectedGuest.G_image.ToString();
 
+                /*
                 try
                 {
                     using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
@@ -122,7 +90,7 @@ namespace AZ_Desktop
                 {
                     MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
+                */
 
 
                 /*
@@ -178,7 +146,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void emptyFieldsGuest()  // mezők kiürítése
+        private void emptyFieldsGuest()  // mezők kiürítése kell-e??
         {
             textBox_GuestName.Text = "";
             textBox_GuestChip.Text = "";
@@ -190,94 +158,32 @@ namespace AZ_Desktop
             dateTimePicker_GuestOut.Value = DateTime.Now;
             richTextBox_GuestOther.Text = "";
         }
-
-
-        //*************************
-        // nem kellenek
-        private void insertGuest(object sender, EventArgs e)
+        /*
+        private byte[] ImageToByteArray(Image imageIn)
         {
-             /*
-            Guest guest = new Guest();
-
-            guest.G_name = textBox_GuestName.Text;
-            guest.G_chip = textBox_GuestChip.Text;
-            guest.G_in_place = textBox_GuestWhere.Text;
-            guest.G_species = comboBox_GuestSpecies.Text;
-            guest.G_gender = comboBox_GuestGender.Text;
-            guest.G_adoption = comboBox_GuestAdoption.Text;
-            //guest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
-            guest.G_in_date = dateTimePicker_GuestIn.Value;
-            //guest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
-            guest.G_out_date = dateTimePicker_GuestOut.Value;
-            guest.G_other = richTextBox_GuestOther.Text;
-
-            if (dateTimePicker_GuestIn.Value != null)
+            using (MemoryStream ms = new MemoryStream())
             {
-                guest.G_in_date = dateTimePicker_GuestIn.Value;
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
             }
-            if (dateTimePicker_GuestOut.Value != null)
+        } */
+
+
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (MemoryStream ms = new MemoryStream())
             {
-                guest.G_out_date = dateTimePicker_GuestOut.Value;
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
             }
-
-
-
-
-
-
-            Program.database.insertGuest(guest);
-            this.Close();
-            */
         }
-
-        private void updateGuest(object sender, EventArgs e)
-        {   /*
-            if (selectedGuest != null)
-            //if (Program.formChoice.listBox_Choice.SelectedItem != null)
-            {
-                //Guest selectedGuestName = (Guest)Program.formChoice.listBox_Choice.SelectedItem;
-
-                selectedGuest.G_name = textBox_GuestName.Text;
-                selectedGuest.G_chip = textBox_GuestChip.Text;
-                selectedGuest.G_in_place = textBox_GuestWhere.Text;
-                selectedGuest.G_species = comboBox_GuestSpecies.Text;
-                selectedGuest.G_gender = comboBox_GuestGender.Text;
-                selectedGuest.G_adoption = comboBox_GuestAdoption.Text;
-                selectedGuest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
-                selectedGuest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
-                selectedGuest.G_other = richTextBox_GuestOther.Text;
-
-                Program.database.updateGuest(selectedGuest);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            */
-        }
-
-        private void deleteGuest(object sender, EventArgs e)
-        {   
-            /*
-            if (selectedGuest != null)
-            //if (Program.formChoice.listBox_Choice.SelectedItem != null)
-            {
-                //Guest guest = (Guest)Program.formChoice.listBox_Choice.SelectedItem;
-                Program.database.deleteGuest(selectedGuest);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            */
-        }
-
-        //*************************
 
         private void button_GuestInsert_Click(object sender, EventArgs e)
         {
+            //button_GuestInsert.Visible = true;
+            //button_GuestUpdate.Visible = false;
+            //button_GuestDelete.Visible = false;
+
             Guest guest = new Guest();
 
             guest.G_name = textBox_GuestName.Text;
@@ -292,6 +198,11 @@ namespace AZ_Desktop
             guest.G_out_date = dateTimePicker_GuestOut.Value;
             guest.G_other = richTextBox_GuestOther.Text;
 
+           
+
+            guest.Created_at = DateTime.Now;    
+            guest.Updated_at = DateTime.Now;
+
             if (dateTimePicker_GuestIn.Value != null)
             {
                 guest.G_in_date = dateTimePicker_GuestIn.Value;
@@ -300,6 +211,13 @@ namespace AZ_Desktop
             {
                 guest.G_out_date = dateTimePicker_GuestOut.Value;
             }
+
+            //byte[] imageDataInsert = ImageToByteArray(pictureBox_GuestImage.Image);
+            //guest.G_image = imageDataInsert;
+
+
+
+
             Program.database.insertGuest(guest);
             emptyFieldsGuest();
             uploadData();     //  2. nál fennálló problémát nem oldja meg "parameter mar meg van határozva"
@@ -310,6 +228,11 @@ namespace AZ_Desktop
 
         private void button_GuestUpdate_Click(object sender, EventArgs e)
         {
+            
+            //button_GuestInsert.Visible = false;
+            //button_GuestUpdate.Visible = true;
+            //button_GuestDelete.Visible = false;
+            
             if (selectedGuest != null)
             //if (Program.formChoice.listBox_Choice.SelectedItem != null)
             {
@@ -324,6 +247,25 @@ namespace AZ_Desktop
                 selectedGuest.G_in_date = (DateTime)dateTimePicker_GuestIn.Value;
                 selectedGuest.G_out_date = (DateTime)dateTimePicker_GuestOut.Value;
                 selectedGuest.G_other = richTextBox_GuestOther.Text;
+
+                //selectedGuest.G_image = pictureBox_GuestImage.Text;
+                //selectedGuest.G_image = pictureBox_GuestImage.Image;
+
+                selectedGuest.Created_at = DateTime.Now;
+                selectedGuest.Updated_at = DateTime.Now;
+
+                if (dateTimePicker_GuestIn.Value != null)
+                {
+                    selectedGuest.G_in_date = dateTimePicker_GuestIn.Value;
+                }
+                if (dateTimePicker_GuestOut.Value != null)
+                {
+                    selectedGuest.G_out_date = dateTimePicker_GuestOut.Value;
+                }
+                
+                byte[] imageDataUpdate = ImageToByteArray(pictureBox_GuestImage.Image);
+                selectedGuest.G_image = imageDataUpdate;
+                
 
                 Program.database.updateGuest(selectedGuest);
                 emptyFieldsGuest();
@@ -339,9 +281,16 @@ namespace AZ_Desktop
 
         private void button_GuestDelete_Click(object sender, EventArgs e)
         {
+            //button_GuestInsert.Visible = false;
+            //button_GuestUpdate.Visible = false;
+            //button_GuestDelete.Visible = true;
+
+
             if (selectedGuest != null)
             //if (Program.formChoice.listBox_Choice.SelectedItem != null)
             {
+                //selectedGuest.Updated_at = DateTime.Now; ha lesz arhíválás
+
                 //Guest guest = (Guest)Program.formChoice.listBox_Choice.SelectedItem;
                 Program.database.deleteGuest(selectedGuest);
                 emptyFieldsGuest();
@@ -353,6 +302,7 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
     }
 }

@@ -37,7 +37,7 @@ namespace AZ_Desktop
         {
             string animalName = selectedAnimal.G_name.Replace(" ", "_");
             string userName = selectedUser.Name.Replace(" ", "_");
-            string imageName = $"contract_image_{userName}_{animalName}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
+            string imageName = $"{userName}_és_{animalName}_{DateTime.Now.ToString("yyyy.MM.dd")}_szerződés.jpg";
 
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
             this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
@@ -45,39 +45,6 @@ namespace AZ_Desktop
             bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
             MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
-
-            /*
-            //Csak JPG jól működik!!!
-            // FormContract képének elmentése
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
-            this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
-            string imagePath = $@"C:\Users\Zita\Desktop\VIZSGAREMEK\contract_image_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
-            bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-            MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
-            */
-
-
-            /*
-            // ez nem készít képet
-            if (selectedAnimal != null && selectedUser != null)
-            {
-                string animalName = selectedAnimal.G_name.Replace(" ", "_");
-                string userName = selectedUser.Name.Replace(" ", "_");
-                string imageName = $"contract_image_{userName}_{animalName}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg";
-
-                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(this.Width, this.Height);
-                this.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height));
-                string imagePath = Path.Combine(@"C:\Users\Zita\Desktop\VIZSGAREMEK\", imageName);
-                bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                MessageBox.Show("A kép sikeresen el lett mentve: " + imagePath);
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott állat vagy felhasználó!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            */
         }
 
         public void uploadDataContract()  // adat feltöltése () üres upload
