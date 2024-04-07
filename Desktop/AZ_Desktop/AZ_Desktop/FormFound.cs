@@ -44,8 +44,32 @@ namespace AZ_Desktop
             }
         }
         
-        
-        private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok
+        /****** youtubos ************/
+
+       /*
+        public Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            using MemoryStream ms = new MemoryStream(byteArrayIn)
+            {
+                Image returnImage = Image.FromStream(ms);
+                return returnImage;
+            }
+        }
+
+        public byte[] ImageToByteArray(System.Drawing.Image.imageIn) 
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ImageIndexConverter.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);  // felajánlott: Bmp);
+                return ms.ToArray();
+            }
+        }
+        */
+                
+        /****** youtubos ************/
+
+
+        private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok képig
         {
             // MessageBox.Show("ListBox elem kiválasztva!");
 
@@ -62,6 +86,7 @@ namespace AZ_Desktop
                 // Ellenőrizzük, hogy a kép nem üres és nem null
                 if (!string.IsNullOrEmpty(selectedfound.F_image))
                 {
+                    // Bináris adatok létrehozása (pl. egy kép) EZ NEm JÓ!!!
                     // Base64 string visszaalakítása byte tömbbé
                     byte[] imageData = Convert.FromBase64String(selectedfound.F_image);
 
