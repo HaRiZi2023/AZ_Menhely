@@ -87,7 +87,7 @@ namespace AZ_Desktop
                 dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
                 richTextBox_GuestOther.Text = selectedGuest.G_other.ToString();
 
-                loadImage(selectedGuest.G_image); // Pass the image byte array to loadImage method
+  //              loadImage(selectedGuest.G_image); // Pass the image byte array to loadImage method
                 /*
                 pictureBox_GuestImage.Text = selectedGuest.G_image.ToString();
 

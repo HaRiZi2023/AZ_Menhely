@@ -50,7 +50,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Segoe Print", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(308, 9);
+            this.label1.Location = new System.Drawing.Point(241, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(184, 49);
             this.label1.TabIndex = 0;
@@ -61,7 +61,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(354, 103);
+            this.label2.Location = new System.Drawing.Point(286, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 26);
             this.label2.TabIndex = 1;
@@ -69,7 +69,7 @@
             // 
             // textBox_LoginName
             // 
-            this.textBox_LoginName.Location = new System.Drawing.Point(271, 149);
+            this.textBox_LoginName.Location = new System.Drawing.Point(203, 105);
             this.textBox_LoginName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox_LoginName.Name = "textBox_LoginName";
             this.textBox_LoginName.Size = new System.Drawing.Size(244, 30);
@@ -77,7 +77,7 @@
             // 
             // textBox_LoginPass
             // 
-            this.textBox_LoginPass.Location = new System.Drawing.Point(271, 208);
+            this.textBox_LoginPass.Location = new System.Drawing.Point(203, 164);
             this.textBox_LoginPass.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox_LoginPass.Name = "textBox_LoginPass";
             this.textBox_LoginPass.Size = new System.Drawing.Size(244, 30);
@@ -86,7 +86,7 @@
             // button_Login
             // 
             this.button_Login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button_Login.Location = new System.Drawing.Point(301, 314);
+            this.button_Login.Location = new System.Drawing.Point(233, 270);
             this.button_Login.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(180, 36);
@@ -99,7 +99,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(230, 156);
+            this.label3.Location = new System.Drawing.Point(162, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 23);
             this.label3.TabIndex = 5;
@@ -109,7 +109,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(216, 215);
+            this.label4.Location = new System.Drawing.Point(148, 171);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 23);
             this.label4.TabIndex = 6;
@@ -130,7 +130,7 @@
             // button_LoginService
             // 
             this.button_LoginService.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_LoginService.Location = new System.Drawing.Point(301, 360);
+            this.button_LoginService.Location = new System.Drawing.Point(233, 316);
             this.button_LoginService.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button_LoginService.Name = "button_LoginService";
             this.button_LoginService.Size = new System.Drawing.Size(180, 36);
@@ -142,7 +142,7 @@
             // button_LoginInsert
             // 
             this.button_LoginInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_LoginInsert.Location = new System.Drawing.Point(271, 413);
+            this.button_LoginInsert.Location = new System.Drawing.Point(203, 369);
             this.button_LoginInsert.Name = "button_LoginInsert";
             this.button_LoginInsert.Size = new System.Drawing.Size(75, 36);
             this.button_LoginInsert.TabIndex = 10;
@@ -154,7 +154,7 @@
             // button_LoginDelete
             // 
             this.button_LoginDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_LoginDelete.Location = new System.Drawing.Point(433, 413);
+            this.button_LoginDelete.Location = new System.Drawing.Point(365, 369);
             this.button_LoginDelete.Name = "button_LoginDelete";
             this.button_LoginDelete.Size = new System.Drawing.Size(75, 36);
             this.button_LoginDelete.TabIndex = 11;
@@ -166,7 +166,7 @@
             // button_LoginUpdate
             // 
             this.button_LoginUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button_LoginUpdate.Location = new System.Drawing.Point(352, 413);
+            this.button_LoginUpdate.Location = new System.Drawing.Point(284, 369);
             this.button_LoginUpdate.Name = "button_LoginUpdate";
             this.button_LoginUpdate.Size = new System.Drawing.Size(75, 36);
             this.button_LoginUpdate.TabIndex = 12;
@@ -181,7 +181,7 @@
             this.comboBox_LoginPermission.Items.AddRange(new object[] {
             "teljes",
             "felhasználó"});
-            this.comboBox_LoginPermission.Location = new System.Drawing.Point(271, 258);
+            this.comboBox_LoginPermission.Location = new System.Drawing.Point(203, 214);
             this.comboBox_LoginPermission.Name = "comboBox_LoginPermission";
             this.comboBox_LoginPermission.Size = new System.Drawing.Size(244, 31);
             this.comboBox_LoginPermission.TabIndex = 13;
@@ -194,7 +194,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Login___out;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(779, 688);
+            this.ClientSize = new System.Drawing.Size(638, 468);
             this.Controls.Add(this.comboBox_LoginPermission);
             this.Controls.Add(this.button_LoginUpdate);
             this.Controls.Add(this.button_LoginDelete);

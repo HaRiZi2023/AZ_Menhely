@@ -100,7 +100,7 @@ namespace AZ_Desktop
                     // Ellenőrizd, hogy a kép nem üres
                     if (selectedAnimal.G_image != null && selectedAnimal.G_image.Length > 0)
                     {
-                        try
+  /*                      try
                         {
                             // Konvertáld a byte tömböt MemoryStreammé
                             using (MemoryStream ms = new MemoryStream(selectedAnimal.G_image))
@@ -118,6 +118,7 @@ namespace AZ_Desktop
                     {
                         // Ha a kép üres, töröld a PictureBox tartalmát
                         pictureBox_Adoption.Image = null;
+  */
                     }
                 }
             }
