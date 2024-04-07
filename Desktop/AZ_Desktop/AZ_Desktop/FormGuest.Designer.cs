@@ -144,7 +144,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.label10.Location = new System.Drawing.Point(203, 390);
+            this.label10.Location = new System.Drawing.Point(120, 385);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 23);
             this.label10.TabIndex = 11;
@@ -222,7 +222,7 @@
             // button_GuestInsert
             // 
             this.button_GuestInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_GuestInsert.Location = new System.Drawing.Point(201, 630);
+            this.button_GuestInsert.Location = new System.Drawing.Point(116, 626);
             this.button_GuestInsert.Name = "button_GuestInsert";
             this.button_GuestInsert.Size = new System.Drawing.Size(129, 37);
             this.button_GuestInsert.TabIndex = 23;
@@ -233,7 +233,7 @@
             // button_GuestDelete
             // 
             this.button_GuestDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_GuestDelete.Location = new System.Drawing.Point(576, 630);
+            this.button_GuestDelete.Location = new System.Drawing.Point(491, 626);
             this.button_GuestDelete.Name = "button_GuestDelete";
             this.button_GuestDelete.Size = new System.Drawing.Size(129, 37);
             this.button_GuestDelete.TabIndex = 24;
@@ -243,19 +243,20 @@
             // 
             // pictureBox_GuestImage
             // 
-            this.pictureBox_GuestImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pictureBox_GuestImage.BackColor = System.Drawing.Color.Silver;
             this.pictureBox_GuestImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_GuestImage.Location = new System.Drawing.Point(306, 46);
             this.pictureBox_GuestImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox_GuestImage.Name = "pictureBox_GuestImage";
             this.pictureBox_GuestImage.Size = new System.Drawing.Size(125, 135);
+            this.pictureBox_GuestImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_GuestImage.TabIndex = 0;
             this.pictureBox_GuestImage.TabStop = false;
             this.pictureBox_GuestImage.Click += new System.EventHandler(this.pictureBox_GuestImage_Click);
             // 
             // richTextBox_GuestOther
             // 
-            this.richTextBox_GuestOther.Location = new System.Drawing.Point(201, 426);
+            this.richTextBox_GuestOther.Location = new System.Drawing.Point(118, 421);
             this.richTextBox_GuestOther.Name = "richTextBox_GuestOther";
             this.richTextBox_GuestOther.Size = new System.Drawing.Size(504, 183);
             this.richTextBox_GuestOther.TabIndex = 27;
@@ -264,7 +265,7 @@
             // button_GuestUpdate
             // 
             this.button_GuestUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button_GuestUpdate.Location = new System.Drawing.Point(387, 630);
+            this.button_GuestUpdate.Location = new System.Drawing.Point(302, 626);
             this.button_GuestUpdate.Name = "button_GuestUpdate";
             this.button_GuestUpdate.Size = new System.Drawing.Size(129, 37);
             this.button_GuestUpdate.TabIndex = 28;

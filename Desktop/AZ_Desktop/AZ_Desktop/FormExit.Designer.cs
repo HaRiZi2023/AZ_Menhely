@@ -53,7 +53,7 @@
             this.label_ExitBye.Font = new System.Drawing.Font("Segoe Print", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_ExitBye.Location = new System.Drawing.Point(103, 31);
             this.label_ExitBye.Name = "label_ExitBye";
-            this.label_ExitBye.Size = new System.Drawing.Size(299, 61);
+            this.label_ExitBye.Size = new System.Drawing.Size(239, 49);
             this.label_ExitBye.TabIndex = 1;
             this.label_ExitBye.Text = "Viszont látásra!";
             this.label_ExitBye.Visible = false;
@@ -94,7 +94,7 @@
             this.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormExit";
-            this.Text = "FormExit";
+            this.Text = "A-Z Menhely";
             this.Load += new System.EventHandler(this.FormExit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

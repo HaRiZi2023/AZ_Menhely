@@ -129,7 +129,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Pasztel_szürke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(604, 590);
+            this.ClientSize = new System.Drawing.Size(590, 580);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox_Main);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

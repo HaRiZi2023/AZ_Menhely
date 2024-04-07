@@ -145,9 +145,12 @@
             // 
             // pictureBox_FoundImage
             // 
+            this.pictureBox_FoundImage.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox_FoundImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_FoundImage.Location = new System.Drawing.Point(53, 81);
             this.pictureBox_FoundImage.Name = "pictureBox_FoundImage";
             this.pictureBox_FoundImage.Size = new System.Drawing.Size(200, 137);
+            this.pictureBox_FoundImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_FoundImage.TabIndex = 14;
             this.pictureBox_FoundImage.TabStop = false;
             // 

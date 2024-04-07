@@ -356,7 +356,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 1056);
+            this.ClientSize = new System.Drawing.Size(846, 1051);
             this.Controls.Add(this.button_ContractPDF);
             this.Controls.Add(this.panel_Contract);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
