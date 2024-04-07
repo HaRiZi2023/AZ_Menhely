@@ -48,6 +48,7 @@ namespace AZ_Desktop
         private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok
         {
             // MessageBox.Show("ListBox elem kiválasztva!");
+
             if (listBox_Found.SelectedIndex != -1)
             {
                 Found selectedfound = (Found)listBox_Found.SelectedItem;
@@ -57,14 +58,19 @@ namespace AZ_Desktop
                 textBox_FoundInjury.Text = selectedfound.F_injury.ToString();
                 textBox_FoundWhere.Text = selectedfound.F_position.ToString();
                 richTextBox_FoundOther.Text = selectedfound.F_other.ToString();
-                //textBox_FoundUser.Text = user.Name.ToString();
 
-                if (selectedfound.F_image != null && selectedfound.F_image.Length > 0) // Ellenőrizzük, hogy a kép nem null
+                // Ellenőrizzük, hogy a kép nem üres és nem null
+                if (!string.IsNullOrEmpty(selectedfound.F_image))
                 {
+                    // Base64 string visszaalakítása byte tömbbé
+                    byte[] imageData = Convert.FromBase64String(selectedfound.F_image);
+
                     try
                     {
-                        using (MemoryStream ms = new MemoryStream(selectedfound.F_image))
+                        // MemoryStream létrehozása a byte tömbből
+                        using (MemoryStream ms = new MemoryStream(imageData))
                         {
+                            // Kép betöltése a MemoryStream-ből
                             pictureBox_FoundImage.Image = Image.FromStream(ms);
                         }
                     }
@@ -74,20 +80,12 @@ namespace AZ_Desktop
                         MessageBox.Show($"Nem sikerült betölteni a képet: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-
-                /*
-                if (pictureBox_FoundImage.Image != null)
-                {
-                    // Kép konvertálása byte tömbbé a ImageToByteArray metódusával
-                    byte[] imageDataUpdate = database.ImageToByteArray(pictureBox_FoundImage.Image);
-                    selectedfound.F_image = imageDataUpdate;
-                }
                 else
                 {
-                    // Ha a pictureBox_FoundImage null értékű, akkor hibaüzenetet jelenítünk meg
-                    MessageBox.Show("Nincs kép kiválasztva!", "Hiányzó kép", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }*/
+                    // Ha a kép üres vagy null értékű, akkor töröljük a pictureBox tartalmát
+                    pictureBox_FoundImage.Image = null;
+                    // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
+                }
             }
         }
 
@@ -113,7 +111,17 @@ namespace AZ_Desktop
                 imageIn.Save(ms, imageIn.RawFormat);
                 return ms.ToArray();
             }
-        } 
+        }
+
+        private string ImageToBase64(Image image)// G_imageBase64!
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
 
         private void button_FoundUpdate_Click(object sender, EventArgs e)  // ??? mezőtörlés végére  ????
         {
@@ -138,12 +146,8 @@ namespace AZ_Desktop
                         updatedFound.Updated_at = DateTime.Now;  //nem működik
 
 
-                        //updatedFound.F_image = ((Found)listBox_Found.SelectedItem).F_image; // A képet nem frissítjük
-
-
-                         byte[] imageDataUpdate = ImageToByteArray(pictureBox_FoundImage.Image);
-                        updatedFound.F_image = imageDataUpdate;
-
+                        updatedFound.F_image = ImageToBase64(pictureBox_FoundImage.Image); // A képet nem frissítjük
+                        
                         // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
                         database.updateFound(updatedFound);
                         emptyFieldsFound();
@@ -155,7 +159,7 @@ namespace AZ_Desktop
 
 
                         // Üzenet a felhasználónak a sikeres frissítésről
-                        MessageBox.Show("Az elem sikeresen frissítve lett.", "Sikeres frissítés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Sikeres adat frissítés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else

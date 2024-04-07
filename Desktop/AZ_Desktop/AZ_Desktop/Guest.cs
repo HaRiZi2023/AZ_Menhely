@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Crypto.Digests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace AZ_Desktop
         DateTime g_out_date;    
         string g_adoption; 
         string g_other;
-        string g_image;
+        string g_image; // G_imageBase64!
         DateTime created_at;
         DateTime updated_at;
 
@@ -40,7 +41,7 @@ namespace AZ_Desktop
             this.G_out_date = g_out_date;
             this.G_adoption = g_adoption;
             this.G_other = g_other;
-            this.G_image = g_image;
+            this.G_image = g_image;  // G_imageBase64!
             this.Created_at = created_at;
             this.Updated_at = updated_at;
         }
@@ -55,14 +56,14 @@ namespace AZ_Desktop
         public DateTime G_out_date { get => g_out_date; set => g_out_date = value; }
         public string G_adoption { get => g_adoption; set => g_adoption = value; }
         public string G_other { get => g_other; set => g_other = value; }
-        public string G_image { get => g_image; set => g_image = value; }
+        public string G_image { get => g_image; set => g_image = value; } // G_imageBase64!
         public DateTime Created_at { get => created_at; set => created_at = value; }
         public DateTime Updated_at { get => updated_at; set => updated_at = value; }
 
         public override string ToString()
         {
-            string species = string.IsNullOrEmpty(this.G_species) ? "Nincs? Probléma a fajtával" : this.G_species;
-            string name = string.IsNullOrEmpty(this.G_name) ? "Nincs? Probléma a névvel!" : this.G_name;
+            /*string species = string.IsNullOrEmpty(this.G_species) ? "Nincs? Probléma a fajtával" : this.G_species;
+            string name = string.IsNullOrEmpty(this.G_name) ? "Nincs? Probléma a névvel!" : this.G_name;*/
             return $"{this.G_species} - {this.G_name}";
         }
     }

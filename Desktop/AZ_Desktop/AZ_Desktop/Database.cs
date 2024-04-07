@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -221,7 +222,42 @@ namespace AZ_Desktop
 
         //************* Choice **************************** 
 
-        internal List<Guest> allDog() // ezt a Program.cs ben adom meg
+        internal byte[] g_imageFromDatabase(int guestId)  // G_imageBase64!
+        {
+            byte[] g_imageBytes = null;
+
+            try
+            {
+                connOpening();
+                sql.CommandText = "SELECT G_image FROM guests WHERE id = @id";
+                sql.Parameters.AddWithValue("@id", guestId);
+
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        if (!dr.IsDBNull(dr.GetOrdinal("G_image")))
+                        {
+                            string base64String = dr.GetString("G_image");
+                            g_imageBytes = Convert.FromBase64String(base64String);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Hiba történt a kép lekérdezése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sql.Parameters.Clear(); // Paraméterek törlése a következő használat előtt
+                connClosing();
+            }
+
+            return g_imageBytes;
+        }
+
+        internal List<Guest> allDog()   // G_imageBase64!// ezt a Program.cs ben adom meg
         {
             List<Guest> dogs = new List<Guest>();
             sql.CommandText = "SELECT * FROM guests WHERE g_species = @kutya ";  // ok
@@ -243,11 +279,9 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other");  //enum
+                        string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image");
-
-                        //byte[] g_image = (byte[])dr["g_image"];
+                        string g_image = dr.GetString("g_image");  // G_imageBase64! 
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
@@ -258,7 +292,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a listázás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -267,9 +301,9 @@ namespace AZ_Desktop
             return dogs;
         }
 
-        internal List<Guest> allCat() // ezt a Program.cs ben adom meg
+        internal List<Guest> allCat()   // G_imageBase64!// ezt a Program.cs ben adom meg
         {
-            List<Guest> cats = new List<Guest>();
+            List<Guest> dogs = new List<Guest>();
             sql.CommandText = "SELECT * FROM guests WHERE g_species = @macska ";  // ok
             sql.Parameters.AddWithValue("@macska", "macska");
 
@@ -288,33 +322,30 @@ namespace AZ_Desktop
                         DateTime g_in_date = dr.GetDateTime("g_in_date");
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
-                        string g_adoption = dr.GetString("g_adoption"); //enum
+                        string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image");
-
-                        //byte[] g_image = (byte[])dr["g_image"];
+                        string g_image = dr.GetString("g_image");  // G_imageBase64! 
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
-
-                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at,updated_at));
+                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a listázás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 connClosing();
             }
-            return cats;
+            return dogs;
         }
 
-        internal Guest chosenName(string G_name) //kiválasztott név adatainak lekérdezése                      name
+        internal Guest chosenName(string G_name)// G_imageBase64! //kiválasztott név adatainak lekérdezése                      name
         {
             Guest selectedGuest = null;
 
@@ -340,9 +371,7 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image");
-
-                        //byte[] g_image = (byte[])dr["g_image"];
+                        string g_image = dr.GetString("g_image");   // G_imageBase64!
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
@@ -364,6 +393,7 @@ namespace AZ_Desktop
         }
 
         //***************** guests ****************
+
 
         public byte[] ImageToByteArray(Image imageIn) // kell-e
         {
@@ -401,7 +431,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal List<Guest> allGuest() // ezt a Program.cs ben adom meg
+        internal List<Guest> allGuest() // G_imageBase64!// ezt a Program.cs ben adom meg
         {
             List<Guest> guests = new List<Guest>();
             sql.CommandText = "SELECT * FROM `guests` ORDER BY `g_name`";  // ok
@@ -421,12 +451,10 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other");  //enum
+                        string g_other = dr.GetString("g_other"); 
 
-                        string g_image = dr.GetString("g_image");
-
-                        //byte[] g_image = (byte[])dr["g_image"];
-
+                        string g_image = dr.GetString("g_image"); // G_imageBase64!
+                                  
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -436,7 +464,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a listázás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -445,49 +473,29 @@ namespace AZ_Desktop
             return guests;
         }
 
-        internal void insertGuest(Guest guest)
+        internal void insertGuest(Guest guest) // G_imageBase64! 
         {
             try
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO `guests` (`g_name`,`g_chip`,`g_species`,`g_gender`,`g_in_date`,`g_in_place`,`g_out_date`,`g_adoption`,`g_other`,`g_image`, `created_at`, `updated_at`) VALUES (@g_name, @g_chip, @g_species, @g_gender, @g_in_date, @g_in_place, @g_out_date, @g_adoption, @g_other, @g_image, @created_at, @updated_at)";
-
-                sql.Parameters.Clear();
-
-                sql.Parameters.AddWithValue("@g_name", guest.G_name);
-                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
-                sql.Parameters.AddWithValue("@g_species", guest.G_species);
-                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
-                sql.Parameters.AddWithValue("@g_in_date", guest.G_in_date);
-                sql.Parameters.AddWithValue("@g_in_place", guest.G_in_place);
-                sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
-                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
-                sql.Parameters.AddWithValue("@g_other", guest.G_other);
-
-
-                sql.Parameters.AddWithValue("@g_image", guest.G_image);
-
-
-                //byte[] imageBytes = Convert.FromBase64String(guest.G_image);
-                //sql.Parameters.AddWithValue("@g_image", imageBytes);
-               
-
-                sql.Parameters.AddWithValue("@created_at", guest.Created_at);
-                sql.Parameters.AddWithValue("@updated_at", guest.Updated_at);
-                /*
-                // Kép byte tömbbé alakítása
-                byte[] imageBytes = ImageToByteArray(guest.G_image);
-                sql.Parameters.AddWithValue("@g_image", imageBytes);*/
-
-               
-
+                sql.CommandText = "INSERT INTO guests (G_name, G_chip, G_in_place, G_species, G_gender, G_adoption, G_in_date, G_out_date, G_other, G_image) VALUES (@name, @chip, @place, @species, @gender, @adoption, @inDate, @outDate, @other, @image)";
+                sql.Parameters.AddWithValue("@name", guest.G_name);
+                sql.Parameters.AddWithValue("@chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@place", guest.G_in_place);
+                sql.Parameters.AddWithValue("@species", guest.G_species);
+                sql.Parameters.AddWithValue("@gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@adoption", guest.G_adoption);
+                sql.Parameters.AddWithValue("@inDate", guest.G_in_date);
+                sql.Parameters.AddWithValue("@outDate", guest.G_out_date);
+                sql.Parameters.AddWithValue("@other", guest.G_other);
+                sql.Parameters.AddWithValue("@image", guest.G_image); // G_imageBase64! 
 
                 sql.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Hiba történt az adatok mentése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hiba történt az adatbázisba való beszúrás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -495,37 +503,29 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateGuest(Guest guest)
+        internal void updateGuest(Guest guest) // G_imageBase64! 
         {
             try
             {
                 connOpening();
-
-                sql.CommandText = "UPDATE `guests` SET `g_chip`=@g_chip,`g_species`=@g_species,`g_gender`=@g_gender,`g_in_date`= @g_in_date,`g_in_place`=@g_in_place,`g_out_date`=@g_out_date,`g_adoption`=@g_adoption,`g_other`=@g_other,`g_image`=@g_image WHERE `g_name`=@g_name";
-
-                sql.Parameters.Clear();
-
-                sql.Parameters.AddWithValue("@g_name", guest.G_name);
-                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
-                sql.Parameters.AddWithValue("@g_species", guest.G_species);
-                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
-                sql.Parameters.AddWithValue("@g_in_date", guest.G_in_date);
-                sql.Parameters.AddWithValue("@g_in_place", guest.G_in_place);
-                sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
-                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
-                sql.Parameters.AddWithValue("@g_other", guest.G_other);
-
-                sql.Parameters.AddWithValue("@g_image", guest.G_image);
-
-                sql.Parameters.AddWithValue("@created_at", guest.Created_at);
-                sql.Parameters.AddWithValue("@updated_at", guest.Updated_at);
-
+                sql.CommandText = "UPDATE guests SET G_name=@name, G_chip=@chip, G_in_place=@place, G_species=@species, G_gender=@gender, G_adoption=@adoption, G_in_date=@inDate, G_out_date=@outDate, G_other=@other, G_image=@image WHERE G_id=@id";
+                sql.Parameters.AddWithValue("@name", guest.G_name);
+                sql.Parameters.AddWithValue("@chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@place", guest.G_in_place);
+                sql.Parameters.AddWithValue("@species", guest.G_species);
+                sql.Parameters.AddWithValue("@gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@adoption", guest.G_adoption);
+                sql.Parameters.AddWithValue("@inDate", guest.G_in_date);
+                sql.Parameters.AddWithValue("@outDate", guest.G_out_date);
+                sql.Parameters.AddWithValue("@other", guest.G_other);
+                sql.Parameters.AddWithValue("@image", guest.G_image);  // G_imageBase64!
+                sql.Parameters.AddWithValue("@id", guest.Id);
 
                 sql.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatbázis frissítése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -533,23 +533,19 @@ namespace AZ_Desktop
             }
         }
 
-        internal void deleteGuest(Guest guest)
+        internal void deleteGuest(Guest guest) // G_imageBase64! 
         {
             try
             {
                 connOpening();
-
-                sql.CommandText = "DELETE FROM `guests` WHERE `g_name`= @g_name";
-
-                sql.Parameters.Clear();
-
-                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+                sql.CommandText = "DELETE FROM guests WHERE G_id=@id";
+                sql.Parameters.AddWithValue("@id", guest.Id);
 
                 sql.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a törlése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -626,7 +622,42 @@ namespace AZ_Desktop
 
         //************* Found ****************************
 
-        internal List<Found> allFound() // ezt a Program.cs ben adom meg
+        internal byte[] f_imageFromDatabase(int foundId) // G_imageBase64!
+        {
+            byte[] f_imageBytes = null;
+
+            try
+            {
+                connOpening();
+                sql.CommandText = "SELECT F_image FROM founds WHERE id = @id";
+                sql.Parameters.AddWithValue("@id", foundId);
+
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        if (!dr.IsDBNull(dr.GetOrdinal("F_image")))
+                        {
+                            string base64String = dr.GetString("F_image");
+                            f_imageBytes = Convert.FromBase64String(base64String);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Hiba történt a kép lekérdezése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sql.Parameters.Clear(); // Paraméterek törlése a következő használat előtt
+                connClosing();
+            }
+
+            return f_imageBytes;
+        }
+
+        internal List<Found> allFound() // G_imageBase64!// ezt a Program.cs ben adom meg
         {
             List<Found> founds = new List<Found>();
             sql.CommandText = "SELECT * FROM `founds` ORDER BY `id`";  // ok
@@ -643,9 +674,9 @@ namespace AZ_Desktop
                         string f_gender = dr.GetString("f_gender");
                         string f_injury = dr.GetString("f_injury");
                         string f_position = dr.GetString("f_position");
-                        string f_other = dr.GetString("f_other"); 
-                        
-                        byte[] f_image = (byte[])dr["f_image"];
+                        string f_other = dr.GetString("f_other");
+
+                        string f_image = dr.GetString("f_image");  // G_imageBase64!
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
@@ -656,7 +687,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a listázás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -695,7 +726,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateFound(Found found)
+        internal void updateFound(Found found) // G_imageBase64!
         {
             try
             {
@@ -718,7 +749,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatbázis frissítése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -726,7 +757,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal void deleteFound(Found found)
+        internal void deleteFound(Found found) // G_imageBase64!
         {
             try
             {
@@ -742,7 +773,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a törlése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -752,7 +783,7 @@ namespace AZ_Desktop
 
         //********** adoption ***************
 
-        internal List<Guest> allAdoptableAnimal()
+        internal List<Guest> allAdoptableAnimal() // G_imageBase64!
         {
             List<Guest> adoptables = new List<Guest>();
             sql.CommandText = "SELECT * FROM `guests` WHERE `g_adoption` = \"igen\"; ";   // ok
@@ -774,21 +805,18 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other"); 
                         
-                        string g_image = dr.GetString("g_image");  
-
-                        //byte[] g_image = (byte[])dr["g_image"];
+                        string g_image = dr.GetString("g_image");   // G_imageBase64!
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));    /*g_image*/
+                        adoptables.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));  
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
-                return adoptables; // Visszaadunk egy üres listát hiba esetén
+                MessageBox.Show("Hiba történt a listázás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error); // Visszaadunk egy üres listát hiba esetén
             }
             finally
             {
@@ -821,7 +849,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a listázás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -859,7 +887,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatbázis frissítése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -887,7 +915,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatbázisba való beszúrás közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -913,7 +941,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatbázis frissítése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -937,7 +965,7 @@ namespace AZ_Desktop
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt a törlése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
