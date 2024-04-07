@@ -37,7 +37,6 @@
             this.button_ChoiceChoice = new System.Windows.Forms.Button();
             this.checkBox_ChoiceCat = new System.Windows.Forms.CheckBox();
             this.checkBox_ChoiceDog = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,7 +56,7 @@
             // button_ChoiceInsert
             // 
             this.button_ChoiceInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_ChoiceInsert.Location = new System.Drawing.Point(332, 233);
+            this.button_ChoiceInsert.Location = new System.Drawing.Point(362, 275);
             this.button_ChoiceInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceInsert.Name = "button_ChoiceInsert";
             this.button_ChoiceInsert.Size = new System.Drawing.Size(94, 41);
@@ -69,7 +68,7 @@
             // button_ChoiceUpdate
             // 
             this.button_ChoiceUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button_ChoiceUpdate.Location = new System.Drawing.Point(332, 282);
+            this.button_ChoiceUpdate.Location = new System.Drawing.Point(362, 324);
             this.button_ChoiceUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceUpdate.Name = "button_ChoiceUpdate";
             this.button_ChoiceUpdate.Size = new System.Drawing.Size(94, 41);
@@ -81,7 +80,7 @@
             // button_ChoiceDelete
             // 
             this.button_ChoiceDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_ChoiceDelete.Location = new System.Drawing.Point(332, 331);
+            this.button_ChoiceDelete.Location = new System.Drawing.Point(362, 373);
             this.button_ChoiceDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceDelete.Name = "button_ChoiceDelete";
             this.button_ChoiceDelete.Size = new System.Drawing.Size(94, 41);
@@ -139,22 +138,11 @@
             this.checkBox_ChoiceDog.Text = "kutya";
             this.checkBox_ChoiceDog.UseVisualStyleBackColor = true;
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button4.Location = new System.Drawing.Point(332, 380);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 41);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Vissza";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::AZ_Desktop.Properties.Resources.Mancs11;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(332, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(291, 51);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(220, 126);
@@ -168,8 +156,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(604, 540);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(556, 540);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_ChoiceDelete);
@@ -196,7 +183,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox_ChoiceCat;
         private System.Windows.Forms.CheckBox checkBox_ChoiceDog;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_ChoiceChoice;
         public System.Windows.Forms.ListBox listBox_Choice;

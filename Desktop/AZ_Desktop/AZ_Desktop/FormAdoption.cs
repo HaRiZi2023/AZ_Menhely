@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AZ_Desktop
 {
+    
     public partial class FormAdoption : Form
     {
         private Database database;
         private List<Guest> allAnimals;
         private List<User> allUsers;
+        //private User selectedUser;  //????????????????
 
         public FormAdoption()
         {
@@ -93,6 +96,30 @@ namespace AZ_Desktop
                     textBox_AdoptionSpecies.Text = selectedAnimal.G_species;
                     textBox_AdoptionGender.Text = selectedAnimal.G_gender;
                     textBox_AdoptionChip.Text = selectedAnimal.G_chip;
+
+                    // Ellenőrizd, hogy a kép nem üres
+                    if (selectedAnimal.G_image != null && selectedAnimal.G_image.Length > 0)
+                    {
+  /*                      try
+                        {
+                            // Konvertáld a byte tömböt MemoryStreammé
+                            using (MemoryStream ms = new MemoryStream(selectedAnimal.G_image))
+                            {
+                                // Betöltjük a PictureBox-ba az Image-t a MemoryStreamből
+                                pictureBox_Adoption.Image = Image.FromStream(ms);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Ha a kép üres, töröld a PictureBox tartalmát
+                        pictureBox_Adoption.Image = null;
+  */
+                    }
                 }
             }
         }
@@ -142,6 +169,7 @@ namespace AZ_Desktop
             textBox_AdoptionSpecies.Text = "";
             textBox_AdoptionGender.Text = "";
             textBox_AdoptionChip.Text = "";
+            pictureBox_Adoption.Text = "";
             
             comboBox_AdoptionUName.Text = "";
             textBox_AdoptionAddress.Text = "";
@@ -199,6 +227,16 @@ namespace AZ_Desktop
                         //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva
                     }
 
+                    User selectedUser = allUsers.Find(user => user.Name == comboBox_AdoptionUName.Text);
+
+                    FormContract formContract = new FormContract(selectedAnimal, selectedUser);
+
+                    formContract.fillData(comboBox_AdoptionGName.Text, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
+                                  comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
+
+
+                    formContract.ShowDialog();
+
                     allAnimals = database.allAdoptableAnimal();
                    
                     emptyFieldsAdoption();
@@ -207,24 +245,30 @@ namespace AZ_Desktop
                     uploadingAnimalName();
                     uploadingUserName();
 
-                    FormContract formContract = new FormContract();
-                    formContract.ShowDialog();
-
-
                     /*
-                    // TextBox-ok értékeinek átadása a második formnak
-                    
-                    string data1 = comboBox_AdoptionGName.Text;
-                    string data2 = textBox_AdoptionSpecies.Text;
-                    string data3 = textBox_AdoptionGender.Text;
-                    string data4 = textBox_AdoptionChip.Text;
+                    FormContract formContract = new FormContract();
 
-                    string data5 = comboBox_AdoptionUName.Text;
-                    string data6 = textBox_AdoptionAddress.Text;
-                    string data7 = textBox_AdoptionEmail.Text;
-                    string data8 = textBox_AdoptionPhone.Text;
-                    string data9 = dateTimePicker_AdoptionDate.Text;
+                    formContract.fillData(comboBox_AdoptionGName.Text, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
+                                  comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
+
+
+                    formContract.ShowDialog();
                     */
+
+                   /* 
+                    // TextBox-ok értékeinek átadása a második formnak
+                    formContract.TransferData(
+                        comboBox_AdoptionGName.Text,
+                        textBox_AdoptionSpecies.Text,
+                        textBox_AdoptionGender.Text,
+                        textBox_AdoptionChip.Text,
+
+                        comboBox_AdoptionUName.Text,
+                        textBox_AdoptionAddress.Text,
+                        textBox_AdoptionEmail.Text,
+                        textBox_AdoptionPhone.Text,
+                        dateTimePicker_AdoptionDate.Value.ToString() 
+                    );*/
 
                     //FormContract formContract = new FormContract(comboBox_AdoptionGName.SelectedItem.ToString()()); 
                     
@@ -232,7 +276,7 @@ namespace AZ_Desktop
                     //ext, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
         //comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
 
-                    formContract.Show();
+                    //formContract.ShowDialog(); //Show
 
 
 

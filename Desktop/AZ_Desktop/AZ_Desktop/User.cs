@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AZ_Desktop
 {
-    internal class User
+    public class User
     {
         int id;
         string name;

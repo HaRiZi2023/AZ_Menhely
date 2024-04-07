@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,13 @@ namespace AZ_Desktop
     public partial class FormFound : Form
     {
         private Database database;
+        
         public FormFound()
         {
             InitializeComponent();
             database = new Database();
             listBox_Found.SelectedIndexChanged += listBox_Found_SelectedIndexChanged; // Ez a sor fontos
+
         }
 
         private void FormFound_Load(object sender, EventArgs e)
@@ -40,22 +43,77 @@ namespace AZ_Desktop
                 listBox_Found.Items.Add(found); //.ToString());
             }
         }
-             
-        private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e)
+        
+        
+        private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok
         {
-           // MessageBox.Show("ListBox elem kiválasztva!");
+            // MessageBox.Show("ListBox elem kiválasztva!");
             if (listBox_Found.SelectedIndex != -1)
-            {            
+            {
                 Found selectedfound = (Found)listBox_Found.SelectedItem;
                 textBox_FoundChoice.Text = selectedfound.F_choice.ToString();
                 textBox_FoundSpecies.Text = selectedfound.F_species.ToString();
                 textBox_FoundGender.Text = selectedfound.F_gender.ToString();
-                textBox_FoundWhere.Text = selectedfound.F_position.ToString();
                 textBox_FoundInjury.Text = selectedfound.F_injury.ToString();
-                //textBox_FoundUser.Text = user.Name.ToString();
+                textBox_FoundWhere.Text = selectedfound.F_position.ToString();
                 richTextBox_FoundOther.Text = selectedfound.F_other.ToString();
+                //textBox_FoundUser.Text = user.Name.ToString();
+
+                if (selectedfound.F_image != null && selectedfound.F_image.Length > 0) // Ellenőrizzük, hogy a kép nem null
+                {
+                    try
+                    {
+                        using (MemoryStream ms = new MemoryStream(selectedfound.F_image))
+                        {
+                            pictureBox_FoundImage.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Ha a kép betöltése nem sikerült, jelenítsünk meg egy hibaüzenetet
+                        MessageBox.Show($"Nem sikerült betölteni a képet: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+
+                /*
+                if (pictureBox_FoundImage.Image != null)
+                {
+                    // Kép konvertálása byte tömbbé a ImageToByteArray metódusával
+                    byte[] imageDataUpdate = database.ImageToByteArray(pictureBox_FoundImage.Image);
+                    selectedfound.F_image = imageDataUpdate;
+                }
+                else
+                {
+                    // Ha a pictureBox_FoundImage null értékű, akkor hibaüzenetet jelenítünk meg
+                    MessageBox.Show("Nincs kép kiválasztva!", "Hiányzó kép", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }*/
             }
         }
+
+        private void emptyFieldsFound()  // mezők kiürítése 
+        {
+            pictureBox_FoundImage.Image = null;
+            listBox_Found.Items.Clear();
+
+            textBox_FoundChoice.Text = "";
+            textBox_FoundSpecies.Text = "";
+            textBox_FoundGender.Text = "";
+
+            textBox_FoundWhere.Text = "";
+            textBox_FoundInjury.Text = "";
+            richTextBox_FoundOther.Text = "";
+
+        }
+       
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        } 
 
         private void button_FoundUpdate_Click(object sender, EventArgs e)  // ??? mezőtörlés végére  ????
         {
@@ -74,11 +132,21 @@ namespace AZ_Desktop
                         updatedFound.F_injury = textBox_FoundInjury.Text;
                         updatedFound.F_position = textBox_FoundWhere.Text;
                         updatedFound.F_other = richTextBox_FoundOther.Text;
-                        //updatedFound.F_image = ((Found)listBox_Found.SelectedItem).F_image // A képet nem frissítjük
+
+                        //updatedFound.F_image = pictureBox_FoundImage.Image;
+                                               
+                        updatedFound.Updated_at = DateTime.Now;  //nem működik
+
+
+                        //updatedFound.F_image = ((Found)listBox_Found.SelectedItem).F_image; // A képet nem frissítjük
+
+
+                         byte[] imageDataUpdate = ImageToByteArray(pictureBox_FoundImage.Image);
+                        updatedFound.F_image = imageDataUpdate;
 
                         // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
                         database.updateFound(updatedFound);
-
+                        emptyFieldsFound();
                         // Frissítse a ListBox-ot a frissített elemmel
                         allFoundList();
 
@@ -109,6 +177,7 @@ namespace AZ_Desktop
                 if (foundToDelete != null)
                 {
                     database.deleteFound(foundToDelete);
+                    emptyFieldsFound();
                     allFoundList(); // Frissítjük a ListBox-ot
 
                     MessageBox.Show("A kiválasztott elem sikeresen törölve lett.", "Sikeres törlés", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -132,8 +201,7 @@ namespace AZ_Desktop
                 string.IsNullOrEmpty(textBox_FoundSpecies.Text) ||
                 string.IsNullOrEmpty(textBox_FoundGender.Text) ||
                 string.IsNullOrEmpty(textBox_FoundInjury.Text) ||
-                string.IsNullOrEmpty(textBox_FoundWhere.Text) ||
-                string.IsNullOrEmpty(richTextBox_FoundOther.Text))
+                string.IsNullOrEmpty(textBox_FoundWhere.Text)) 
             {
                 MessageBox.Show("Kérjük, töltse ki az összes kötelező mezőt!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -154,7 +222,7 @@ namespace AZ_Desktop
                     F_injury = textBox_FoundInjury.Text,
                     F_position = textBox_FoundWhere.Text,
                     F_other = richTextBox_FoundOther.Text,
-                    F_image = "default_image.jpg" // Itt beállíthatja az alapértelmezett képet vagy hagyhatja üresen
+                    //F_image = "default_image.jpg" // Itt beállíthatja az alapértelmezett képet vagy hagyhatja üresen
                 };
 
                 // Hívja meg az insertFound metódust az adatbázisba való beszúráshoz

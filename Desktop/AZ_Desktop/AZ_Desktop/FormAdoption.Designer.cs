@@ -70,7 +70,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(36, 80);
+            this.label2.Location = new System.Drawing.Point(36, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 26);
             this.label2.TabIndex = 1;
@@ -219,9 +219,12 @@
             // 
             // pictureBox_Adoption
             // 
-            this.pictureBox_Adoption.Location = new System.Drawing.Point(41, 116);
+            this.pictureBox_Adoption.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox_Adoption.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox_Adoption.Location = new System.Drawing.Point(41, 91);
             this.pictureBox_Adoption.Name = "pictureBox_Adoption";
-            this.pictureBox_Adoption.Size = new System.Drawing.Size(100, 102);
+            this.pictureBox_Adoption.Size = new System.Drawing.Size(147, 131);
+            this.pictureBox_Adoption.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Adoption.TabIndex = 6;
             this.pictureBox_Adoption.TabStop = false;
             // 
@@ -246,7 +249,7 @@
             // button_AdoptionInsert
             // 
             this.button_AdoptionInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_AdoptionInsert.Location = new System.Drawing.Point(446, 192);
+            this.button_AdoptionInsert.Location = new System.Drawing.Point(274, 467);
             this.button_AdoptionInsert.Name = "button_AdoptionInsert";
             this.button_AdoptionInsert.Size = new System.Drawing.Size(122, 36);
             this.button_AdoptionInsert.TabIndex = 26;
@@ -257,7 +260,7 @@
             // button_AdoptionAgain
             // 
             this.button_AdoptionAgain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button_AdoptionAgain.Location = new System.Drawing.Point(446, 240);
+            this.button_AdoptionAgain.Location = new System.Drawing.Point(274, 515);
             this.button_AdoptionAgain.Name = "button_AdoptionAgain";
             this.button_AdoptionAgain.Size = new System.Drawing.Size(122, 36);
             this.button_AdoptionAgain.TabIndex = 29;
@@ -272,7 +275,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(619, 632);
+            this.ClientSize = new System.Drawing.Size(481, 632);
             this.Controls.Add(this.button_AdoptionAgain);
             this.Controls.Add(this.button_AdoptionInsert);
             this.Controls.Add(this.comboBox_AdoptionUName);

@@ -11,20 +11,16 @@ namespace AZ_Desktop
         int id;
         string g_name;
         string g_chip;
-        //int gyartasiev; //year - int
-        //DateTime forgalmiErvenyesseg;    //date Date Time
         string g_species;
-        string g_gender;  //enum 
-        DateTime g_in_date;    //date Date Time
+        string g_gender;  
+        DateTime g_in_date;    
         string g_in_place;
-        DateTime g_out_date;    //date Date Time
-        string g_adoption;  //enum  
+        DateTime g_out_date;    
+        string g_adoption; 
         string g_other;
         string g_image;
-        //Image[] hazKepek = new Image[4];
         DateTime created_at;
         DateTime updated_at;
-
 
         public Guest()
         {
@@ -69,7 +65,5 @@ namespace AZ_Desktop
             string name = string.IsNullOrEmpty(this.G_name) ? "Nincs? Probléma a névvel!" : this.G_name;
             return $"{this.G_species} - {this.G_name}";
         }
-
-
     }
 }

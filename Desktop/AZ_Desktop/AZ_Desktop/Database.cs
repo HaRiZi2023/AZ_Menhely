@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,7 +76,7 @@ namespace AZ_Desktop
 
         //**************  workers  **********************
 
-        internal List<Worker> getAllWorker() // ezt a Program.cs ben adom meg
+        internal List<Worker> allWorker() // ezt a Program.cs ben adom meg
         {
             List<Worker> workers = new List<Worker>();
             sql.CommandText = "SELECT * FROM `workers` ORDER BY `w_name`";  // ok
@@ -243,7 +244,11 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
+
                         string g_image = dr.GetString("g_image");
+
+                        //byte[] g_image = (byte[])dr["g_image"];
+
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -284,8 +289,12 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption"); //enum
-                        string g_other = dr.GetString("g_other");  
+                        string g_other = dr.GetString("g_other");
+
                         string g_image = dr.GetString("g_image");
+
+                        //byte[] g_image = (byte[])dr["g_image"];
+
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -330,7 +339,11 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
+
                         string g_image = dr.GetString("g_image");
+
+                        //byte[] g_image = (byte[])dr["g_image"];
+
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -351,6 +364,43 @@ namespace AZ_Desktop
         }
 
         //***************** guests ****************
+
+        public byte[] ImageToByteArray(Image imageIn) // kell-e
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+
+        internal bool CheckGuestExists(string guestName) //up és delhez is
+        {
+            try
+            {
+                connOpening();
+
+                sql.CommandText = "SELECT COUNT(*) FROM `guests` WHERE `g_name` = @g_name";
+
+                sql.Parameters.Clear();
+
+                sql.Parameters.AddWithValue("@g_name", guestName);
+
+                int count = Convert.ToInt32(sql.ExecuteScalar()); // mit 
+
+                return count > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                connClosing();
+            }
+        }
+
         internal List<Guest> allGuest() // ezt a Program.cs ben adom meg
         {
             List<Guest> guests = new List<Guest>();
@@ -372,7 +422,11 @@ namespace AZ_Desktop
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");  //enum
+
                         string g_image = dr.GetString("g_image");
+
+                        //byte[] g_image = (byte[])dr["g_image"];
+
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -410,15 +464,30 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
+
+
                 sql.Parameters.AddWithValue("@g_image", guest.G_image);
+
+
+                //byte[] imageBytes = Convert.FromBase64String(guest.G_image);
+                //sql.Parameters.AddWithValue("@g_image", imageBytes);
+               
+
                 sql.Parameters.AddWithValue("@created_at", guest.Created_at);
                 sql.Parameters.AddWithValue("@updated_at", guest.Updated_at);
+                /*
+                // Kép byte tömbbé alakítása
+                byte[] imageBytes = ImageToByteArray(guest.G_image);
+                sql.Parameters.AddWithValue("@g_image", imageBytes);*/
+
+               
+
 
                 sql.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hiba történt az adatok mentése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -445,7 +514,12 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
+
                 sql.Parameters.AddWithValue("@g_image", guest.G_image);
+
+                sql.Parameters.AddWithValue("@created_at", guest.Created_at);
+                sql.Parameters.AddWithValue("@updated_at", guest.Updated_at);
+
 
                 sql.ExecuteNonQuery();
             }
@@ -570,9 +644,13 @@ namespace AZ_Desktop
                         string f_injury = dr.GetString("f_injury");
                         string f_position = dr.GetString("f_position");
                         string f_other = dr.GetString("f_other"); 
-                        string f_image = dr.GetString("f_image");
+                        
+                        byte[] f_image = (byte[])dr["f_image"];
 
-                        founds.Add(new Found(id, f_choice, f_species, f_gender, f_injury, f_position, f_other, f_image));
+                        DateTime created_at = dr.GetDateTime("created_at");
+                        DateTime updated_at = dr.GetDateTime("updated_at");
+
+                        founds.Add(new Found(id, f_choice, f_species, f_gender, f_injury, f_position, f_other, f_image, created_at, updated_at));
                     }
                 }
             }
@@ -587,7 +665,7 @@ namespace AZ_Desktop
             return founds;
         }
 
-        internal void insertFound(Found found)
+        internal void insertFound(Found found)  // EZ NEM KELL!!!!!!!!!!
         {
             try
             {
@@ -694,8 +772,12 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other");  //enum
-                        string g_image = dr.GetString("g_image");
+                        string g_other = dr.GetString("g_other"); 
+                        
+                        string g_image = dr.GetString("g_image");  
+
+                        //byte[] g_image = (byte[])dr["g_image"];
+
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -813,7 +895,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateAdoption(Adoption adoption)
+        internal void updateAdoption(Adoption adoption) //NEM KELL !!!!!!!
         {
             try
             {               
@@ -837,9 +919,9 @@ namespace AZ_Desktop
             {
                 connClosing();
             }
-        }
+        }  
 
-        internal void deleteAdoption(Adoption adoption)
+        internal void deleteAdoption(Adoption adoption) //NEM KELL !!!!!!!
         {
             try
             {

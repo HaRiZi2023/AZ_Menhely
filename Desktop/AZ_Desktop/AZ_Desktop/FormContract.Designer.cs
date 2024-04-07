@@ -97,7 +97,6 @@
             this.panel_Contract.Name = "panel_Contract";
             this.panel_Contract.Size = new System.Drawing.Size(816, 987);
             this.panel_Contract.TabIndex = 0;
-            this.panel_Contract.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Contract_Paint);
             // 
             // textBox_ContractEmail
             // 
@@ -314,7 +313,7 @@
             // 
             // pictureBox_Contract
             // 
-            this.pictureBox_Contract.BackgroundImage = global::AZ_Desktop.Properties.Resources.kutya_macska1;
+            this.pictureBox_Contract.BackgroundImage = global::AZ_Desktop.Properties.Resources.logo;
             this.pictureBox_Contract.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox_Contract.Location = new System.Drawing.Point(672, 148);
             this.pictureBox_Contract.Name = "pictureBox_Contract";
@@ -349,7 +348,7 @@
             this.button_ContractPDF.Name = "button_ContractPDF";
             this.button_ContractPDF.Size = new System.Drawing.Size(205, 45);
             this.button_ContractPDF.TabIndex = 31;
-            this.button_ContractPDF.Text = "PDF";
+            this.button_ContractPDF.Text = "JPG";
             this.button_ContractPDF.UseVisualStyleBackColor = false;
             this.button_ContractPDF.Click += new System.EventHandler(this.button_ContractPDF_Click);
             // 
@@ -357,7 +356,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 1056);
+            this.ClientSize = new System.Drawing.Size(846, 1051);
             this.Controls.Add(this.button_ContractPDF);
             this.Controls.Add(this.panel_Contract);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

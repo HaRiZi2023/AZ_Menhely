@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace AZ_Desktop
@@ -16,17 +17,16 @@ namespace AZ_Desktop
     {
         //private Database database;
         private CheckBox[] checkBoxes_Choice;
+       
 
         public FormChoice() //string options
         {
             InitializeComponent();
-            InitializecheckBoxes_Choice();
-           
+            InitializecheckBoxes_Choice();  
         }
 
         private void FormChoice_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void InitializecheckBoxes_Choice()
@@ -69,7 +69,7 @@ namespace AZ_Desktop
         private void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
             listBox_Choice.Items.Clear();
-            // Ellenőrizzük, hogy van-e kiválasztott CheckBox
+                            // Ellenőrizzük, hogy van-e kiválasztott CheckBox
             bool anyChecked = false;
             CheckBox selectedCheckBox = null;
 
@@ -131,15 +131,33 @@ namespace AZ_Desktop
             */
         }
 
-       
+        /********************/
+        private void emptyFieldsChoice()
+        {
+            // Kiürítjük a mezőket
+          
+            checkBox_ChoiceCat.Checked = false;
+            checkBox_ChoiceDog.Checked = false;
+
+            listBox_Choice.Items.Clear();
+            //CheckBox selectedCheckBox = null;
+        }
+        
+
+        /******************/
+
 
         private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb
         {
-                    //Új vendég hozzáadása
-                FormGuest formGuest = new FormGuest();
-                formGuest.Show();
-           
             
+            //Új vendég hozzáadása
+            FormGuest formGuest = new FormGuest();
+            formGuest.Show();
+            
+
+            emptyFieldsChoice();
+
+
         }
 
         private void button_ChoiceUpdate_Click(object sender, EventArgs e)
@@ -155,8 +173,8 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
+            emptyFieldsChoice();
+            //selectedGuest = GetSelectedGuest();
 
             /*
                 if (listBox_Choice.SelectedIndex != -1)
@@ -215,6 +233,7 @@ namespace AZ_Desktop
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
             {
+
                 FormGuest formGuest = new FormGuest(selectedGuest);
                 formGuest.Show();
             }
@@ -222,7 +241,7 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
+            emptyFieldsChoice();
 
 
 

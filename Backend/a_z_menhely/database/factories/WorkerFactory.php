@@ -20,7 +20,7 @@ class WorkerFactory extends Factory
 
             "w_name" => fake()->firstName(),
             "w_password" => fake()->lexify(),
-            "w_permission" => fake()->randomKey(['teljes'=> 1, 'szerkesztő'=> 2, 'felhasználó'=> 3]),
+            "w_permission" => fake()->randomKey(['teljes'=> 1, 'felhasználó'=> 2]),
 
         ];
     }

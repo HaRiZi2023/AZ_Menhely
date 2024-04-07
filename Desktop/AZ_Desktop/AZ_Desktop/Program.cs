@@ -8,11 +8,12 @@ namespace AZ_Desktop
 {
     internal static class Program
     {
-      
+        
+
         public static Database database = null;
 
         //public static FormLogin formLogin = null;
-        //public static List<Worker> workers = new List<Worker>();
+        //public static List<Worker> workers = new List<Worker>();  
 
         //public static FormMain formMain = null;
         //public static List<CheckBox> checkBoxes_Main = new List<CheckBox>();
@@ -35,18 +36,18 @@ namespace AZ_Desktop
         //public static List<User> users = new List<User>();
 
         //public static FormChip formChip = null;
-        
-        
+
+
         //   // public static FormChip user = null;  
 
 
-      
+
 
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        //[STAThread]
+        [STAThread] // Ezzel állítjuk be az STA módot
         static void Main()
         {
             Application.EnableVisualStyles();

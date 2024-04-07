@@ -67,13 +67,12 @@
             this.groupBox_Main.TabIndex = 2;
             this.groupBox_Main.TabStop = false;
             this.groupBox_Main.Text = "Kérem válasszon!";
-            this.groupBox_Main.Enter += new System.EventHandler(this.groupBox_Main_Enter);
             // 
             // checkBox_MainChip
             // 
             this.checkBox_MainChip.AutoSize = true;
             this.checkBox_MainChip.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.checkBox_MainChip.Location = new System.Drawing.Point(98, 168);
+            this.checkBox_MainChip.Location = new System.Drawing.Point(96, 176);
             this.checkBox_MainChip.Name = "checkBox_MainChip";
             this.checkBox_MainChip.Size = new System.Drawing.Size(188, 30);
             this.checkBox_MainChip.TabIndex = 3;
@@ -115,10 +114,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::AZ_Desktop.Properties.Resources.Main1;
-            this.pictureBox1.Location = new System.Drawing.Point(114, 350);
+            this.pictureBox1.BackgroundImage = global::AZ_Desktop.Properties.Resources.Main1;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(88, 351);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(330, 140);
+            this.pictureBox1.Size = new System.Drawing.Size(393, 171);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
@@ -129,12 +129,13 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Pasztel_szürke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(604, 590);
+            this.ClientSize = new System.Drawing.Size(590, 580);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox_Main);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "A-Z Menhely";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.groupBox_Main.ResumeLayout(false);
             this.groupBox_Main.PerformLayout();
