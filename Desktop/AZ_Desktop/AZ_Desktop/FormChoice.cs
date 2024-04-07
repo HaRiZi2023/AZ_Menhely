@@ -149,7 +149,8 @@ namespace AZ_Desktop
 
         private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb
         {
-                    //Új vendég hozzáadása
+            
+            //Új vendég hozzáadása
             FormGuest formGuest = new FormGuest();
             formGuest.Show();
             

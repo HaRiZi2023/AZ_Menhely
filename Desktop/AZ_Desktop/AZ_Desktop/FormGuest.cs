@@ -30,6 +30,14 @@ namespace AZ_Desktop
             InitializeComponent();
             database = new Database();
 
+            /* gomb megjelenítés választás alapjánhoz
+            button_GuestInsert.Visible = true;
+            button_GuestUpdate.Visible = false;
+            button_GuestDelete.Visible = false;
+            */
+
+
+
             //this.selectedGuest = selectedGuest;
 
             //uploadData();
@@ -45,31 +53,42 @@ namespace AZ_Desktop
         {
             InitializeComponent();
             this.selectedGuest = selectedGuest;
-            
+
+            /* gomb megjelenítés választás alapjánhoz
+           if (selectedGuest != null)
+            {
+                button_GuestInsert.Visible = false;
+                button_GuestUpdate.Visible = true;
+                button_GuestDelete.Visible = true;
+                uploadData();
+            }
+            else
+            {
+                button_GuestInsert.Visible = true;
+                button_GuestUpdate.Visible = false;
+                button_GuestDelete.Visible = false;
+            }
+            */
+
+
             uploadData();
         }
 
         private void FormGuest_Load(object sender, EventArgs e)
         {
-            button_GuestInsert.Visible = false;
-            button_GuestUpdate.Visible = false;
-            button_GuestDelete.Visible = false;
-
-
-
             
+
+
+            /*
                     this.Text = "Felvitel";
                     button_GuestInsert.Text = "Felvitel";
                     button_GuestInsert.Visible = true;
                     //button_GuestInsert.Click += new EventHandler(insertGuest);
-            /*
-            button_GuestInsert.Visible = true;
-            button_GuestUpdate.Visible = true;
-            button_GuestDelete.Visible = true;
             */
+           
         }
 
-        public void uploadData()  // adat feltöltése () üres upload
+        public void uploadData()  // adat feltöltése () üres upload ---  // A felület feltöltése a kiválasztott vendég adataival
         {
 
             if (selectedGuest != null)
@@ -167,31 +186,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void loadImage(byte[] imageData)  // vagy selectedGuest.G_image byte helyett
-        {
-            if (imageData != null && imageData.Length > 0)
-            {
-                try
-                {
-                    using (MemoryStream ms = new MemoryStream(imageData))
-                    {
-                        pictureBox_GuestImage.Image = Image.FromStream(ms);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                // Ha az imageData null vagy üres, betöltsünk egy alapértelmezett képet
-                pictureBox_GuestImage.Image = Properties.Resources.logo; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
-            }
-        }
-        /*****************/
-
-        
+        /******** valitálás mező üressé tétele *********/
 
         private bool validateInputGuest() //inserthez + üres konstruktor guestben!
         {
@@ -226,8 +221,32 @@ namespace AZ_Desktop
             richTextBox_GuestOther.Text = "";
         }
 
-        /***********  képek ***********/
-       
+        /***********  képek -> ***********/
+
+
+        private void loadImage(byte[] imageData)  // vagy selectedGuest.G_image byte helyett
+        {
+            if (imageData != null && imageData.Length > 0)
+            {
+                try
+                {
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        pictureBox_GuestImage.Image = Image.FromStream(ms);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A kép megjelenítése sikertelen: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Ha az imageData null vagy üres, betöltjünk egy alapértelmezett képet
+                pictureBox_GuestImage.Image = Properties.Resources.logo; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
+            }
+        }
+
         private byte[] ImageToByteArray(Image imageIn)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -236,7 +255,31 @@ namespace AZ_Desktop
                 return ms.ToArray();
             }
         }
-        
+
+        private string ImageToBase64(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
+
+        private void pictureBox_GuestImage_Click(object sender, EventArgs e)  // kép kiválasztása pictureboxon keresztül
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox_GuestImage.Image = new Bitmap(dialog.FileName);
+                selectedImagePath = dialog.FileName;
+
+            }
+        }
+
+
         /*
         public byte[] ImageToByteArray(Image imageIn) // Kép byte tömbbé alakítása
         {
@@ -267,37 +310,15 @@ namespace AZ_Desktop
             //return byteArrayFromDatabase;
         }
         */
-        /***********  képek ***********/
+        /***********  képek <- ***********/
 
-        private void pictureBox_GuestImage_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox_GuestImage.Image = new Bitmap(dialog.FileName);
-                selectedImagePath = dialog.FileName;
-                
-            }
-        }
 
-        private string ImageToBase64(Image image)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                image.Save(ms, image.RawFormat);
-                byte[] imageBytes = ms.ToArray();
-                return Convert.ToBase64String(imageBytes);
-            }
-        }
+        /********** gombok *************/
 
         private void button_GuestInsert_Click(object sender, EventArgs e)
         {
-            //button_GuestInsert.Visible = true;
-            //button_GuestUpdate.Visible = false;
-            //button_GuestDelete.Visible = false;
-
+           
             // Gomb kattintás eseménykezelője a kép adatbázisba mentéséhez base64-ként
 
             if (pictureBox_GuestImage.Image == null)
@@ -351,10 +372,7 @@ namespace AZ_Desktop
         private void button_GuestUpdate_Click(object sender, EventArgs e)
         {
             
-            //button_GuestInsert.Visible = false;
-            //button_GuestUpdate.Visible = true;
-            //button_GuestDelete.Visible = false;
-            
+                        
             if (selectedGuest != null)
             //if (Program.formChoice.listBox_Choice.SelectedItem != null)
             {
@@ -403,13 +421,9 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_GuestDelete_Click(object sender, EventArgs e)
+        private void button_GuestDelete_Click(object sender, EventArgs e) // törlés 
         {
-            //button_GuestInsert.Visible = false;
-            //button_GuestUpdate.Visible = false;
-            //button_GuestDelete.Visible = true;
-
-
+            
             if (selectedGuest != null)
             //if (Program.formChoice.listBox_Choice.SelectedItem != null)
             {

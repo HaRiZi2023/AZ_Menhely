@@ -27,6 +27,25 @@ namespace AZ_Desktop
         {
         }  //ok
 
+
+        private void button_ChipNew_Click(object sender, EventArgs e)
+        {
+            // Visszaállítjuk a beviteli mezők tartalmát
+            textBox_ChipNumber.Text = "";
+
+            textBox_ChipName.Visible = false;
+            textBox_ChipSpecies.Visible = false;
+            richTextBox_ChipOther.Visible = false;
+            button_ChipUpdate.Visible = false;
+            label_ChipName.Visible = false;
+            label_ChipSpecies.Visible = false;
+            label_ChipOther.Visible = false;
+
+            //richTextBox_Output.Text = "";
+
+            // Egyéb alaphelyzetbe állítási műveletek...
+        }  //ok
+
         private void button_ChipControl_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text))
@@ -55,11 +74,16 @@ namespace AZ_Desktop
                 textBox_ChipSpecies.Text = dataTable.Rows[0]["g_species"].ToString();
                 richTextBox_ChipOther.Text = dataTable.Rows[0]["g_other"].ToString();
                        
-                // A TextBox-ok láthatóvá tétele
+                // A vezérlők láthatóvá tétele
                 textBox_ChipName.Visible = true;
                 textBox_ChipSpecies.Visible = true;
                 richTextBox_ChipOther.Visible = true;
                 button_ChipUpdate.Visible = true;
+                label_ChipName.Visible = true;
+                label_ChipSpecies.Visible = true;
+                label_ChipOther.Visible = true;
+
+
             }
             else
             {
@@ -68,6 +92,9 @@ namespace AZ_Desktop
                 textBox_ChipSpecies.Visible = false;
                 richTextBox_ChipOther.Visible = false;
                 button_ChipUpdate.Visible = false;
+                label_ChipName.Visible = false;
+                label_ChipSpecies.Visible = false;
+                label_ChipOther.Visible = false;
 
                 MessageBox.Show("Nincs találat az adatbázisban.");
             }
@@ -95,19 +122,5 @@ namespace AZ_Desktop
             
         }  //ok
 
-        private void button_ChipNew_Click(object sender, EventArgs e)
-        {
-            // Visszaállítjuk a beviteli mezők tartalmát
-            textBox_ChipNumber.Text = "";
-
-            textBox_ChipName.Visible = false;
-            textBox_ChipSpecies.Visible = false;
-            richTextBox_ChipOther.Visible = false;
-            button_ChipUpdate.Visible = false;
-
-            //richTextBox_Output.Text = "";
-
-            // Egyéb alaphelyzetbe állítási műveletek...
-        }  //ok
     }
 }

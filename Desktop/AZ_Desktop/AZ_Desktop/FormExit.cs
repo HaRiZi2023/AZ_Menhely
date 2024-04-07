@@ -37,7 +37,7 @@ namespace AZ_Desktop
 
             // Létrehozzuk és beállítjuk az időzítőt
             timer = new Timer();
-            timer.Interval = 5000; // 5 másodperc
+            timer.Interval = 3000; // 3 másodperc
             timer.Tick += Timer;
             timer.Start();
         }
