@@ -1,6 +1,4 @@
 package com.example.animalrescue;
-
-
 public class Animals {
     private int id;
     private String f_choice;

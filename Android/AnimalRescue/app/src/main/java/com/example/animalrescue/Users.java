@@ -1,5 +1,4 @@
 package com.example.animalrescue;
-
 public class Users {
 
     private int id;

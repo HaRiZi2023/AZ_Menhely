@@ -30,6 +30,7 @@ import android.widget.Toast;
 import android.location.Location;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
@@ -58,14 +59,11 @@ public class LostOrFindActivity extends AppCompatActivity {
     public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     private String requestUrl = "http://10.0.2.2:8000/api/founds";
-    private TextInputLayout textInputEditTextAPosition, textInputEditTextANote, textInputEditTextLocation;
-    private TextView textViewBase64, textViewLongitude, textViewLatitude, textViewAddress, textViewUpdate, textViewAddressCheck;
+    private TextInputLayout textInputLayoutAPosition;
+    private TextInputEditText textInputEditTextAPosition, textInputEditTextANote, textInputEditTextLocation;
+    private TextView textViewBase64, textViewLongitude, textViewLatitude, textViewAddress, textViewUpdate;
     private MaterialButton buttonAPosition, buttonFoto, buttonSave, buttonBack;
     private ImageView imageViewResult;
-
-    //Variable to remember if tracking is on.
-    boolean updateOn = true;
-
     LocationRequest locationRequest;
     LocationCallback locationCallback;
 
@@ -134,14 +132,14 @@ public class LostOrFindActivity extends AppCompatActivity {
             }
         });
 
-        //set all properties of locationRequest
+        // minden szükséges beállítás a locationRequesthez
 
         locationRequest = new LocationRequest();
 
-        //HOW often the default location check should occur
+        //a lokációlekérdezés gyakorisága
         locationRequest.setInterval(1000 * DEFAULT_UPDATE_INTERVAL);
 
-        //how often does the location check offur when set to the most frequent update
+        //a lokációgyakoriság felűlírása gyakori lekérdezés esetén
 
         locationRequest.setFastestInterval(1000 * FAST_UPDATE_INTERVAL);
 
@@ -153,7 +151,7 @@ public class LostOrFindActivity extends AppCompatActivity {
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
 
-                //save the location
+                //lokáció elmentése
                 updateUIValues(locationResult.getLastLocation());
 
             }
@@ -162,32 +160,26 @@ public class LostOrFindActivity extends AppCompatActivity {
         buttonAPosition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (buttonAPosition.isPressed()) {
-                    // most accurate - use GPS
-                    locationRequest.setPriority(locationRequest.PRIORITY_HIGH_ACCURACY);
-                } else {
-                    locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-                }
-                if (buttonAPosition.isPressed()) {
-                    StartLocationUpdates();
-                } else {
-                    stopLocationUpdates();
-                }
+
                 if(buttonAPosition.isPressed()){
+                    updateGPS();
+                    locationRequest.setPriority(locationRequest.PRIORITY_HIGH_ACCURACY);
+                    StartLocationUpdates();
                     if (textViewAddress.getText().toString() == "Nem létezik címadat"){
                         check = latitude + ", " + longitude;
                     }else{
                         check = textViewAddress.getText().toString();
                     }
+                }else {
+                    locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                    stopLocationUpdates();
                 }
-                textInputEditTextAPosition.getEditText().setText(check);
-                textInputEditTextLocation.getEditText().setText(latitude + ", " + longitude);
+                textInputEditTextAPosition.setText(check);
+                textInputEditTextLocation.setText(latitude + ", " + longitude);
             }
         });
 
         updateGPS();
-
-
 
         buttonFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,14 +194,17 @@ public class LostOrFindActivity extends AppCompatActivity {
                 String f_species = spinnerASpecies.getSelectedItem().toString();
                 String f_gender = spinnerAGender.getSelectedItem().toString();
                 String f_injury = spinnerAInjury.getSelectedItem().toString();
-                String f_position = textInputEditTextAPosition.getEditText().getText().toString();
-                String f_other = textInputEditTextANote.getEditText().getText().toString();
+                String f_position = textInputEditTextAPosition.getText().toString();
+                String f_other = textInputEditTextANote.getText().toString();
                 String f_image = textViewBase64.getText().toString();
 
-                if (f_choice.isEmpty() || f_species.isEmpty() || f_gender.isEmpty() || f_injury.isEmpty() || f_position.isEmpty()) {
+                if (f_position.isEmpty()) {
+                    textInputLayoutAPosition.setError("A mező kitöltése kötelező");
                     Toast.makeText(LostOrFindActivity.this,
-                            "A minden mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
+                            "Használd az Állat pozíciója gombot!", Toast.LENGTH_SHORT).show();
                     return;
+                }else{
+                    textInputLayoutAPosition.setError(null);
                 }
 
                 //új állat létrehozása
@@ -305,7 +300,6 @@ public class LostOrFindActivity extends AppCompatActivity {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
 
-
     //Fényképezés
     private void fenykepezes() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -356,6 +350,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         spinnerASpecies = findViewById(R.id.spinnerASpecies);
         spinnerAGender = findViewById(R.id.spinnerAGender);
         spinnerAInjury = findViewById(R.id.spinnerAInjury);
+        textInputLayoutAPosition = findViewById(R.id.textInputLayoutAPosition);
         textInputEditTextAPosition = findViewById(R.id.textInputEditTextAPosition);
         textInputEditTextANote = findViewById(R.id.textInputEditTextANote);
         buttonAPosition = findViewById(R.id.buttonAPosition);
@@ -371,7 +366,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBack);
     }
 
-    //Mentés, Küldés
+    //Adatbázisba történő mentés, küldés
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;

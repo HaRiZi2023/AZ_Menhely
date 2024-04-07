@@ -8,14 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import com.google.android.material.button.MaterialButton;
 
 
 public class ChoicesActivity extends AppCompatActivity {
 
-    private MaterialButton buttonFindSearch, buttonWeb;
+    private MaterialButton buttonFindSearch, buttonWeb, buttonLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +46,19 @@ public class ChoicesActivity extends AppCompatActivity {
                 finish();
             }
         });
+        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChoicesActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
     public void init() {
         buttonFindSearch = findViewById(R.id.buttonFindSearch);
         buttonWeb = findViewById(R.id.buttonWeb);
+        buttonLogOut = findViewById(R.id.buttonLogOut);
     }
 }

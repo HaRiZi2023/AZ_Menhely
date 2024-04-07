@@ -100,12 +100,13 @@
                         android:layout_margin="5dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputEditTextAPosition"
+                    android:id="@+id/textInputLayoutAPosition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextAPosition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -119,15 +120,16 @@
                     android:id="@+id/textViewAddress"
                     android:text="Cím:"
                     android:textSize="15sp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputEditTextLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -142,7 +144,8 @@
                     android:id="@+id/textViewLongitude"
                     android:text="Hosszúság:"
                     android:textSize="15sp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -150,7 +153,8 @@
                     android:id="@+id/textViewLatitude"
                     android:text="Szélesség:"
                     android:textSize="15sp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,7 +162,8 @@
                     android:id="@+id/textViewUpdate"
                     android:text="Keresés állapota:"
                     android:textSize="15sp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -166,7 +171,8 @@
                     android:id="@+id/textViewAddressCheck"
                     android:text="Cím állapota:"
                     android:textSize="15sp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id= "@+id/buttonAPosition"
@@ -175,18 +181,18 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@color/lightgrey"
-                    android:text="Állat pozicíója"
+                    android:text="Állat pozíciója"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:cornerRadius="35dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputEditTextANote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextANote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
