@@ -19,3 +19,4 @@ Version | Name    | Date     | Changes
      1.0| Cser    |2024-04-07| TextInputEditText-ek és TextInputLayout-ok rendberakása. 
         | Cser    |2024-04-07| Jelszó validáció/ Mező kitöltöttség ellenőrzések/
         | Cser    |2024-04-07| Design csiszolása
+        
