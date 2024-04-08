@@ -1,5 +1,5 @@
 package com.example.animalrescue;
-public class Animals {
+public class Animal {
     private int id;
     private String f_choice;
     private String f_species;
@@ -9,7 +9,7 @@ public class Animals {
     private String f_other;
     private String f_image;
 
-    public Animals(int id, String f_choice, String f_species, String f_gender, String f_injury, String f_position, String f_other, String f_image) {
+    public Animal(int id, String f_choice, String f_species, String f_gender, String f_injury, String f_position, String f_other, String f_image) {
         this.id = id;
         this.f_choice = f_choice;
         this.f_species = f_species;

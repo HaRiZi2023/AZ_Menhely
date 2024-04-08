@@ -48,12 +48,13 @@
                     android:textColor="@color/black"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputEditTextEmail"
+                    android:id="@+id/textInputLayoutEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email cím"
@@ -62,13 +63,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputEditTextPwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextPwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Jelszó"

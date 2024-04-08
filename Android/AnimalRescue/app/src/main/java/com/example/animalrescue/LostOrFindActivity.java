@@ -79,7 +79,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_animal);
+        setContentView(R.layout.activity_lostorfind);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         init();
 
@@ -208,10 +208,10 @@ public class LostOrFindActivity extends AppCompatActivity {
                 }
 
                 //új állat létrehozása
-                Animals animals = new Animals(0,f_choice,f_species,f_gender,f_injury,f_position,f_other,f_image);
+                Animal animal = new Animal(0,f_choice,f_species,f_gender,f_injury,f_position,f_other,f_image);
                 Gson jsonConverter = new Gson();
                 //Post kérés elküldése
-                RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(animals));
+                RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(animal));
                 //Kérés végrehajtása
                 task.execute();
             }

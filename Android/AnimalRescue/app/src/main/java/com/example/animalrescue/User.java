@@ -1,5 +1,5 @@
 package com.example.animalrescue;
-public class Users {
+public class User {
 
     private int id;
     private String email;
@@ -8,7 +8,7 @@ public class Users {
     private String address;
     private String phone;
 
-    public Users(int id, String email, String password, String name, String address, String phone) {
+    public User(int id, String email, String password, String name, String address, String phone) {
         this.id = id;
         this.email = email;
         this.password = password;

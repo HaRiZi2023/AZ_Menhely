@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
@@ -19,7 +21,8 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private MaterialButton buttonLogin, buttonRegister;
-    private TextInputLayout textInputEditTextPwd, textInputEditTextEmail;
+    private TextInputLayout textInputLayoutEmail;
+    private TextInputEditText textInputEditTextPwd, textInputEditTextEmail;
     private String requestUrl = "http://10.0.2.2:8000/api/users";
     private ProgressBar progressBar;
 
@@ -35,15 +38,24 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String email = textInputEditTextEmail.getEditText().getText().toString();
-                String password = textInputEditTextPwd.getEditText().getText().toString();
+                //Bejelentkezési adatok
+                String email = textInputEditTextEmail.getText().toString();
+                String password = textInputEditTextPwd.getText().toString();
+
+                //Bejelentkezési adatok ellenőrzése
+                String emailInput = textInputEditTextEmail.getText().toString().trim();
+
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this,
                             "Minden mező kitöltése kötelező", Toast.LENGTH_SHORT).show();
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
+                    textInputLayoutEmail.setError("Az emailcím formátuma nem megfelelő!");
+                    //Toast.makeText(MainActivity.this,"Az emailcím formátuma nem megfelelő!", Toast.LENGTH_SHORT).show();
                 } else {
                     RequestTask task = new RequestTask(requestUrl, "GET", email);
                     task.execute();
                 }
+
             }
         });
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
+        textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
         textInputEditTextEmail = findViewById(R.id.textInputEditTextEmail);
         textInputEditTextPwd = findViewById(R.id.textInputEditTextPwd);
         progressBar = findViewById(R.id.progressBar1);
@@ -110,9 +123,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("onPostExecuteError:", response.getContent());
             }
             if (requestType.equals("GET")) {
-                Users[] felhasznalokArray = converter.fromJson(
-                        response.getContent(), Users[].class);
-                if (felhasznalokArray.length > 0) {
+                User[] users = converter.fromJson(
+                        response.getContent(), User[].class);
+                if (users.length > 0) {
                     Toast.makeText(MainActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, ChoicesActivity.class);
                     startActivity(intent);

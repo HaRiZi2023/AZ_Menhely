@@ -139,10 +139,10 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 //új felhasználó létrehozása
-                Users users = new Users(0,email,password,name,address,phone);
+                User user = new User(0,email,password,name,address,phone);
                 Gson jsonConverter = new Gson();
                 //Post kérés elküldése
-                RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(users));
+                RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(user));
                 //Kérés végrehajtása
                 task.execute();
             }
