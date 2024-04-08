@@ -88,7 +88,7 @@ namespace AZ_Desktop
            
         }
 
-        public void uploadData()  // G_imageBase64! // adat feltöltése () üres upload ---  // A felület feltöltése a kiválasztott vendég adataival   
+        public void uploadData()   // adat feltöltése () üres upload ---  // A felület feltöltése a kiválasztott vendég adataival   
         {
             if (selectedGuest != null)
             {
@@ -102,6 +102,58 @@ namespace AZ_Desktop
                 dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
                 richTextBox_GuestOther.Text = selectedGuest.G_other;
 
+                if (selectedGuest.G_image != null && selectedGuest.G_image.Length > 0)
+                {
+                    try
+                    {
+                        // MemoryStream létrehozása a byte tömbből
+                        using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
+                        {
+                            // Kép betöltése a MemoryStream-ből
+                            pictureBox_GuestImage.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Ha a kép betöltése nem sikerült, jelenítsünk meg egy hibaüzenetet
+                        MessageBox.Show($"Nem sikerült betölteni a képet: listbox select{ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // Ha a kép üres vagy null értékű, akkor töröljük a pictureBox tartalmát
+                    pictureBox_GuestImage.Image = null;
+                    // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
+                }
+
+
+                /*
+                if (selectedfound.F_image != null && selectedfound.F_image.Length > 0)
+                {
+                    try
+                    {
+                        // MemoryStream létrehozása a byte tömbből
+                        using (MemoryStream ms = new MemoryStream(selectedfound.F_image))
+                        {
+                            // Kép betöltése a MemoryStream-ből
+                            pictureBox_FoundImage.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Ha a kép betöltése nem sikerült, jelenítsünk meg egy hibaüzenetet
+                        MessageBox.Show($"Nem sikerült betölteni a képet: listbox select{ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // Ha a kép üres vagy null értékű, akkor töröljük a pictureBox tartalmát
+                    pictureBox_FoundImage.Image = null;
+                    // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
+                }*/
+
+
+                /*
                 if (!string.IsNullOrEmpty(selectedGuest.G_image))  // G_imageBase64!
                 {
                     try
@@ -116,7 +168,7 @@ namespace AZ_Desktop
                     {
                         MessageBox.Show("Hiba a kép megjelenítésekor: " + ex.Message);
                     }
-                }
+                }*/
             }
         }
 
@@ -180,7 +232,8 @@ namespace AZ_Desktop
                 pictureBox_GuestImage.Image = Properties.Resources.logo; // Ez feltételezi, hogy az alapértelmezett kép a projektben elérhető erőforrás
             }
         }
-
+        /********* nem kell  ***************/
+       
         private byte[] ImageToByteArray(Image imageIn)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -189,7 +242,7 @@ namespace AZ_Desktop
                 return ms.ToArray();
             }
         }
-
+        /*
         private string ImageToBase64(Image image)// G_imageBase64!
         {
             using (MemoryStream ms = new MemoryStream())
@@ -199,8 +252,10 @@ namespace AZ_Desktop
                 return Convert.ToBase64String(imageBytes);
             }
         }
+        */
+        /********* nem kell  ***************/
 
-        private void pictureBox_GuestImage_Click(object sender, EventArgs e) // G_imageBase64! // kép kiválasztása pictureboxon keresztül
+        private void pictureBox_GuestImage_Click(object sender, EventArgs e)  // kép kiválasztása pictureboxon keresztül
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
@@ -254,7 +309,9 @@ namespace AZ_Desktop
 
         /********** gombok *************/
 
-        private void button_GuestInsert_Click(object sender, EventArgs e)// G_imageBase64!
+
+
+        private void button_GuestInsert_Click(object sender, EventArgs e)
         {
             if (pictureBox_GuestImage.Image == null)
             {
@@ -264,7 +321,7 @@ namespace AZ_Desktop
 
             try
             {
-                string base64Image = ImageToBase64(pictureBox_GuestImage.Image);
+                //Image image = pictureBox_GuestImage.Image;
                 Guest guest = new Guest
                 {
                     G_name = textBox_GuestName.Text,
@@ -276,8 +333,37 @@ namespace AZ_Desktop
                     G_in_date = dateTimePicker_GuestIn.Value,
                     G_out_date = dateTimePicker_GuestOut.Value,
                     G_other = richTextBox_GuestOther.Text,
-                    G_image = base64Image
                 };
+                    //G_image = pictureBox_GuestImage.Image,
+
+                    // G_image = ImageToByteArray(pictureBox_GuestImage.Image),
+
+                    // Kép beolvasása és konvertálása byte tömbbé
+
+                 if (pictureBox_GuestImage.Image != null)  // kéne else
+                 {
+                    guest.G_image = ImageToByteArray(pictureBox_GuestImage.Image);
+                 }
+                /*
+                else  // ez is nullát ad vissza
+                {
+                    pictureBox_GuestImage.Image = Properties.Resources.logo; 
+                }
+                */
+                /*
+                else  //se Resources/Picture.png  se Guest_Images/Picture.png se Solution Items/DefultImage.png
+                {
+                    // Alapértelmezett kép beállítása, ha nincs másik kép
+                    string defaultImagePath = "Guest_Images/Picture.png"; // Adjuk meg az alapértelmezett kép elérési útját
+                    guest.G_image = File.ReadAllBytes(defaultImagePath);
+                }*/
+
+                guest.Created_at = DateTime.Now;
+                guest.Updated_at = DateTime.Now;
+
+
+
+
 
                 database.insertGuest(guest);
                 MessageBox.Show("A kép sikeresen mentve lett az adatbázisba!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -290,29 +376,36 @@ namespace AZ_Desktop
             this.Close();
         }
 
-        private void button_GuestUpdate_Click(object sender, EventArgs e)// G_imageBase64!
+        private void button_GuestUpdate_Click(object sender, EventArgs e)// 
         {
-            if (selectedGuest != null)
+            if (validateInputGuest()) // Ellenőrizzük, hogy minden kötelező mező kitöltve van-e
             {
-                selectedGuest.G_name = textBox_GuestName.Text;
-                selectedGuest.G_chip = textBox_GuestChip.Text;
-                selectedGuest.G_in_place = textBox_GuestWhere.Text;
-                selectedGuest.G_species = comboBox_GuestSpecies.Text;
-                selectedGuest.G_gender = comboBox_GuestGender.Text;
-                selectedGuest.G_adoption = comboBox_GuestAdoption.Text;
-                selectedGuest.G_in_date = dateTimePicker_GuestIn.Value;
-                selectedGuest.G_out_date = dateTimePicker_GuestOut.Value;
-                selectedGuest.G_other = richTextBox_GuestOther.Text;
-                selectedGuest.G_image = ImageToBase64(pictureBox_GuestImage.Image);
+                if (selectedGuest != null)
+                {
+                    selectedGuest.G_name = textBox_GuestName.Text;
+                    selectedGuest.G_chip = textBox_GuestChip.Text;
+                    selectedGuest.G_in_place = textBox_GuestWhere.Text;
+                    selectedGuest.G_species = comboBox_GuestSpecies.Text;
+                    selectedGuest.G_gender = comboBox_GuestGender.Text;
+                    selectedGuest.G_adoption = comboBox_GuestAdoption.Text;
+                    selectedGuest.G_in_date = dateTimePicker_GuestIn.Value;
+                    selectedGuest.G_out_date = dateTimePicker_GuestOut.Value;
+                    selectedGuest.G_other = richTextBox_GuestOther.Text;
 
-                database.updateGuest(selectedGuest);
-                MessageBox.Show("A vendég adatai frissítve lettek!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    selectedGuest.G_image = (byte[])db(pictureBox_GuestImage.Image);
 
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott vendég!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // A módosítás idejét frissítjük
+                    selectedGuest.Updated_at = DateTime.Now;
+
+                    database.updateGuest(selectedGuest);
+                    MessageBox.Show("A vendég adatai frissítve lettek!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Nincs kiválasztott vendég!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
