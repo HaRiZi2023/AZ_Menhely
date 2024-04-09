@@ -391,8 +391,14 @@ namespace AZ_Desktop
                     selectedGuest.G_in_date = dateTimePicker_GuestIn.Value;
                     selectedGuest.G_out_date = dateTimePicker_GuestOut.Value;
                     selectedGuest.G_other = richTextBox_GuestOther.Text;
+                    
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pictureBox_GuestImage.Image.Save(ms,           pictureBox_GuestImage.Image.RawFormat);
+                        selectedGuest.G_image = ms.ToArray() ;
+                    }
 
-                    selectedGuest.G_image = (byte[])db(pictureBox_GuestImage.Image);
+                    
 
                     // A módosítás idejét frissítjük
                     selectedGuest.Updated_at = DateTime.Now;
