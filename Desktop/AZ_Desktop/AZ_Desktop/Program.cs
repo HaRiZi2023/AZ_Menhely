@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,7 +10,7 @@ namespace AZ_Desktop
     internal static class Program
     {
         
-
+        /* 
         public static Database database = null;
 
         //public static FormLogin formLogin = null;
@@ -42,14 +43,37 @@ namespace AZ_Desktop
 
 
 
-
+        */
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread] // Ezzel állítjuk be az STA módot
-        static void Main()
+        static async Task Main(string[] args)
         {
+            using (var httpClient = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await httpClient.GetAsync("http://localhost:8000/api/endpoint");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine(responseBody);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"HTTP Error: {response.StatusCode}");
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine($"HTTP Request Error: {e.Message}");
+                }
+            }
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             /*
@@ -64,11 +88,11 @@ namespace AZ_Desktop
             formMain = new FormMain();
             formLogin = new FormLogin();
             */
-
+            /*
             database = new Database();
             formChoice = new FormChoice();
             formGuest = new FormGuest();
-
+            */
             Application.Run(new FormLogin());
         }
     }

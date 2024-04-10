@@ -27,7 +27,7 @@ namespace AZ_Desktop
         {
         }  //ok
 
-
+        // Egyéb alaphelyzetbe állítási műveletek...
         private void button_ChipNew_Click(object sender, EventArgs e)
         {
             // Visszaállítjuk a beviteli mezők tartalmát
@@ -40,17 +40,14 @@ namespace AZ_Desktop
             label_ChipName.Visible = false;
             label_ChipSpecies.Visible = false;
             label_ChipOther.Visible = false;
+        }  //ok marad n
 
-            //richTextBox_Output.Text = "";
-
-            // Egyéb alaphelyzetbe állítási műveletek...
-        }  //ok
-
-        private void button_ChipControl_Click(object sender, EventArgs e)
+        private void button_ChipControl_Click(object sender, EventArgs e)  //ok 
         {
             if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text))
             {
                 MessageBox.Show("Kérem, írja be a chip számot!");
+                this.ActiveControl = textBox_ChipNumber;  // fokusz ide!
                 return;
                 // Kilépés a metódusból
             }
@@ -98,7 +95,7 @@ namespace AZ_Desktop
 
                 MessageBox.Show("Nincs találat az adatbázisban.");
             }
-        }  //ok
+        }  
 
         private void button_ChipSearch_Click(object sender, EventArgs e)
         {
@@ -110,7 +107,7 @@ namespace AZ_Desktop
             psi.UseShellExecute = true;
             psi.FileName = url;
             Process.Start(psi);
-        }  //ok
+        }  //ok rendben
 
         private void button_ChipUpdate_Click(object sender, EventArgs e)
         {
