@@ -1,7 +1,6 @@
 package com.example.animalrescue;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,14 +15,16 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
-
 import java.io.IOException;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
     private MaterialButton buttonLogin, buttonRegister;
     private TextInputLayout textInputLayoutEmail;
     private TextInputEditText textInputEditTextPwd, textInputEditTextEmail;
-    private String requestUrl = "http://10.0.2.2:8000/api/users";
+    private String requestUrl = "http://10.0.2.2:8000/api/login";
     private ProgressBar progressBar;
 
     @Override
@@ -50,12 +51,10 @@ public class MainActivity extends AppCompatActivity {
                             "Minden mező kitöltése kötelező", Toast.LENGTH_SHORT).show();
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
                     textInputLayoutEmail.setError("Az emailcím formátuma nem megfelelő!");
-                    //Toast.makeText(MainActivity.this,"Az emailcím formátuma nem megfelelő!", Toast.LENGTH_SHORT).show();
                 } else {
-                    RequestTask task = new RequestTask(requestUrl, "GET", email);
+                    RequestTask task = new RequestTask(requestUrl, "POST", email);
                     task.execute();
                 }
-
             }
         });
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +94,10 @@ public class MainActivity extends AppCompatActivity {
         protected Response doInBackground(Void... voids) {
             Response response = null;
             try {
-                if (requestType.equals("GET")) {
-                    response = RequestHandler.get(requestUrl + "?email=" + requestParams);
+                switch (requestType) {
+                    case "POST":
+                        response = RequestHandler.post(requestUrl, requestParams);
+                        break;
                 }
             } catch (IOException e) {
                 Toast.makeText(MainActivity.this,
@@ -122,10 +123,9 @@ public class MainActivity extends AppCompatActivity {
                         "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 Log.d("onPostExecuteError:", response.getContent());
             }
-            if (requestType.equals("GET")) {
-                User[] users = converter.fromJson(
-                        response.getContent(), User[].class);
-                if (users.length > 0) {
+            if (requestType.equals("POST")) {
+                User user = converter.fromJson(response.getContent(), User.class);
+                if (user.getId() > 0) {
                     Toast.makeText(MainActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, ChoicesActivity.class);
                     startActivity(intent);

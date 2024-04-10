@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private MaterialButton buttonFinalRegister, buttonBack;
     private TextInputLayout textInputLayoutNameRegister, textInputLayoutEmailRegister, textInputLayoutAddressRegister, textInputLayoutPhoneRegister, textInputLayoutPasswordRegister, textInputLayoutPasswordRegister2;
     private TextInputEditText textInputEditTextNameRegister, textInputEditTextEmailRegister, textInputEditTextAddressRegister, textInputEditTextPhoneRegister, textInputEditTextPasswordRegister, textInputEditTextPasswordRegister2;
-    private String requestUrl = "http://10.0.2.2:8000/api/users"; //emulátor IP címje, 8000:mert itt fut a beckend
+    private String requestUrl = "http://10.0.2.2:8000/api/register"; //emulátor IP címje, 8000:mert itt fut a beckend
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

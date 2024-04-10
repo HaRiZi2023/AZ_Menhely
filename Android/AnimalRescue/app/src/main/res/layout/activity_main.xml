@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Jelszó"
                         android:inputType="textPassword"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
