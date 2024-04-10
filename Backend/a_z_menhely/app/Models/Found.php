@@ -12,4 +12,6 @@ class Found extends Model
     protected $table = 'founds';
     protected $fillable = ['f_choice', 'f_species', 'f_gender', 'f_injury', 'f_position', 'f_other' , 'f_image'];
     protected $visible = ['id', 'f_choice', 'f_species', 'f_gender', 'f_injury', 'f_position', 'f_other' , 'f_image'];
+
 }
+
