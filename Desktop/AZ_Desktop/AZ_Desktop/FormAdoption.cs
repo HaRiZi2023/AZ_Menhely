@@ -146,7 +146,7 @@ namespace AZ_Desktop
 
         //**************
         // ez nem jó a kérem válasszont is kitöltöttnek veszi?!
-        private bool validateInputAdoption() // kitöltés ell.
+        private bool validateInputAdoption() // kitöltés ell. ok m
         {
             if (string.IsNullOrEmpty(comboBox_AdoptionGName.Text) ||
                 string.IsNullOrEmpty(textBox_AdoptionSpecies.Text) ||
@@ -163,7 +163,7 @@ namespace AZ_Desktop
             return true;
         }
 
-        private void emptyFieldsAdoption()  // mezők kiürítése
+        private void emptyFieldsAdoption()  // mezők kiürítése ok m
         {
             comboBox_AdoptionGName.Text = "";
             textBox_AdoptionSpecies.Text = "";
@@ -232,7 +232,7 @@ namespace AZ_Desktop
                     FormContract formContract = new FormContract(selectedAnimal, selectedUser);
 
                     formContract.fillData(comboBox_AdoptionGName.Text, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
-                                  comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
+                      comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
 
 
                     formContract.ShowDialog();
@@ -306,7 +306,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void button_AdoptionAgain_Click(object sender, EventArgs e)  // újra gomb
+        private void button_AdoptionAgain_Click(object sender, EventArgs e)  // újra gomb ok m
         {
             emptyFieldsAdoption();
             placeholderAdoption();

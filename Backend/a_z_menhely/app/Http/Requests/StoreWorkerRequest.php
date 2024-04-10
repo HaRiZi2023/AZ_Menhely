@@ -22,7 +22,10 @@ class StoreWorkerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'w_name' => 'required|string|max:20',
+            'w_password' => 'required|string|max:20',
+            'w_permission' => 'required|in: teljes, felhasználó)',
+
         ];
     }
 }

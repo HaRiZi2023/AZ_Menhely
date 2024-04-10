@@ -22,18 +22,19 @@ namespace AZ_Desktop
         private Database database;
         private string connectionString = "Server=localhost;Database=menhely;Userid=root;Pwd= ;";   //?????? ezt
 
-        public FormLogin()
+        public FormLogin()  // jav
         {
             InitializeComponent();
             database = new Database();
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
+        private void FormLogin_Load(object sender, EventArgs e) // ok m
         {
             comboBox_LoginPermission.Text = "Jogosultság";
         }
 
-        private void button_Login_Click(object sender, EventArgs e)
+        // belépés
+        private void button_Login_Click(object sender, EventArgs e) // 
         {
             string w_name = textBox_LoginName.Text;
             string w_password = textBox_LoginPass.Text;
@@ -79,7 +80,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void openFormMain()
+        private void openFormMain() // átlépés mainre
         {
             FormMain formMain = new FormMain();
             /*formMain.FormClosed += (obj,args) =>
@@ -91,7 +92,7 @@ namespace AZ_Desktop
             this.Hide();
         }
         /********************/
-        private bool checkPermission(string w_name, string w_password)
+        private bool checkPermission(string w_name, string w_password) // 
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -163,6 +164,7 @@ namespace AZ_Desktop
             }
         }
 
+        // kitöltöttség ellenőrzés
         private bool validateInput() //inserthez + üres konstruktor worksben!
         {
             if (string.IsNullOrEmpty(textBox_LoginName.Text) ||

@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string("w_name", 20);
             $table->string("w_password", 20);
-            $table->enum("w_permission", array("teljes", "szerkesztő", "felhasználó"));
+            $table->enum("w_permission", array("teljes", "felhasználó"));
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

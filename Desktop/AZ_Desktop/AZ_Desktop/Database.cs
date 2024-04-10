@@ -222,7 +222,7 @@ namespace AZ_Desktop
 
         //************* Choice **************************** 
 
-        internal byte[] g_imageFromDatabase(int guestId)  // G_imageBase64!
+        internal byte[] g_imageFromDatabase(int guestId) //SZERINTEM NEM KELL // G_imageBase64!
         {
             byte[] g_imageBytes = null;
 
@@ -281,7 +281,7 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image");  // G_imageBase64! 
+                        byte[] g_image = (byte[])dr["g_image"];
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
@@ -303,7 +303,7 @@ namespace AZ_Desktop
 
         internal List<Guest> allCat()   // G_imageBase64!// ezt a Program.cs ben adom meg
         {
-            List<Guest> dogs = new List<Guest>();
+            List<Guest> cats = new List<Guest>();
             sql.CommandText = "SELECT * FROM guests WHERE g_species = @macska ";  // ok
             sql.Parameters.AddWithValue("@macska", "macska");
 
@@ -325,12 +325,12 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image");  // G_imageBase64! 
+                        byte[] g_image = (byte[])dr["g_image"];
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
-                        dogs.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));
+                        cats.Add(new Guest(id, g_name, g_chip, g_species, g_gender, g_in_date, g_in_place, g_out_date, g_adoption, g_other, g_image, created_at, updated_at));
                     }
                 }
             }
@@ -342,7 +342,7 @@ namespace AZ_Desktop
             {
                 connClosing();
             }
-            return dogs;
+            return cats;
         }
 
         internal Guest chosenName(string G_name)// G_imageBase64! //kiválasztott név adatainak lekérdezése                      name
@@ -371,8 +371,8 @@ namespace AZ_Desktop
                         string g_adoption = dr.GetString("g_adoption");
                         string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image");   // G_imageBase64!
-
+                        byte[] g_image = (byte[])dr["g_image"];
+                                               
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -395,7 +395,7 @@ namespace AZ_Desktop
         //***************** guests ****************
 
 
-        public byte[] ImageToByteArray(Image imageIn) // kell-e
+        public byte[] ImageToByteArray(Image imageIn) // szerinte nem kell
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -451,10 +451,11 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other"); 
+                        string g_other = dr.GetString("g_other");
 
-                        string g_image = dr.GetString("g_image"); // G_imageBase64!
-                                  
+                        byte[] g_image = (byte[])dr["g_image"];
+
+                                                          
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
 
@@ -479,17 +480,18 @@ namespace AZ_Desktop
             {
                 connOpening();
 
-                sql.CommandText = "INSERT INTO guests (G_name, G_chip, G_in_place, G_species, G_gender, G_adoption, G_in_date, G_out_date, G_other, G_image) VALUES (@name, @chip, @place, @species, @gender, @adoption, @inDate, @outDate, @other, @image)";
-                sql.Parameters.AddWithValue("@name", guest.G_name);
-                sql.Parameters.AddWithValue("@chip", guest.G_chip);
-                sql.Parameters.AddWithValue("@place", guest.G_in_place);
-                sql.Parameters.AddWithValue("@species", guest.G_species);
-                sql.Parameters.AddWithValue("@gender", guest.G_gender);
-                sql.Parameters.AddWithValue("@adoption", guest.G_adoption);
-                sql.Parameters.AddWithValue("@inDate", guest.G_in_date);
-                sql.Parameters.AddWithValue("@outDate", guest.G_out_date);
-                sql.Parameters.AddWithValue("@other", guest.G_other);
-                sql.Parameters.AddWithValue("@image", guest.G_image); // G_imageBase64! 
+                sql.CommandText = "INSERT INTO guests (G_name, G_chip, G_in_place, G_species, G_gender, G_adoption, G_in_date, G_out_date, G_other, G_image) VALUES (@g_name, @g_chip, @g_in_place, @g_species, @g_gender, @g_adoption, @g_in_date, @g_out_date, @g_other, @g_image)";
+                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@g_place", guest.G_in_place);
+                sql.Parameters.AddWithValue("@g_species", guest.G_species);
+                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
+                sql.Parameters.AddWithValue("@g_inDate", guest.G_in_date);
+                sql.Parameters.AddWithValue("@g_outDate", guest.G_out_date);
+                sql.Parameters.AddWithValue("@g_other", guest.G_other);
+
+                sql.Parameters.AddWithValue("@g_image", guest.G_image);
 
                 sql.ExecuteNonQuery();
             }
@@ -508,18 +510,20 @@ namespace AZ_Desktop
             try
             {
                 connOpening();
-                sql.CommandText = "UPDATE guests SET G_name=@name, G_chip=@chip, G_in_place=@place, G_species=@species, G_gender=@gender, G_adoption=@adoption, G_in_date=@inDate, G_out_date=@outDate, G_other=@other, G_image=@image WHERE G_id=@id";
-                sql.Parameters.AddWithValue("@name", guest.G_name);
-                sql.Parameters.AddWithValue("@chip", guest.G_chip);
-                sql.Parameters.AddWithValue("@place", guest.G_in_place);
-                sql.Parameters.AddWithValue("@species", guest.G_species);
-                sql.Parameters.AddWithValue("@gender", guest.G_gender);
-                sql.Parameters.AddWithValue("@adoption", guest.G_adoption);
-                sql.Parameters.AddWithValue("@inDate", guest.G_in_date);
-                sql.Parameters.AddWithValue("@outDate", guest.G_out_date);
-                sql.Parameters.AddWithValue("@other", guest.G_other);
-                sql.Parameters.AddWithValue("@image", guest.G_image);  // G_imageBase64!
-                sql.Parameters.AddWithValue("@id", guest.Id);
+                sql.CommandText = "UPDATE guests SET G_name=@g_name, G_chip=@g_chip, G_in_place=@g_in_place, G_species=@g_species, G_gender=@g_gender, G_adoption=@g_adoption, G_in_date=@g_in_date, G_out_date=@g_out_date, G_other=@g_other, G_image=@g_image WHERE G_id=@id";
+                sql.Parameters.AddWithValue("@g_name", guest.G_name);
+                sql.Parameters.AddWithValue("@g_chip", guest.G_chip);
+                sql.Parameters.AddWithValue("@g_place", guest.G_in_place);
+                sql.Parameters.AddWithValue("g_@species", guest.G_species);
+                sql.Parameters.AddWithValue("@g_gender", guest.G_gender);
+                sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
+                sql.Parameters.AddWithValue("@g_inDate", guest.G_in_date);
+                sql.Parameters.AddWithValue("@g_outDate", guest.G_out_date);
+                sql.Parameters.AddWithValue("@g_other", guest.G_other);
+
+                sql.Parameters.AddWithValue("@image", guest.G_image);  
+
+                sql.Parameters.AddWithValue("@id", guest.Id);  //?????
 
                 sql.ExecuteNonQuery();
             }
@@ -554,7 +558,7 @@ namespace AZ_Desktop
         }
 
         //************ Chip ****************//
-
+        // chipNumberhez ??
         public DataTable ExecuteQuery(string query, object parameters = null)
         {
             DataTable dataTable = new DataTable();
@@ -676,7 +680,7 @@ namespace AZ_Desktop
                         string f_position = dr.GetString("f_position");
                         string f_other = dr.GetString("f_other");
 
-                        string f_image = dr.GetString("f_image");  // G_imageBase64!
+                        byte[] f_image = (byte[])dr["f_image"]; 
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
@@ -726,7 +730,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateFound(Found found) // G_imageBase64!
+        internal void updateFound(Found found) // 
         {
             try
             {
@@ -757,7 +761,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal void deleteFound(Found found) // G_imageBase64!
+        internal void deleteFound(Found found) // 
         {
             try
             {
@@ -783,7 +787,7 @@ namespace AZ_Desktop
 
         //********** adoption ***************
 
-        internal List<Guest> allAdoptableAnimal() // G_imageBase64!
+        internal List<Guest> allAdoptableAnimal() // 
         {
             List<Guest> adoptables = new List<Guest>();
             sql.CommandText = "SELECT * FROM `guests` WHERE `g_adoption` = \"igen\"; ";   // ok
@@ -803,9 +807,9 @@ namespace AZ_Desktop
                         string g_in_place = dr.GetString("g_in_place");
                         DateTime g_out_date = dr.GetDateTime("g_out_date");
                         string g_adoption = dr.GetString("g_adoption");
-                        string g_other = dr.GetString("g_other"); 
-                        
-                        string g_image = dr.GetString("g_image");   // G_imageBase64!
+                        string g_other = dr.GetString("g_other");
+
+                        byte[] g_image = (byte[])dr["g_image"];
 
                         DateTime created_at = dr.GetDateTime("created_at");
                         DateTime updated_at = dr.GetDateTime("updated_at");
@@ -858,7 +862,7 @@ namespace AZ_Desktop
             return users;
         }
 
-        internal void adoptionStatusChange(Guest guest) // nem-re állításhoz
+        internal void adoptionStatusChange(Guest guest) // nem-re állításhoz lehet nem kell inkább softdelet ??
         { 
             try
             {
@@ -876,10 +880,9 @@ namespace AZ_Desktop
                 sql.Parameters.AddWithValue("@g_in_date", guest.G_in_date);
                 sql.Parameters.AddWithValue("@g_in_place", guest.G_in_place);
                 sql.Parameters.AddWithValue("@g_out_date", guest.G_out_date);
-               
                 sql.Parameters.AddWithValue("@g_adoption", guest.G_adoption);
-               
                 sql.Parameters.AddWithValue("@g_other", guest.G_other);
+
                 sql.Parameters.AddWithValue("@g_image", guest.G_image);
                
 
@@ -923,7 +926,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal void updateAdoption(Adoption adoption) //NEM KELL !!!!!!!
+        internal void updateAdoption(Adoption adoption) //NEM KELL !!!!!!! Ha még is akkor javítani!!!!
         {
             try
             {               
@@ -949,7 +952,7 @@ namespace AZ_Desktop
             }
         }  
 
-        internal void deleteAdoption(Adoption adoption) //NEM KELL !!!!!!!
+        internal void deleteAdoption(Adoption adoption) //NEM KELL !!!!!!! 
         {
             try
             {

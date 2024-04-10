@@ -40,7 +40,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void checkBox_CheckedChangedChoice(object sender, EventArgs e) //cb bejlölés változás
+        private void checkBox_CheckedChangedChoice(object sender, EventArgs e) //cb bejlölés változás ok m
         {
             var clickedCheckBox = (CheckBox)sender;
 
@@ -117,7 +117,7 @@ namespace AZ_Desktop
             }
         }
                 // nincs ?????
-        private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e) // üres
         { /*
             // Ellenőrizzük, hogy van-e kiválasztott elem a ListBox-ban
             if (listBox_Choice.SelectedIndex != -1)
@@ -132,7 +132,7 @@ namespace AZ_Desktop
         }
 
         /********************/
-        private void emptyFieldsChoice()
+        private void emptyFieldsChoice()  // ok m
         {
             // Kiürítjük a mezőket
           
@@ -147,7 +147,7 @@ namespace AZ_Desktop
         /******************/
 
 
-        private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb
+        private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb átlép m
         {
             
             //Új vendég hozzáadása
@@ -160,7 +160,7 @@ namespace AZ_Desktop
 
         }
 
-        private void button_ChoiceUpdate_Click(object sender, EventArgs e)
+        private void button_ChoiceUpdate_Click(object sender, EventArgs e)  // módosítás gomb átlép m
         {
                // Kiválasztott módosítása
             Guest selectedGuest = GetSelectedGuest();
@@ -228,7 +228,7 @@ namespace AZ_Desktop
 
         }
 
-        private void button_ChoiceDelete_Click(object sender, EventArgs e)
+        private void button_ChoiceDelete_Click(object sender, EventArgs e)// törlés gomb átlép m
         {
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)

@@ -22,7 +22,9 @@ class UpdateAdoptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'a_date' => 'required|date',
+            'g_name' => 'required|string|max:50',
+            'u_name' => 'required|string|max:100',
         ];
     }
 }

@@ -25,9 +25,9 @@ namespace AZ_Desktop
 
         private void FormChip_Load(object sender, EventArgs e)
         {
-        }  //ok
+        }  //ok u
 
-
+        // Egyéb alaphelyzetbe állítási műveletek...
         private void button_ChipNew_Click(object sender, EventArgs e)
         {
             // Visszaállítjuk a beviteli mezők tartalmát
@@ -40,17 +40,15 @@ namespace AZ_Desktop
             label_ChipName.Visible = false;
             label_ChipSpecies.Visible = false;
             label_ChipOther.Visible = false;
+        }  //ok marad n
 
-            //richTextBox_Output.Text = "";
-
-            // Egyéb alaphelyzetbe állítási műveletek...
-        }  //ok
-
-        private void button_ChipControl_Click(object sender, EventArgs e)
+        // chipszám ellenőrzés
+        private void button_ChipControl_Click(object sender, EventArgs e)  // ht
         {
             if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text))
             {
                 MessageBox.Show("Kérem, írja be a chip számot!");
+                this.ActiveControl = textBox_ChipNumber;  // fokusz ide!
                 return;
                 // Kilépés a metódusból
             }
@@ -82,8 +80,6 @@ namespace AZ_Desktop
                 label_ChipName.Visible = true;
                 label_ChipSpecies.Visible = true;
                 label_ChipOther.Visible = true;
-
-
             }
             else
             {
@@ -98,8 +94,8 @@ namespace AZ_Desktop
 
                 MessageBox.Show("Nincs találat az adatbázisban.");
             }
-        }  //ok
-
+        }  
+        // petvetdata
         private void button_ChipSearch_Click(object sender, EventArgs e)
         {
             // Megadott URL
@@ -110,9 +106,9 @@ namespace AZ_Desktop
             psi.UseShellExecute = true;
             psi.FileName = url;
             Process.Start(psi);
-        }  //ok
+        }  //ok rendben m
 
-        private void button_ChipUpdate_Click(object sender, EventArgs e)
+        private void button_ChipUpdate_Click(object sender, EventArgs e) // ht
         {
             string chipNumber = textBox_ChipNumber.Text;
             string otherValue = richTextBox_ChipOther.Text;

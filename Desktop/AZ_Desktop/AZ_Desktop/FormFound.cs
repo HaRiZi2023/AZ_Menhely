@@ -18,7 +18,7 @@ namespace AZ_Desktop
     {
         private Database database;
         
-        public FormFound()
+        public FormFound()  // jav
         {
             InitializeComponent();
             database = new Database();
@@ -26,7 +26,7 @@ namespace AZ_Desktop
 
         }
 
-        private void FormFound_Load(object sender, EventArgs e)
+        private void FormFound_Load(object sender, EventArgs e) // allFoundlist()
         {
             allFoundList();
         }
@@ -83,17 +83,12 @@ namespace AZ_Desktop
                 textBox_FoundWhere.Text = selectedfound.F_position.ToString();
                 richTextBox_FoundOther.Text = selectedfound.F_other.ToString();
 
-                // Ellenőrizzük, hogy a kép nem üres és nem null
-                if (!string.IsNullOrEmpty(selectedfound.F_image))
+                if (selectedfound.F_image != null && selectedfound.F_image.Length > 0)
                 {
-                    // Bináris adatok létrehozása (pl. egy kép) EZ NEm JÓ!!!
-                    // Base64 string visszaalakítása byte tömbbé
-                    byte[] imageData = Convert.FromBase64String(selectedfound.F_image);
-
                     try
                     {
                         // MemoryStream létrehozása a byte tömbből
-                        using (MemoryStream ms = new MemoryStream(imageData))
+                        using (MemoryStream ms = new MemoryStream(selectedfound.F_image))
                         {
                             // Kép betöltése a MemoryStream-ből
                             pictureBox_FoundImage.Image = Image.FromStream(ms);
@@ -102,7 +97,7 @@ namespace AZ_Desktop
                     catch (Exception ex)
                     {
                         // Ha a kép betöltése nem sikerült, jelenítsünk meg egy hibaüzenetet
-                        MessageBox.Show($"Nem sikerült betölteni a képet: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Nem sikerült betölteni a képet: listbox select{ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -111,6 +106,36 @@ namespace AZ_Desktop
                     pictureBox_FoundImage.Image = null;
                     // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
                 }
+
+                /* NEM KELL
+                 // Ellenőrizzük, hogy a kép nem üres és nem null
+                 if (!string.IsNullOrEmpty(selectedfound.F_image))
+                 {
+                     // Bináris adatok létrehozása (pl. egy kép) EZ NEm JÓ!!!
+                     // Base64 string visszaalakítása byte tömbbé
+                     byte[] imageData = Convert.FromBase64String(selectedfound.F_image);
+
+                     try
+                     {
+                         // MemoryStream létrehozása a byte tömbből
+                         using (MemoryStream ms = new MemoryStream(imageData))
+                         {
+                             // Kép betöltése a MemoryStream-ből
+                             pictureBox_FoundImage.Image = Image.FromStream(ms);
+                         }
+                     }
+                     catch (Exception ex)
+                     {
+                         // Ha a kép betöltése nem sikerült, jelenítsünk meg egy hibaüzenetet
+                         MessageBox.Show($"Nem sikerült betölteni a képet: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     }
+                 }
+                 else
+                 {
+                     // Ha a kép üres vagy null értékű, akkor töröljük a pictureBox tartalmát
+                     pictureBox_FoundImage.Image = null;
+                     // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
+                 }*/
             }
         }
 
@@ -128,7 +153,7 @@ namespace AZ_Desktop
             richTextBox_FoundOther.Text = "";
 
         }
-       
+       /*
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -137,7 +162,8 @@ namespace AZ_Desktop
                 return ms.ToArray();
             }
         }
-
+       */
+       /*
         private string ImageToBase64(Image image)// G_imageBase64!
         {
             using (MemoryStream ms = new MemoryStream())
@@ -147,9 +173,9 @@ namespace AZ_Desktop
                 return Convert.ToBase64String(imageBytes);
             }
         }
-
+       */
         private void button_FoundUpdate_Click(object sender, EventArgs e)  // ??? mezőtörlés végére  ????
-        {
+        {    // Ellenőrizzük, hogy minden kötelező mező kitöltve van-e
             if (validateInputFound())  // ki vannak-e töltve
             {
                 // Ellenőrizze, hogy van-e kiválasztott elem a ListBox-ban
@@ -157,42 +183,64 @@ namespace AZ_Desktop
                 {
                     // Hozzon létre egy Found objektumot az űrlap adataiból
                     Found updatedFound = (Found)listBox_Found.SelectedItem;
-                    {
-                        //Id = ((Found)listBox_Found.SelectedItem).Id, // Frissítés esetén fontos az azonosító megtartása
-                        updatedFound.F_choice = textBox_FoundChoice.Text;
-                        updatedFound.F_species = textBox_FoundSpecies.Text;
-                        updatedFound.F_gender = textBox_FoundGender.Text;
-                        updatedFound.F_injury = textBox_FoundInjury.Text;
-                        updatedFound.F_position = textBox_FoundWhere.Text;
-                        updatedFound.F_other = richTextBox_FoundOther.Text;
+                                           
+                    updatedFound.F_choice = textBox_FoundChoice.Text;
+                    updatedFound.F_species = textBox_FoundSpecies.Text;
+                    updatedFound.F_gender = textBox_FoundGender.Text;
+                    updatedFound.F_injury = textBox_FoundInjury.Text;
+                    updatedFound.F_position = textBox_FoundWhere.Text;
+                    updatedFound.F_other = richTextBox_FoundOther.Text;
 
-                        //updatedFound.F_image = pictureBox_FoundImage.Image;
-                                               
-                        updatedFound.Updated_at = DateTime.Now;  //nem működik
+                    // A kép frissítése esetén nincs szükség további műveletekre
 
+                    // A módosítás idejét frissítjük
+                    updatedFound.Updated_at = DateTime.Now;
 
-                        updatedFound.F_image = ImageToBase64(pictureBox_FoundImage.Image); // A képet nem frissítjük
-                        
-                        // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
-                        database.updateFound(updatedFound);
-                        emptyFieldsFound();
-                        // Frissítse a ListBox-ot a frissített elemmel
-                        allFoundList();
+                    // Hívjuk meg az updateFound metódust az adatbázisban való frissítéshez
+                    database.updateFound(updatedFound);
 
+                    // Kiürítjük a mezőket és frissítjük a ListBox-ot
+                    emptyFieldsFound();
+                    allFoundList();
 
-
-
-
-                        // Üzenet a felhasználónak a sikeres frissítésről
-                        MessageBox.Show("Sikeres adat frissítés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    // Felhasználói visszajelzés a sikeres frissítésről
+                    MessageBox.Show("Sikeres adat frissítés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     // Ha nincs kiválasztott elem a ListBox-ban, jelenítse meg a figyelmeztető üzenetet
                     MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                 }
+
+                /*Nem kell
+               //updatedFound.F_image = pictureBox_FoundImage.Image;
+
+               updatedFound.Updated_at = DateTime.Now;  //nem működik
+
+
+               updatedFound.F_image = pictureBox_FoundImage.Image; // A képet nem frissítjük
+
+               // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
+               database.updateFound(updatedFound);
+               emptyFieldsFound();
+               // Frissítse a ListBox-ot a frissített elemmel
+               allFoundList();
+
+
+
+
+
+               // Üzenet a felhasználónak a sikeres frissítésről
+               MessageBox.Show("Sikeres adat frissítés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           }
+       }
+       else
+       {
+           // Ha nincs kiválasztott elem a ListBox-ban, jelenítse meg a figyelmeztető üzenetet
+           MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+       } */
+
             }
         }
 
