@@ -558,7 +558,7 @@ namespace AZ_Desktop
         }
 
         //************ Chip ****************//
-
+        // chipNumberhez ??
         public DataTable ExecuteQuery(string query, object parameters = null)
         {
             DataTable dataTable = new DataTable();
@@ -862,7 +862,7 @@ namespace AZ_Desktop
             return users;
         }
 
-        internal void adoptionStatusChange(Guest guest) // nem-re állításhoz
+        internal void adoptionStatusChange(Guest guest) // nem-re állításhoz lehet nem kell inkább softdelet ??
         { 
             try
             {

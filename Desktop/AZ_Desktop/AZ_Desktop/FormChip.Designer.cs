@@ -52,6 +52,7 @@
             this.textBox_ChipName.Location = new System.Drawing.Point(52, 393);
             this.textBox_ChipName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox_ChipName.Name = "textBox_ChipName";
+            this.textBox_ChipName.ReadOnly = true;
             this.textBox_ChipName.Size = new System.Drawing.Size(161, 30);
             this.textBox_ChipName.TabIndex = 1;
             this.textBox_ChipName.Visible = false;
@@ -183,7 +184,9 @@
             // 
             this.textBox_ChipSpecies.Location = new System.Drawing.Point(289, 393);
             this.textBox_ChipSpecies.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox_ChipSpecies.Multiline = true;
             this.textBox_ChipSpecies.Name = "textBox_ChipSpecies";
+            this.textBox_ChipSpecies.ReadOnly = true;
             this.textBox_ChipSpecies.Size = new System.Drawing.Size(161, 30);
             this.textBox_ChipSpecies.TabIndex = 12;
             this.textBox_ChipSpecies.Visible = false;

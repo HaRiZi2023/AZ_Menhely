@@ -18,7 +18,7 @@ namespace AZ_Desktop
     {
         private Database database;
         
-        public FormFound()
+        public FormFound()  // jav
         {
             InitializeComponent();
             database = new Database();
@@ -26,7 +26,7 @@ namespace AZ_Desktop
 
         }
 
-        private void FormFound_Load(object sender, EventArgs e)
+        private void FormFound_Load(object sender, EventArgs e) // allFoundlist()
         {
             allFoundList();
         }

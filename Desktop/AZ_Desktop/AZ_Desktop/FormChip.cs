@@ -25,7 +25,7 @@ namespace AZ_Desktop
 
         private void FormChip_Load(object sender, EventArgs e)
         {
-        }  //ok
+        }  //ok u
 
         // Egyéb alaphelyzetbe állítási műveletek...
         private void button_ChipNew_Click(object sender, EventArgs e)
@@ -42,7 +42,8 @@ namespace AZ_Desktop
             label_ChipOther.Visible = false;
         }  //ok marad n
 
-        private void button_ChipControl_Click(object sender, EventArgs e)  //ok 
+        // chipszám ellenőrzés
+        private void button_ChipControl_Click(object sender, EventArgs e)  // ht
         {
             if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text))
             {
@@ -79,8 +80,6 @@ namespace AZ_Desktop
                 label_ChipName.Visible = true;
                 label_ChipSpecies.Visible = true;
                 label_ChipOther.Visible = true;
-
-
             }
             else
             {
@@ -96,7 +95,7 @@ namespace AZ_Desktop
                 MessageBox.Show("Nincs találat az adatbázisban.");
             }
         }  
-
+        // petvetdata
         private void button_ChipSearch_Click(object sender, EventArgs e)
         {
             // Megadott URL
@@ -107,9 +106,9 @@ namespace AZ_Desktop
             psi.UseShellExecute = true;
             psi.FileName = url;
             Process.Start(psi);
-        }  //ok rendben
+        }  //ok rendben m
 
-        private void button_ChipUpdate_Click(object sender, EventArgs e)
+        private void button_ChipUpdate_Click(object sender, EventArgs e) // ht
         {
             string chipNumber = textBox_ChipNumber.Text;
             string otherValue = richTextBox_ChipOther.Text;
