@@ -12,5 +12,6 @@ class Worker extends Model
 
     protected $table = 'workers';
     protected $fillable = ['w_name', 'w_password', 'w_permission'];
+    protected $casts = ['password' => 'hashed'];
     protected $visible = ['id', 'w_name', 'w_password', 'w_permission'];
 }
