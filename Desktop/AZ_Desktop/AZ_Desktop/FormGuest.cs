@@ -258,7 +258,7 @@ namespace AZ_Desktop
         private void pictureBox_GuestImage_Click(object sender, EventArgs e)  // kép kiválasztása pictureboxon keresztül
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
+            dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png, *.gif, *.bmp, *.bin)|*.jpg; *.jpeg; *.png; *.gif; *.bmp; *.bin";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
