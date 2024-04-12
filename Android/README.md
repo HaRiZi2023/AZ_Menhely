@@ -19,4 +19,9 @@ Version | Name    | Date     | Changes
      1.0| Cser    |2024-04-07| TextInputEditText-ek és TextInputLayout-ok rendberakása. 
         | Cser    |2024-04-07| Jelszó validáció/ Mező kitöltöttség ellenőrzések/
         | Cser    |2024-04-07| Design csiszolása
+     1.1| Cser    |2024-04-08| Classok refactorálása main oldal validálás, jelszó ellenőrzés?!
+     1.2| Cser    |2024-04-10| Register újra jó POST ("http://10.0.2.2:8000/api/register")
+     1.3| Cser    |2024-04-12| Login/Register/Animal store - dokumentálás elkezdése
+
+  
         

@@ -13,4 +13,11 @@ Version | Name    | Date     | Changes
         | Cser    |2024-03-19| UserSeeder
      0.8| Cser    |2024-03-25| Found Tábla Androidhoz igazítva  
      0.9| Cser    |2024-03-26| backend visszaállírása az eredetire founds táblában 
-    0.10| Cser    |2024-03-26| Fényképezéshez BLOB határok elvéve
+    0.10| Cser    |2024-03-30| Fényképezéshez BLOB határok elvéve
+    0.11| Szebeni |2024-04-10| 1. Guest, Worker -migráció módosítás- softdeletes, 
+        | Szebeni |2024-04-10| 2. Adoption, Guest, Worker request készítés, 
+        | Szebeni |2024-04-10| 3. Worker faktori - módosítás -permission
+    0.12| Szebeni |2024-04-10| Worker model - hash
+    0.13| Cser    |2024-04-10| User-AuthController Felhasználó autentikáció
+    0.14| Cser    |2024-04-12| AuthController/Login method frissítése
+
