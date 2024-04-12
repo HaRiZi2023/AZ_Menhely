@@ -36,12 +36,12 @@ class AuthController extends Controller
      * A token a json "token" paraméterén érhető el.
      */
     public function login(LoginRequest $request) {
-        // Felhasználó megkeresése e-mail alapján
-        $user = User::where("email", $request->email);
+        // Felhasználó megkeresése e-mail alapján és az első találat visszaadása
+        $user = User::where("email", $request->email)->first(); // Itt az '->first()' függvényt használva kapsz egy User példányt
 
-        // Ha nem található az e-mail alapján a fehasználó,
-        // vagy ha a beírt jelszó nem egyezik meg a regisztrációkor generáltal.
-        if(!$user || !Hash::check($request->password,$user->password)){
+        // Ha nem található az e-mail alapján a felhasználó,
+        // vagy ha a beírt jelszó nem egyezik meg a regisztrációkor generált jelszóval.
+        if(!$user || !Hash::check($request->password, $user->password)){
             return response()->json(["message" => "Invalid Credentials"], 401);
         }
         // Token létrehozása és megjelenítése szöveges formában

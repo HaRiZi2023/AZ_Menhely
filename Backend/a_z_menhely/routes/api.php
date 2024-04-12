@@ -23,14 +23,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//Users
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
-Route::post('logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
 
+//Adoptions
 Route::apiResource("/adoptions", AdoptionController::class);
+
+//Founds
 Route::apiResource("/founds", FoundController::class);
+
+
+//Guests
 Route::apiResource("/guests", GuestController::class);
+
+//Workers
 Route::apiResource("/workers", WorkerController::class);
 
 
