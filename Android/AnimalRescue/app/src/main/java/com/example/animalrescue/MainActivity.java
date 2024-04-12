@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(response);
             progressBar.setVisibility(View.GONE);
             if (response.getResponseCode() >= 400) {
-                Toast.makeText(MainActivity.this, ""+response.getContent(), Toast.LENGTH_LONG).show();
-                //Toast.makeText(MainActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 Log.d("onPostExecuteError:", response.getContent());
             } else if (requestType.equals("POST")) {
                     Toast.makeText(MainActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
