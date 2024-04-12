@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
                     textInputLayoutEmail.setError("Az emailcím formátuma nem megfelelő!");
                 } else {
-                    RequestTask task = new RequestTask(requestUrl, "POST", email);
+                    Register register = new Register(email, password);
+                    Gson converter = new Gson();
+                    RequestTask task = new RequestTask(requestUrl, "POST", converter.toJson(register));
                     task.execute();
                 }
             }
@@ -117,23 +119,15 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             progressBar.setVisibility(View.GONE);
-            Gson converter = new Gson();
             if (response.getResponseCode() >= 400) {
-                Toast.makeText(MainActivity.this,
-                        "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, ""+response.getContent(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 Log.d("onPostExecuteError:", response.getContent());
-            }
-            if (requestType.equals("POST")) {
-                User user = converter.fromJson(response.getContent(), User.class);
-                if (user.getId() > 0) {
+            } else if (requestType.equals("POST")) {
                     Toast.makeText(MainActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, ChoicesActivity.class);
                     startActivity(intent);
                     finish();
-                } else {
-                    Toast.makeText(MainActivity.this,
-                            "Hibás email cím vagy jelszó", Toast.LENGTH_SHORT).show();
-                }
             }
         }
     }

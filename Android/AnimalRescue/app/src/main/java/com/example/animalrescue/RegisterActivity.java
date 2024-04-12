@@ -215,7 +215,8 @@ public class RegisterActivity extends AppCompatActivity {
             buttonFinalRegister.setEnabled(true);
             if (response.getResponseCode() >= 400) {
                 Log.d("Hiba",response.getContent());
-                Toast.makeText(RegisterActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(RegisterActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (requestType.equals("POST")) {
