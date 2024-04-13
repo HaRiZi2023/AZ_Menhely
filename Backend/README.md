@@ -20,4 +20,4 @@ Version | Name    | Date     | Changes
     0.12| Szebeni |2024-04-10| Worker model - hash
     0.13| Cser    |2024-04-10| User-AuthController Felhasználó autentikáció
     0.14| Cser    |2024-04-12| AuthController/Login method frissítése
-
+    0.15| Cser    |2024-04-13| FoundController javítása

@@ -22,6 +22,10 @@ Version | Name    | Date     | Changes
      1.1| Cser    |2024-04-08| Classok refactorálása main oldal validálás, jelszó ellenőrzés?!
      1.2| Cser    |2024-04-10| Register újra jó POST ("http://10.0.2.2:8000/api/register")
      1.3| Cser    |2024-04-12| Login/Register/Animal store - dokumentálás elkezdése
+        | Cser    |2024-04-12| MainActivity Toast javítása
+     1.4| Cser    |2024-04-13| Application Icon
+
+     
 
   
         

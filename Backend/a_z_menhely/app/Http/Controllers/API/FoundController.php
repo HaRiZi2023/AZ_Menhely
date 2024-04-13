@@ -81,7 +81,7 @@ class FoundController extends Controller
     {
         $found = Found::find($id);
         if (is_null($found)) {
-            return response()->json(["message" => "A megadott azonosítóval nem található bor."], 404);
+            return response()->json(["message" => "A megadott azonosítóval nem található állat."], 404);
         }
         Found::destroy($id);
         return response()->noContent();
