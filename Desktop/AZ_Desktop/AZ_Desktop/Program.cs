@@ -12,7 +12,7 @@ namespace AZ_Desktop
         
        
         public static Database database = null;
-
+       /*
         public static FormLogin formLogin = null;
         public static List<Worker> workers = new List<Worker>();  
 
@@ -41,7 +41,7 @@ namespace AZ_Desktop
 
         //   // public static FormChip user = null;  
 
-
+        */
 
         
 
@@ -51,6 +51,15 @@ namespace AZ_Desktop
         [STAThread] // Ezzel állítjuk be az STA módot
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FormLogin());
+
+
+
+
+
+
             /*
             using (var httpClient = new HttpClient())
             {
@@ -75,10 +84,9 @@ namespace AZ_Desktop
             }
             */
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
 
 
+            /*
             //formLogin = new FormLogin();  // Ezt nem ,de minden más példányosítása
 
             formAdoption = new FormAdoption();
@@ -100,6 +108,8 @@ namespace AZ_Desktop
 
             //FormLogin formLogin = new FormLogin();
             Application.Run(new FormLogin());
+
+            */
         }
     }
 }

@@ -32,7 +32,7 @@ namespace AZ_Desktop
         }
 
         private void allFoundList()
-        {
+        {/*
             listBox_Found.Items.Clear();
             //Database database = new Database();
               
@@ -42,11 +42,11 @@ namespace AZ_Desktop
             {
                 listBox_Found.Items.Add(found); //.ToString());
             }
+        */
         }
         
         /****** youtubos ************/
-
-       /*
+        /*
         public Image ByteArrayToImage(byte[] byteArrayIn)
         {
             using MemoryStream ms = new MemoryStream(byteArrayIn)
@@ -55,7 +55,7 @@ namespace AZ_Desktop
                 return returnImage;
             }
         }
-
+       
         public byte[] ImageToByteArray(System.Drawing.Image.imageIn) 
         {
             using (MemoryStream ms = new MemoryStream())
@@ -66,7 +66,7 @@ namespace AZ_Desktop
         }
         */
                 
-        /****** youtubos ************/
+        //****** youtubos ***********
 
 
         private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok képig
@@ -84,7 +84,7 @@ namespace AZ_Desktop
                 richTextBox_FoundOther.Text = selectedfound.F_other.ToString();
 
                 if (selectedfound.F_image != null && selectedfound.F_image.Length > 0)
-                {
+                {/*
                     try
                     {
                         // MemoryStream létrehozása a byte tömbből
@@ -105,9 +105,10 @@ namespace AZ_Desktop
                     // Ha a kép üres vagy null értékű, akkor töröljük a pictureBox tartalmát
                     pictureBox_FoundImage.Image = null;
                     // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
+                */
                 }
 
-                /* NEM KELL
+                // NEM KELL
                  // Ellenőrizzük, hogy a kép nem üres és nem null
                  if (!string.IsNullOrEmpty(selectedfound.F_image))
                  {
@@ -135,10 +136,10 @@ namespace AZ_Desktop
                      // Ha a kép üres vagy null értékű, akkor töröljük a pictureBox tartalmát
                      pictureBox_FoundImage.Image = null;
                      // Esetlegesen itt megjeleníthetünk egy üzenetet, hogy nincs kép
-                 }*/
+                 }
             }
         }
-
+        
         private void emptyFieldsFound()  // mezők kiürítése 
         {
             pictureBox_FoundImage.Image = null;
@@ -153,7 +154,8 @@ namespace AZ_Desktop
             richTextBox_FoundOther.Text = "";
 
         }
-       /*
+       
+        /*
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -162,8 +164,8 @@ namespace AZ_Desktop
                 return ms.ToArray();
             }
         }
-       */
-       /*
+        */
+        /*
         private string ImageToBase64(Image image)// G_imageBase64!
         {
             using (MemoryStream ms = new MemoryStream())
@@ -173,10 +175,10 @@ namespace AZ_Desktop
                 return Convert.ToBase64String(imageBytes);
             }
         }
-       */
+        */
         private void button_FoundUpdate_Click(object sender, EventArgs e)  // ??? mezőtörlés végére  ????
         {    // Ellenőrizzük, hogy minden kötelező mező kitöltve van-e
-            if (validateInputFound())  // ki vannak-e töltve
+            //if (validateInputFound())  // ki vannak-e töltve
             {
                 // Ellenőrizze, hogy van-e kiválasztott elem a ListBox-ban
                 if (listBox_Found.SelectedIndex != -1)
@@ -197,7 +199,7 @@ namespace AZ_Desktop
                     updatedFound.Updated_at = DateTime.Now;
 
                     // Hívjuk meg az updateFound metódust az adatbázisban való frissítéshez
-                    database.updateFound(updatedFound);
+                //    database.updateFound(updatedFound);
 
                     // Kiürítjük a mezőket és frissítjük a ListBox-ot
                     emptyFieldsFound();
@@ -212,16 +214,16 @@ namespace AZ_Desktop
                     MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                /*Nem kell
+                //Nem kell
                //updatedFound.F_image = pictureBox_FoundImage.Image;
 
-               updatedFound.Updated_at = DateTime.Now;  //nem működik
+               //updatedFound.Updated_at = DateTime.Now;  //nem működik
 
 
-               updatedFound.F_image = pictureBox_FoundImage.Image; // A képet nem frissítjük
+               //updatedFound.F_image = pictureBox_FoundImage.Image; // A képet nem frissítjük
 
                // Hívja meg az updateFound metódust az adatbázisban való frissítéshez
-               database.updateFound(updatedFound);
+               //database.updateFound(updatedFound);
                emptyFieldsFound();
                // Frissítse a ListBox-ot a frissített elemmel
                allFoundList();
@@ -232,17 +234,17 @@ namespace AZ_Desktop
 
                // Üzenet a felhasználónak a sikeres frissítésről
                MessageBox.Show("Sikeres adat frissítés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-           }
-       }
-       else
-       {
-           // Ha nincs kiválasztott elem a ListBox-ban, jelenítse meg a figyelmeztető üzenetet
-           MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-       } */
-
             }
+            
+            //else
+            //{
+           // Ha nincs kiválasztott elem a ListBox-ban, jelenítse meg a figyelmeztető üzenetet
+           //MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            //} 
+
         }
+      
 
         //Ez jól működik töröl
         private void button_FoundDelete_Click(object sender, EventArgs e)
@@ -253,7 +255,7 @@ namespace AZ_Desktop
 
                 if (foundToDelete != null)
                 {
-                    database.deleteFound(foundToDelete);
+                    //database.deleteFound(foundToDelete);
                     emptyFieldsFound();
                     allFoundList(); // Frissítjük a ListBox-ot
 
@@ -303,7 +305,7 @@ namespace AZ_Desktop
                 };
 
                 // Hívja meg az insertFound metódust az adatbázisba való beszúráshoz
-                database.insertFound(newFound);
+                //database.insertFound(newFound);
 
                 // Frissítse a ListBox-ot a frissen beszúrt elemmel
                 allFoundList();

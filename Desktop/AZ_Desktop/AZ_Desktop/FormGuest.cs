@@ -18,9 +18,9 @@ namespace AZ_Desktop
     
     public partial class FormGuest : Form
     {
-        private Database database;
+        //private Database database;
         private Guest selectedGuest;
-        private string selectedImagePath; // G_imageBase64!
+        //private string selectedImagePath; // G_imageBase64!
 
         //private Database database;
 
@@ -28,7 +28,7 @@ namespace AZ_Desktop
         public FormGuest()
         {
             InitializeComponent();
-            database = new Database();
+            //database = new Database();
 
             /* gomb megjelenítés választás alapjánhoz
             button_GuestInsert.Visible = true;
@@ -98,20 +98,20 @@ namespace AZ_Desktop
                 comboBox_GuestSpecies.Text = selectedGuest.G_species;
                 comboBox_GuestGender.Text = selectedGuest.G_gender;
                 comboBox_GuestAdoption.Text = selectedGuest.G_adoption;
-                dateTimePicker_GuestIn.Value = selectedGuest.G_in_date;
-                dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
+                //dateTimePicker_GuestIn.Value = selectedGuest.G_in_date;
+                //dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
                 richTextBox_GuestOther.Text = selectedGuest.G_other;
 
                 if (selectedGuest.G_image != null && selectedGuest.G_image.Length > 0)
                 {
                     try
-                    {
+                    {/*
                         // MemoryStream létrehozása a byte tömbből
                         using (MemoryStream ms = new MemoryStream(selectedGuest.G_image))
                         {
                             // Kép betöltése a MemoryStream-ből
                             pictureBox_GuestImage.Image = Image.FromStream(ms);
-                        }
+                        }*/
                     }
                     catch (Exception ex)
                     {
@@ -233,26 +233,26 @@ namespace AZ_Desktop
             }
         }
         /********* nem kell  ***************/
-       
-        private byte[] ImageToByteArray(Image imageIn)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
-        }
         /*
-        private string ImageToBase64(Image image)// G_imageBase64!
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                image.Save(ms, image.RawFormat);
-                byte[] imageBytes = ms.ToArray();
-                return Convert.ToBase64String(imageBytes);
-            }
-        }
-        */
+         private byte[] ImageToByteArray(Image imageIn)
+         {
+             using (MemoryStream ms = new MemoryStream())
+             {
+                 imageIn.Save(ms, imageIn.RawFormat);
+                 return ms.ToArray();
+             }
+         }
+
+         private string ImageToBase64(Image image)// G_imageBase64!
+         {
+             using (MemoryStream ms = new MemoryStream())
+             {
+                 image.Save(ms, image.RawFormat);
+                 byte[] imageBytes = ms.ToArray();
+                 return Convert.ToBase64String(imageBytes);
+             }
+         }
+         */
         /********* nem kell  ***************/
 
         private void pictureBox_GuestImage_Click(object sender, EventArgs e)  // kép kiválasztása pictureboxon keresztül
@@ -263,7 +263,7 @@ namespace AZ_Desktop
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox_GuestImage.Image = new Bitmap(dialog.FileName);
-                selectedImagePath = dialog.FileName;
+               // selectedImagePath = dialog.FileName;
             }
         }
         
@@ -342,7 +342,7 @@ namespace AZ_Desktop
 
                  if (pictureBox_GuestImage.Image != null)  // kéne else
                  {
-                    guest.G_image = ImageToByteArray(pictureBox_GuestImage.Image);
+                    //guest.G_image = ImageToByteArray(pictureBox_GuestImage.Image);
                  }
                 /*
                 else  // ez is nullát ad vissza
@@ -365,7 +365,7 @@ namespace AZ_Desktop
 
 
 
-                database.insertGuest(guest);
+                //database.insertGuest(guest);
                 MessageBox.Show("A kép sikeresen mentve lett az adatbázisba!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -395,7 +395,7 @@ namespace AZ_Desktop
                     using (MemoryStream ms = new MemoryStream())
                     {
                         pictureBox_GuestImage.Image.Save(ms,           pictureBox_GuestImage.Image.RawFormat);
-                        selectedGuest.G_image = ms.ToArray() ;
+                        //selectedGuest.G_image = ms.ToArray() ;
                     }
 
                     
@@ -403,7 +403,7 @@ namespace AZ_Desktop
                     // A módosítás idejét frissítjük
                     selectedGuest.Updated_at = DateTime.Now;
 
-                    database.updateGuest(selectedGuest);
+                    //database.updateGuest(selectedGuest);
                     MessageBox.Show("A vendég adatai frissítve lettek!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Close();
@@ -420,7 +420,7 @@ namespace AZ_Desktop
 
             if (selectedGuest != null)
             {
-                database.deleteGuest(selectedGuest);
+                //database.deleteGuest(selectedGuest);
                 MessageBox.Show("A vendég sikeresen törölve lett az adatbázisból!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }

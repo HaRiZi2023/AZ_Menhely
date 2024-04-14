@@ -13,8 +13,10 @@ using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace AZ_Desktop
 {
+   
     public partial class FormChoice : Form
     {
+      
         //private Database database;
         private CheckBox[] checkBoxes_Choice;
        
@@ -61,7 +63,7 @@ namespace AZ_Desktop
             if (listBox_Choice.SelectedIndex != -1)
             {
                 string selectedIndex = listBox_Choice.SelectedItem.ToString();
-                return Program.database.chosenName(selectedIndex);
+                //return Program.database.chosenName(selectedIndex);
             }
             return null;
         }
@@ -86,7 +88,7 @@ namespace AZ_Desktop
                     selectedCheckBox = checkBox;
                 }
             }
-
+            /*
             if (!anyChecked)
             {
                 MessageBox.Show("Nincs kiválasztott CheckBox!", "Hiányzó bejelölés!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -114,7 +116,7 @@ namespace AZ_Desktop
                         listBox_Choice.Items.Add(cat.G_name); // Feltételezve, hogy a Guest osztályban van egy Name property
                     }
                     break;
-            }
+            }*/
         }
                 // nincs ?????
         private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e) // üres
@@ -128,10 +130,12 @@ namespace AZ_Desktop
                 // Most itt lehet feldolgozni a kiválasztott értéket
                 MessageBox.Show("Kiválasztott elem: 111 - " + selectedGuestName);
             }
-            */
+          */  
         }
 
-        /********************/
+        /// <summary>
+        /// ////////////
+        /// </summary>
         private void emptyFieldsChoice()  // ok m
         {
             // Kiürítjük a mezőket
@@ -141,14 +145,15 @@ namespace AZ_Desktop
 
             listBox_Choice.Items.Clear();
             //CheckBox selectedCheckBox = null;
+        
         }
         
 
-        /******************/
+        //////////
 
 
         private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb átlép m
-        {
+        {/*
             
             //Új vendég hozzáadása
             FormGuest formGuest = new FormGuest();
@@ -157,11 +162,11 @@ namespace AZ_Desktop
 
             emptyFieldsChoice();
 
-
+        */
         }
 
         private void button_ChoiceUpdate_Click(object sender, EventArgs e)  // módosítás gomb átlép m
-        {
+        {/*
                // Kiválasztott módosítása
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
@@ -176,7 +181,7 @@ namespace AZ_Desktop
             emptyFieldsChoice();
             //selectedGuest = GetSelectedGuest();
 
-            /*
+           
                 if (listBox_Choice.SelectedIndex != -1)
                 {
 
@@ -223,13 +228,13 @@ namespace AZ_Desktop
 
                 } 
 
-            */
+            
 
-
+        */
         }
 
         private void button_ChoiceDelete_Click(object sender, EventArgs e)// törlés gomb átlép m
-        {
+        {/*
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
             {
@@ -262,7 +267,7 @@ namespace AZ_Desktop
                 }
                 FormGuest formGuest = new FormGuest();
                 formGuest.Show();
-              */
+           */  
         }
     }
 }

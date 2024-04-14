@@ -1,0 +1,13 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"menhely"},
+{"type":"table","name":"founds","database":"menhely","data":
+[
+{"id":"1","f_choice":"Zétény","f_species":"Kíra","f_gender":"Rudolf","f_injury":"Henriett","f_position":"2256 Budapest, Jakab körtér 33. 08. emelet","f_other":"iusto accusamus quis","f_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c34323930326135646433373632343036343062646365326330356566653837652e706e67","created_at":"2024-04-13 14:29:14","updated_at":"2024-04-13 14:29:14"},
+{"id":"2","f_choice":"Henriett","f_species":"Szervác","f_gender":"Ramóna","f_injury":"Mihály","f_position":"0704 Derecske, Somogyi útja 517. 57. emelet","f_other":"in est atque","f_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c61383031303834626163636336393363316161393935623731333135613230662e706e67","created_at":"2024-04-13 14:29:14","updated_at":"2024-04-13 14:29:14"},
+{"id":"3","f_choice":"Csenge","f_species":"Ádám","f_gender":"Martina","f_injury":"Evelin","f_position":"1460 Budapest, Léna orom 998. 71. ajtó","f_other":"et quas rerum","f_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c31396533393037626236313462616362636435343534376536316266336361362e706e67","created_at":"2024-04-13 14:29:14","updated_at":"2024-04-13 14:29:14"},
+{"id":"4","f_choice":"Richárd","f_species":"Zoltán","f_gender":"Benedek","f_injury":"Gréta","f_position":"7259 Budapest, Orbán forduló 66.","f_other":"sequi officiis officiis","f_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c61656435613333643863396239346339316336613931376264643631373132382e706e67","created_at":"2024-04-13 14:29:14","updated_at":"2024-04-13 14:29:14"},
+{"id":"5","f_choice":"Zsombor","f_species":"Olivér","f_gender":"Benedek","f_injury":"Endre","f_position":"2675 Budapest, Antal pincesor 5.","f_other":"et ut hic","f_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c37363766633762373766613961623563663162333932613032396665326234372e706e67","created_at":"2024-04-13 14:29:14","updated_at":"2024-04-13 14:29:14"}
+]
+}
+]

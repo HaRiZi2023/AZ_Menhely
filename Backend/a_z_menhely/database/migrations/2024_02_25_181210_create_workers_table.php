@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->string("w_name", 20);
-            $table->string("w_password", 20);
+            $table->string("w_password", 100);
             $table->enum("w_permission", array("teljes", "felhasználó"));
             $table->timestamps();
             $table->softDeletes();

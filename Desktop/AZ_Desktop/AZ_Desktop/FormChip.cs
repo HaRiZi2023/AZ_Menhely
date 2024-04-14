@@ -1,34 +1,56 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySqlX.XDevAPI;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace AZ_Desktop
 {
+    
+
     public partial class FormChip : Form
     {
-        private Database database;
+        HttpClient client = new HttpClient();
+        string endPoint = ReadSetting("endpointUrl");
 
-        public FormChip()
+        private static string ReadSetting(string keyName) // RR 
         {
-            InitializeComponent();
-            database = new Database();
+            string result = null;
+            try
+            {
+                var value = ConfigurationManager.AppSettings;
+                result = value[keyName];
+            }
+            catch (ConfigurationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+               
+        public FormChip()  // RR - Üres
+        {
+            InitializeComponent();;
         }
 
-        private void FormChip_Load(object sender, EventArgs e)
+        private void FormChip_Load(object sender, EventArgs e)  // RR - Üres  
         {
-        }  //ok u
+        }  
 
         // Egyéb alaphelyzetbe állítási műveletek...
-        private void button_ChipNew_Click(object sender, EventArgs e)
+        private void button_ChipNew_Click(object sender, EventArgs e)  //RR - Mezőket ürít 
         {
             // Visszaállítjuk a beviteli mezők tartalmát
             textBox_ChipNumber.Text = "";
@@ -40,12 +62,43 @@ namespace AZ_Desktop
             label_ChipName.Visible = false;
             label_ChipSpecies.Visible = false;
             label_ChipOther.Visible = false;
-        }  //ok marad n
+        } 
+
+        public static async Task<bool> CheckChipNumberInDatabase(string chipNumber) // nincs használatban
+        {
+            HttpClient client = new HttpClient(); // új HttpClient Objektum létrehozása Http küldésekre használjuk.
+            string endPoint = ReadSetting("endpointUrl"); //A beállításokból lekérdezze az alkalmazás által használt végpont (endpoint) URL-t.(app.config.ból)
+
+
+
+            try
+            {
+                string apiUrl = $"{endPoint}/chip";
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    JObject jsonResponse = JObject.Parse(responseBody);
+                    return (bool)jsonResponse["exists"];
+                }
+                else
+                {
+                    MessageBox.Show("Hiba történt az adatbázis ellenőrzése közben.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
+                return false;
+            } 
+        }
 
         // chipszám ellenőrzés
-        private void button_ChipControl_Click(object sender, EventArgs e)  // ht
+        private async void button_ChipControl_Click(object sender, EventArgs e)  // ht
         {
-            if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text))
+            if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text)) // ell.kitöltött-e?
             {
                 MessageBox.Show("Kérem, írja be a chip számot!");
                 this.ActiveControl = textBox_ChipNumber;  // fokusz ide!
@@ -53,26 +106,11 @@ namespace AZ_Desktop
                 // Kilépés a metódusból
             }
 
-            string userChipNumber = textBox_ChipNumber.Text;
+            string chipNumber = textBox_ChipNumber.Text;
+            bool existsInDatabase = await Database.CheckChipNumberInDatabase(chipNumber);
 
-                           // SQL lekérdezés az adatbázis ellenőrzésére
-            string query = "SELECT `g_name`, `g_species`, `g_other` FROM `guests` WHERE `g_chip`= @userChipNumber";   //`g_name`, `g_species`, `g_other`kell csak
-
-            var parameters = new { UserChipNumber = userChipNumber };
-
-            var dataTable = database.ExecuteQuery(query, parameters);
-
-            if (dataTable.Rows.Count > 0)
-
-                // Ellenőrizd, hogy van-e találat
-                //if (dataTable.Rows.Count > 0)
+            if (existsInDatabase)
             {
-                // Ha van találat, akkor megjelenítjük az adatokat a TextBox-okban
-                textBox_ChipName.Text = dataTable.Rows[0]["g_name"].ToString();
-                textBox_ChipSpecies.Text = dataTable.Rows[0]["g_species"].ToString();
-                richTextBox_ChipOther.Text = dataTable.Rows[0]["g_other"].ToString();
-                       
-                // A vezérlők láthatóvá tétele
                 textBox_ChipName.Visible = true;
                 textBox_ChipSpecies.Visible = true;
                 richTextBox_ChipOther.Visible = true;
@@ -80,10 +118,11 @@ namespace AZ_Desktop
                 label_ChipName.Visible = true;
                 label_ChipSpecies.Visible = true;
                 label_ChipOther.Visible = true;
+
+                MessageBox.Show("A chip szám megtalálható az adatbázisban.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                // Ha nincs találat, akkor elrejtjük a TextBox-okat
                 textBox_ChipName.Visible = false;
                 textBox_ChipSpecies.Visible = false;
                 richTextBox_ChipOther.Visible = false;
@@ -92,13 +131,13 @@ namespace AZ_Desktop
                 label_ChipSpecies.Visible = false;
                 label_ChipOther.Visible = false;
 
-                MessageBox.Show("Nincs találat az adatbázisban.");
+                MessageBox.Show("A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }  
-        // petvetdata
-        private void button_ChipSearch_Click(object sender, EventArgs e)
+       
+        private void button_ChipSearch_Click(object sender, EventArgs e)  // RR A felkeresendő petvetdata URL
         {
-            // Megadott URL
+            // RR A felkeresendő petvetdata URL
             string url = "https://www.petvetdata.hu";
 
             // Az alapértelmezett böngésző megnyitása az URL-ben
@@ -106,17 +145,32 @@ namespace AZ_Desktop
             psi.UseShellExecute = true;
             psi.FileName = url;
             Process.Start(psi);
-        }  //ok rendben m
+        }  
 
-        private void button_ChipUpdate_Click(object sender, EventArgs e) // ht
+        private void button_ChipUpdate_Click(object sender, EventArgs e) // 
         {
-            string chipNumber = textBox_ChipNumber.Text;
-            string otherValue = richTextBox_ChipOther.Text;
+            Guest guest = new Guest();
 
-            database.updateChipOther(chipNumber, otherValue);
+            //guest.Id = long.Parse(textBox_id.Text);
+            guest.G_chip = textBox_ChipNumber.Text;
+            guest.G_other = richTextBox_ChipOther.Text;
+            //guest.Date = dateTimePicker_date.Value.ToString("yyyy-MM-dd");
+            //guest.Gender = comboBox_Gender.SelectedValue.ToString();
+            //guest.Payment = (long)numericUpDown1.Value; 
 
-            
-        }  //ok
+            var json = JsonConvert.SerializeObject(guest); //-- továbbítandó adat
+            var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
+            string endPointUpdate = $"{endPoint}/{guest.Id}";
+            var response = client.PutAsync(endPointUpdate, data).Result;
 
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Sikeres módosítás!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Sikertelen módosítás!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }  
     }
 }

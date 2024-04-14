@@ -25,7 +25,7 @@ class WorkerFactory extends Factory
         return [
 
             "w_name" => fake()->firstName(),
-            "w_password" => static ::$w_password ??= Hash::make('w_password'),
+            "w_password" => static ::$w_password ??= Hash::make('w_password'), //->lexify(),
             "w_permission" => fake()->randomKey(['teljes'=> 1, 'felhasználó'=> 2]),
 
         ];

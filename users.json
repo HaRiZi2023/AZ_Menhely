@@ -1,0 +1,13 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"menhely"},
+{"type":"table","name":"users","database":"menhely","data":
+[
+{"id":"1","name":"Ifj. Major Richárd PhD","email":"bognar.arpad@example.com","email_verified_at":"2024-04-13 14:29:18","password":"$2y$12$nJF378Q67qurOQeFfTUDW.1CS9c.tt3XdLkdNscdgP1t8t1nRTIva","remember_token":"CXOpEl3dmh","address":"0475 Sárospatak, Gitta kert 435. 01. ajtó","phone":"9","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18"},
+{"id":"2","name":"Prof. Sándor Liliána","email":"szonja.kiss@example.com","email_verified_at":"2024-04-13 14:29:18","password":"$2y$12$nJF378Q67qurOQeFfTUDW.1CS9c.tt3XdLkdNscdgP1t8t1nRTIva","remember_token":"fSYZa6RKcS","address":"1613 Pécsvárad, Boros tere 160. 83. ajtó","phone":"4","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18"},
+{"id":"3","name":"Oláhné Bogdán Angéla","email":"fszoke@example.com","email_verified_at":"2024-04-13 14:29:18","password":"$2y$12$nJF378Q67qurOQeFfTUDW.1CS9c.tt3XdLkdNscdgP1t8t1nRTIva","remember_token":"ImknhhcgK6","address":"2019 Budapest, Sándor lépcső 538.","phone":"4","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18"},
+{"id":"4","name":"Ifj. Kerekes Kristóf PhD","email":"fulop.balazs@example.com","email_verified_at":"2024-04-13 14:29:18","password":"$2y$12$nJF378Q67qurOQeFfTUDW.1CS9c.tt3XdLkdNscdgP1t8t1nRTIva","remember_token":"KjI154c6nJ","address":"9964 Budapest, Bettina tér 4.","phone":"5","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18"},
+{"id":"5","name":"Prof. Mészáros Boglárka","email":"varga.imre@example.com","email_verified_at":"2024-04-13 14:29:18","password":"$2y$12$nJF378Q67qurOQeFfTUDW.1CS9c.tt3XdLkdNscdgP1t8t1nRTIva","remember_token":"UullrgQDCg","address":"8695 Budapest, Albert kert 1. 70. emelet","phone":"4","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18"}
+]
+}
+]

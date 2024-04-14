@@ -16,7 +16,7 @@ namespace AZ_Desktop
     
     public partial class FormAdoption : Form
     {
-        private Database database;
+        //private Database database;
         private List<Guest> allAnimals;
         private List<User> allUsers;
         //private User selectedUser;  //????????????????
@@ -25,9 +25,9 @@ namespace AZ_Desktop
         {
             InitializeComponent();
 
-            database = new Database();
-            allAnimals = database.allAdoptableAnimal();
-            allUsers = database.allUser();
+            //database = new Database();
+           //allAnimals = database.allAdoptableAnimal();
+            //allUsers = database.allUser();
             uploadingAnimalName();
             uploadingUserName();
         }
@@ -202,7 +202,7 @@ namespace AZ_Desktop
                 try
                 {
                     //insertAdoption metódus meghívása az adatbázisba való beszúráshoz
-                    database.insertAdoption(newAdoption);
+                    //database.insertAdoption(newAdoption);
 
                     // Ha a beszúrás sikeres volt, folytatható a további műveleteket elvégzése
 
@@ -221,7 +221,7 @@ namespace AZ_Desktop
                 if (selectedAnimal != null && selectedAnimal.G_adoption == "igen")
                     {
                         selectedAnimal.G_adoption = "nem";
-                        database.adoptionStatusChange(selectedAnimal);
+                        //database.adoptionStatusChange(selectedAnimal);
 
                         // Most frissítem az adatbázist is, hogy ez az állat mostantól "nem"-re legyen állítva  Vagy inkáb archiv
                         //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva
@@ -237,7 +237,7 @@ namespace AZ_Desktop
 
                     formContract.ShowDialog();
 
-                    allAnimals = database.allAdoptableAnimal();
+                    //allAnimals = database.allAdoptableAnimal();
                    
                     emptyFieldsAdoption();
                     placeholderAdoption();

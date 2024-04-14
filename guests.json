@@ -1,0 +1,13 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"menhely"},
+{"type":"table","name":"guests","database":"menhely","data":
+[
+{"id":"1","g_name":"Zita","g_chip":"998180026205514","g_species":"macska","g_gender":"nőstény","g_in_date":"1977-11-19","g_in_place":"6733 Siófok, Fábián erdősor 5.","g_out_date":"2008-10-23","g_adoption":"igen","g_other":"iusto non consectetur","g_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c33666230313530366438663937666235316637623632366638376466326161342e706e67","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18","deleted_at":null},
+{"id":"2","g_name":"Mirella","g_chip":"957950903039314","g_species":"kutya","g_gender":"hím","g_in_date":"2001-01-15","g_in_place":"3880 Budapest, Hegedüs tér 411.","g_out_date":"2003-09-27","g_adoption":"nem","g_other":"itaque ducimus perferendis","g_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c35306563356530336238323435353239646538643031333535356266393330382e706e67","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18","deleted_at":null},
+{"id":"3","g_name":"Ottó","g_chip":"913472748477386","g_species":"macska","g_gender":"hím","g_in_date":"2000-12-11","g_in_place":"0862 Budapest, Gréta átjáró 4.","g_out_date":"2018-01-03","g_adoption":"igen","g_other":"ducimus est est","g_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c30353631346263613066636330303030336339366337613461353130346466612e706e67","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18","deleted_at":null},
+{"id":"4","g_name":"Zoltán","g_chip":"995290338822605","g_species":"macska","g_gender":"hím","g_in_date":"1994-10-02","g_in_place":"7878 Szolnok, Virág gát 66.","g_out_date":"1995-04-13","g_adoption":"nem","g_other":"ipsam vitae fugit","g_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c66633537396563333438353636363337643332636239383136386539313265332e706e67","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18","deleted_at":null},
+{"id":"5","g_name":"Johanna","g_chip":"989941453885947","g_species":"macska","g_gender":"nőstény","g_in_date":"1978-03-12","g_in_place":"2308 Vecsés, Székely körút 185.","g_out_date":"1985-05-21","g_adoption":"nem","g_other":"id non laborum","g_image":"0x433a5c55736572735c5a6974615c417070446174615c4c6f63616c5c54656d705c32646130333066393865396162313061323935613031386538653032376266312e706e67","created_at":"2024-04-13 14:29:18","updated_at":"2024-04-13 14:29:18","deleted_at":null}
+]
+}
+]
