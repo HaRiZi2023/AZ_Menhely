@@ -41,7 +41,7 @@
             this.button_LoginDelete = new System.Windows.Forms.Button();
             this.button_LoginUpdate = new System.Windows.Forms.Button();
             this.comboBox_LoginPermission = new System.Windows.Forms.ComboBox();
-            this.comboBox_LoginName = new System.Windows.Forms.ComboBox();
+            this.textBox_LoginName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,13 +179,13 @@
             this.comboBox_LoginPermission.TabIndex = 13;
             this.comboBox_LoginPermission.Visible = false;
             // 
-            // comboBox_LoginName
+            // textBox_LoginName
             // 
-            this.comboBox_LoginName.FormattingEnabled = true;
-            this.comboBox_LoginName.Location = new System.Drawing.Point(203, 109);
-            this.comboBox_LoginName.Name = "comboBox_LoginName";
-            this.comboBox_LoginName.Size = new System.Drawing.Size(244, 31);
-            this.comboBox_LoginName.TabIndex = 14;
+            this.textBox_LoginName.Location = new System.Drawing.Point(203, 109);
+            this.textBox_LoginName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox_LoginName.Name = "textBox_LoginName";
+            this.textBox_LoginName.Size = new System.Drawing.Size(244, 30);
+            this.textBox_LoginName.TabIndex = 14;
             // 
             // FormLogin
             // 
@@ -195,7 +195,7 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Login___out;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(638, 468);
-            this.Controls.Add(this.comboBox_LoginName);
+            this.Controls.Add(this.textBox_LoginName);
             this.Controls.Add(this.comboBox_LoginPermission);
             this.Controls.Add(this.button_LoginUpdate);
             this.Controls.Add(this.button_LoginDelete);
@@ -234,7 +234,7 @@
         private System.Windows.Forms.Button button_LoginDelete;
         private System.Windows.Forms.Button button_LoginUpdate;
         private System.Windows.Forms.ComboBox comboBox_LoginPermission;
-        private System.Windows.Forms.ComboBox comboBox_LoginName;
+        private System.Windows.Forms.TextBox textBox_LoginName;
     }
 }
 

@@ -9,10 +9,12 @@ namespace AZ_Desktop
 {
     static class Program
     {
-        
+        public static FormGuest formGuest = null;
+
+        /*
        
-        public static Database database = null;
-       /*
+        //public static Database database = null;
+       
         public static FormLogin formLogin = null;
         public static List<Worker> workers = new List<Worker>();  
 
@@ -37,13 +39,13 @@ namespace AZ_Desktop
         public static List<User> users = new List<User>();
 
         public static FormChip formChip = null;
-
+        */
 
         //   // public static FormChip user = null;  
 
-        */
 
-        
+
+
 
         /// <summary>
         /// The main entry point for the application.
@@ -53,63 +55,40 @@ namespace AZ_Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+
+            formGuest = new FormGuest();
 
 
 
 
-
-
-            /*
-            using (var httpClient = new HttpClient())
-            {
-                try
-                {
-                    HttpResponseMessage response = await httpClient.GetAsync("http://localhost:8000/api/endpoint");
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine(responseBody);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"HTTP Error: {response.StatusCode}");
-                    }
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine($"HTTP Request Error: {e.Message}");
-                }
-            }
-            */
 
 
 
             /*
-            //formLogin = new FormLogin();  // Ezt nem ,de minden más példányosítása
+                        //formLogin = new FormLogin();  // Ezt nem ,de minden más példányosítása
 
-            formAdoption = new FormAdoption();
-            formChip = new FormChip();
-            formChoice = new FormChoice();
-            //formExit = new FormExit();
-            formFound = new FormFound();
-            //formGuest = new FormGuest();
-            formMain = new FormMain();
-            formLogin = new FormLogin();
-          
-            
-            //database = new Database();
-            formChoice = new FormChoice();
-            //formGuest = new FormGuest();
+                        formAdoption = new FormAdoption();
+                        formChip = new FormChip();
+                        formChoice = new FormChoice();
+                        //formExit = new FormExit();
+                        formFound = new FormFound();
+                        //formGuest = new FormGuest();
+                        formMain = new FormMain();
+                        formLogin = new FormLogin();
 
 
-            
+                        //database = new Database();
+                        formChoice = new FormChoice();
+                        //formGuest = new FormGuest();
 
-            //FormLogin formLogin = new FormLogin();
+
+
+
+                        //FormLogin formLogin = new FormLogin();
+            */
             Application.Run(new FormLogin());
 
-            */
+            
         }
     }
 }

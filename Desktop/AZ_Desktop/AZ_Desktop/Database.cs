@@ -49,14 +49,14 @@ namespace AZ_Desktop
         /***** fő *****/
 
         /*** chip ***/
-        public static async Task<bool> CheckChipNumberInDatabase(string chipNumber)
+        public static async Task<bool> CheckChipNumberInDatabase(string chipNumber) //Nem kell!!!!
         {
             HttpClient client = new HttpClient();
             string endPoint = ReadSetting("endPointUrl");
 
             try
             {
-                string endPointGet = $"{endPoint}/chip/{chipNumber}";  // Az endpoint URL-jét az App.config.cs-ből olvassuk ki
+                string endPointGet = $"{endPoint}/guests/{chipNumber}";  // Az endpoint URL-jét az App.config.cs-ből olvassuk ki
                 HttpResponseMessage response = await client.GetAsync(endPointGet);
 
                 if (response.IsSuccessStatusCode)
@@ -79,7 +79,7 @@ namespace AZ_Desktop
             }
         }
 
-        internal static void updateChipOther(string chipNumber, string otherValue)
+        internal static void updateChipOther(string chipNumber, string otherValue) //Nem kell!!!!
         {
             HttpClient client = new HttpClient();
             string endPoint = ReadSetting("endPointUrl");
@@ -109,6 +109,9 @@ namespace AZ_Desktop
             }
         }
     
+        /*** ****/
+
+
     }
 }   
     

@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +19,24 @@ namespace AZ_Desktop
     
     public partial class FormAdoption : Form
     {
-        //private Database database;
-        private List<Guest> allAnimals;
-        private List<User> allUsers;
-        //private User selectedUser;  //????????????????
+        HttpClient client = new HttpClient();
+        string endPoint = ReadSetting("endpointUrl");
+
+        private static string ReadSetting(string keyName)
+        {
+            string result = null;
+            try
+            {
+                var value = ConfigurationManager.AppSettings;
+                result = value[keyName];
+            }
+            catch (ConfigurationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+
 
         public FormAdoption()
         {
@@ -28,15 +45,118 @@ namespace AZ_Desktop
             //database = new Database();
            //allAnimals = database.allAdoptableAnimal();
             //allUsers = database.allUser();
-            uploadingAnimalName();
-            uploadingUserName();
+           // uploadingAnimalName();
+            //uploadingUserName();
         }
 
         private void FormAdoption_Load(object sender, EventArgs e) // Nem jó itt vagy nem csakm ide kéne?!
         {
-            placeholderAdoption();
+            //placeholderAdoption();
+
+            //await PopulateComboBoxAdoptionGName();
+            //await PopulateComboBoxAdoptionUName();
+
+            //comboBox_AdoptionUName.DataSource = Enum.GetValues(typeof(G_name));
+            //comboBox_AdoptionGName.DataSource = Enum.GetValues(typeof(Name));
+
+            //listafrissitese();
         }
 
+        //***********************//
+
+        private async Task PopulateComboBoxAdoptionGName()
+        {
+            var guests = await GetGuestsWithAdoptionYesFromBackend();
+            comboBox_AdoptionGName.DataSource = guests;
+            comboBox_AdoptionGName.DisplayMember = "G_name";
+            comboBox_AdoptionGName.ValueMember = "Id";
+        }
+
+        private async Task PopulateComboBoxAdoptionUName()
+        {
+            var users = await GetUsersFromBackend();
+            comboBox_AdoptionUName.DataSource = users;
+            comboBox_AdoptionUName.DisplayMember = "Name";
+            comboBox_AdoptionUName.ValueMember = "Id";
+        }
+
+        private async Task<List<Guest>> GetGuestsWithAdoptionYesFromBackend()
+        {
+            HttpResponseMessage response = await client.GetAsync($"{endPoint}/guests?g_adoption=igen");
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Guest>>(responseBody);
+            }
+            else
+            {
+                MessageBox.Show("Failed to fetch guests from backend.");
+                return new List<Guest>();
+            }
+        }
+
+        private async Task<List<User>> GetUsersFromBackend()
+        {
+            HttpResponseMessage response = await client.GetAsync($"{endPoint}/users");
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<User>>(responseBody);
+            }
+            else
+            {
+                MessageBox.Show("Failed to fetch users from backend.");
+                return new List<User>();
+            }
+        }
+
+        private void comboBox_AdoptionGName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_AdoptionGName.SelectedItem != null)
+            {
+                var selectedGuest = (Guest)comboBox_AdoptionGName.SelectedItem;
+                textBox_AdoptionSpecies.Text = selectedGuest.G_species;
+                textBox_AdoptionGender.Text = selectedGuest.G_gender;
+                textBox_AdoptionChip.Text = selectedGuest.G_chip;
+            }
+        }
+
+        private void comboBox_AdoptionUName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_AdoptionUName.SelectedItem != null)
+            {
+                var selectedUser = (User)comboBox_AdoptionUName.SelectedItem;
+                textBox_AdoptionAddress.Text = selectedUser.Address;
+                textBox_AdoptionEmail.Text = selectedUser.Email;
+                textBox_AdoptionPhone.Text = selectedUser.Phone.ToString();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         private void placeholderAdoption()   //mező szöveg
         {
             comboBox_AdoptionGName.Text = "Kérem válasszon!";
@@ -59,7 +179,29 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Nincs elérhető adat az állatokhoz.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }   
+        }
+
+        private async void listaGuestfrissitese() // uj
+        {
+            comboBox_AdoptionGName.Items.Clear();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(endPoint);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    var guestYes = Guest.FromJson(jsonString);
+                    foreach (Guest item in guestYes)
+                    {
+                        comboBox_AdoptionGName.Items.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void uploadingUserName()  // nevek feltöltése cb
         {
@@ -118,7 +260,7 @@ namespace AZ_Desktop
                     {
                         // Ha a kép üres, töröld a PictureBox tartalmát
                         pictureBox_Adoption.Image = null;
-  */
+  
                     }
                 }
             }
@@ -255,63 +397,63 @@ namespace AZ_Desktop
                     formContract.ShowDialog();
                     */
 
-                   /* 
-                    // TextBox-ok értékeinek átadása a második formnak
-                    formContract.TransferData(
-                        comboBox_AdoptionGName.Text,
-                        textBox_AdoptionSpecies.Text,
-                        textBox_AdoptionGender.Text,
-                        textBox_AdoptionChip.Text,
+        /* 
+         // TextBox-ok értékeinek átadása a második formnak
+         formContract.TransferData(
+             comboBox_AdoptionGName.Text,
+             textBox_AdoptionSpecies.Text,
+             textBox_AdoptionGender.Text,
+             textBox_AdoptionChip.Text,
 
-                        comboBox_AdoptionUName.Text,
-                        textBox_AdoptionAddress.Text,
-                        textBox_AdoptionEmail.Text,
-                        textBox_AdoptionPhone.Text,
-                        dateTimePicker_AdoptionDate.Value.ToString() 
-                    );*/
+             comboBox_AdoptionUName.Text,
+             textBox_AdoptionAddress.Text,
+             textBox_AdoptionEmail.Text,
+             textBox_AdoptionPhone.Text,
+             dateTimePicker_AdoptionDate.Value.ToString() 
+         );*/
 
-                    //FormContract formContract = new FormContract(comboBox_AdoptionGName.SelectedItem.ToString()()); 
-                    
-                    
-                    //ext, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
+        //FormContract formContract = new FormContract(comboBox_AdoptionGName.SelectedItem.ToString()()); 
+
+
+        //ext, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
         //comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
 
-                    //formContract.ShowDialog(); //Show
+        //formContract.ShowDialog(); //Show
 
 
-
+        /*
                 }
                 catch (Exception ex)
                 {
                     // Ha a beszúrás sikertelen volt, kezeljük a hibát vagy adjunk visszajelzést a felhasználónak
                     MessageBox.Show("Hiba történt a beszúrás során: " + ex.Message, "Beszúrás hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-    
+    */
 
 
 
 
 
 
-                /*
+        /*
 
 
-                // Ki kell vennem a kiválasztottat
-                Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == comboBox_AdoptionGName.Text);
+        // Ki kell vennem a kiválasztottat
+        Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == comboBox_AdoptionGName.Text);
 
 
-                    // Most frissítem az adatbázist is, hogy ez az állat mostantól "nem"-re legyen állítva  Vagy inkáb archiv
-                    //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva
-                }*/
-            }
+            // Most frissítem az adatbázist is, hogy ez az állat mostantól "nem"-re legyen állítva  Vagy inkáb archiv
+            //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva
         }
+    }
+}
 
-        private void button_AdoptionAgain_Click(object sender, EventArgs e)  // újra gomb ok m
-        {
-            emptyFieldsAdoption();
-            placeholderAdoption();
-        }
+private void button_AdoptionAgain_Click(object sender, EventArgs e)  // újra gomb ok m
+{
+    emptyFieldsAdoption();
+    placeholderAdoption();
+}*/
 
- 
+
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -40,42 +41,49 @@ namespace AZ_Desktop
             }
             return result;
         }
-
-        /*private Database database;
-        private string connectionString = "Server=localhost;Database=menhely;Userid=root;Pwd= ;";   //?????? ezt */
-
-        public FormLogin()  // jav
+                
+        public FormLogin()  // 
         {
             InitializeComponent();
-            //uploadingWorkerName();
         }
 
         private void FormLogin_Load(object sender, EventArgs e) // RR
         {
             comboBox_LoginPermission.Text = "Jogosultság";
+            comboBox_LoginPermission.DataSource = Enum.GetValues(typeof(W_permission));
         }
-
-        private void uploadingWorkerName() // nevek feltöltése cb
+        /*
+        // nem kell
+        private async void uploadingWorkerName() // nevek feltöltése cb
         {/*
-            if (comboBox_LoginName.Items.Count > 0)
-                comboBox_LoginName.Items.Clear();
-            if (allWorker != null && allWorker.Count > 0)
+            textBox_LoginName.Clear();
+            try
             {
-                foreach (Worker worker in allWorker)
+                HttpResponseMessage response = await client.GetAsync(endPoint);
+                if (response.IsSuccessStatusCode)
                 {
-                    if (!string.IsNullOrWhiteSpace(worker.W_name))  //Name
-                        comboBox_LoginName.Items.Add(worker.W_name); // Változtasd meg az állatok nevének megfelelő tulajdonságra
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    var workers = Worker.FromJson(jsonString);
+
+
+                    // Beállítjuk a DisplayMember tulajdonságot, hogy a ComboBox megfelelően jelenítse meg a neveket
+                    //textBox_LoginName = ""; // A "Name" a Worker osztály nevére utal, kicseréld az aktuális mezőre
+
+                    foreach (Worker item in workers)
+                    {
+                        //textBox_LoginName.Add(item);
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Nincs elérhető adat az állatokhoz.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-        }
-
-        private async void allWorker()
+                MessageBox.Show(ex.Message);
+            }
+        }*/
+        /*
+        private async void allWorker()  //ua mint fent
         {
-            comboBox_LoginName.Items.Clear();
+            textBox_LoginName.Clear();
             try
             {
                 HttpResponseMessage response = await client.GetAsync(endPoint);
@@ -85,7 +93,7 @@ namespace AZ_Desktop
                     var workers = Worker.FromJson(jsonString);
                     foreach (Worker item in workers)
                     {
-                        comboBox_LoginName.Items.Add(item);
+                        //textBox_LoginName.Items.Add(item);
                     }
                 }
             }
@@ -94,43 +102,71 @@ namespace AZ_Desktop
                 MessageBox.Show(ex.Message);
             }
         }
-
+    */
 
         // belépés
-        private async void button_Login_Click(object sender, EventArgs e) // 
+        private async void button_Login_Click(object sender, EventArgs e) // u 
         {
-            string w_name = comboBox_LoginName.Text;
+            string w_name = textBox_LoginName.Text;
             string w_password = textBox_LoginPass.Text;
 
-            if (string.IsNullOrEmpty(w_name))
+            if (string.IsNullOrEmpty(textBox_LoginName.Text) || string.IsNullOrEmpty(textBox_LoginPass.Text))
             {
                 MessageBox.Show("Kérjük adja meg a nevét!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                comboBox_LoginName.Select();
+                textBox_LoginName.Select();
                 return;
             }
-            if (string.IsNullOrEmpty(w_password))
-            {
-                MessageBox.Show("Kérjük adja meg a jelszavát!", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox_LoginPass.Select();
-                return;
-            }
+
             bool success = await checkLogin(w_name, w_password);
+
 
             if (success)
             {
-                MessageBox.Show("Sikeres bejelentkezés!");
+                MessageBox.Show("Sikeres bejelentkezés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
                 openFormMain();
             }
             else
             {
                 MessageBox.Show("Sikertelen bejelentkezés! Hibás felhasználónév vagy jelszó.");
-                comboBox_LoginName.Select();
+                textBox_LoginName.Select();
                 return;
             }
         }
         // ezt 
-        private async Task<bool> checkLogin(string w_name, string w_password)
-        {
+        private async Task<bool> checkLogin(string w_name, string w_password) // u 
+        {            
+            try
+            {
+                string endpointGet = $"{endPoint}/workers?name={w_name}&password={w_password}";
+                HttpResponseMessage response = await client.GetAsync(endpointGet);
+
+                //using (HttpClient client = new HttpClient())
+                if (response.IsSuccessStatusCode) 
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    JArray jsonResponse = JArray.Parse(responseBody);
+                    return jsonResponse.Count > 0;
+                }
+                else 
+                {
+                    MessageBox.Show("/X/Hiba történt az adatbázis ellenőrzése közben: " + response.ReasonPhrase, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("/X/Hiba történt az adatbázis ellenőrzése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+           
+
+
+
+
+
+            /*
             if (validateInputLogin()) // ell.kitöltött-e?
             {
                 try
@@ -160,8 +196,8 @@ namespace AZ_Desktop
                 return false; // Ha a belépési adatok nem voltak kitöltve
             }
 
-            /*
-            string workerName = comboBox_LoginName.Text;
+           
+            string workerName = textBox_LoginName.Text;
             string workerPassword = textBox_LoginPass.Text;
 
             bool existsInDatabase = await CheckLoginInDatabase(w_name, w_password);
@@ -191,7 +227,7 @@ namespace AZ_Desktop
                 }
             }*/
         }
-        // ?????? 
+        // ?????? nem
         private async Task<bool> CheckLoginInDatabase(string workerName, string workerPassword)
         {
             HttpClient client = new HttpClient();
@@ -199,7 +235,7 @@ namespace AZ_Desktop
 
             try
             {
-                string endPointGet = $"{endPoint}/worker?name={workerName}&password={workerPassword}";  // Az endpoint URL-jét az App.config.cs-ből olvassuk ki
+                string endPointGet = $"{endPoint}/workers?name={workerName}&password={workerPassword}";  // Az endpoint URL-jét az App.config.cs-ből olvassuk ki
                 HttpResponseMessage response = await client.GetAsync(endPointGet);
 
                 if (response.IsSuccessStatusCode)
@@ -230,37 +266,46 @@ namespace AZ_Desktop
             formMain.Show();
             this.Hide();
         }
-        
+
         /********************/
-        private bool checkPermission(string w_name, string w_password) // 
+        private async Task<bool> checkPermission(string w_name, string w_password) // u 
         {
-            using (MySqlConnection connection = new MySqlConnection())
+            HttpClient client = new HttpClient();
+            string endPoint = ReadSetting("endPointUrl");
+
+            try
             {
-                connection.Open();
+                string endPointGet = $"{endPoint}/workers?name={w_name}&password={w_password}&permission=teljes";
+                HttpResponseMessage response = await client.GetAsync(endPointGet);
 
-                string query = "SELECT COUNT(*) FROM `workers` WHERE `w_name` = @w_name AND `w_password` = @w_password AND `w_permission` = 'teljes'";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                if (response.IsSuccessStatusCode)
                 {
-                    command.Parameters.AddWithValue("@w_name", w_name);
-                    command.Parameters.AddWithValue("@w_password", w_password);
-                    /* command.Parameters.AddWithValue("@w_permission", w_permission);*/
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    return count > 0;
-                    /*string permission = command.ExecuteScalar() as string;
-                    return permission;*/
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    JArray jsonResponse = JArray.Parse(responseBody);
+
+                    return jsonResponse.Count > 0;
                 }
+                else
+                {
+                    MessageBox.Show("***Hiba történt az adatbázis ellenőrzése közben: ", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("****Hiba történt az adatbázis ellenőrzése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        private void button_LoginService_Click(object sender, EventArgs e) // Szervíz belépés ell.
+        private async void button_LoginService_Click(object sender, EventArgs e) // u Szervíz belépés ell.
         {
-            string w_name = comboBox_LoginName.Text;
+            string w_name = textBox_LoginName.Text;
             string w_password = textBox_LoginPass.Text;
 
             if (validateInputService())
             {
-                if (checkPermission(w_name, w_password))
+                if (await checkPermission(w_name, w_password))
                 {
                     //Ha w_permission ==> "teljes" 
 
@@ -276,38 +321,38 @@ namespace AZ_Desktop
                 }
                 else
                 {
-                    MessageBox.Show("Sikertelen bejelentkezés! Hibás felhasználónév, jelszó vagy jogosultság.");
-                    comboBox_LoginName.Select();
+                    MessageBox.Show("**Sikertelen bejelentkezés! Hibás felhasználónév, jelszó vagy jogosultság.");
+                    textBox_LoginName.Select();
                     return;
                 }
             }
         }
 
         // kitöltöttség ellenőrzés
-
+        /*
         private bool validateInputLogin() // RR inserthez + üres konstruktor worksben!
         {
-            if (string.IsNullOrEmpty(comboBox_LoginName.Text) ||
+            if (string.IsNullOrEmpty(textBox_LoginName.Text) ||
                 string.IsNullOrEmpty(textBox_LoginPass.Text))
             {
                 MessageBox.Show("Kérjük, töltse ki az összes kötelező mezőt!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                this.ActiveControl = comboBox_LoginName;  // fokusz ide!
+                this.ActiveControl = textBox_LoginName;  // fokusz ide!
 
                 return false;
             }
             return true;
         }
-
+        */
         private bool validateInputService() // RR inserthez + üres konstruktor worksben!
         {
-            if (string.IsNullOrEmpty(comboBox_LoginName.Text) ||
+            if (string.IsNullOrEmpty(textBox_LoginName.Text) ||
                 string.IsNullOrEmpty(textBox_LoginPass.Text) ||
                 string.IsNullOrEmpty(comboBox_LoginPermission.Text))
             {
                 MessageBox.Show("Kérjük, töltse ki az összes kötelező mezőt!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                this.ActiveControl = comboBox_LoginName;  // fokusz ide!
+                this.ActiveControl = textBox_LoginName;  // fokusz ide!
 
                 return false;
             }
@@ -317,7 +362,7 @@ namespace AZ_Desktop
         private void emptyFields() // RR - Mezű ürítés
         {
             // Kiürítjük a mezőket
-            comboBox_LoginName.Text = "";
+            textBox_LoginName.Text = "";
             textBox_LoginPass.Text = "";
             comboBox_LoginPermission.Text = "";
         }
@@ -327,13 +372,13 @@ namespace AZ_Desktop
         private void button_LoginInsert_Click(object sender, EventArgs e)
         {
             Worker worker = new Worker();
-            if (string.IsNullOrEmpty(comboBox_LoginName.Text))
+            if (string.IsNullOrEmpty(textBox_LoginName.Text))
             {
                 MessageBox.Show("Név megadása kötelező");
-                comboBox_LoginName.Focus();
+                textBox_LoginName.Focus();
                 return;
             }
-            worker.W_name = comboBox_LoginName.Text;
+            worker.W_name = textBox_LoginName.Text;
             worker.W_password = textBox_LoginPass.Text;
             worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
            
@@ -351,9 +396,6 @@ namespace AZ_Desktop
             }
 
 
-            //textBox_LoginName.Text = "";
-            //textBox_LoginPass.Text = "";
-            //comboBox_LoginPermission.Text = "";
             /*
             string workerInsert = textBox_LoginName.Text;
             if (database.CheckWorkerExists(workerInsert))
@@ -382,11 +424,18 @@ namespace AZ_Desktop
                 // Üzenet a felhasználónak a sikeres beszúrási műveletről
                 MessageBox.Show("Az új dolgozó sikeresen felvételre került!", "Sikeres felvitel", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }*/
+
             emptyFields();
         }
 
         private void button_LoginUpdate_Click(object sender, EventArgs e)
         {
+
+
+
+
+
+            emptyFields();
             /*if (string.IsNullOrWhiteSpace(textBox_LoginName.Text))
             {
                 MessageBox.Show("Kérem, írja be a dolgozó nevét!");
@@ -433,13 +482,36 @@ namespace AZ_Desktop
 
         private void button_LoginDelete_Click(object sender, EventArgs e)  // ide még checkWorkerEx !!!!!!!!!! 
         {
-            if (string.IsNullOrWhiteSpace(comboBox_LoginName.Text))
+            if (string.IsNullOrWhiteSpace(textBox_LoginName.Text))
             {
                 MessageBox.Show("Kérem, írja be a dolgozó nevét!");
                 return; // Kilépés a metódusból
             }
 
-            string workerDelete = comboBox_LoginName.Text;
+            if (MessageBox.Show("valóban törölni akarja?") == DialogResult.OK)
+            {
+                Worker worker = new Worker();
+                
+                worker.W_name = textBox_LoginName.Text;
+                worker.W_password = textBox_LoginName.Text;
+                worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
+
+
+                string endPointDelete = $"{endPoint}/{worker.Id}";
+                var response = client.DeleteAsync(endPointDelete).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Sikeres törlés.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Sikertelen törlés!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            emptyFields();
+
+
+            //string workerDelete = textBox_LoginName.Text;
             /*
             // SQL lekérdezés az adatbázis ellenőrzésére
             string query = "SELECT `w_name` FROM `workes` WHERE `w_name`= @workerName";   //
@@ -466,6 +538,5 @@ namespace AZ_Desktop
             emptyFields(); */
         }  // ok
     }
-
 }
        

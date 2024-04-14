@@ -42,12 +42,24 @@ namespace AZ_Desktop
                
         public FormChip()  // RR - Üres
         {
-            InitializeComponent();;
+            InitializeComponent();
+            hideAllControls();
         }
 
         private void FormChip_Load(object sender, EventArgs e)  // RR - Üres  
         {
-        }  
+        }
+
+        private void hideAllControls()
+        {
+            textBox_ChipName.Visible = false;
+            textBox_ChipSpecies.Visible = false;
+            richTextBox_ChipOther.Visible = false;
+            button_ChipUpdate.Visible = false;
+            label_ChipName.Visible = false;
+            label_ChipSpecies.Visible = false;
+            label_ChipOther.Visible = false;
+        }
 
         // Egyéb alaphelyzetbe állítási műveletek...
         private void button_ChipNew_Click(object sender, EventArgs e)  //RR - Mezőket ürít 
@@ -64,7 +76,7 @@ namespace AZ_Desktop
             label_ChipOther.Visible = false;
         } 
 
-        public static async Task<bool> CheckChipNumberInDatabase(string chipNumber) // nincs használatban
+        public static async Task<bool> CheckChipNumberInDatabase(string chipNumber) // 
         {
             HttpClient client = new HttpClient(); // új HttpClient Objektum létrehozása Http küldésekre használjuk.
             string endPoint = ReadSetting("endpointUrl"); //A beállításokból lekérdezze az alkalmazás által használt végpont (endpoint) URL-t.(app.config.ból)
@@ -73,26 +85,28 @@ namespace AZ_Desktop
 
             try
             {
-                string apiUrl = $"{endPoint}/chip";
-                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                string apiUrl = "/guests";
+                HttpResponseMessage response = await client.GetAsync(endPoint + apiUrl);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    JObject jsonResponse = JObject.Parse(responseBody);
-                    return (bool)jsonResponse["exists"];
+                    JArray jsonResponse = JArray.Parse(responseBody);
+
+                    return jsonResponse.Count > 0;
+
                 }
                 else
                 {
-                    MessageBox.Show("Hiba történt az adatbázis ellenőrzése közben.");
+                    MessageBox.Show("/*/*/Hiba történt az adatbázis ellenőrzése közben.");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
+                MessageBox.Show("//**//**Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
                 return false;
-            } 
+            }
         }
 
         // chipszám ellenőrzés
@@ -107,7 +121,7 @@ namespace AZ_Desktop
             }
 
             string chipNumber = textBox_ChipNumber.Text;
-            bool existsInDatabase = await Database.CheckChipNumberInDatabase(chipNumber);
+            bool existsInDatabase = await CheckChipNumberInDatabase(chipNumber);
 
             if (existsInDatabase)
             {
@@ -123,18 +137,51 @@ namespace AZ_Desktop
             }
             else
             {
-                textBox_ChipName.Visible = false;
-                textBox_ChipSpecies.Visible = false;
-                richTextBox_ChipOther.Visible = false;
-                button_ChipUpdate.Visible = false;
-                label_ChipName.Visible = false;
-                label_ChipSpecies.Visible = false;
-                label_ChipOther.Visible = false;
-
-                MessageBox.Show("A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                hideAllControls();
+                MessageBox.Show("***A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }  
-       
+        }
+   // lehte nem kell!!
+        private async Task<Guest> GetGuestData(string chipNumber)
+        {
+            HttpClient client = new HttpClient();
+            string endPoint = ReadSetting("endpointUrl");
+
+            try
+            {
+                string apiUrl = "/guests";
+                HttpResponseMessage response = await client.GetAsync(endPoint + apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    JObject jsonResponse = JObject.Parse(responseBody);
+
+                    // Az adatok kinyerése a JSON válaszból
+                    var guests = jsonResponse["guests"];
+                    var guestData = guests.FirstOrDefault(g => g["g_chip"].ToString() == chipNumber);
+
+                    if (guestData != null)
+                    {
+                        // JSON adatok deszerializálása és visszaadása
+                        return JsonConvert.DeserializeObject<Guest>(guestData.ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Hiba történt az adatbázis lekérése közben.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt az adatok lekérése közben: " + ex.Message);
+            }
+
+            return null;
+        }
+
+
+
         private void button_ChipSearch_Click(object sender, EventArgs e)  // RR A felkeresendő petvetdata URL
         {
             // RR A felkeresendő petvetdata URL
@@ -151,12 +198,8 @@ namespace AZ_Desktop
         {
             Guest guest = new Guest();
 
-            //guest.Id = long.Parse(textBox_id.Text);
             guest.G_chip = textBox_ChipNumber.Text;
             guest.G_other = richTextBox_ChipOther.Text;
-            //guest.Date = dateTimePicker_date.Value.ToString("yyyy-MM-dd");
-            //guest.Gender = comboBox_Gender.SelectedValue.ToString();
-            //guest.Payment = (long)numericUpDown1.Value; 
 
             var json = JsonConvert.SerializeObject(guest); //-- továbbítandó adat
             var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
