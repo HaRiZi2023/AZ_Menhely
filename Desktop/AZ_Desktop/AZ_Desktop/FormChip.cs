@@ -64,47 +64,30 @@ namespace AZ_Desktop
         // Egyéb alaphelyzetbe állítási műveletek...
         private void button_ChipNew_Click(object sender, EventArgs e)  //RR - Mezőket ürít 
         {
-            // Visszaállítjuk a beviteli mezők tartalmát
+            // Visszaállítjuk a beviteli mezők tartalmát üresre
             textBox_ChipNumber.Text = "";
-
-            textBox_ChipName.Visible = false;
-            textBox_ChipSpecies.Visible = false;
-            richTextBox_ChipOther.Visible = false;
-            button_ChipUpdate.Visible = false;
-            label_ChipName.Visible = false;
-            label_ChipSpecies.Visible = false;
-            label_ChipOther.Visible = false;
+            hideAllControls();
+          
         } 
 
         public static async Task<bool> CheckChipNumberInDatabase(string chipNumber) // 
         {
-            HttpClient client = new HttpClient(); // új HttpClient Objektum létrehozása Http küldésekre használjuk.
-            string endPoint = ReadSetting("endpointUrl"); //A beállításokból lekérdezze az alkalmazás által használt végpont (endpoint) URL-t.(app.config.ból)
+            HttpClient client = new HttpClient(); 
+            string endPoint = ReadSetting("endpointUrl");
 
-
+            client.DefaultRequestHeaders.Add("Accept","application/json");
 
             try
             {
-                string apiUrl = "/guests";
+                string apiUrl = $"/guests/chip/{chipNumber}";
                 HttpResponseMessage response = await client.GetAsync(endPoint + apiUrl);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    JArray jsonResponse = JArray.Parse(responseBody);
-
-                    return jsonResponse.Count > 0;
-
-                }
-                else
-                {
-                    MessageBox.Show("/*/*/Hiba történt az adatbázis ellenőrzése közben.");
-                    return false;
-                }
+                string content = await response.Content.ReadAsStringAsync();
+                return response.IsSuccessStatusCode;
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show("//**//**Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
+                MessageBox.Show("C/chekChip/catch   Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
                 return false;
             }
         }
@@ -125,15 +108,24 @@ namespace AZ_Desktop
 
             if (existsInDatabase)
             {
-                textBox_ChipName.Visible = true;
-                textBox_ChipSpecies.Visible = true;
-                richTextBox_ChipOther.Visible = true;
-                button_ChipUpdate.Visible = true;
-                label_ChipName.Visible = true;
-                label_ChipSpecies.Visible = true;
-                label_ChipOther.Visible = true;
+                var guestData = await GetGuestData(chipNumber);
 
-                MessageBox.Show("A chip szám megtalálható az adatbázisban.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (guestData != null)
+                {
+                    textBox_ChipName.Text = guestData.G_name;
+                    textBox_ChipSpecies.Text = guestData.G_species;
+                    richTextBox_ChipOther.Text = guestData.G_other;
+
+                    textBox_ChipName.Visible = true;
+                    textBox_ChipSpecies.Visible = true;
+                    richTextBox_ChipOther.Visible = true;
+                    button_ChipUpdate.Visible = true;
+                    label_ChipName.Visible = true;
+                    label_ChipSpecies.Visible = true;
+                    label_ChipOther.Visible = true;
+
+                    MessageBox.Show("A chip szám megtalálható az adatbázisban.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
@@ -141,7 +133,7 @@ namespace AZ_Desktop
                 MessageBox.Show("***A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-   // lehte nem kell!!
+
         private async Task<Guest> GetGuestData(string chipNumber)
         {
             HttpClient client = new HttpClient();
@@ -149,38 +141,27 @@ namespace AZ_Desktop
 
             try
             {
-                string apiUrl = "/guests";
+                string apiUrl = $"/guests/{chipNumber}";
                 HttpResponseMessage response = await client.GetAsync(endPoint + apiUrl);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    JObject jsonResponse = JObject.Parse(responseBody);
-
-                    // Az adatok kinyerése a JSON válaszból
-                    var guests = jsonResponse["guests"];
-                    var guestData = guests.FirstOrDefault(g => g["g_chip"].ToString() == chipNumber);
-
-                    if (guestData != null)
-                    {
-                        // JSON adatok deszerializálása és visszaadása
-                        return JsonConvert.DeserializeObject<Guest>(guestData.ToString());
-                    }
+                    Guest guestData = JsonConvert.DeserializeObject<Guest>(responseBody);
+                    return guestData;
                 }
                 else
                 {
-                    MessageBox.Show("Hiba történt az adatbázis lekérése közben.");
+                    MessageBox.Show("C/getguest/ else Hiba történt az adatok lekérése közben.");
+                    return null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba történt az adatok lekérése közben: " + ex.Message);
+                MessageBox.Show("C/getguest/catch Hiba történt az adatok lekérése közben: " + ex.Message);
+                return null;
             }
-
-            return null;
         }
-
-
 
         private void button_ChipSearch_Click(object sender, EventArgs e)  // RR A felkeresendő petvetdata URL
         {
@@ -198,7 +179,6 @@ namespace AZ_Desktop
         {
             Guest guest = new Guest();
 
-            guest.G_chip = textBox_ChipNumber.Text;
             guest.G_other = richTextBox_ChipOther.Text;
 
             var json = JsonConvert.SerializeObject(guest); //-- továbbítandó adat

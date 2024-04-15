@@ -27,6 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 
+
+Route::apiResource("/users", AdoptionController::class);
+
 //Adoptions
 Route::apiResource("/adoptions", AdoptionController::class);
 
@@ -36,6 +39,7 @@ Route::apiResource("/founds", FoundController::class);
 
 //Guests
 Route::apiResource("/guests", GuestController::class);
+Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
 
 //Workers
 Route::apiResource("/workers", WorkerController::class);

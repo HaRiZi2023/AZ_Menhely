@@ -64,4 +64,18 @@ class GuestController extends Controller
         $guest->delete();
         return response()->noContent();
     }
+
+    public function getByChipNumber(Request $request, $chipNumber)
+    {
+    $guest = Guest::where('g_chip', $chipNumber)->first();
+
+    if (!$guest) {
+        return response()->json(['message' => 'Guest not found'], 404);
+    }
+
+    return response()->json($guest, 200);
+    }
+
+
+
 }

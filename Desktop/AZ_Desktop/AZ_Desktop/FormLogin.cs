@@ -156,7 +156,7 @@ namespace AZ_Desktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("/X/Hiba történt az adatbázis ellenőrzése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("/X*/Hiba történt az adatbázis ellenőrzése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

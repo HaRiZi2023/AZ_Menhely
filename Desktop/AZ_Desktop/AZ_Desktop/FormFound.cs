@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,21 +8,40 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Configuration;
 
 namespace AZ_Desktop
 {
     public partial class FormFound : Form
     {
-        private Database database;
-        
+        HttpClient client = new HttpClient();
+        string endPoint = ReadSetting("endpointUrl");
+
+        private static string ReadSetting(string keyName) // RR 
+        {
+            string result = null;
+            try
+            {
+                var value = ConfigurationManager.AppSettings;
+                result = value[keyName];
+            }
+            catch (ConfigurationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+
         public FormFound()  // jav
         {
             InitializeComponent();
-            database = new Database();
+            
             listBox_Found.SelectedIndexChanged += listBox_Found_SelectedIndexChanged; // Ez a sor fontos
 
         }
@@ -31,44 +51,46 @@ namespace AZ_Desktop
             allFoundList();
         }
 
-        private void allFoundList()
-        {/*
-            listBox_Found.Items.Clear();
-            //Database database = new Database();
-              
-            var founds = database.allFound();
 
-            foreach (Found found in founds)
+        /*****************************/
+
+        private void emptyFieldsFound()  // mezők kiürítése 
+        {
+            pictureBox_FoundImage.Image = null;
+            listBox_Found.Items.Clear();
+
+            textBox_FoundChoice.Text = "";
+            textBox_FoundSpecies.Text = "";
+            textBox_FoundGender.Text = "";
+
+            textBox_FoundWhere.Text = "";
+            textBox_FoundInjury.Text = "";
+            richTextBox_FoundOther.Text = "";
+
+        }
+
+        private async void allFoundList()
+        {
+            listBox_Found.Items.Clear();
+            try
             {
-                listBox_Found.Items.Add(found); //.ToString());
+                HttpResponseMessage response = await client.GetAsync(endPoint);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    var found = Found.FromJson(jsonString);
+                    foreach (Found item in found)
+                    {
+                        listBox_Found.Items.Clear();
+                    }
+                }
             }
-        */
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         
-        /****** youtubos ************/
-        /*
-        public Image ByteArrayToImage(byte[] byteArrayIn)
-        {
-            using MemoryStream ms = new MemoryStream(byteArrayIn)
-            {
-                Image returnImage = Image.FromStream(ms);
-                return returnImage;
-            }
-        }
-       
-        public byte[] ImageToByteArray(System.Drawing.Image.imageIn) 
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                ImageIndexConverter.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);  // felajánlott: Bmp);
-                return ms.ToArray();
-            }
-        }
-        */
-                
-        //****** youtubos ***********
-
-
         private void listBox_Found_SelectedIndexChanged(object sender, EventArgs e) //ez ok képig
         {
             // MessageBox.Show("ListBox elem kiválasztva!");
@@ -139,22 +161,8 @@ namespace AZ_Desktop
                  }
             }
         }
-        
-        private void emptyFieldsFound()  // mezők kiürítése 
-        {
-            pictureBox_FoundImage.Image = null;
-            listBox_Found.Items.Clear();
 
-            textBox_FoundChoice.Text = "";
-            textBox_FoundSpecies.Text = "";
-            textBox_FoundGender.Text = "";
-
-            textBox_FoundWhere.Text = "";
-            textBox_FoundInjury.Text = "";
-            richTextBox_FoundOther.Text = "";
-
-        }
-       
+    
         /*
         public byte[] ImageToByteArray(Image imageIn)
         {
@@ -316,3 +324,27 @@ namespace AZ_Desktop
         }    
     }
 }
+
+
+/****** youtubos ************/
+/*
+public Image ByteArrayToImage(byte[] byteArrayIn)
+{
+    using MemoryStream ms = new MemoryStream(byteArrayIn)
+    {
+        Image returnImage = Image.FromStream(ms);
+        return returnImage;
+    }
+}
+
+public byte[] ImageToByteArray(System.Drawing.Image.imageIn) 
+{
+    using (MemoryStream ms = new MemoryStream())
+    {
+        ImageIndexConverter.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);  // felajánlott: Bmp);
+        return ms.ToArray();
+    }
+}
+*/
+
+//****** youtubos ***********
