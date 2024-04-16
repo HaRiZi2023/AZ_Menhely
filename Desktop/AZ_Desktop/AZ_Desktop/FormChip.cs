@@ -22,7 +22,7 @@ namespace AZ_Desktop
 
     public partial class FormChip : Form
     {
-        HttpClient client = new HttpClient();
+        HttpClient client = new HttpClient();        // csak a statikus nem fér hozzá osztályon belül!!!!
         string endPoint = ReadSetting("endpointUrl");
 
         private static string ReadSetting(string keyName) // RR 
@@ -104,6 +104,21 @@ namespace AZ_Desktop
             }
 
             string chipNumber = textBox_ChipNumber.Text;
+
+            // Ellenőrizzük, hogy a chipszám 9-es számmal kezdődik-e
+            if (!chipNumber.StartsWith("9"))
+            {
+                MessageBox.Show("A chipszám 9-es számmal kell, hogy kezdődjön!");
+                return;
+            }
+
+            // Ellenőrizzük, hogy a chipszám 15 számjegyből áll-e
+            if (chipNumber.Length != 15)
+            {
+                MessageBox.Show("A chipszám csak 15 számjegyből állhat!");
+                return;
+            }
+
             bool existsInDatabase = await CheckChipNumberInDatabase(chipNumber);
 
             if (existsInDatabase)
@@ -136,12 +151,12 @@ namespace AZ_Desktop
 
         private async Task<Guest> GetGuestData(string chipNumber)
         {
-            HttpClient client = new HttpClient();
-            string endPoint = ReadSetting("endpointUrl");
+            //HttpClient client = new HttpClient();
+            //string endPoint = ReadSetting("endpointUrl");
 
             try
             {
-                string apiUrl = $"/guests/{chipNumber}";
+                string apiUrl = $"/guests/chip/{chipNumber}";
                 HttpResponseMessage response = await client.GetAsync(endPoint + apiUrl);
 
                 if (response.IsSuccessStatusCode)

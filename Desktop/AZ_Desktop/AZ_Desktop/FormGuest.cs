@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,18 +20,30 @@ namespace AZ_Desktop
     
     public partial class FormGuest : Form
     {
-        //private Database database;
         private Guest selectedGuest;
-        //private string selectedImagePath; // G_imageBase64!
 
-        //private Database database;
+        HttpClient client = new HttpClient();
+        string endPoint = ReadSetting("endpointUrl");
 
+        private static string ReadSetting(string keyName) // RR 
+        {
+            string result = null;
+            try
+            {
+                var value = ConfigurationManager.AppSettings;
+                result = value[keyName];
+            }
+            catch (ConfigurationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
 
         public FormGuest()
         {
             InitializeComponent();
-            //database = new Database();
-
+         
             /* gomb megjelenítés választás alapjánhoz
             button_GuestInsert.Visible = true;
             button_GuestUpdate.Visible = false;
@@ -44,7 +58,7 @@ namespace AZ_Desktop
 
 
 
-            //database = new Database();
+            
             //listBox_Choice.SelectedIndexChanged += listBox_Choice_SelectedIndexChanged; // Ez a sor fontos
 
         }
@@ -76,8 +90,6 @@ namespace AZ_Desktop
 
         private void FormGuest_Load(object sender, EventArgs e)
         {
-            
-
 
             /*
                     this.Text = "Felvitel";
@@ -98,8 +110,9 @@ namespace AZ_Desktop
                 comboBox_GuestSpecies.Text = selectedGuest.G_species;
                 comboBox_GuestGender.Text = selectedGuest.G_gender;
                 comboBox_GuestAdoption.Text = selectedGuest.G_adoption;
-                //dateTimePicker_GuestIn.Value = selectedGuest.G_in_date;
-                //dateTimePicker_GuestOut.Value = selectedGuest.G_out_date;
+                //dateTimePicker_GuestIn.Value = DateTimeOffset.Parse(selectedGuest.G_in_date).DateTime;
+                
+                //dateTimePicker_GuestOut.Value = DateTime.Parse(selectedGuest.G_out_date).ToLocalTime;
                 richTextBox_GuestOther.Text = selectedGuest.G_other;
 
                 if (selectedGuest.G_image != null && selectedGuest.G_image.Length > 0)
@@ -172,7 +185,7 @@ namespace AZ_Desktop
             }
         }
 
-        /******** valitálás mező üressé tétele *********/
+        /******** validálás mező ///  üressé tétele *********/
 
         private bool validateInputGuest() //inserthez + üres konstruktor guestben!
         {

@@ -135,7 +135,7 @@ namespace AZ_Desktop
             else
             {
                 MessageBox.Show("Sikertelen bejelentkezés! Hibás felhasználónév vagy jelszó.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox_LoginName.Select();
+                //textBox_LoginName.Select();
                 return;
             }
         }
@@ -184,7 +184,9 @@ namespace AZ_Desktop
                     MessageBox.Show("Sikeres szervíz bejelentkezés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // A gombok megjelennek
+                    label_LoginId.Visible = true;
                     label_LoginPerm.Visible = true;
+                    textBox_LoginId.Visible = true;
                     comboBox_LoginPermission.Visible = true;
                     button_LoginInsert.Visible = true;
                     button_LoginUpdate.Visible = true;
@@ -209,7 +211,7 @@ namespace AZ_Desktop
                 textBox_LoginName.Focus();
                 return false;
             }
-            if (textBox_LoginPass.Text.Length <= 3 && textBox_LoginPass.Text.Length >= 10)
+            if (textBox_LoginPass.Text.Length < 3 || textBox_LoginPass.Text.Length > 10)
             {
                 // Ellenőrizzük a jelszót regex-szel
                 var password = textBox_LoginPass.Text;
@@ -244,17 +246,8 @@ namespace AZ_Desktop
             if (validateInputService())
             {
                 worker.W_name = textBox_LoginName.Text;
-
-                using (SHA256 sha256Hash = SHA256.Create())
-                {
-                    byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(textBox_LoginPass.Text));
-                    StringBuilder builder = new StringBuilder();
-                    for (int i = 0; i < bytes.Length; i++)
-                    {
-                        builder.Append(bytes[i].ToString("x2"));
-                    }
-                    worker.W_password = builder.ToString();
-                }
+                
+                worker.W_password = textBox_LoginPass.Text;
 
                 worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
 
@@ -275,11 +268,11 @@ namespace AZ_Desktop
 
         private void button_LoginUpdate_Click(object sender, EventArgs e)
         {
-            if (validateInputService())
+            if (string.IsNullOrEmpty(textBox_LoginName.Text))
             {
                 Worker worker = new Worker();
 
-                //workerUdate.Id = long.Parse(textBox_id.Text);
+                worker.Id = long.Parse(textBox_LoginId.Text);
                 worker.W_name = textBox_LoginName.Text;
                 worker.W_password = textBox_LoginPass.Text;
                 worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
@@ -307,7 +300,7 @@ namespace AZ_Desktop
             {
                 Worker worker = new Worker();
 
-                //worker.Id = long.Parse(textBox_id.Text);
+                worker.Id = long.Parse(textBox_LoginId.Text);
                 string endPointDelete = $"{endPoint}/{worker.Id}";
                 worker.W_name = textBox_LoginName.Text;
                 worker.W_password = textBox_LoginPass.Text;

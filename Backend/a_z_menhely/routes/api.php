@@ -41,6 +41,7 @@ Route::apiResource("/founds", FoundController::class);
 Route::apiResource("/guests", GuestController::class);
 Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
 
+
 //Workers
 Route::apiResource("/workers", WorkerController::class);
 

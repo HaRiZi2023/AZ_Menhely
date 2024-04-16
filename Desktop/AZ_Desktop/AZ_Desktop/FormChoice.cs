@@ -1,10 +1,13 @@
 ﻿using com.itextpdf.text.pdf;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +19,25 @@ namespace AZ_Desktop
    
     public partial class FormChoice : Form
     {
-      
-        //private Database database;
+        HttpClient client = new HttpClient();
+        string endPoint = ReadSetting("endpointUrl");
+
         private CheckBox[] checkBoxes_Choice;
-       
+
+        private static string ReadSetting(string keyName) // RR 
+        {
+            string result = null;
+            try
+            {
+                var value = ConfigurationManager.AppSettings;
+                result = value[keyName];
+            }
+            catch (ConfigurationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
 
         public FormChoice() //string options
         {
@@ -68,7 +86,7 @@ namespace AZ_Desktop
             return null;
         }
 
-        private void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
+        private async void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
             listBox_Choice.Items.Clear();
                             // Ellenőrizzük, hogy van-e kiválasztott CheckBox
@@ -88,12 +106,45 @@ namespace AZ_Desktop
                     selectedCheckBox = checkBox;
                 }
             }
-            /*
+            
             if (!anyChecked)
             {
                 MessageBox.Show("Nincs kiválasztott CheckBox!", "Hiányzó bejelölés!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            // Itt kezdődik az új kód
+            string url = endPoint; // Az endPoint-ból származtatjuk az URL-t
+
+            if (selectedCheckBox == checkBox_ChoiceDog)
+            {
+                url += "/allDog";
+            }
+            else if (selectedCheckBox == checkBox_ChoiceCat)
+            {
+                url += "/allCat";
+            }
+
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                List<string> items = JsonConvert.DeserializeObject<List<string>>(data);
+                foreach (var item in items)
+                {
+                    listBox_Choice.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Hiba történt az adatok lekérése közben!", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+
+
+            /*
             Database database = new Database();
             switch (selectedCheckBox.Name)
             {

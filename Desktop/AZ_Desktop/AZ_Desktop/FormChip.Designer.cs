@@ -248,10 +248,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label_ChipOther;
-        private System.Windows.Forms.RichTextBox richTextBox_ChipOther;
         private System.Windows.Forms.Button button_ChipUpdate;
         private System.Windows.Forms.Label label_ChipSpecies;
         private System.Windows.Forms.TextBox textBox_ChipSpecies;
         private System.Windows.Forms.Button button_ChipNew;
+        private System.Windows.Forms.RichTextBox richTextBox_ChipOther;
     }
 }
