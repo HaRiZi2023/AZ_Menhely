@@ -23,7 +23,12 @@ class UpdateWorkerRequest extends FormRequest
     {
         return [
             'w_name' => 'required|string|max:20',
-            'w_password' => 'required|string|max:20',
+            'w_password' => [
+                'required',
+                'string',
+                'max:10',
+                'regex:/^(?=.*[a-záéíóöőúüű])(?=.*[A-ZÁÉÍÓÖŐÚÜŰ])(?=.*\d).{3,10}$/',
+            ],
             'w_permission' => 'required|in: teljes, felhasználó)',
         ];
     }

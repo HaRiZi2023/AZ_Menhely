@@ -42,6 +42,7 @@
             this.button_LoginUpdate = new System.Windows.Forms.Button();
             this.comboBox_LoginPermission = new System.Windows.Forms.ComboBox();
             this.textBox_LoginName = new System.Windows.Forms.TextBox();
+            this.label_LoginPerm = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             this.textBox_LoginPass.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox_LoginPass.Name = "textBox_LoginPass";
             this.textBox_LoginPass.Size = new System.Drawing.Size(244, 30);
-            this.textBox_LoginPass.TabIndex = 3;
+            this.textBox_LoginPass.TabIndex = 2;
             // 
             // button_Login
             // 
@@ -126,7 +127,7 @@
             this.button_LoginService.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button_LoginService.Name = "button_LoginService";
             this.button_LoginService.Size = new System.Drawing.Size(180, 36);
-            this.button_LoginService.TabIndex = 9;
+            this.button_LoginService.TabIndex = 5;
             this.button_LoginService.Text = "Szerviz";
             this.button_LoginService.UseVisualStyleBackColor = false;
             this.button_LoginService.Click += new System.EventHandler(this.button_LoginService_Click);
@@ -137,7 +138,7 @@
             this.button_LoginInsert.Location = new System.Drawing.Point(203, 369);
             this.button_LoginInsert.Name = "button_LoginInsert";
             this.button_LoginInsert.Size = new System.Drawing.Size(75, 36);
-            this.button_LoginInsert.TabIndex = 10;
+            this.button_LoginInsert.TabIndex = 6;
             this.button_LoginInsert.Text = "Felvitel";
             this.button_LoginInsert.UseVisualStyleBackColor = false;
             this.button_LoginInsert.Visible = false;
@@ -149,7 +150,7 @@
             this.button_LoginDelete.Location = new System.Drawing.Point(365, 369);
             this.button_LoginDelete.Name = "button_LoginDelete";
             this.button_LoginDelete.Size = new System.Drawing.Size(75, 36);
-            this.button_LoginDelete.TabIndex = 11;
+            this.button_LoginDelete.TabIndex = 8;
             this.button_LoginDelete.Text = "Törlés";
             this.button_LoginDelete.UseVisualStyleBackColor = false;
             this.button_LoginDelete.Visible = false;
@@ -161,7 +162,7 @@
             this.button_LoginUpdate.Location = new System.Drawing.Point(284, 369);
             this.button_LoginUpdate.Name = "button_LoginUpdate";
             this.button_LoginUpdate.Size = new System.Drawing.Size(75, 36);
-            this.button_LoginUpdate.TabIndex = 12;
+            this.button_LoginUpdate.TabIndex = 7;
             this.button_LoginUpdate.Text = "Módosít";
             this.button_LoginUpdate.UseVisualStyleBackColor = false;
             this.button_LoginUpdate.Visible = false;
@@ -176,7 +177,7 @@
             this.comboBox_LoginPermission.Location = new System.Drawing.Point(203, 214);
             this.comboBox_LoginPermission.Name = "comboBox_LoginPermission";
             this.comboBox_LoginPermission.Size = new System.Drawing.Size(244, 31);
-            this.comboBox_LoginPermission.TabIndex = 13;
+            this.comboBox_LoginPermission.TabIndex = 3;
             this.comboBox_LoginPermission.Visible = false;
             // 
             // textBox_LoginName
@@ -185,7 +186,18 @@
             this.textBox_LoginName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox_LoginName.Name = "textBox_LoginName";
             this.textBox_LoginName.Size = new System.Drawing.Size(244, 30);
-            this.textBox_LoginName.TabIndex = 14;
+            this.textBox_LoginName.TabIndex = 1;
+            // 
+            // label_LoginPerm
+            // 
+            this.label_LoginPerm.AutoSize = true;
+            this.label_LoginPerm.BackColor = System.Drawing.Color.White;
+            this.label_LoginPerm.Location = new System.Drawing.Point(113, 217);
+            this.label_LoginPerm.Name = "label_LoginPerm";
+            this.label_LoginPerm.Size = new System.Drawing.Size(84, 23);
+            this.label_LoginPerm.TabIndex = 9;
+            this.label_LoginPerm.Text = "Jogosultság";
+            this.label_LoginPerm.Visible = false;
             // 
             // FormLogin
             // 
@@ -195,6 +207,7 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Login___out;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(638, 468);
+            this.Controls.Add(this.label_LoginPerm);
             this.Controls.Add(this.textBox_LoginName);
             this.Controls.Add(this.comboBox_LoginPermission);
             this.Controls.Add(this.button_LoginUpdate);
@@ -235,6 +248,7 @@
         private System.Windows.Forms.Button button_LoginUpdate;
         private System.Windows.Forms.ComboBox comboBox_LoginPermission;
         private System.Windows.Forms.TextBox textBox_LoginName;
+        private System.Windows.Forms.Label label_LoginPerm;
     }
 }
 

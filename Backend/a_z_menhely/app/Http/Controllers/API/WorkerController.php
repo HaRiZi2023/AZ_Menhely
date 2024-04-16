@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,23 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-        $worker = Worker::create($request->all());
+          // Ellenőrizzük a jelszót regex-szel
+        $password = $request->input('w_password');
+        $pattern = "/^(?=.*[a-záéíóöőúüű])(?=.*[A-ZÁÉÍÓÖŐÚÜŰ])(?=.*\d).{3,10}$/";
+        if (!preg_match($pattern, $password))
+        {
+            return response()->json(['error' => 'Jelszónak tartalmaznia kell min:3 max:10 karaktert, amiben legalább egy kisbetű, egy nagybetű és egy szám szerepel!'], 400);
+        }
+
+        // Hash-eljük a jelszót
+        $hashedPassword = Hash::make($password);
+
+        $worker = Worker::create([
+            'w_name' => $request->input('w_name'),
+            'w_password' => $hashedPassword,
+            'w_permission' => $request->input('w_permission')
+        ]);
+
         return $worker;
     }
 

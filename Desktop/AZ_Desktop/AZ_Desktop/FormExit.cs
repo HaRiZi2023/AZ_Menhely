@@ -23,7 +23,6 @@ namespace AZ_Desktop
 
         private void FormExit_Load(object sender, EventArgs e)
         {
-
         }
 
         private void button_ExitYes_Click(object sender, EventArgs e)
