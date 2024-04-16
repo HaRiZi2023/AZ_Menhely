@@ -125,21 +125,28 @@ namespace AZ_Desktop
                 url += "/allCat";
             }
 
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string data = await response.Content.ReadAsStringAsync();
-                List<string> items = JsonConvert.DeserializeObject<List<string>>(data);
-                foreach (var item in items)
+                 HttpResponseMessage response = await client.GetAsync(url);
+                if (response.IsSuccessStatusCode)
                 {
-                    listBox_Choice.Items.Add(item);
+                    string data = await response.Content.ReadAsStringAsync();
+                    List<string> items = JsonConvert.DeserializeObject<List<string>>(data);
+                    foreach (var item in items)
+                    {
+                        listBox_Choice.Items.Add(item);
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Hiba történt az adatok lekérése közben!", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                else
+                {
+                    MessageBox.Show("Hiba történt az adatok lekérése közben!", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba történt a kérés közben: {ex.Message}", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
 
@@ -171,22 +178,27 @@ namespace AZ_Desktop
         }
                 // nincs ?????
         private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e) // üres
-        { /*
+        { 
             // Ellenőrizzük, hogy van-e kiválasztott elem a ListBox-ban
             if (listBox_Choice.SelectedIndex != -1)
             {
                 // Leolvassuk a kiválasztott elemet
                 string selectedGuestName = listBox_Choice.SelectedItem.ToString();
 
-                // Most itt lehet feldolgozni a kiválasztott értéket
+                // Létrehozunk egy új Guest objektumot a kiválasztott névvel
+                Guest selectedGuest = new Guest();
+                selectedGuest.G_name = selectedGuestName;
+
+                FormGuest formGuest = new FormGuest(selectedGuest);
+                formGuest.Show();
+
+                // Most itt lehet
                 MessageBox.Show("Kiválasztott elem: 111 - " + selectedGuestName);
             }
-          */  
+            
         }
 
-        /// <summary>
-        /// ////////////
-        /// </summary>
+        
         private void emptyFieldsChoice()  // ok m
         {
             // Kiürítjük a mezőket
@@ -204,25 +216,21 @@ namespace AZ_Desktop
 
 
         private void button_ChoiceInsert_Click(object sender, EventArgs e)  // felvitel gomb átlép m
-        {/*
-            
+        {            
             //Új vendég hozzáadása
-            FormGuest formGuest = new FormGuest();
+            FormGuest formGuest = new FormGuest(null, "Insert");
             formGuest.Show();
             
-
-            emptyFieldsChoice();
-
-        */
+            emptyFieldsChoice();                   
         }
 
         private void button_ChoiceUpdate_Click(object sender, EventArgs e)  // módosítás gomb átlép m
-        {/*
-               // Kiválasztott módosítása
+        {
+            // Kiválasztott módosítása
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
             {
-                FormGuest formGuest = new FormGuest(selectedGuest);
+                FormGuest formGuest = new FormGuest(selectedGuest, "Update");
                 formGuest.Show();
             }
             else
@@ -230,13 +238,12 @@ namespace AZ_Desktop
                 MessageBox.Show("Nincs kiválasztott elem a ListBox-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             emptyFieldsChoice();
-            //selectedGuest = GetSelectedGuest();
 
-           
+
+            //selectedGuest = GetSelectedGuest();
+                   /*    
                 if (listBox_Choice.SelectedIndex != -1)
                 {
-
-
                     // Kiválasztott vendég nevének lekérdezése
                     string selectedGuestName = listBox_Choice.SelectedItem.ToString();
 
@@ -285,12 +292,12 @@ namespace AZ_Desktop
         }
 
         private void button_ChoiceDelete_Click(object sender, EventArgs e)// törlés gomb átlép m
-        {/*
+        {
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
             {
 
-                FormGuest formGuest = new FormGuest(selectedGuest);
+                FormGuest formGuest = new FormGuest(selectedGuest, "Delete");
                 formGuest.Show();
             }
             else

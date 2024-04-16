@@ -33,7 +33,7 @@ class GuestController extends Controller
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
-            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "S Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         return $guest;
     }

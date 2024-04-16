@@ -40,7 +40,8 @@ Route::apiResource("/founds", FoundController::class);
 //Guests
 Route::apiResource("/guests", GuestController::class);
 Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
-
+Route::get('guests/cats', [GuestController::class, 'allCat']);
+Route::get('guests/dogs', [GuestController::class, 'allDog']);
 
 //Workers
 Route::apiResource("/workers", WorkerController::class);
