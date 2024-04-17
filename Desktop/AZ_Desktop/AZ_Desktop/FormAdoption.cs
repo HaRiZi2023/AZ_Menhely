@@ -51,7 +51,7 @@ namespace AZ_Desktop
 
         private void FormAdoption_Load(object sender, EventArgs e) // Nem jó itt vagy nem csakm ide kéne?!
         {
-            //placeholderAdoption();
+            //placeholderAdoption(); // Kérem válsasszon!
 
             PopulateComboBoxAdoptionGName();
             PopulateComboBoxAdoptionUName();
@@ -86,7 +86,7 @@ namespace AZ_Desktop
             dateTimePicker_AdoptionDate.Value = DateTime.Now;
         }
 
-        private async Task PopulateComboBoxAdoptionGName()
+        private async Task PopulateComboBoxAdoptionGName()  // cb. guest name feltöltése
         {
             var guests = await allGuestsYes();
             comboBox_AdoptionGName.DataSource = guests;
@@ -94,7 +94,7 @@ namespace AZ_Desktop
             comboBox_AdoptionGName.ValueMember = "Id";
         }
 
-        private async Task PopulateComboBoxAdoptionUName() // user name feltöltése
+        private async Task PopulateComboBoxAdoptionUName() // cb. user name feltöltése
         {
             var users = await allUsers();
             comboBox_AdoptionUName.DataSource = users;
@@ -135,6 +135,7 @@ namespace AZ_Desktop
                
         private void comboBox_AdoptionGName_SelectedIndexChanged(object sender, EventArgs e)  // textboxok feltöltése
         {
+            //PopulateComboBoxAdoptionGName();
             // új
             if (comboBox_AdoptionGName.SelectedItem != null)
             {

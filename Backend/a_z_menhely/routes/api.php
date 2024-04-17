@@ -45,5 +45,5 @@ Route::get('guests/dogs', [GuestController::class, 'allDog']);
 
 //Workers
 Route::apiResource("/workers", WorkerController::class);
-
-
+//Route::get('workers/checkname', [WorkerController::class, 'inNameInDatabase']);
+Route::get('/checkname', 'WorkerController@checkName');

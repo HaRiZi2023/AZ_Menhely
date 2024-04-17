@@ -30,7 +30,7 @@ namespace AZ_Desktop
         string endPoint = ReadSetting("endpointUrl");
         // ezt megnézni!!!!
         private static string ReadSetting(string keyName)
-        {
+        { /*
             try
             {
                 var value = ConfigurationManager.AppSettings;
@@ -45,9 +45,9 @@ namespace AZ_Desktop
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            */
 
-
-            /*
+           
             string result = null;
             try
             {
@@ -59,7 +59,7 @@ namespace AZ_Desktop
                 MessageBox.Show(ex.Message);
             }
             return result;
-            */
+            
         }
                 
         public FormLogin()  // 
@@ -232,38 +232,54 @@ namespace AZ_Desktop
             return true;
         }
 
-        private void emptyFields() // RR - Mezű ürítés
+        public async Task<bool> isNameInDatabase(string w_name)
         {
-            // Kiürítjük a mezőket
-            textBox_LoginName.Text = "";
-            textBox_LoginPass.Text = "";
-            comboBox_LoginPermission.Text = "";
+            var response = await client.GetAsync($"{endPoint}/api/checkname?w_name={w_name}");
+            return response.IsSuccessStatusCode && bool.Parse(await response.Content.ReadAsStringAsync());
         }
 
-        private void button_LoginInsert_Click(object sender, EventArgs e)
-        {
-            Worker worker = new Worker();
-            if (validateInputService())
+
+
+        private void emptyFields() // RR - Mezű ürítés
             {
-                worker.W_name = textBox_LoginName.Text;
-                
-                worker.W_password = textBox_LoginPass.Text;
+                // Kiürítjük a mezőket
+                textBox_LoginName.Text = "";
+                textBox_LoginPass.Text = "";
+                comboBox_LoginPermission.Text = "";
+            }
 
-                worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
-
-                var json = JsonConvert.SerializeObject(worker); //-- továbbítandó adat
-                var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-                var response = client.PostAsync(endPoint, data).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("A dolgozó sikeresen felvitelre került!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }            
+        private async void button_LoginInsert_Click(object sender, EventArgs e)
+        {
+            string workerInsert = textBox_LoginName.Text;
+            if (await isNameInDatabase(workerInsert))
+            {
+                MessageBox.Show("Van már ilyen nevű dolgozó az adtbázisban!", "Ellenőrizze!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox_LoginName.Text = "";
+                this.ActiveControl = textBox_LoginName;  // fokusz ide!
+            }
             else
             {
-                MessageBox.Show("felvitel/else A dolgozó felvétele sikertelen!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Worker worker = new Worker();
+                if (validateInputService())
+                {
+                    worker.W_name = textBox_LoginName.Text;
+                    worker.W_password = textBox_LoginPass.Text;
+                    worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
+
+                    var json = JsonConvert.SerializeObject(worker); //-- továbbítandó adat
+                    var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
+                    var response = await client.PostAsync(endPoint, data);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("A dolgozó sikeresen felvitelre került!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("A dolgozó felvétele sikertelen!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                emptyFields();
             }
-            emptyFields();
         }
 
         private void button_LoginUpdate_Click(object sender, EventArgs e)
@@ -296,8 +312,8 @@ namespace AZ_Desktop
 
         private void button_LoginDelete_Click(object sender, EventArgs e)  // ide még checkWorkerEx !!!!!!!!!! 
         {
-            if (validateInputService())
-            {
+            if (MessageBox.Show("Valóban törölni szeretné?") == DialogResult.OK)
+            {                          
                 Worker worker = new Worker();
 
                 worker.Id = long.Parse(textBox_LoginId.Text);

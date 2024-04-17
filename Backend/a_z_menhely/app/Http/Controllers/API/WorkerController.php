@@ -81,4 +81,16 @@ class WorkerController extends Controller
         $worker->delete();
         return response()->noContent();
     }
+
+    public function checkName(Request $request)
+    {
+        $w_name = $request->get('w_name');
+        $exists = Worker::where('w_name', $w_name)->exists();
+        return response()->json($exists);
+    }
+
+    
+
 }
+
+

@@ -98,6 +98,6 @@ class GuestController extends Controller
     return response()->json($cats, 200);
     }
 
-
+    
 
 }

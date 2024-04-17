@@ -81,7 +81,7 @@ namespace AZ_Desktop
                     var found = Found.FromJson(jsonString);
                     foreach (Found item in found)
                     {
-                        listBox_Found.Items.Clear();
+                        listBox_Found.Items.Add(item);
                     }
                 }
             }
