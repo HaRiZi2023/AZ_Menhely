@@ -70,11 +70,29 @@ class GuestController extends Controller
     $guest = Guest::where('g_chip', $chipNumber)->first();
 
     if (!$guest) {
-        return response()->json(['message' => 'Guest not found'], 404);
+        return response()->json(['message' => 'Nincs ilyen vendég'], 404);
     }
 
     return response()->json($guest, 200);
     }
+
+    public function updateChipOther(Request $request, $chipNumber)
+    {
+        $guest = Guest::where('g_chip', $chipNumber)->first();
+
+        if (!$guest) {
+            return response()->json(['message' => 'Nincs ilyen vendég'], 404);
+        }
+
+        $guest->g_other = $request->get('g_other');
+        $guest->updated_at = $request->get('updated_at');
+        $guest->save();
+
+        return response()->json($guest, 200);
+    }
+
+
+
 
 
 
@@ -98,6 +116,6 @@ class GuestController extends Controller
     return response()->json($cats, 200);
     }
 
-    
+
 
 }

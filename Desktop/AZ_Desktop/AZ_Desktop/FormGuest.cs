@@ -47,7 +47,7 @@ namespace AZ_Desktop
             InitializeComponent();
             this._action = "Default"; // alapért.műv.
             //uploadData();
-            //listBox_Choice.SelectedIndexChanged += listBox_Choice_SelectedIndexChanged; // Ez a sor fontos
+            
 
         }
 
@@ -264,7 +264,7 @@ namespace AZ_Desktop
             this.Close();
         }
 
-        //uploadData() induláskor betölt!!!! eleje nem kell!
+        //uploadData() induláskor betölt!!!! 
         private void button_GuestUpdate_Click(object sender, EventArgs e)// 
         {
             if (validateInputGuest()) // Ellenőrizzük, hogy minden kötelező mező kitöltve van-e
@@ -300,7 +300,7 @@ namespace AZ_Desktop
                     selectedGuest.G_species = comboBox_GuestSpecies.Text;
                     selectedGuest.G_gender = comboBox_GuestGender.Text;
                     selectedGuest.G_adoption = comboBox_GuestAdoption.Text;
-                    //selectedGuest.G_in_date = dateTimePicker_GuestIn.Value.ToString();
+                    selectedGuest.G_in_date = dateTimePicker_GuestIn.Value;
                     selectedGuest.G_out_date = dateTimePicker_GuestOut.Value;
                     selectedGuest.G_other = richTextBox_GuestOther.Text;
                     // A módosítás idejét frissítjük

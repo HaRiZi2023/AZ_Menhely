@@ -35,13 +35,17 @@ Route::apiResource("/adoptions", AdoptionController::class);
 
 //Founds
 Route::apiResource("/founds", FoundController::class);
+Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
 
 
 //Guests
 Route::apiResource("/guests", GuestController::class);
 Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
-Route::get('guests/cats', [GuestController::class, 'allCat']);
-Route::get('guests/dogs', [GuestController::class, 'allDog']);
+Route::patch('guests/chip/{chipNumber}', [GuestController::class, 'updateChipOther']);
+Route::get('guests/all/cats', [GuestController::class, 'allCat']);
+Route::get('guests/all/dogs', [GuestController::class, 'allDog']);
+Route::get('/checkname', 'GuestController@checkName'); //
+
 
 //Workers
 Route::apiResource("/workers", WorkerController::class);

@@ -87,7 +87,7 @@ namespace AZ_Desktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("C/chekChip/catch   Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
+                MessageBox.Show("Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
                 return false;
             }
         }
@@ -129,7 +129,7 @@ namespace AZ_Desktop
                 {
                     textBox_ChipName.Text = guestData.G_name;
                     textBox_ChipSpecies.Text = guestData.G_species;
-                    richTextBox_ChipOther.Text = guestData.G_other;
+                    richTextBox_ChipOther.Text = guestData.G_other;  ///????????????
 
                     textBox_ChipName.Visible = true;
                     textBox_ChipSpecies.Visible = true;
@@ -145,15 +145,12 @@ namespace AZ_Desktop
             else
             {
                 hideAllControls();
-                MessageBox.Show("***A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private async Task<Guest> GetGuestData(string chipNumber)
         {
-            //HttpClient client = new HttpClient();
-            //string endPoint = ReadSetting("endpointUrl");
-
             try
             {
                 string apiUrl = $"/guests/chip/{chipNumber}";
@@ -167,13 +164,13 @@ namespace AZ_Desktop
                 }
                 else
                 {
-                    MessageBox.Show("C/getguest/ else Hiba történt az adatok lekérése közben.");
+                    MessageBox.Show("Hiba történt az adatok lekérése közben.");
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("C/getguest/catch Hiba történt az adatok lekérése közben: " + ex.Message);
+                MessageBox.Show("Hiba történt az adatok lekérése közben: " + ex.Message);
                 return null;
             }
         }
@@ -193,8 +190,19 @@ namespace AZ_Desktop
         private void button_ChipUpdate_Click(object sender, EventArgs e) // 
         {
             Guest guest = new Guest();
-
+            /*
+            guest.G_name = textBox_GuestName.Text;
+            guest.G_chip = textBox_GuestChip.Text;
+            guest.G_in_place = textBox_GuestWhere.Text;
+            guest.G_species = comboBox_GuestSpecies.Text;
+            guest.G_gender = comboBox_GuestGender.Text;
+            guest.G_adoption = comboBox_GuestAdoption.Text;
+            guest.G_in_date = dateTimePicker_GuestIn.Value;
+            guest.G_out_date = dateTimePicker_GuestOut.Value;
+            guest.G_other = richTextBox_GuestOther.Text;
+            */           
             guest.G_other = richTextBox_ChipOther.Text;
+            guest.Updated_at = DateTime.Now;
 
             var json = JsonConvert.SerializeObject(guest); //-- továbbítandó adat
             var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá

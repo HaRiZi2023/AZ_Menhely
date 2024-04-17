@@ -8,6 +8,7 @@ use App\Http\Requests\StoreFoundRequest;
 use App\Http\Requests\UpdateFoundRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class FoundController extends Controller
 {
@@ -86,4 +87,36 @@ class FoundController extends Controller
         Found::destroy($id);
         return response()->noContent();
     }
+
+    public function getImage($id)
+    {
+        $found = Found::find($id);
+        if ($found && $found->image) {
+            return response()->make($found->image, 200, [
+                'Content-Type' => 'application/octet-stream',
+                'Content-Disposition' => 'inline; filename="image.jpg"'
+            ]);
+        } else {
+            // Az alapértelmezett kép elérési útja
+            $defaultImagePath = public_path('images/Default.png');
+            return response()->file($defaultImagePath);
+        }
+    }
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

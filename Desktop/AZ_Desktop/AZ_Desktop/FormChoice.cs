@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +25,7 @@ namespace AZ_Desktop
         string endPoint = ReadSetting("endpointUrl");
 
         private CheckBox[] checkBoxes_Choice;
+        int selectedId = 0;
 
         private static string ReadSetting(string keyName) // RR 
         {
@@ -47,6 +50,7 @@ namespace AZ_Desktop
 
         private void FormChoice_Load(object sender, EventArgs e)
         {
+            listView_Choice.FullRowSelect = true; //  egész sor jelölve legyen
         }
 
         private void InitializecheckBoxes_Choice()
@@ -76,15 +80,46 @@ namespace AZ_Desktop
             }
         }
 
-        private Guest GetSelectedGuest()
+        private async Task<Guest> GetSelectedGuest()
         {
-            if (listBox_Choice.SelectedIndex != -1)
+            if (listView_Choice.SelectedItems.Count > 0)
             {
-                string selectedIndex = listBox_Choice.SelectedItem.ToString();
+                string selectedName = listView_Choice.SelectedItems[0].Text;
+                if (await isNameInDatabase(selectedName))
+                {
+                    // A név szerepel az adatbázisban, itt hozd létre a Guest objektumot
+                    Guest guest = new Guest();
+                    // Töltsd fel a guest objektumot a megfelelő adatokkal
+                    // ...
+                    return guest;
+                }
+                else
+                {
+                    MessageBox.Show("A kiválasztott név nem szerepel az adatbázisban!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nincs kiválasztott elem a ListView-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+            /*
+            if (listView_Choice.SelectedItems.Count != -1)
+            {
+                string selectedName = listBox_Choice.SelectedItem.ToString();
                 //return Program.database.chosenName(selectedIndex);
             }
-            return null;
+            return null; */
         }
+        //?????????? kell-e
+        public async Task<bool> isNameInDatabase(string g_name)
+        {
+            var response = await client.GetAsync($"{endPoint}/api/checkname?g_name={g_name}");
+            return response.IsSuccessStatusCode && bool.Parse(await response.Content.ReadAsStringAsync());
+        }
+
 
         private async void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
@@ -118,23 +153,33 @@ namespace AZ_Desktop
 
             if (selectedCheckBox == checkBox_ChoiceDog)
             {
-                url += "/allDog";
+                url += "/guests/all/dogs";
             }
             else if (selectedCheckBox == checkBox_ChoiceCat)
             {
-                url += "/allCat";
+                url += "/guests/all/cats";
             }
-
+           
             try
             {
                  HttpResponseMessage response = await client.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-                    List<string> items = JsonConvert.DeserializeObject<List<string>>(data);
+                    List<Guest> items = JsonConvert.DeserializeObject<List<Guest>>(data);
+
+                    listView_Choice.Items .Clear();
+
                     foreach (var item in items)
                     {
                         listBox_Choice.Items.Add(item);
+
+                        ListViewItem listViewItem = new ListViewItem(item.Id.ToString()); 
+                        listViewItem.SubItems.Add(item.G_name);
+
+                        listView_Choice.Items.Add(listViewItem);
+
+
                     }
                 }
                 else
@@ -178,7 +223,7 @@ namespace AZ_Desktop
         }
                 // nincs ?????
         private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e) // üres
-        { 
+        { /*
             // Ellenőrizzük, hogy van-e kiválasztott elem a ListBox-ban
             if (listBox_Choice.SelectedIndex != -1)
             {
@@ -188,14 +233,14 @@ namespace AZ_Desktop
                 // Létrehozunk egy új Guest objektumot a kiválasztott névvel
                 Guest selectedGuest = new Guest();
                 selectedGuest.G_name = selectedGuestName;
-
+                /*
                 FormGuest formGuest = new FormGuest(selectedGuest);
                 formGuest.Show();
 
                 // Most itt lehet
                 MessageBox.Show("Kiválasztott elem: 111 - " + selectedGuestName);
             }
-            
+            */
         }
 
         
@@ -225,7 +270,7 @@ namespace AZ_Desktop
         }
 
         private void button_ChoiceUpdate_Click(object sender, EventArgs e)  // módosítás gomb átlép m
-        {
+        {/*
             // Kiválasztott módosítása
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
@@ -293,6 +338,8 @@ namespace AZ_Desktop
 
         private void button_ChoiceDelete_Click(object sender, EventArgs e)// törlés gomb átlép m
         {
+          /*
+            
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)
             {
@@ -326,6 +373,20 @@ namespace AZ_Desktop
                 FormGuest formGuest = new FormGuest();
                 formGuest.Show();
            */  
+        }
+
+        private void listView_Choice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listView_Choice.SelectedIndices.Count > 0)
+            {
+                ListViewItem listViewItem = listView_Choice.SelectedItems[0];
+                int selectedId = int.Parse(listViewItem.SubItems[0].Text);
+                Debug.WriteLine("id: " + selectedId);
+            }
+            else
+            {
+                selectedId = 0;
+            }
         }
     }
 }
