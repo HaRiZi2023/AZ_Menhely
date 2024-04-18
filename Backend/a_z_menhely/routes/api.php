@@ -5,6 +5,7 @@ use App\Http\Controllers\API\FoundController;
 use App\Http\Controllers\API\GuestController;
 use App\Http\Controllers\API\WorkerController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\ImageController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,15 +36,19 @@ Route::apiResource("/adoptions", AdoptionController::class);
 
 //Founds
 Route::apiResource("/founds", FoundController::class);
+
 Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
 
 
 //Guests
 Route::apiResource("/guests", GuestController::class);
+   // FormChip
 Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
-Route::patch('guests/chip/{chipNumber}', [GuestController::class, 'updateChipOther']);
+Route::put('guests/chip/{chipNumber}', [GuestController::class, 'chipUpdate']);
+   // FormChoice
 Route::get('guests/all/cats', [GuestController::class, 'allCat']);
 Route::get('guests/all/dogs', [GuestController::class, 'allDog']);
+
 Route::get('/checkname', 'GuestController@checkName'); //
 
 

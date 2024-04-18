@@ -65,6 +65,37 @@ class GuestController extends Controller
         return response()->noContent();
     }
 
+
+
+
+
+
+
+    // FormChoice-hoz
+
+    public function allDog()
+    {
+    // az összes kutya lekérése adatbázisból
+    $dogs = Guest::where('g_species', 'kutya')->get();
+    if (!$dogs) {
+        return response()->json(['message' => 'Nincs kutya a listában!'], 404);
+    }
+    return response()->json($dogs, 200);
+    }
+
+    public function allCat()
+    {
+    // az összes macska lekérése adatbázisból
+    $cats = Guest::where('g_species', 'macska')->get();
+    if (!$cats) {
+        return response()->json(['message' => 'Nincs macska a listában!'], 404);
+    }
+    return response()->json($cats, 200);
+    }
+
+
+    // FormChip-hez
+
     public function getByChipNumber(Request $request, $chipNumber)
     {
     $guest = Guest::where('g_chip', $chipNumber)->first();
@@ -76,7 +107,8 @@ class GuestController extends Controller
     return response()->json($guest, 200);
     }
 
-    public function updateChipOther(Request $request, $chipNumber)
+
+    public function chipUpdate(Request $request, $chipNumber)
     {
         $guest = Guest::where('g_chip', $chipNumber)->first();
 
@@ -91,31 +123,21 @@ class GuestController extends Controller
         return response()->json($guest, 200);
     }
 
-
-
-
-
-
-    public function allDog()
+    /*
+    public function updateChipOther(Request $request, $chipNumber)
     {
-    // az összes kutya lekérése adatbázisból
-    $dogs = Guest::where('g_species', 'kutya')->get();
-    if (!$dogs) {
-        return response()->json(['message' => 'Nincs kutya a listában!'], 404);
-    }
-    return response()->json($dogs, 200);
-    }
+        $guest = Guest::where('g_chip', $chipNumber)->first();
 
-    public function allCat()
-    {
-    // az összes kutya lekérése adatbázisból
-    $cats = Guest::where('g_species', 'macska')->get();
-    if (!$cats) {
-        return response()->json(['message' => 'Nincs macska a listában!'], 404);
-    }
-    return response()->json($cats, 200);
-    }
+        if (!$guest) {
+            return response()->json(['message' => 'Nincs ilyen vendég'], 404);
+        }
 
+        $guest->update($request->all());
+
+        return response()->json($guest, 200);
+    }
+    */
 
 
 }
+

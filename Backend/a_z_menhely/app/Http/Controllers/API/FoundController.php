@@ -87,7 +87,7 @@ class FoundController extends Controller
         Found::destroy($id);
         return response()->noContent();
     }
-
+    /*
     public function getImage($id)
     {
         $found = Found::find($id);
@@ -101,11 +101,17 @@ class FoundController extends Controller
             $defaultImagePath = public_path('images/Default.png');
             return response()->file($defaultImagePath);
         }
+    }*/
+
+    public function getImage($id)
+    {
+        $image = Found::table('founds')->where('id', $id)->first();
+        $imageData = base64_encode($image->image);
+        return response($imageData, 200)
+            ->header('Content-Type', 'text/plain');
     }
 
 
-
-    
 
 
 

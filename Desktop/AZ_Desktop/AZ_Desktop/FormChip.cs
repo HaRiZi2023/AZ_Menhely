@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -49,7 +50,8 @@ namespace AZ_Desktop
         private void FormChip_Load(object sender, EventArgs e)  // RR - Üres  
         {
         }
-
+       
+        // láthatatlanná tevés
         private void hideAllControls()
         {
             textBox_ChipName.Visible = false;
@@ -70,6 +72,7 @@ namespace AZ_Desktop
           
         } 
 
+        // chip az adatbázisban megtalálható-e
         public static async Task<bool> CheckChipNumberInDatabase(string chipNumber) // 
         {
             HttpClient client = new HttpClient(); 
@@ -92,7 +95,41 @@ namespace AZ_Desktop
             }
         }
 
-        // chipszám ellenőrzés
+
+        // kell ok új BE:'getByChipNumber'
+        public static async Task<Guest> CheckAndGetGuestData(string chipNumber)
+        {
+            HttpClient client = new HttpClient();
+            string endPoint = ReadSetting("endpointUrl");
+
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+            try
+            {
+                string apiUrl = $"/guests/chip/{chipNumber}";
+                HttpResponseMessage response = await client.GetAsync(endPoint + apiUrl);
+                string content = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Guest guestData = JsonConvert.DeserializeObject<Guest>(content);
+                    return guestData;
+                }
+                else
+                {
+                    MessageBox.Show("A chip szám nem található az adatbázisban.");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt az adatbázis ellenőrzése közben: " + ex.Message);
+                return null;
+            }
+        }
+
+
+        // chipszám ellenőrzés kell új BE: 'getByChipNumber'
         private async void button_ChipControl_Click(object sender, EventArgs e)  // ht
         {
             if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text)) // ell.kitöltött-e?
@@ -119,10 +156,69 @@ namespace AZ_Desktop
                 return;
             }
 
+            // Lekéri a vendég adatait a chipszám alapján és guest objektumot hoz létre
+            var guestData = await CheckAndGetGuestData(chipNumber);
+
+            if (guestData != null)
+            {
+                textBox_ChipName.Text = guestData.G_name;
+                textBox_ChipSpecies.Text = guestData.G_species;
+                richTextBox_ChipOther.Text = guestData.G_other;
+
+
+                textBox_ChipName.Visible = true;
+                textBox_ChipSpecies.Visible = true;
+                richTextBox_ChipOther.Visible = true;
+                button_ChipUpdate.Visible = true;
+                label_ChipName.Visible = true;
+                label_ChipSpecies.Visible = true;
+                label_ChipOther.Visible = true;
+
+                MessageBox.Show("A chip szám megtalálható az adatbázisban.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                hideAllControls();
+                MessageBox.Show("A chip szám nem található az adatbázisban.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+
+
+
+
+
+
+            /*
+            if (string.IsNullOrWhiteSpace(textBox_ChipNumber.Text)) // ell.kitöltött-e?
+            {
+                MessageBox.Show("Kérem, írja be a chip számot!");
+                this.ActiveControl = textBox_ChipNumber;  // fokusz ide!
+                return;
+                // Kilépés a metódusból
+            }
+
+            string chipNumber = textBox_ChipNumber.Text;
+
+            // Ellenőrizzük, hogy a chipszám 9-es számmal kezdődik-e
+            if (!chipNumber.StartsWith("9"))
+            {
+                MessageBox.Show("A chipszám 9-es számmal kell, hogy kezdődjön!");
+                return;
+            }
+
+            // Ellenőrizzük, hogy a chipszám 15 számjegyből áll-e
+            if (chipNumber.Length != 15)
+            {
+                MessageBox.Show("A chipszám csak 15 számjegyből állhat!");
+                return;
+            }
+            // chip az adatbázisban megtalálható-e
             bool existsInDatabase = await CheckChipNumberInDatabase(chipNumber);
 
             if (existsInDatabase)
-            {
+            {        // lekéri a vendég adatait a chipszám alapján és guest objektumot hoz létre
                 var guestData = await GetGuestData(chipNumber);
 
                 if (guestData != null)
@@ -149,7 +245,8 @@ namespace AZ_Desktop
             }
         }
 
-        private async Task<Guest> GetGuestData(string chipNumber)
+        // lekéri a vendég adatait a chipszám alapján és guest objektumot hoz létre
+        private async Task<Guest> GetGuestData(string chipNumber) 
         {
             try
             {
@@ -172,9 +269,12 @@ namespace AZ_Desktop
             {
                 MessageBox.Show("Hiba történt az adatok lekérése közben: " + ex.Message);
                 return null;
-            }
+            }*/
         }
 
+
+        //*** gombok ***//
+        // kell ok jó
         private void button_ChipSearch_Click(object sender, EventArgs e)  // RR A felkeresendő petvetdata URL
         {
             // RR A felkeresendő petvetdata URL
@@ -185,11 +285,13 @@ namespace AZ_Desktop
             psi.UseShellExecute = true;
             psi.FileName = url;
             Process.Start(psi);
-        }  
-
+        }
+       
+        // BE:'chipUpdate'
         private void button_ChipUpdate_Click(object sender, EventArgs e) // 
         {
-            Guest guest = new Guest();
+            
+            Guest chipNumber = new Guest();
             /*
             guest.G_name = textBox_GuestName.Text;
             guest.G_chip = textBox_GuestChip.Text;
@@ -200,13 +302,14 @@ namespace AZ_Desktop
             guest.G_in_date = dateTimePicker_GuestIn.Value;
             guest.G_out_date = dateTimePicker_GuestOut.Value;
             guest.G_other = richTextBox_GuestOther.Text;
-            */           
-            guest.G_other = richTextBox_ChipOther.Text;
-            guest.Updated_at = DateTime.Now;
+              */
+            
+            chipNumber.G_other = richTextBox_ChipOther.Text;
+            chipNumber.Updated_at = DateTime.Now;
 
-            var json = JsonConvert.SerializeObject(guest); //-- továbbítandó adat
+            var json = JsonConvert.SerializeObject(chipNumber); //-- továbbítandó adat
             var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-            string endPointUpdate = $"{endPoint}/{guest.Id}";
+            string endPointUpdate = $"{endPoint}/{chipNumber}";
             var response = client.PutAsync(endPointUpdate, data).Result;
 
             if (response.IsSuccessStatusCode)
@@ -215,7 +318,7 @@ namespace AZ_Desktop
             }
             else
             {
-                MessageBox.Show("Sikertelen módosítás!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("SSikertelen módosítás!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }  
     }

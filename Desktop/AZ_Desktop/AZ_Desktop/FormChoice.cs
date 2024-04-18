@@ -114,13 +114,15 @@ namespace AZ_Desktop
             return null; */
         }
         //?????????? kell-e
+
+
         public async Task<bool> isNameInDatabase(string g_name)
         {
             var response = await client.GetAsync($"{endPoint}/api/checkname?g_name={g_name}");
             return response.IsSuccessStatusCode && bool.Parse(await response.Content.ReadAsStringAsync());
         }
 
-
+        // ok 
         private async void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
             listBox_Choice.Items.Clear();
@@ -270,7 +272,8 @@ namespace AZ_Desktop
         }
 
         private void button_ChoiceUpdate_Click(object sender, EventArgs e)  // módosítás gomb átlép m
-        {/*
+        {
+            /*
             // Kiválasztott módosítása
             Guest selectedGuest = GetSelectedGuest();
             if (selectedGuest != null)

@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Configuration;
 using Newtonsoft.Json;
+using System.Drawing.Imaging;
 
 namespace AZ_Desktop
 {
@@ -89,21 +90,40 @@ namespace AZ_Desktop
                 MessageBox.Show("Nem sikerült betölteni az adatokat!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private async void LoadImage(long id)
+        /*
+        public Image Base64ToImage(string base64String)
         {
-            var response = await client.GetAsync($"{endPoint}/founds/{id}/image");
-            if (response.IsSuccessStatusCode)
+            // Convert Base64 String to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+
+            // Convert byte[] to Image
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            Image image = Image.FromStream(ms, true);
+            return image;
+        }
+
+        public string ImageToBase64(Image image, ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
             {
-                var bytes = await response.Content.ReadAsByteArrayAsync();
-                using (var ms = new MemoryStream(bytes))
-                {
-                    pictureBox_FoundImage.Image = Image.FromStream(ms);
-                }
+                // Convert Image to byte[]
+                image.Save(ms, format);
+                byte[] imageBytes = ms.ToArray();
+
+                // Convert byte[] to Base64 String
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String;
             }
-            else
+        }
+        */
+
+        public Image ConvertBinToImage(byte[] binData)
+        {
+            using (MemoryStream ms = new MemoryStream(binData))
             {
-                MessageBox.Show("Nem sikerült betölteni a képet!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Image returnImage = Image.FromStream(ms);
+                return returnImage;
             }
         }
 
@@ -116,7 +136,11 @@ namespace AZ_Desktop
                 var selectedFound = (Found)selectedItem.Tag;
 
                 // Feltöltjük a vezérlőket a kiválasztott Found objektum adataival
-                pictureBox_FoundImage.Text = selectedFound.F_image;
+
+                byte[] binData = Convert.FromBase64String(selectedFound.F_image);
+                Image image = ConvertBinToImage(binData);
+                pictureBox_FoundImage.Image = image;
+
                 textBox_FoundId.Text = selectedFound.Id.ToString();
                 textBox_FoundChoice.Text = selectedFound.F_choice;
                 textBox_FoundSpecies.Text = selectedFound.F_species;
@@ -125,34 +149,12 @@ namespace AZ_Desktop
                 textBox_FoundInjury.Text = selectedFound.F_injury;
                 richTextBox_FoundOther.Text = selectedFound.F_other;
 
-                LoadImage(selectedFound.Id);
-
             }
         }
 
 
     
-        /*
-        public byte[] ImageToByteArray(Image imageIn)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
-        }
-        */
-        /*
-        private string ImageToBase64(Image image)// G_imageBase64!
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                image.Save(ms, image.RawFormat);
-                byte[] imageBytes = ms.ToArray();
-                return Convert.ToBase64String(imageBytes);
-            }
-        }
-        */
+      
         private void button_FoundUpdate_Click(object sender, EventArgs e)   
         {
                        // minden kötelező mező kitöltve van-e
