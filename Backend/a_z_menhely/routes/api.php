@@ -37,7 +37,7 @@ Route::apiResource("/adoptions", AdoptionController::class);
 //Founds
 Route::apiResource("/founds", FoundController::class);
 
-Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
+//Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
 
 
 //Guests

@@ -90,44 +90,8 @@ namespace AZ_Desktop
                 MessageBox.Show("Nem sikerült betölteni az adatokat!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        /*
-        public Image Base64ToImage(string base64String)
-        {
-            // Convert Base64 String to byte[]
-            byte[] imageBytes = Convert.FromBase64String(base64String);
-            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
 
-            // Convert byte[] to Image
-            ms.Write(imageBytes, 0, imageBytes.Length);
-            Image image = Image.FromStream(ms, true);
-            return image;
-        }
-
-        public string ImageToBase64(Image image, ImageFormat format)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                // Convert Image to byte[]
-                image.Save(ms, format);
-                byte[] imageBytes = ms.ToArray();
-
-                // Convert byte[] to Base64 String
-                string base64String = Convert.ToBase64String(imageBytes);
-                return base64String;
-            }
-        }
-        */
-
-        public Image ConvertBinToImage(byte[] binData)
-        {
-            using (MemoryStream ms = new MemoryStream(binData))
-            {
-                Image returnImage = Image.FromStream(ms);
-                return returnImage;
-            }
-        }
-
-        private void listView_Found_SelectedIndexChanged(object sender, EventArgs e)
+        private void listView_Found_SelectedIndexChanged(object sender, EventArgs e) //0419
         {
             
             if (listView_Found.SelectedItems.Count > 0)
@@ -137,10 +101,6 @@ namespace AZ_Desktop
 
                 // Feltöltjük a vezérlőket a kiválasztott Found objektum adataival
 
-                byte[] binData = Convert.FromBase64String(selectedFound.F_image);
-                Image image = ConvertBinToImage(binData);
-                pictureBox_FoundImage.Image = image;
-
                 textBox_FoundId.Text = selectedFound.Id.ToString();
                 textBox_FoundChoice.Text = selectedFound.F_choice;
                 textBox_FoundSpecies.Text = selectedFound.F_species;
@@ -149,13 +109,42 @@ namespace AZ_Desktop
                 textBox_FoundInjury.Text = selectedFound.F_injury;
                 richTextBox_FoundOther.Text = selectedFound.F_other;
 
+                pictureBox_FoundImage.Image = Base64ToImage(selectedFound.F_image);
             }
         }
+        //*** kép **//
+        private Image Base64ToImage(string base64String) //0419
+        {
+            // Dekódolja a Base64 stringet byte tömbbé
+            byte[] imageBytes = Convert.FromBase64String(base64String);
 
+            // Hozzon létre egy MemoryStream-t a byte tömbből
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
 
-    
-      
-        private void button_FoundUpdate_Click(object sender, EventArgs e)   
+            // Átalakítja a byte tömböt Image objektummá
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            Image image = Image.FromStream(ms, true);
+            return image;
+        }
+
+        private string ImageToBase64(Image image) //0419
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Mentse el a képet a MemoryStream-ba
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                // Konvertálja a MemoryStream tartalmát byte tömbbé
+                byte[] byteImage = ms.ToArray();
+
+                // Konvertálja a byte tömböt Base64 stringgé
+                string base64String = Convert.ToBase64String(byteImage);
+                return base64String;
+            }
+        }
+        
+        //*** kép **//
+        private void button_FoundUpdate_Click(object sender, EventArgs e)   //0419
         {
                        // minden kötelező mező kitöltve van-e
             if (!string.IsNullOrEmpty(textBox_FoundGender.Text) &&
@@ -182,15 +171,10 @@ namespace AZ_Desktop
                     selectedFound.F_position = textBox_FoundWhere.Text;
                     selectedFound.F_other = richTextBox_FoundOther.Text;
 
+                    selectedFound.F_image = ImageToBase64(pictureBox_FoundImage.Image);
+
                     selectedFound.Updated_at = DateTime.Now;
-                    /*
-                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                    {
-                        pictureBox_FoundImage.Image = new Bitmap(openFileDialog1.FileName);
-                        selectedFound.F_image = File.ReadAllBytes(openFileDialog1.FileName);
-                    }
-                    */
-                 
+
                     // Üres mezők
                     emptyFieldsFound();
 
@@ -210,80 +194,40 @@ namespace AZ_Desktop
             }
         }
                      
-        private void button_FoundDelete_Click(object sender, EventArgs e)
+        private void button_FoundDelete_Click(object sender, EventArgs e) //0419 ok
         {
-            if (MessageBox.Show("Valóban törölni szeretné?") == DialogResult.OK)
+            // van-e kiválasztott elem a ListView-ban
+            if (listView_Found.SelectedItems.Count > 0)
             {
-                // van-e kiválasztott elem a ListView-ban
-                if (listView_Found.SelectedItems.Count > 0)
+                var selectedItem = listView_Found.SelectedItems[0];
+                var selectedFound = (Found)selectedItem.Tag;
+
+                if (MessageBox.Show("Valóban törölni szeretné?") == DialogResult.OK)
                 {
-                    Found selectedFound = new Found();
-                   
-                        //  egy új Found objektumot az űrlap adataiból
-                    selectedFound.Id = long.Parse(textBox_FoundId.Text);
-                    selectedFound.F_choice = textBox_FoundChoice.Text;
-                    selectedFound.F_species = textBox_FoundSpecies.Text;
-                    selectedFound.F_gender = textBox_FoundGender.Text;
-                    selectedFound.F_injury = textBox_FoundInjury.Text;
-                    selectedFound.F_position = textBox_FoundWhere.Text;
-                    selectedFound.F_other = richTextBox_FoundOther.Text;
-
-                    selectedFound.Updated_at = DateTime.Now;
-
-
-                    string endPointDelete = $"{endPoint}/{selectedFound.Id}";
+                    string endPointDelete = $"{endPoint}/founds/{selectedFound.Id}";
                     var response = client.DeleteAsync(endPointDelete).Result;
                     if (response.IsSuccessStatusCode)
-                        /*
-                        if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                        {
-                            pictureBox_FoundImage.Image = new Bitmap(openFileDialog1.FileName);
-                            selectedFound.F_image = File.ReadAllBytes(openFileDialog1.FileName);
-                        }
-                        */
-                        
+                    {
                         // Ürítsd ki a mezőket
                         emptyFieldsFound();
 
-                    // Töltsd újra a ListView-t
-                    allFoundList();
+                        // Töltsd újra a ListView-t
+                        allFoundList();
 
-                    // Felhasználói visszajelzés a sikeres frissítésről
-                    MessageBox.Show("Sikeres adat frissítés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Nincs kiválasztott elem a ListView-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // Felhasználói visszajelzés a sikeres törlésről
+                        MessageBox.Show("Sikeres adat törlés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nem sikerült törölni az adatot!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Nem minden kötelező mező van kitöltve!", "Hiányzó adat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nincs kiválasztott elem a ListView-ban!", "Hiányzó kiválasztás", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
 }
 
-
-/****** youtubos ************/
-/*
-public Image ByteArrayToImage(byte[] byteArrayIn)
-{
-    using MemoryStream ms = new MemoryStream(byteArrayIn)
-    {
-        Image returnImage = Image.FromStream(ms);
-        return returnImage;
-    }
-}
-
-public byte[] ImageToByteArray(System.Drawing.Image.imageIn) 
-{
-    using (MemoryStream ms = new MemoryStream())
-    {
-        ImageIndexConverter.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);  // felajánlott: Bmp);
-        return ms.ToArray();
-    }
-}
-*/
-
-//****** youtubos ***********

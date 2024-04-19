@@ -60,9 +60,6 @@ namespace AZ_Desktop
     {
         public static Found[] FromJson(string json) => JsonConvert.DeserializeObject<Found[]>(json, AZ_Desktop.Converter.Settings);
     }
-    /***/
-
-    
 }
 
 

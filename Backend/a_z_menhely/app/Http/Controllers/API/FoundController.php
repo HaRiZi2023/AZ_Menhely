@@ -69,6 +69,13 @@ class FoundController extends Controller
         $found = Found::find($id);
         if (is_null($found)) {
             return response()->json(["message" => "A megadott azonosítóval nem található állat."], 404);
+            
+        // ez az új
+        if ($request->has('F_image')) {
+            $request->merge(['F_image' => base64_decode($request->F_image)]);
+        }
+        // eddig az új
+
         }
         $found->fill($request->all());
         $found->save();
@@ -102,14 +109,14 @@ class FoundController extends Controller
             return response()->file($defaultImagePath);
         }
     }*/
-
+        /*
     public function getImage($id)
     {
         $image = Found::table('founds')->where('id', $id)->first();
         $imageData = base64_encode($image->image);
         return response($imageData, 200)
             ->header('Content-Type', 'text/plain');
-    }
+    }*/
 
 
 
