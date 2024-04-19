@@ -253,7 +253,7 @@ namespace AZ_Desktop
             checkBox_ChoiceCat.Checked = false;
             checkBox_ChoiceDog.Checked = false;
 
-            listBox_Choice.Items.Clear();
+            listView_Choice.Items.Clear();
             //CheckBox selectedCheckBox = null;
         
         }
@@ -384,11 +384,11 @@ namespace AZ_Desktop
             {
                 ListViewItem listViewItem = listView_Choice.SelectedItems[0];
                 int selectedId = int.Parse(listViewItem.SubItems[0].Text);
-                Debug.WriteLine("id: " + selectedId);
+                Debug.WriteLine("id: " + selectedId); // nem kell majd!
             }
             else
             {
-                selectedId = 0;
+                MessageBox.Show("Nincs kiválasztott elem a listában!");
             }
         }
     }

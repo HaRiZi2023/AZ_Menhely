@@ -62,7 +62,7 @@ namespace AZ_Desktop
         public FormGuest(Guest guest, string action)
         {
             InitializeComponent();
-            this.selectedGuest = selectedGuest; 
+            this.selectedGuest = guest; 
             this._action = action;
                        
             uploadData();

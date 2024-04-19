@@ -5,6 +5,7 @@ use App\Http\Controllers\API\FoundController;
 use App\Http\Controllers\API\GuestController;
 use App\Http\Controllers\API\WorkerController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\ImageController;
 
 use Illuminate\Http\Request;
@@ -28,11 +29,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 
+/************/
 
+   //Users// Adoption
 Route::apiResource("/users", AdoptionController::class);
+Route::get('/users', [UserController::class, 'allUsersData']);
+Route::delete('/guests/{id}', [GuestController::class, 'delete']);
 
 //Adoptions
 Route::apiResource("/adoptions", AdoptionController::class);
+Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
 Route::apiResource("/founds", FoundController::class);
@@ -42,6 +48,9 @@ Route::apiResource("/founds", FoundController::class);
 
 //Guests
 Route::apiResource("/guests", GuestController::class);
+   // Adoption
+Route::get('/guests', [GuestController::class, 'allAdoptableAnimal']);
+
    // FormChip
 Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
 Route::put('guests/chip/{chipNumber}', [GuestController::class, 'chipUpdate']);

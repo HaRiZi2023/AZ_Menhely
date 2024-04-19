@@ -48,12 +48,12 @@
             this.textBox_AdoptionAddress = new System.Windows.Forms.TextBox();
             this.textBox_AdoptionEmail = new System.Windows.Forms.TextBox();
             this.textBox_AdoptionPhone = new System.Windows.Forms.TextBox();
-            this.pictureBox_Adoption = new System.Windows.Forms.PictureBox();
+            this.pictureBox_AdoptionImage = new System.Windows.Forms.PictureBox();
             this.comboBox_AdoptionGName = new System.Windows.Forms.ComboBox();
             this.comboBox_AdoptionUName = new System.Windows.Forms.ComboBox();
             this.button_AdoptionInsert = new System.Windows.Forms.Button();
             this.button_AdoptionAgain = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Adoption)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AdoptionImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -217,16 +217,16 @@
             this.textBox_AdoptionPhone.Size = new System.Drawing.Size(122, 30);
             this.textBox_AdoptionPhone.TabIndex = 21;
             // 
-            // pictureBox_Adoption
+            // pictureBox_AdoptionImage
             // 
-            this.pictureBox_Adoption.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox_Adoption.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox_Adoption.Location = new System.Drawing.Point(41, 91);
-            this.pictureBox_Adoption.Name = "pictureBox_Adoption";
-            this.pictureBox_Adoption.Size = new System.Drawing.Size(147, 131);
-            this.pictureBox_Adoption.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Adoption.TabIndex = 6;
-            this.pictureBox_Adoption.TabStop = false;
+            this.pictureBox_AdoptionImage.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox_AdoptionImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox_AdoptionImage.Location = new System.Drawing.Point(41, 91);
+            this.pictureBox_AdoptionImage.Name = "pictureBox_AdoptionImage";
+            this.pictureBox_AdoptionImage.Size = new System.Drawing.Size(147, 131);
+            this.pictureBox_AdoptionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_AdoptionImage.TabIndex = 6;
+            this.pictureBox_AdoptionImage.TabStop = false;
             // 
             // comboBox_AdoptionGName
             // 
@@ -293,7 +293,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.pictureBox_Adoption);
+            this.Controls.Add(this.pictureBox_AdoptionImage);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -306,7 +306,7 @@
             this.Name = "FormAdoption";
             this.Text = "A-Z Menhely";
             this.Load += new System.EventHandler(this.FormAdoption_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Adoption)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AdoptionImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,7 +320,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox_Adoption;
+        private System.Windows.Forms.PictureBox pictureBox_AdoptionImage;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
