@@ -55,7 +55,7 @@ class GuestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    /*public function destroy(string $id)
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
@@ -63,10 +63,31 @@ class GuestController extends Controller
         }
         $guest->delete();
         return response()->noContent();
+    }*/
+
+    //*********************//
+
+    /**
+     * Soft delete the specified guest from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)   /*adoption és guest*/
+    {
+        $guest = Guest::find($id);
+
+        if ($guest) {
+            $guest->deleted_at = now();
+            $guest->save();
+
+            return response()->json(['message' => 'A vendég sikeresen törölve lett az adatbázisból!'], 200);
+        } else {
+            return response()->json(['error' => 'Sikertelen törlés!'], 400);
+        }
     }
 
-
-
+    //FormGuest-hez
 
 
 

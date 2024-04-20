@@ -63,7 +63,7 @@ namespace AZ_Desktop
             placeholderAdoption(); // 0419 kelll Kérem válasszon!
         }
 
-        private void uploadingAnimalName()
+        private void uploadingAnimalName() // ez nem megy
         {
             if (comboBox_AdoptionGName.Items.Count > 0)
                 comboBox_AdoptionGName.Items.Clear();
@@ -139,7 +139,7 @@ namespace AZ_Desktop
             return image;
         }
 
-        private string ImageToBase64(Image image) //0419
+        private string ImageToBase64(Image image) //0419 ez ide 
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -174,7 +174,7 @@ namespace AZ_Desktop
                     textBox_AdoptionGender.Text = selectedAnimal.G_gender;
                     textBox_AdoptionChip.Text = selectedAnimal.G_chip;
 
-                    //pictureBox_AdoptionImage.Image = Base64ToImage(selectedAnimal.G_image);
+                    pictureBox_AdoptionImage.Image = Base64ToImage(selectedAnimal.G_image);
                 }
             }
         }
@@ -278,7 +278,7 @@ namespace AZ_Desktop
 
             await InsertAdoption(newAdoption);
 
-
+           
             // IMAGE => "default_image.jpg" // Itt beállíthatja az alapértelmezett képet vagy hagyhatja üresen ???? => archiválás Bencébel megbeszélés után
 
             //insertAdoption metódus meghívása az adatbázisba való beszúráshoz
@@ -301,12 +301,6 @@ namespace AZ_Desktop
             if (selectedAnimal != null)
             {
                 await DeleteAnimal(selectedAnimal);
-
-                /*selectedAnimal.Delete_at = DateTime.Now;
-                //database.adoptionStatusChange(selectedAnimal);
-
-                // Most frissítem az adatbázist is, hogy ez az állat mostantól "nem"-re legyen állítva  Vagy inkáb archiv
-                //database.updateAnimalAdoptionStatus(selectedAnimal); <= ez nincs megírva*/
             }
 
             User selectedUser = allUsers.Find(user => user.Name == comboBox_AdoptionUName.Text);
@@ -314,12 +308,12 @@ namespace AZ_Desktop
                 FormContract formContract = new FormContract(selectedAnimal, selectedUser);
 
                 formContract.fillData(comboBox_AdoptionGName.Text, textBox_AdoptionSpecies.Text, textBox_AdoptionGender.Text, textBox_AdoptionChip.Text,
-                  comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
+                comboBox_AdoptionUName.Text, textBox_AdoptionAddress.Text, textBox_AdoptionEmail.Text, textBox_AdoptionPhone.Text, dateTimePicker_AdoptionDate.Text);
 
 
                 formContract.ShowDialog();
 
-                //allAnimals = database.allAdoptableAnimal();
+            //allAnimals = database.allAdoptableAnimal();
 
                 
                 allAnimals = await allAdoptableAnimal();
@@ -348,16 +342,16 @@ namespace AZ_Desktop
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Az örökbefogadás sikeresen rögzítve!");
+                        MessageBox.Show("Az örökbefogadás sikeresen rögzítve!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Nem sikerült rögzíteni az örökbefogadást!");
+                        MessageBox.Show("Nem sikerült rögzíteni az örökbefogadást!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);  // 
                 }
             }
         }

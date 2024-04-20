@@ -56,7 +56,7 @@ namespace AZ_Desktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            formGuest = new FormGuest();
+            //formGuest = new FormGuest();
 
 
 

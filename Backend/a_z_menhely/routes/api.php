@@ -48,12 +48,16 @@ Route::apiResource("/founds", FoundController::class);
 
 //Guests
 Route::apiResource("/guests", GuestController::class);
+
+
+Route::delete('/guest/{id}', [GuestController::class, 'destroy']);  /*adoption és guest*/
    // Adoption
 Route::get('/guests', [GuestController::class, 'allAdoptableAnimal']);
 
    // FormChip
 Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);
 Route::put('guests/chip/{chipNumber}', [GuestController::class, 'chipUpdate']);
+
    // FormChoice
 Route::get('guests/all/cats', [GuestController::class, 'allCat']);
 Route::get('guests/all/dogs', [GuestController::class, 'allDog']);
