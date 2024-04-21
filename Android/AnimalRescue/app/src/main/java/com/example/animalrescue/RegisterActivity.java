@@ -102,12 +102,12 @@ public class RegisterActivity extends AppCompatActivity {
                 String password2 = textInputEditTextPasswordRegister2.getText().toString().trim();
 
                 if (name.isEmpty()){
-                    textInputLayoutNameRegister.setError("A név mező nem lehet üres!");
+                    textInputLayoutNameRegister.setError("");
                 }else{
                     textInputLayoutNameRegister.setError(null);
                 }
                 if (email.isEmpty()) {
-                    textInputLayoutEmailRegister.setError("Az e-mail mező nem lehet üres!");
+                    textInputLayoutEmailRegister.setError("Az email mező nem lehet üres!");
                 }else{
                     textInputLayoutEmailRegister.setError(null);
                 }
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                     textInputLayoutAddressRegister.setError(null);
                 }
                 if (phone.isEmpty()){
-                    textInputLayoutPhoneRegister.setError("A lakcím mező nem lehet üres!");
+                    textInputLayoutPhoneRegister.setError("A telefonszám mező nem lehet üres!");
                 }else{
                     textInputLayoutPhoneRegister.setError(null);
                 }
@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
                     Toast.makeText(RegisterActivity.this,
-                            "Az emailcím formátuma nem megfelelő!", Toast.LENGTH_SHORT).show();
+                            "Az email cím formátuma nem megfelelő!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!password.equals(password2)){
@@ -216,7 +216,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (response.getResponseCode() >= 400) {
                 Log.d("Hiba",response.getContent());
 
-                //Toast.makeText(RegisterActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Hiba történt a kérés feldolgozása során", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (requestType.equals("POST")) {
