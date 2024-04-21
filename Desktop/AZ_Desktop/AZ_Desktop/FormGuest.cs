@@ -113,14 +113,7 @@ namespace AZ_Desktop
                 dateTimePicker_GuestOut.Value = selectedGuest.G_out_date.DateTime;
                 richTextBox_GuestOther.Text = selectedGuest.G_other;
 
-                if (selectedGuest.G_image != null && selectedGuest.G_image.Length > 0)
-                {
-                    try
-                    {
-                        // kép
-                    }
-                    catch { }
-                }
+                pictureBox_GuestImage.Image = Base64ToImage(selectedGuest.G_image);
             }
         }
 
@@ -237,7 +230,7 @@ namespace AZ_Desktop
 
         
 
-        private async Task<Guest> GetGuestById(int id)
+        private async Task<Guest> GetGuestById(int id) // read
         {
             // Létrehozunk egy új HttpClient példányt
             //HttpClient client = new HttpClient();
@@ -289,7 +282,13 @@ namespace AZ_Desktop
                                 
                 guest.Created_at = DateTime.Now;
                 guest.Updated_at = DateTime.Now;
-                                    
+
+                var json = JsonConvert.SerializeObject(guest);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(endPoint + "/guests", data);
+                response.EnsureSuccessStatusCode();
+
                 MessageBox.Show("A kép és minden sikeresen mentve lett az adatbázisba!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -318,35 +317,20 @@ namespace AZ_Desktop
                     selectedGuest.G_other = richTextBox_GuestOther.Text;
                     // A módosítás idejét frissítjük
                     selectedGuest.Updated_at = DateTime.Now; // ????
-
-                    using (MemoryStream ms = new MemoryStream())
-                    { /*
-                        pictureBox_GuestImage.Image.Save(ms,           pictureBox_GuestImage.Image.RawFormat);
-                        //selectedGuest.G_image = ms.ToArray() ; */
+                                        
+                    // Frissítjük a képet is, ha van kiválasztva
+                    if (pictureBox_GuestImage.Image != null)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            pictureBox_GuestImage.Image.Save(ms, pictureBox_GuestImage.Image.RawFormat);
+                            selectedGuest.G_image = Convert.ToBase64String(ms.ToArray());
+                        }
                     }
 
-
-                    Guest guest = new Guest();
-
-                    guest.Id = long.Parse(textBox_GuestId.Text);
-
-                    selectedGuest.G_name = textBox_GuestName.Text;
-                    selectedGuest.G_chip = textBox_GuestChip.Text;
-                    selectedGuest.G_in_place = textBox_GuestWhere.Text;
-                    selectedGuest.G_species = comboBox_GuestSpecies.Text;
-                    selectedGuest.G_gender = comboBox_GuestGender.Text;
-                    selectedGuest.G_adoption = comboBox_GuestAdoption.Text;
-                    selectedGuest.G_in_date = dateTimePicker_GuestIn.Value;
-                    selectedGuest.G_out_date = dateTimePicker_GuestOut.Value;
-                    selectedGuest.G_other = richTextBox_GuestOther.Text;
-                    // A módosítás idejét frissítjük
-                    selectedGuest.Updated_at = DateTime.Now;
-
-
-
-                    var json = JsonConvert.SerializeObject(guest); //-- továbbítandó adat
+                    var json = JsonConvert.SerializeObject(selectedGuest); //-- továbbítandó adat
                     var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-                    string endPointUpdate = $"{endPoint}/{guest.Id}";
+                    string endPointUpdate = $"{endPoint}/{selectedGuest.Id}";
                     var response = client.PutAsync(endPointUpdate, data).Result;
 
                     if (response.IsSuccessStatusCode)
@@ -357,7 +341,7 @@ namespace AZ_Desktop
                     }
                     else
                     {
-                        MessageBox.Show("Nincs kiválasztott vendég!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("NNNNNNincs kiválasztott vendég!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

@@ -20,11 +20,11 @@ class GuestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $guest = Guest::create($request->all());
         return $guest;
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -41,7 +41,7 @@ class GuestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    /*public function update(Request $request, string $id)
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
@@ -50,7 +50,7 @@ class GuestController extends Controller
         $guest->fill($request->all());
         $guest->save();
         return $guest;
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -88,9 +88,20 @@ class GuestController extends Controller
     }
 
     //FormGuest-hez
+    public function store(Request $request)
+    {
+        $guest = Guest::create($request->all());
 
+        return response()->json($guest, 201);
+    }
 
+    public function update(Request $request, $id)
+    {
+        $guest = Guest::findOrFail($id);
+        $guest->update($request->all());
 
+        return response()->json($guest, 200);
+    }
 
     // FormChoice-hoz
 

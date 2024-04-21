@@ -48,6 +48,8 @@ Route::apiResource("/founds", FoundController::class);
 
 //Guests
 Route::apiResource("/guests", GuestController::class);
+Route::post('/guests', [GuestController::class, 'store']);
+Route::put('/guests/{id}', [GuestController::class, 'update']);
 
 
 Route::delete('/guest/{id}', [GuestController::class, 'destroy']);  /*adoption és guest*/
