@@ -20,11 +20,11 @@ class GuestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $guest = Guest::create($request->all());
         return $guest;
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -33,7 +33,7 @@ class GuestController extends Controller
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
-            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "S Nincs elem az alábbi azonosítóval: $id"], 404);
         }
         return $guest;
     }
@@ -41,7 +41,7 @@ class GuestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    /*public function update(Request $request, string $id)
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
@@ -50,12 +50,12 @@ class GuestController extends Controller
         $guest->fill($request->all());
         $guest->save();
         return $guest;
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    /*public function destroy(string $id)
     {
         $guest = Guest::find($id);
         if (is_null($guest)) {
@@ -63,20 +63,47 @@ class GuestController extends Controller
         }
         $guest->delete();
         return response()->noContent();
-    }
+    }*/
 
-    public function getByChipNumber(Request $request, $chipNumber)
+    //*********************//
+
+    /**
+     * Soft delete the specified guest from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)   /*adoption és guest*/
     {
-    $guest = Guest::where('g_chip', $chipNumber)->first();
+        $guest = Guest::find($id);
 
-    if (!$guest) {
-        return response()->json(['message' => 'Guest not found'], 404);
+        if ($guest) {
+            $guest->deleted_at = now();
+            $guest->save();
+
+            return response()->json(['message' => 'A vendég sikeresen törölve lett az adatbázisból!'], 200);
+        } else {
+            return response()->json(['error' => 'Sikertelen törlés!'], 400);
+        }
     }
 
-    return response()->json($guest, 200);
+    //FormGuest-hez
+    public function store(Request $request)
+    {
+        $guest = Guest::create($request->all());
+
+        return response()->json($guest, 201);
     }
 
+    public function update(Request $request, $id)
+    {
+        $guest = Guest::findOrFail($id);
+        $guest->update($request->all());
 
+        return response()->json($guest, 200);
+    }
+
+    // FormChoice-hoz
 
     public function allDog()
     {
@@ -90,7 +117,7 @@ class GuestController extends Controller
 
     public function allCat()
     {
-    // az összes kutya lekérése adatbázisból
+    // az összes macska lekérése adatbázisból
     $cats = Guest::where('g_species', 'macska')->get();
     if (!$cats) {
         return response()->json(['message' => 'Nincs macska a listában!'], 404);
@@ -99,5 +126,68 @@ class GuestController extends Controller
     }
 
 
+    // FormChip-hez
+
+    public function getByChipNumber(Request $request, $chipNumber)
+    {
+    $guest = Guest::where('g_chip', $chipNumber)->first();
+
+    if (!$guest) {
+        return response()->json(['message' => 'Nincs ilyen vendég'], 404);
+    }
+
+    return response()->json($guest, 200);
+    }
+
+
+    public function chipUpdate(Request $request, $chipNumber)
+    {
+        $guest = Guest::where('g_chip', $chipNumber)->first();
+
+        if (!$guest) {
+            return response()->json(['message' => 'Nincs ilyen vendég'], 404);
+        }
+
+        $guest->g_other = $request->get('g_other');
+        $guest->updated_at = $request->get('updated_at');
+        $guest->save();
+
+        return response()->json($guest, 200);
+    }
+
+    // Adoptionhoz
+    public function allAdoptableAnimal()
+    {
+        $guests = Guest::where('g_adoption', 'igen')->get();
+        return response()->json($guests);
+    }
+
+    public function delete(int $id)
+    {
+        $guest = Guest::find($id);
+        if (is_null($guest)) {
+            return response()->json(["message" => "Az állat nem található."], 404);
+        }
+        $guest->delete();
+        return response()->json(null, 204);
+    }
+
+
+    /*
+    public function updateChipOther(Request $request, $chipNumber)
+    {
+        $guest = Guest::where('g_chip', $chipNumber)->first();
+
+        if (!$guest) {
+            return response()->json(['message' => 'Nincs ilyen vendég'], 404);
+        }
+
+        $guest->update($request->all());
+
+        return response()->json($guest, 200);
+    }
+    */
+
 
 }
+

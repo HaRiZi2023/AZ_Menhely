@@ -66,17 +66,18 @@ namespace AZ_Desktop
             return $"{this.G_species} - {this.G_name}";
         }
     }
-
+    /*** enum ***/
     public enum G_species { kutya, macska };
     public enum G_gender { nőstény, hím, ismeretlen };
     public enum G_adoption { igen, nem };
+    /*** enum ***/
 
     public partial class Guest
     {
         public static Guest[] FromJson(string json) => JsonConvert.DeserializeObject<Guest[]>(json, AZ_Desktop.Converter.Settings);
     }
-    /***/
-    
+   
+
 
     /***** 1 *****/
 
@@ -120,6 +121,7 @@ namespace AZ_Desktop
 
         public static readonly G_speciesConverter Singleton = new G_speciesConverter();
     }
+
     /***** 1 *****/
 
     /***** 2 *****/
@@ -218,3 +220,28 @@ namespace AZ_Desktop
     /***** 3 *****/
 
 }
+/*
+  //***
+    public static class GuestSerialize
+    {
+        public static string ToJson(this Guest[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
+    }
+
+    internal static class GuestConverter
+    {
+        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+            DateParseHandling = DateParseHandling.None,
+            Converters =
+            {
+                G_speciesConverter.Singleton,
+                G_genderConverter.Singleton,
+                G_adoptionConverter.Singleton,
+
+                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
+            },
+        };
+    }
+
+    /***/

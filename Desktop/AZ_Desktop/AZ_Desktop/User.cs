@@ -61,6 +61,11 @@ namespace AZ_Desktop
         public static User[] FromJson(string json) => JsonConvert.DeserializeObject<User[]>(json, AZ_Desktop.Converter.Settings);
     }
 
+    public static class UserSerialize
+    {
+        public static string ToJson(this User[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
+    }
+
     /***/
 
     internal class ParseStringConverter : JsonConverter
@@ -95,7 +100,14 @@ namespace AZ_Desktop
     }
 }
 
+/*
+ 
+    public static class UserSerialize
+    {
+        public static string ToJson(this User[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
+    }
 
+    /***/
 
 
 

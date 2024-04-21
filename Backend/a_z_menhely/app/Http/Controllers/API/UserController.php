@@ -86,4 +86,12 @@ class UserController extends Controller
         User::destroy($id);
         return response()->noContent();
     }
+
+    /*********/
+    // Adpotionhoz
+    public function allUsersData()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
 }

@@ -36,7 +36,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_FoundWhere = new System.Windows.Forms.TextBox();
-            this.listBox_Found = new System.Windows.Forms.ListBox();
             this.button_FoundUpdate = new System.Windows.Forms.Button();
             this.button_FoundDelete = new System.Windows.Forms.Button();
             this.pictureBox_FoundImage = new System.Windows.Forms.PictureBox();
@@ -46,6 +45,12 @@
             this.textBox_FoundSpecies = new System.Windows.Forms.TextBox();
             this.textBox_FoundGender = new System.Windows.Forms.TextBox();
             this.textBox_FoundInjury = new System.Windows.Forms.TextBox();
+            this.listView_Found = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox_FoundId = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_FoundImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(328, 148);
+            this.label2.Location = new System.Drawing.Point(321, 189);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 23);
             this.label2.TabIndex = 1;
@@ -71,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(317, 194);
+            this.label3.Location = new System.Drawing.Point(310, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 23);
             this.label3.TabIndex = 2;
@@ -80,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(270, 245);
+            this.label4.Location = new System.Drawing.Point(263, 286);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 23);
             this.label4.TabIndex = 3;
@@ -89,7 +94,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(293, 295);
+            this.label5.Location = new System.Drawing.Point(286, 336);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 23);
             this.label5.TabIndex = 4;
@@ -98,7 +103,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(276, 346);
+            this.label7.Location = new System.Drawing.Point(269, 387);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 23);
             this.label7.TabIndex = 6;
@@ -106,20 +111,11 @@
             // 
             // textBox_FoundWhere
             // 
-            this.textBox_FoundWhere.Location = new System.Drawing.Point(384, 238);
+            this.textBox_FoundWhere.Location = new System.Drawing.Point(377, 279);
             this.textBox_FoundWhere.Name = "textBox_FoundWhere";
             this.textBox_FoundWhere.ReadOnly = true;
             this.textBox_FoundWhere.Size = new System.Drawing.Size(233, 30);
             this.textBox_FoundWhere.TabIndex = 11;
-            // 
-            // listBox_Found
-            // 
-            this.listBox_Found.FormattingEnabled = true;
-            this.listBox_Found.ItemHeight = 23;
-            this.listBox_Found.Location = new System.Drawing.Point(53, 234);
-            this.listBox_Found.Name = "listBox_Found";
-            this.listBox_Found.Size = new System.Drawing.Size(200, 418);
-            this.listBox_Found.TabIndex = 13;
             // 
             // button_FoundUpdate
             // 
@@ -157,7 +153,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(286, 93);
+            this.label8.Location = new System.Drawing.Point(279, 137);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 23);
             this.label8.TabIndex = 18;
@@ -165,7 +161,7 @@
             // 
             // textBox_FoundChoice
             // 
-            this.textBox_FoundChoice.Location = new System.Drawing.Point(384, 93);
+            this.textBox_FoundChoice.Location = new System.Drawing.Point(377, 134);
             this.textBox_FoundChoice.Name = "textBox_FoundChoice";
             this.textBox_FoundChoice.ReadOnly = true;
             this.textBox_FoundChoice.Size = new System.Drawing.Size(145, 30);
@@ -173,7 +169,7 @@
             // 
             // richTextBox_FoundOther
             // 
-            this.richTextBox_FoundOther.Location = new System.Drawing.Point(384, 346);
+            this.richTextBox_FoundOther.Location = new System.Drawing.Point(377, 387);
             this.richTextBox_FoundOther.Name = "richTextBox_FoundOther";
             this.richTextBox_FoundOther.Size = new System.Drawing.Size(233, 206);
             this.richTextBox_FoundOther.TabIndex = 20;
@@ -181,7 +177,7 @@
             // 
             // textBox_FoundSpecies
             // 
-            this.textBox_FoundSpecies.Location = new System.Drawing.Point(384, 141);
+            this.textBox_FoundSpecies.Location = new System.Drawing.Point(377, 182);
             this.textBox_FoundSpecies.Name = "textBox_FoundSpecies";
             this.textBox_FoundSpecies.ReadOnly = true;
             this.textBox_FoundSpecies.Size = new System.Drawing.Size(145, 30);
@@ -189,17 +185,63 @@
             // 
             // textBox_FoundGender
             // 
-            this.textBox_FoundGender.Location = new System.Drawing.Point(384, 187);
+            this.textBox_FoundGender.Location = new System.Drawing.Point(377, 228);
             this.textBox_FoundGender.Name = "textBox_FoundGender";
             this.textBox_FoundGender.Size = new System.Drawing.Size(145, 30);
             this.textBox_FoundGender.TabIndex = 22;
             // 
             // textBox_FoundInjury
             // 
-            this.textBox_FoundInjury.Location = new System.Drawing.Point(384, 288);
+            this.textBox_FoundInjury.Location = new System.Drawing.Point(377, 329);
             this.textBox_FoundInjury.Name = "textBox_FoundInjury";
             this.textBox_FoundInjury.Size = new System.Drawing.Size(145, 30);
             this.textBox_FoundInjury.TabIndex = 23;
+            // 
+            // listView_Found
+            // 
+            this.listView_Found.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView_Found.HideSelection = false;
+            this.listView_Found.Location = new System.Drawing.Point(53, 235);
+            this.listView_Found.Name = "listView_Found";
+            this.listView_Found.Size = new System.Drawing.Size(200, 415);
+            this.listView_Found.TabIndex = 24;
+            this.listView_Found.UseCompatibleStateImageBehavior = false;
+            this.listView_Found.View = System.Windows.Forms.View.Details;
+            this.listView_Found.SelectedIndexChanged += new System.EventHandler(this.listView_Found_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Id";
+            this.columnHeader1.Width = 30;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Faj";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Hol";
+            this.columnHeader3.Width = 150;
+            // 
+            // textBox_FoundId
+            // 
+            this.textBox_FoundId.Location = new System.Drawing.Point(377, 81);
+            this.textBox_FoundId.Name = "textBox_FoundId";
+            this.textBox_FoundId.ReadOnly = true;
+            this.textBox_FoundId.Size = new System.Drawing.Size(145, 30);
+            this.textBox_FoundId.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(279, 84);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 23);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Azonosító";
             // 
             // FormFound
             // 
@@ -209,6 +251,9 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(650, 695);
+            this.Controls.Add(this.textBox_FoundId);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.listView_Found);
             this.Controls.Add(this.textBox_FoundInjury);
             this.Controls.Add(this.textBox_FoundGender);
             this.Controls.Add(this.textBox_FoundSpecies);
@@ -218,7 +263,6 @@
             this.Controls.Add(this.button_FoundDelete);
             this.Controls.Add(this.button_FoundUpdate);
             this.Controls.Add(this.pictureBox_FoundImage);
-            this.Controls.Add(this.listBox_Found);
             this.Controls.Add(this.textBox_FoundWhere);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -254,8 +298,13 @@
         private System.Windows.Forms.TextBox textBox_FoundChoice;
         private System.Windows.Forms.RichTextBox richTextBox_FoundOther;
         private System.Windows.Forms.TextBox textBox_FoundSpecies;
-        public System.Windows.Forms.ListBox listBox_Found;
         private System.Windows.Forms.TextBox textBox_FoundGender;
         private System.Windows.Forms.TextBox textBox_FoundInjury;
+        private System.Windows.Forms.ListView listView_Found;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.TextBox textBox_FoundId;
+        private System.Windows.Forms.Label label9;
     }
 }

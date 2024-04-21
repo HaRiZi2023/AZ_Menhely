@@ -20,12 +20,12 @@ class AdoptionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
 
         $adoption = Adoption::create($request->all());
         return $adoption;
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -65,4 +65,20 @@ class AdoptionController extends Controller
         $adoption->delete();
         return response()->noContent();
     }
+
+    /***/
+
+    public function store(Request $request)
+    {
+        $adoption = new Adoption;
+        $adoption->A_date = $request->A_date;
+        $adoption->G_name = $request->G_name;
+        $adoption->U_name = $request->U_name;
+        $adoption->Created_at = $request->Created_at;
+        $adoption->Updated_at = $request->Updated_at;
+        $adoption->save();
+
+        return response()->json($adoption, 201);
+    }
+
 }

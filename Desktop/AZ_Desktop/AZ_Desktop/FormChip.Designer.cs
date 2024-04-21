@@ -252,6 +252,6 @@
         private System.Windows.Forms.Label label_ChipSpecies;
         private System.Windows.Forms.TextBox textBox_ChipSpecies;
         private System.Windows.Forms.Button button_ChipNew;
-        private System.Windows.Forms.RichTextBox richTextBox_ChipOther;
+        public System.Windows.Forms.RichTextBox richTextBox_ChipOther;
     }
 }
