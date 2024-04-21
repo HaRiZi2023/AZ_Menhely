@@ -42,6 +42,8 @@ Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
 Route::apiResource("/founds", FoundController::class);
+Route::put('/found/{id}', [FoundController::class, 'update']);
+
 
 //Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
 

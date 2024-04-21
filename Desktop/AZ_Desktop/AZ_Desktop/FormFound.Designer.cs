@@ -274,7 +274,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormFound";
-            this.Text = "A-Z Menhely";
+            this.Text = "v";
             this.Load += new System.EventHandler(this.FormFound_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_FoundImage)).EndInit();
             this.ResumeLayout(false);

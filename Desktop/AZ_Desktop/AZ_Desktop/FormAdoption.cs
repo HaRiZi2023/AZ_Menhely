@@ -114,7 +114,7 @@ namespace AZ_Desktop
             textBox_AdoptionSpecies.Text = "";
             textBox_AdoptionGender.Text = "";
             textBox_AdoptionChip.Text = "";
-            pictureBox_AdoptionImage.Text = "";
+            pictureBox_AdoptionImage.Image = null;
 
             comboBox_AdoptionUName.Text = "";
             textBox_AdoptionAddress.Text = "";
@@ -127,6 +127,10 @@ namespace AZ_Desktop
         //*** kép **//
         private Image Base64ToImage(string base64String) //0419
         {
+            if (string.IsNullOrEmpty(base64String)) //Ha nulla a kép
+            {
+                return null; // vagy visszatérhet egy alapértelmezett képpel
+            }
             // Dekódolja a Base64 stringet byte tömbbé
             byte[] imageBytes = Convert.FromBase64String(base64String);
 
@@ -173,8 +177,8 @@ namespace AZ_Desktop
                     textBox_AdoptionSpecies.Text = selectedAnimal.G_species;
                     textBox_AdoptionGender.Text = selectedAnimal.G_gender;
                     textBox_AdoptionChip.Text = selectedAnimal.G_chip;
-
-                    pictureBox_AdoptionImage.Image = Base64ToImage(selectedAnimal.G_image);
+                                       
+                    pictureBox_AdoptionImage.Image = Base64ToImage(selectedAnimal.G_image) ?? pictureBox_AdoptionImage.InitialImage;
                 }
             }
         }

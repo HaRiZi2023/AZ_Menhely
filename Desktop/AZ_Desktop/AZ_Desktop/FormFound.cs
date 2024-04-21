@@ -50,6 +50,7 @@ namespace AZ_Desktop
         {
             allFoundList();
             listView_Found.FullRowSelect = true; //  egész sor jelölve legyen
+            //pictureBox_FoundImage.InitialImage = Image.FromFile(Application.StartupPath + "\\DefaultImage.png");
         }
 
 
@@ -109,12 +110,19 @@ namespace AZ_Desktop
                 textBox_FoundInjury.Text = selectedFound.F_injury;
                 richTextBox_FoundOther.Text = selectedFound.F_other;
 
-                pictureBox_FoundImage.Image = Base64ToImage(selectedFound.F_image);
+
+                pictureBox_FoundImage.Image = Base64ToImage(selectedFound.F_image) ?? pictureBox_FoundImage.InitialImage;
+                
             }
         }
         //*** kép **//
-        private Image Base64ToImage(string base64String) //0419
+        private Image Base64ToImage(string base64String) //0419 megj
         {
+            if (string.IsNullOrEmpty(base64String)) //Ha nulla a kép
+            {
+                return null; // vagy visszatérhet egy alapértelmezett képpel
+            }
+
             // Dekódolja a Base64 stringet byte tömbbé
             byte[] imageBytes = Convert.FromBase64String(base64String);
 
@@ -127,7 +135,7 @@ namespace AZ_Desktop
             return image;
         }
 
-        private string ImageToBase64(Image image) //0419
+        private string ImageToBase64(Image image) //0419 felv
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -148,8 +156,7 @@ namespace AZ_Desktop
         {
                        // minden kötelező mező kitöltve van-e
             if (!string.IsNullOrEmpty(textBox_FoundGender.Text) &&
-                !string.IsNullOrEmpty(textBox_FoundInjury.Text) &&
-                !string.IsNullOrEmpty(richTextBox_FoundOther.Text))
+                !string.IsNullOrEmpty(textBox_FoundInjury.Text))
             {
                 // van-e kiválasztott elem a ListView-ban
                 if (listView_Found.SelectedItems.Count > 0)
@@ -158,7 +165,7 @@ namespace AZ_Desktop
 
                     var json = JsonConvert.SerializeObject(selectedFound); //-- továbbítandó adat
                     var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-                    string endPointUpdate = $"{endPoint}/{selectedFound.Id}";
+                    string endPointUpdate = $"{endPoint}/found/{selectedFound.Id}";
                     var response = client.PutAsync(endPointUpdate, data).Result;
                     if (response.IsSuccessStatusCode)
 
@@ -171,7 +178,10 @@ namespace AZ_Desktop
                     selectedFound.F_position = textBox_FoundWhere.Text;
                     selectedFound.F_other = richTextBox_FoundOther.Text;
 
-                    selectedFound.F_image = ImageToBase64(pictureBox_FoundImage.Image);
+                    if (pictureBox_FoundImage.Image != null)
+                    {
+                        selectedFound.F_image = ImageToBase64(pictureBox_FoundImage.Image);
+                    }
 
                     selectedFound.Updated_at = DateTime.Now;
 
