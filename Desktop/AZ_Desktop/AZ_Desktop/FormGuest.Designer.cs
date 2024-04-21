@@ -51,8 +51,6 @@
             this.pictureBox_GuestImage = new System.Windows.Forms.PictureBox();
             this.richTextBox_GuestOther = new System.Windows.Forms.RichTextBox();
             this.button_GuestUpdate = new System.Windows.Forms.Button();
-            this.textBox_GuestId = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_GuestImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -224,7 +222,7 @@
             // button_GuestInsert
             // 
             this.button_GuestInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_GuestInsert.Location = new System.Drawing.Point(116, 626);
+            this.button_GuestInsert.Location = new System.Drawing.Point(274, 626);
             this.button_GuestInsert.Name = "button_GuestInsert";
             this.button_GuestInsert.Size = new System.Drawing.Size(129, 37);
             this.button_GuestInsert.TabIndex = 23;
@@ -235,7 +233,7 @@
             // button_GuestDelete
             // 
             this.button_GuestDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_GuestDelete.Location = new System.Drawing.Point(491, 626);
+            this.button_GuestDelete.Location = new System.Drawing.Point(328, 626);
             this.button_GuestDelete.Name = "button_GuestDelete";
             this.button_GuestDelete.Size = new System.Drawing.Size(129, 37);
             this.button_GuestDelete.TabIndex = 24;
@@ -275,23 +273,6 @@
             this.button_GuestUpdate.UseVisualStyleBackColor = false;
             this.button_GuestUpdate.Click += new System.EventHandler(this.button_GuestUpdate_Click);
             // 
-            // textBox_GuestId
-            // 
-            this.textBox_GuestId.Location = new System.Drawing.Point(69, 143);
-            this.textBox_GuestId.Name = "textBox_GuestId";
-            this.textBox_GuestId.ReadOnly = true;
-            this.textBox_GuestId.Size = new System.Drawing.Size(65, 30);
-            this.textBox_GuestId.TabIndex = 29;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(40, 146);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(23, 23);
-            this.label22.TabIndex = 30;
-            this.label22.Text = "Id";
-            // 
             // FormGuest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
@@ -300,8 +281,6 @@
             this.BackgroundImage = global::AZ_Desktop.Properties.Resources.Háttér;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(755, 692);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.textBox_GuestId);
             this.Controls.Add(this.button_GuestUpdate);
             this.Controls.Add(this.richTextBox_GuestOther);
             this.Controls.Add(this.button_GuestDelete);
@@ -360,7 +339,5 @@
         private System.Windows.Forms.Button button_GuestDelete;
         private System.Windows.Forms.RichTextBox richTextBox_GuestOther;
         private System.Windows.Forms.Button button_GuestUpdate;
-        private System.Windows.Forms.TextBox textBox_GuestId;
-        private System.Windows.Forms.Label label22;
     }
 }

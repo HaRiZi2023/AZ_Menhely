@@ -95,13 +95,13 @@ class GuestController extends Controller
         return response()->json($guest, 201);
     }
 
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
         $guest = Guest::findOrFail($id);
         $guest->update($request->all());
 
         return response()->json($guest, 200);
-    }
+    }*/
 
     // FormChoice-hoz
 
@@ -188,6 +188,57 @@ class GuestController extends Controller
     }
     */
 
+    public function saveGuest(Request $request, $id)
+    {
+        $guest = Guest::findOrFail($id);  // ha a modell megtalálható, akkor visszadaja a modellt
+
+        // Frissíti a vendég adatait a kérésből
+        $guest->G_name = $request->get('G_name');
+        $guest->G_chip = $request->get('G_chip');
+        $guest->G_in_place = $request->get('G_in_place');
+        $guest->G_species = $request->get('G_species');
+        $guest->G_gender = $request->get('G_gender');
+        $guest->G_adoption = $request->get('G_adoption');
+        $guest->G_in_date = $request->get('G_in_date');
+        $guest->G_out_date = $request->get('G_out_date');
+        $guest->G_other = $request->get('G_other');
+
+        // Frissíti a képet, ha van a kérésben
+        $image = $request->get('G_image');
+        if ($image) {
+            $guest->G_image = base64_encode($image);
+        }
+
+        $guest->save();
+
+        return response()->json(['message' => 'Vendég sikeresen elmentve!']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $guest = Guest::findOrFail($id);  // ha a modell megtalálható, akkor visszadaja a modellt
+
+        // Frissíti a vendég adatait a kérésből
+        $guest->G_name = $request->get('G_name');
+        $guest->G_chip = $request->get('G_chip');
+        $guest->G_in_place = $request->get('G_in_place');
+        $guest->G_species = $request->get('G_species');
+        $guest->G_gender = $request->get('G_gender');
+        $guest->G_adoption = $request->get('G_adoption');
+        $guest->G_in_date = $request->get('G_in_date');
+        $guest->G_out_date = $request->get('G_out_date');
+        $guest->G_other = $request->get('G_other');
+
+        // Frissíti a képet, ha van a kérésben
+        $image = $request->get('G_image');
+        if ($image) {
+            $guest->G_image = base64_encode($image);
+        }
+
+        $guest->save();
+
+        return response()->json(['message' => 'Vendég sikeresen frissítve!']);
+    }
 
 }
 

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChoice));
-            this.listBox_Choice = new System.Windows.Forms.ListBox();
             this.button_ChoiceInsert = new System.Windows.Forms.Button();
             this.button_ChoiceUpdate = new System.Windows.Forms.Button();
             this.button_ChoiceDelete = new System.Windows.Forms.Button();
@@ -46,21 +45,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBox_Choice
-            // 
-            this.listBox_Choice.FormattingEnabled = true;
-            this.listBox_Choice.ItemHeight = 23;
-            this.listBox_Choice.Location = new System.Drawing.Point(44, 220);
-            this.listBox_Choice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBox_Choice.Name = "listBox_Choice";
-            this.listBox_Choice.Size = new System.Drawing.Size(201, 50);
-            this.listBox_Choice.TabIndex = 0;
-            this.listBox_Choice.SelectedIndexChanged += new System.EventHandler(this.listBox_Choice_SelectedIndexChanged_1);
-            // 
             // button_ChoiceInsert
             // 
             this.button_ChoiceInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.button_ChoiceInsert.Location = new System.Drawing.Point(417, 251);
+            this.button_ChoiceInsert.Location = new System.Drawing.Point(343, 285);
             this.button_ChoiceInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceInsert.Name = "button_ChoiceInsert";
             this.button_ChoiceInsert.Size = new System.Drawing.Size(94, 41);
@@ -72,7 +60,7 @@
             // button_ChoiceUpdate
             // 
             this.button_ChoiceUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(165)))), ((int)(((byte)(240)))));
-            this.button_ChoiceUpdate.Location = new System.Drawing.Point(417, 300);
+            this.button_ChoiceUpdate.Location = new System.Drawing.Point(343, 334);
             this.button_ChoiceUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceUpdate.Name = "button_ChoiceUpdate";
             this.button_ChoiceUpdate.Size = new System.Drawing.Size(94, 41);
@@ -84,7 +72,7 @@
             // button_ChoiceDelete
             // 
             this.button_ChoiceDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(110)))), ((int)(((byte)(150)))));
-            this.button_ChoiceDelete.Location = new System.Drawing.Point(417, 349);
+            this.button_ChoiceDelete.Location = new System.Drawing.Point(343, 383);
             this.button_ChoiceDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ChoiceDelete.Name = "button_ChoiceDelete";
             this.button_ChoiceDelete.Size = new System.Drawing.Size(94, 41);
@@ -160,9 +148,9 @@
             this.columnHeader2,
             this.columnHeader3});
             this.listView_Choice.HideSelection = false;
-            this.listView_Choice.Location = new System.Drawing.Point(34, 293);
+            this.listView_Choice.Location = new System.Drawing.Point(44, 219);
             this.listView_Choice.Name = "listView_Choice";
-            this.listView_Choice.Size = new System.Drawing.Size(358, 220);
+            this.listView_Choice.Size = new System.Drawing.Size(220, 294);
             this.listView_Choice.TabIndex = 6;
             this.listView_Choice.UseCompatibleStateImageBehavior = false;
             this.listView_Choice.View = System.Windows.Forms.View.Details;
@@ -171,17 +159,17 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Id";
-            this.columnHeader1.Width = 57;
+            this.columnHeader1.Width = 35;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Név";
-            this.columnHeader2.Width = 149;
+            this.columnHeader2.Width = 90;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Faj";
-            this.columnHeader3.Width = 142;
+            this.columnHeader3.Width = 90;
             // 
             // FormChoice
             // 
@@ -197,7 +185,6 @@
             this.Controls.Add(this.button_ChoiceDelete);
             this.Controls.Add(this.button_ChoiceUpdate);
             this.Controls.Add(this.button_ChoiceInsert);
-            this.Controls.Add(this.listBox_Choice);
             this.Font = new System.Drawing.Font("Segoe Print", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -220,7 +207,6 @@
         private System.Windows.Forms.CheckBox checkBox_ChoiceDog;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_ChoiceChoice;
-        public System.Windows.Forms.ListBox listBox_Choice;
         private System.Windows.Forms.ListView listView_Choice;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;

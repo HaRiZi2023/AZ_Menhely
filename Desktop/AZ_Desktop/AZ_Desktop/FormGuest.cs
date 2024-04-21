@@ -139,7 +139,6 @@ namespace AZ_Desktop
         private void emptyFieldsGuest()  // mezők kiürítése kell-e??
         {
             textBox_GuestName.Text = "";
-            textBox_GuestId.Text = "";
             textBox_GuestChip.Text = "";
             textBox_GuestWhere.Text = "";
             comboBox_GuestSpecies.Text = "";
@@ -148,9 +147,10 @@ namespace AZ_Desktop
             dateTimePicker_GuestIn.Value = DateTime.Now;
             dateTimePicker_GuestOut.Value = DateTime.Now;
             richTextBox_GuestOther.Text = "";
+            pictureBox_GuestImage.Image = null;
         }
 
-        private void setReadOnly() // 04.20 csak olvashatóra
+        private void setReadOnly() // 04.20 delnél csak olvashatóra
         {
             textBox_GuestName.ReadOnly = true;
             textBox_GuestChip.ReadOnly = true;
@@ -221,10 +221,10 @@ namespace AZ_Desktop
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox_GuestImage.Image = new Bitmap(dialog.FileName);
-               // selectedImagePath = dialog.FileName;
+               // ez jeleníti meg a pictureboxban
             }
             selectedImageBin = File.ReadAllBytes(dialog.FileName);
-        }
+        }  // először beolvassa a képfájlt byte[] -be, majdezt konvertálja base64 stringé
 
         /********** gombok *************/
 
@@ -277,7 +277,7 @@ namespace AZ_Desktop
                     G_out_date = dateTimePicker_GuestOut.Value,
                     G_other = richTextBox_GuestOther.Text,
 
-                    G_image = Convert.ToBase64String(selectedImageBin),
+                    G_image = Convert.ToBase64String(selectedImageBin), // kép Base64 formátumba konvertálására.
                 };
                                 
                 guest.Created_at = DateTime.Now;

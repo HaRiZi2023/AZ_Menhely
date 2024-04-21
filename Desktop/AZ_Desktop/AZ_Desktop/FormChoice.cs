@@ -65,7 +65,7 @@ namespace AZ_Desktop
             }
         }
 
-        private void checkBox_CheckedChangedChoice(object sender, EventArgs e) //cb bejlölés változás ok m
+        private void checkBox_CheckedChangedChoice(object sender, EventArgs e) //04.21. cb bejlölés változás ok m
         {
             var clickedCheckBox = (CheckBox)sender;
 
@@ -81,18 +81,29 @@ namespace AZ_Desktop
             }
         }
 
+        private void listView_Choice_SelectedIndexChanged(object sender, EventArgs e) // 04.21
+        {
+            if (listView_Choice.SelectedIndices.Count > 0)
+            {
+                ListViewItem listViewItem = listView_Choice.SelectedItems[0];
+                int selectedId = int.Parse(listViewItem.SubItems[0].Text);
+                Debug.WriteLine("id: " + selectedId); // nem kell majd!
+            }
+            else
+            {
+                MessageBox.Show("Nincs kiválasztott elem a listában!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
-        //szerintem guestbe
-        public async Task<bool> isNameInDatabase(string g_name)
+        /*public async Task<bool> isNameInDatabase(string g_name)
         {
             var response = await client.GetAsync($"{endPoint}/api/checkname?g_name={g_name}");
             return response.IsSuccessStatusCode && bool.Parse(await response.Content.ReadAsStringAsync());
-        }
+        }*/
 
-        // ok 
         private async void button_ChoiceChoice_Click(object sender, EventArgs e)  // választás kutya v macska, üres-e
         {
-            listBox_Choice.Items.Clear();  //View
+            listView_Choice.Items.Clear();  //View
                        // Ellenőrizzük, hogy van-e kiválasztott CheckBox
             bool anyChecked = false;
             CheckBox selectedCheckBox = null;
@@ -141,10 +152,9 @@ namespace AZ_Desktop
 
                     foreach (var item in items)
                     {
-                        listBox_Choice.Items.Add(item);
-
                         ListViewItem listViewItem = new ListViewItem(item.Id.ToString()); 
                         listViewItem.SubItems.Add(item.G_name);
+                        listViewItem.SubItems.Add(item.G_species);
 
                         listView_Choice.Items.Add(listViewItem);
                     }
@@ -187,29 +197,7 @@ namespace AZ_Desktop
                     break;
             }*/
         }
-                // nincs ?????
-        private void listBox_Choice_SelectedIndexChanged_1(object sender, EventArgs e) // üres
-        { /*
-            // Ellenőrizzük, hogy van-e kiválasztott elem a ListBox-ban
-            if (listBox_Choice.SelectedIndex != -1)
-            {
-                // Leolvassuk a kiválasztott elemet
-                string selectedGuestName = listBox_Choice.SelectedItem.ToString();
-
-                // Létrehozunk egy új Guest objektumot a kiválasztott névvel
-                Guest selectedGuest = new Guest();
-                selectedGuest.G_name = selectedGuestName;
-                /*
-                FormGuest formGuest = new FormGuest(selectedGuest);
-                formGuest.Show();
-
-                // Most itt lehet
-                MessageBox.Show("Kiválasztott elem: 111 - " + selectedGuestName);
-            }
-            */
-        }
-
-        
+            
         private void emptyFieldsChoice()  // ok m
         {
             // Kiürítjük a mezőket
@@ -265,18 +253,5 @@ namespace AZ_Desktop
             emptyFieldsChoice();
         }
 
-        private void listView_Choice_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(listView_Choice.SelectedIndices.Count > 0)
-            {
-                ListViewItem listViewItem = listView_Choice.SelectedItems[0];
-                int selectedId = int.Parse(listViewItem.SubItems[0].Text);
-                Debug.WriteLine("id: " + selectedId); // nem kell majd!
-            }
-            else
-            {
-                MessageBox.Show("Nincs kiválasztott elem a listában!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
     }
 }

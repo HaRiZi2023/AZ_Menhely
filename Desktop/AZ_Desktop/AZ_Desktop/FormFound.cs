@@ -61,6 +61,7 @@ namespace AZ_Desktop
             pictureBox_FoundImage.Image = null;
             listView_Found.Items.Clear();
 
+            textBox_FoundId.Text = "";
             textBox_FoundChoice.Text = "";
             textBox_FoundSpecies.Text = "";
             textBox_FoundGender.Text = "";
@@ -165,7 +166,7 @@ namespace AZ_Desktop
 
                     var json = JsonConvert.SerializeObject(selectedFound); //-- továbbítandó adat
                     var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-                    string endPointUpdate = $"{endPoint}/found/{selectedFound.Id}";
+                    string endPointUpdate = $"{endPoint}/founds/{selectedFound.Id}";
                     var response = client.PutAsync(endPointUpdate, data).Result;
                     if (response.IsSuccessStatusCode)
 

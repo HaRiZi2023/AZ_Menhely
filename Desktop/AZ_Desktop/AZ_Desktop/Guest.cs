@@ -63,7 +63,7 @@ namespace AZ_Desktop
 
         public override string ToString()
         {
-            return $"{this.G_species} - {this.G_name}";
+            return $"{this.Id} - {this.G_species} - {this.G_name}";
         }
     }
     /*** enum ***/
