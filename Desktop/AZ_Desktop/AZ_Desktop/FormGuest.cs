@@ -279,24 +279,39 @@ namespace AZ_Desktop
 
                     G_image = Convert.ToBase64String(selectedImageBin), // kép Base64 formátumba konvertálására.
                 };
-                                
+                
+
                 guest.Created_at = DateTime.Now;
                 guest.Updated_at = DateTime.Now;
 
+                //Console.WriteLine(textBox_GuestName.Text);
+
                 var json = JsonConvert.SerializeObject(guest);
+                //
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
+                
+
+                //client.DefaultRequestHeaders.Add("Accept", "application/json");
+
                 var response = await client.PostAsync(endPoint + "/guests", data);
+
                 response.EnsureSuccessStatusCode();
 
+                /*if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception(response.StatusCode+" "+response.Content.ReadAsStringAsync().Result);
+                }*/
+
                 MessageBox.Show("A kép és minden sikeresen mentve lett az adatbázisba!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hiba történt a kép és minden mentése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            this.Close();
+           
         }
 
         //uploadData() induláskor betölt!!!! 

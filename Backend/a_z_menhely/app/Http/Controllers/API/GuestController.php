@@ -188,9 +188,9 @@ class GuestController extends Controller
     }
     */
 
-    public function saveGuest(Request $request, $id)
+    public function saveGuest(Request $request)
     {
-        $guest = Guest::findOrFail($id);  // ha a modell megtalálható, akkor visszadaja a modellt
+        $guest = new Guest();  // ha a modell megtalálható, akkor visszadaja a modellt
 
         // Frissíti a vendég adatait a kérésből
         $guest->G_name = $request->get('G_name');

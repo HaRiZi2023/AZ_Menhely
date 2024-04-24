@@ -32,13 +32,13 @@ Route::post('login',[AuthController::class,'login']);
 /************/
 
    //Users// Adoption
-Route::apiResource("/users", AdoptionController::class);
+//Route::apiResource("/users", AdoptionController::class);
 Route::get('/users', [UserController::class, 'allUsersData']);
 Route::delete('/guests/{id}', [GuestController::class, 'delete']);
 
 //Adoptions
 Route::apiResource("/adoptions", AdoptionController::class);
-Route::post('/adoptions', [AdoptionController::class, 'store']);
+//Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
 //Route::apiResource("/founds", FoundController::class);
@@ -54,7 +54,7 @@ Route::delete('/founds/{id}', [FoundController::class, 'destroy']);
 //Route::post('/guests', [GuestController::class, 'store']);
 Route::get('/guests/{id}', [GuestController::class, 'show']);       // g_adatlapok
 Route::put('/guests/{id}', [GuestController::class, 'update']);     // g_update kép miatt
-Route::post('/guests/{id}', [GuestController::class, 'saveGuest']); // g_insert kép miatt
+Route::post('/guests', [GuestController::class, 'saveGuest']); // g_insert kép miatt
 
 Route::delete('/guest/{id}', [GuestController::class, 'destroy']);  // a_insert és g_delelte kép miatt
    // Adoption
