@@ -24,7 +24,7 @@ class FoundController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFoundRequest $request)
+    public function storeFound(StoreFoundRequest $request)
     {
         $validator = Validator::make($request->all(), (new StoreFoundRequest())->rules());
         if ($validator->fails()) {

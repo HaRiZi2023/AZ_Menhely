@@ -25,14 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 //Users
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
-
-/************/
-
-   //Users// Adoption
-//Route::apiResource("/users", AdoptionController::class);
 Route::get('/users', [UserController::class, 'allUsersData']);
 Route::delete('/guests/{id}', [GuestController::class, 'delete']);
 
@@ -41,16 +37,14 @@ Route::apiResource("/adoptions", AdoptionController::class);
 //Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
-//Route::apiResource("/founds", FoundController::class);
+Route::post('storeFound', [FoundController::class,'storeFound']);
 Route::get('/founds', [FoundController::class, 'index']);
 Route::put('/founds/{id}', [FoundController::class, 'update']);
 Route::delete('/founds/{id}', [FoundController::class, 'destroy']);
 
 //Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
 
-
 //Guests
-//Route::apiResource("/guests", GuestController::class); az összeakadás miatt
 //Route::post('/guests', [GuestController::class, 'store']);
 Route::get('/guests/{id}', [GuestController::class, 'show']);       // g_adatlapok
 Route::put('/guests/{id}', [GuestController::class, 'update']);     // g_update kép miatt
@@ -69,7 +63,6 @@ Route::get('guests/all/cats', [GuestController::class, 'allCat']); //c_list
 Route::get('guests/all/dogs', [GuestController::class, 'allDog']); //c_list
 
 //Route::get('/checkname', [GuestController::class, 'checkName']); // nem kell
-
 
 //Workers
 Route::apiResource("/workers", WorkerController::class);
