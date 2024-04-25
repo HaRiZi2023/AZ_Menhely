@@ -42,7 +42,7 @@ class AuthController extends Controller
         // Ha nem található az e-mail alapján a felhasználó,
         // vagy ha a beírt jelszó nem egyezik meg a regisztrációkor generált jelszóval.
         if(!$user || !Hash::check($request->password, $user->password)){
-            return response()->json(["message" => "Invalid Credentials"], 401);
+            return response()->json(["message" => "Érvénytelen hitelesítő adatok!"], 401);
         }
         // Token létrehozása és megjelenítése szöveges formában
         $token = $user->createToken("AuthToken")->plainTextToken;
