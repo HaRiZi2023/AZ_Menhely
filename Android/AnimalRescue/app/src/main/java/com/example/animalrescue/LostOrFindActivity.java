@@ -58,7 +58,7 @@ public class LostOrFindActivity extends AppCompatActivity {
     public static final int DEFAULT_UPDATE_INTERVAL = 30;
     public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
-    private String requestUrl = "http://10.0.2.2:8000/api/founds";
+    private String requestUrl = "http://10.0.2.2:8000/api/storeFound";
     private TextInputLayout textInputLayoutAPosition;
     private TextInputEditText textInputEditTextAPosition, textInputEditTextANote, textInputEditTextLocation;
     private TextView textViewBase64, textViewLongitude, textViewLatitude, textViewAddress, textViewUpdate;
