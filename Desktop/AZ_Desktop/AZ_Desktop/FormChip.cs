@@ -309,7 +309,8 @@ namespace AZ_Desktop
 
             var json = JsonConvert.SerializeObject(chipNumber); //-- továbbítandó adat
             var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-            string endPointUpdate = $"{endPoint}/chip/{chipNumber}";
+            //string endPointUpdate = $"{endPoint}/chip/{chipNumber}";
+            string endPointUpdate = $"{endPoint}/guests";
             var response = client.PutAsync(endPointUpdate, data).Result;
 
             if (response.IsSuccessStatusCode)

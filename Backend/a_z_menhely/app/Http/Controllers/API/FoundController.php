@@ -53,6 +53,7 @@ class FoundController extends Controller
         return response()->json($found);
     }
 
+    /*
     public function update(UpdateFoundRequest $request, int $id)
     {
         if ($request->isMethod('PUT')) {
@@ -81,6 +82,7 @@ class FoundController extends Controller
         $found->save();
         return response()->json($found, 200);
     }
+    */
 
     /**
      * Remove the specified resource from storage.
@@ -118,7 +120,23 @@ class FoundController extends Controller
             ->header('Content-Type', 'text/plain');
     }*/
 
+    public function update(UpdateFoundRequest $request, int $id)
+    {
+        $found = Found::find($id);
+        if (is_null($found)) {
+            return response()->json(["message" => "A megadott azonosítóval nem található állat."], 404);
 
+        /*// ez az új
+        if ($request->has('F_image')) {
+            $request->merge(['F_image' => base64_decode($request->F_image)]);
+        }
+        // eddig az új*/
+
+        }
+        $found->fill($request->all());
+        $found->save();
+        return response()->json($found, 200);
+    }
 
 
 
