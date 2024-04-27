@@ -7,14 +7,16 @@ public class User {
     private String name;
     private String address;
     private String phone;
+    private String role;
 
-    public User(int id, String email, String password, String name, String address, String phone) {
+    public User(int id, String email, String password, String name, String address, String phone, String role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.address = address;
         this.phone = phone;
+        this.role = role;
     }
 
     public int getId() {
@@ -61,7 +63,9 @@ public class User {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public String getRule() { return role; }
+
+    public void setRule(String rule) { this.role = role; }
 }

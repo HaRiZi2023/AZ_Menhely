@@ -95,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String address = textInputEditTextAddressRegister.getText().toString();
                 String phone = textInputEditTextPhoneRegister.getText().toString();
                 String password = textInputEditTextPasswordRegister.getText().toString();
+                String role = "user";
 
                 //User adatok ellenőrzéshez
                 String emailInput = textInputEditTextEmailRegister.getText().toString().trim();
@@ -102,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password2 = textInputEditTextPasswordRegister2.getText().toString().trim();
 
                 if (name.isEmpty()){
-                    textInputLayoutNameRegister.setError("");
+                    textInputLayoutNameRegister.setError("A név mező nem lehet üres!");
                 }else{
                     textInputLayoutNameRegister.setError(null);
                 }
@@ -139,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 //új felhasználó létrehozása
-                User user = new User(0,email,password,name,address,phone);
+                User user = new User(0,email,password,name,address,phone,role);
                 Gson jsonConverter = new Gson();
                 //Post kérés elküldése
                 RequestTask task = new RequestTask(requestUrl, "POST", jsonConverter.toJson(user));
