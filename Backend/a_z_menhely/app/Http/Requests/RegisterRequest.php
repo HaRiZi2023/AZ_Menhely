@@ -36,7 +36,7 @@ class RegisterRequest extends FormRequest
             $rules['email'] = 'required|string|email|unique:users,email';
         } else {
             // Ellenkező esetben, ha 'worker' vagy 'admin', nem kötelező az email
-            $rules['email'] = 'nullable|string|email|unique:users,email';
+            $rules['email'] = 'nullable|string|email';
         }
 
         return $rules;
