@@ -48,5 +48,5 @@ class User extends Authenticatable
         'role' => RoleEnum::class,
     ];
 
-    protected $visible = ['id', 'name', 'email', 'address', 'phone'];
+    protected $visible = ['id', 'name', 'email', 'address', 'phone', 'role'];
 }
