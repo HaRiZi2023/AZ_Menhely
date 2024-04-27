@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\RoleEnum;
 
 return new class extends Migration
 {
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('address');
             $table->integer('phone', false, false, 100);
+            $table->string('role')->default(RoleEnum::USER->value);
             $table->timestamps();
         });
     }
