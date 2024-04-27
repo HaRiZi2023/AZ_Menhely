@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class RegisterRequest extends FormRequest
 {
@@ -21,13 +23,22 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>'required|string',
-            'email'=>'required|string|email|unique:users,email',
-            'password'=>'required|min:8',
-            'address'=>'required|string|max:100',
-            'phone'=>'required|string|min:8|max:20',
+        $rules = [
+            'name' => 'required|string',
+            'password' => 'required|min:8',
+            'address' => 'required|string|max:100',
+            'phone' => 'required|string|min:8|max:20',
             'role' => 'required|string'
         ];
+
+        // Ha a 'role' 'user', akkor kötelező az email megadása
+        if ($this->input('role') === 'user') {
+            $rules['email'] = 'required|string|email|unique:users,email';
+        } else {
+            // Ellenkező esetben, ha 'worker' vagy 'admin', nem kötelező az email
+            $rules['email'] = 'nullable|string|email|unique:users,email';
+        }
+
+        return $rules;
     }
 }
