@@ -21,7 +21,7 @@ namespace AZ_Desktop
 
     public static class Serialize
     {
-        public static string ToJson(this User[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
+        public static string ToJson(this Worker[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
     }
 
     internal static class Converter

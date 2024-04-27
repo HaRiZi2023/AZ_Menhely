@@ -263,11 +263,7 @@ namespace AZ_Desktop
 
         private async void button_AdoptionInsert_Click(object sender, EventArgs e)  //rögzítés gomb
         {
-            // Ell., hogy minden kötelező mező ki van-e töltve 
-            //if (string.IsNullOrEmpty(textBox_FoundGender.Text) &&
-    
-
-            
+                      
                 //  új Adoption obj. az űrlap adatatokból
             Adoption newAdoption = new Adoption
             {
@@ -276,30 +272,18 @@ namespace AZ_Desktop
                 U_name = comboBox_AdoptionUName.Text,
                 Created_at = DateTime.Now,
                 Updated_at = DateTime.Now,
-
-                
+                                
             };
 
             await InsertAdoption(newAdoption);
 
            
-            // IMAGE => "default_image.jpg" // Itt beállíthatja az alapértelmezett képet vagy hagyhatja üresen ???? => archiválás Bencébel megbeszélés után
 
-            //insertAdoption metódus meghívása az adatbázisba való beszúráshoz
-            //database.insertAdoption(newAdoption);
+                     // Üzenet a felhasználónak a sikeres beszúrási műveletről
+            MessageBox.Show("Az új elem sikeresen hozzá lett adva.", "Sikeres beszúrás", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Ha a beszúrás sikeres volt, folytatható a további műveleteket elvégzése
 
-            // Frissítse a ListBox-ot a frissen beszúrt elemmel
-            //allAdoptionList(); ??????????????????????????????????????
-
-            // Üzenet a felhasználónak a sikeres beszúrási műveletről
-                MessageBox.Show("Az új elem sikeresen hozzá lett adva.", "Sikeres beszúrás", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //********************************
-                //*******************************
-
-                Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == comboBox_AdoptionGName.Text);
+            Guest selectedAnimal = allAnimals.Find(animal => animal.G_name == comboBox_AdoptionGName.Text);
 
 
             if (selectedAnimal != null)

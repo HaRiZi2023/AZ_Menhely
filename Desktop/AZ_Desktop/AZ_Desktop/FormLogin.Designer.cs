@@ -40,7 +40,7 @@
             this.button_LoginInsert = new System.Windows.Forms.Button();
             this.button_LoginDelete = new System.Windows.Forms.Button();
             this.button_LoginUpdate = new System.Windows.Forms.Button();
-            this.comboBox_LoginPermission = new System.Windows.Forms.ComboBox();
+            this.comboBox_LoginRole = new System.Windows.Forms.ComboBox();
             this.textBox_LoginName = new System.Windows.Forms.TextBox();
             this.label_LoginPerm = new System.Windows.Forms.Label();
             this.textBox_LoginId = new System.Windows.Forms.TextBox();
@@ -170,17 +170,17 @@
             this.button_LoginUpdate.Visible = false;
             this.button_LoginUpdate.Click += new System.EventHandler(this.button_LoginUpdate_Click);
             // 
-            // comboBox_LoginPermission
+            // comboBox_LoginRole
             // 
-            this.comboBox_LoginPermission.FormattingEnabled = true;
-            this.comboBox_LoginPermission.Items.AddRange(new object[] {
+            this.comboBox_LoginRole.FormattingEnabled = true;
+            this.comboBox_LoginRole.Items.AddRange(new object[] {
             "teljes",
             "felhasználó"});
-            this.comboBox_LoginPermission.Location = new System.Drawing.Point(203, 272);
-            this.comboBox_LoginPermission.Name = "comboBox_LoginPermission";
-            this.comboBox_LoginPermission.Size = new System.Drawing.Size(244, 31);
-            this.comboBox_LoginPermission.TabIndex = 3;
-            this.comboBox_LoginPermission.Visible = false;
+            this.comboBox_LoginRole.Location = new System.Drawing.Point(203, 272);
+            this.comboBox_LoginRole.Name = "comboBox_LoginRole";
+            this.comboBox_LoginRole.Size = new System.Drawing.Size(244, 31);
+            this.comboBox_LoginRole.TabIndex = 3;
+            this.comboBox_LoginRole.Visible = false;
             // 
             // textBox_LoginName
             // 
@@ -217,7 +217,7 @@
             this.label_LoginId.BackColor = System.Drawing.Color.White;
             this.label_LoginId.Location = new System.Drawing.Point(162, 118);
             this.label_LoginId.Name = "label_LoginId";
-            this.label_LoginId.Size = new System.Drawing.Size(29, 29);
+            this.label_LoginId.Size = new System.Drawing.Size(23, 23);
             this.label_LoginId.TabIndex = 11;
             this.label_LoginId.Text = "Id";
             this.label_LoginId.Visible = false;
@@ -234,7 +234,7 @@
             this.Controls.Add(this.label_LoginId);
             this.Controls.Add(this.label_LoginPerm);
             this.Controls.Add(this.textBox_LoginName);
-            this.Controls.Add(this.comboBox_LoginPermission);
+            this.Controls.Add(this.comboBox_LoginRole);
             this.Controls.Add(this.button_LoginUpdate);
             this.Controls.Add(this.button_LoginDelete);
             this.Controls.Add(this.button_LoginInsert);
@@ -271,7 +271,7 @@
         private System.Windows.Forms.Button button_LoginInsert;
         private System.Windows.Forms.Button button_LoginDelete;
         private System.Windows.Forms.Button button_LoginUpdate;
-        private System.Windows.Forms.ComboBox comboBox_LoginPermission;
+        private System.Windows.Forms.ComboBox comboBox_LoginRole;
         private System.Windows.Forms.TextBox textBox_LoginName;
         private System.Windows.Forms.Label label_LoginPerm;
         private System.Windows.Forms.TextBox textBox_LoginId;

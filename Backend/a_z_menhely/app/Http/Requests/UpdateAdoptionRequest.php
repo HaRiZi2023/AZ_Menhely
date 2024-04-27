@@ -24,7 +24,7 @@ class UpdateAdoptionRequest extends FormRequest
         return [
             'a_date' => 'required|date',
             'g_name' => 'required|string|max:50',
-            'u_name' => 'required|string|max:100',
+            'u_name' => 'required|string|max:100'
         ];
     }
 }

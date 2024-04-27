@@ -23,10 +23,11 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:100',
-            'email' => 'required|string|max:100',
+            //'email' => 'required|string|max:100',
             'password' => 'required|string|max:100',
-            'address'=>'required|string|max:100',
-            'phone'=>'required|string|min:8|max:20'
+            //'address'=>'required|string|max:100',
+            //'phone'=>'required|string|min:8|max:20',
+            'role' => 'required|in: admin, worker, user'
         ];
     }
 }

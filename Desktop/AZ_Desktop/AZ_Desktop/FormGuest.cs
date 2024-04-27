@@ -284,7 +284,7 @@ namespace AZ_Desktop
                 guest.Created_at = DateTime.Now;
                 guest.Updated_at = DateTime.Now;
 
-                //Console.WriteLine(textBox_GuestName.Text);
+                Console.WriteLine(textBox_GuestName.Text);
 
                 var json = JsonConvert.SerializeObject(guest);
                 //
@@ -292,16 +292,16 @@ namespace AZ_Desktop
 
                 
 
-                //client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
 
                 var response = await client.PostAsync(endPoint + "/guests", data);
 
                 response.EnsureSuccessStatusCode();
 
-                /*if (!response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
                     throw new Exception(response.StatusCode+" "+response.Content.ReadAsStringAsync().Result);
-                }*/
+                }
 
                 MessageBox.Show("A kép és minden sikeresen mentve lett az adatbázisba!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

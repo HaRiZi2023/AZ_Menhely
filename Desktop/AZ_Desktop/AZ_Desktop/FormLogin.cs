@@ -69,15 +69,15 @@ namespace AZ_Desktop
 
         private void FormLogin_Load(object sender, EventArgs e) // RR
         {
-            comboBox_LoginPermission.DataSource = Enum.GetValues(typeof(W_permission));
+            comboBox_LoginRole.DataSource = Enum.GetValues(typeof(Role));
         }
         
         // ezt 
-        private async Task<bool> checkLogin(string w_name, string w_password) // u 
+        private async Task<bool> checkLogin(string name, string password) // u 
         {
             try
             {
-                string endpointGet = $"{endPoint}/workers?name={w_name}&password={w_password}";
+                string endpointGet = $"{endPoint}/users?name={name}&password={password}";
                 HttpResponseMessage response = await client.GetAsync(endpointGet);
 
                 //using (HttpClient client = new HttpClient())
@@ -89,21 +89,21 @@ namespace AZ_Desktop
                 }
                 else
                 {
-                    MessageBox.Show("/X/Hiba történt az adatbázis ellenőrzése közben: " + response.ReasonPhrase, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("login/checkLogin/else Hiba történt az adatbázis ellenőrzése közben: " + response.ReasonPhrase, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("/X*/Hiba történt az adatbázis ellenőrzése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("login/checkLogin/catch Hiba történt az adatbázis ellenőrzése közben: " + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
         private async void button_Login_Click(object sender, EventArgs e) // u 
         {
-            string w_name = textBox_LoginName.Text;
-            string w_password = textBox_LoginPass.Text;
+            string name = textBox_LoginName.Text;
+            string password = textBox_LoginPass.Text;
 
             if (string.IsNullOrEmpty(textBox_LoginName.Text) || string.IsNullOrEmpty(textBox_LoginPass.Text))
             {
@@ -115,14 +115,14 @@ namespace AZ_Desktop
             // Ellenőrizzük a jelszót regex-szel
             var regex = new Regex(@"^(?=.*[a-záéíóöőúüű])(?=.*[A-ZÁÉÍÓÖŐÚÜŰ])(?=.*\d).{3,10}$");
 
-            if (!regex.IsMatch(w_password))
+            if (!regex.IsMatch(password))
             {
                 MessageBox.Show("A jelszónak tartalmaznia kell min:3 max:10 karaktert, amiben legalább egy kisbetű, egy nagybetű és egy szám szerepel!", "Hibás jelszó", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox_LoginPass.Select();
                 return;
             }
 
-            bool success = await checkLogin(w_name, w_password);
+            bool success = await checkLogin(name, password);
 
             if (success)
             {
@@ -140,14 +140,14 @@ namespace AZ_Desktop
             }
         }
 
-        private async Task<bool> checkPermission(string w_name, string w_password) // u 
+        private async Task<bool> checkPermission(string name, string password) // u 
         {
             HttpClient client = new HttpClient();
             string endPoint = ReadSetting("endPointUrl");
 
             try
             {
-                string endPointGet = $"{endPoint}/workers?name={w_name}&password={w_password}&permission=teljes";
+                string endPointGet = $"{endPoint}/users?name={name}&password={password}&role=admin";
                 HttpResponseMessage response = await client.GetAsync(endPointGet);
 
                 if (response.IsSuccessStatusCode)
@@ -172,14 +172,14 @@ namespace AZ_Desktop
 
         private async void button_LoginService_Click(object sender, EventArgs e) // u Szervíz belépés ell.
         {
-            string w_name = textBox_LoginName.Text;
-            string w_password = textBox_LoginPass.Text;
+            string name = textBox_LoginName.Text;
+            string password = textBox_LoginPass.Text;
 
             if (validateInputService())
             {
-                if (await checkPermission(w_name, w_password))
+                if (await checkPermission(name, password))
                 {
-                    //Ha w_permission ==> "teljes" 
+                    //Ha role ==> "admin" 
 
                     MessageBox.Show("Sikeres szervíz bejelentkezés!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -187,7 +187,7 @@ namespace AZ_Desktop
                     label_LoginId.Visible = true;
                     label_LoginPerm.Visible = true;
                     textBox_LoginId.Visible = true;
-                    comboBox_LoginPermission.Visible = true;
+                    comboBox_LoginRole.Visible = true;
                     button_LoginInsert.Visible = true;
                     button_LoginUpdate.Visible = true;
                     button_LoginDelete.Visible = true;
@@ -223,18 +223,18 @@ namespace AZ_Desktop
                     return false;
                 }
             }
-            if (string.IsNullOrEmpty(comboBox_LoginPermission.Text))
+            if (string.IsNullOrEmpty(comboBox_LoginRole.Text))
             {
                 MessageBox.Show("Válasszon jogosultságot!", "Hiányzó adatok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                comboBox_LoginPermission.Focus();
+                comboBox_LoginRole.Focus();
                 return false;
             }            
             return true;
         }
 
-        public async Task<bool> isNameInDatabase(string w_name)
+        public async Task<bool> isNameInDatabase(string name)
         {
-            var response = await client.GetAsync($"{endPoint}/api/checkname?w_name={w_name}");
+            var response = await client.GetAsync($"{endPoint}/api/checkname?name={name}");
             return response.IsSuccessStatusCode && bool.Parse(await response.Content.ReadAsStringAsync());
         }
 
@@ -245,13 +245,13 @@ namespace AZ_Desktop
                 // Kiürítjük a mezőket
                 textBox_LoginName.Text = "";
                 textBox_LoginPass.Text = "";
-                comboBox_LoginPermission.Text = "";
+                comboBox_LoginRole.Text = "";
             }
 
         private async void button_LoginInsert_Click(object sender, EventArgs e)
         {
-            string workerInsert = textBox_LoginName.Text;
-            if (await isNameInDatabase(workerInsert))
+            string loginInsert = textBox_LoginName.Text;
+            if (await isNameInDatabase(loginInsert))
             {
                 MessageBox.Show("Van már ilyen nevű dolgozó az adtbázisban!", "Ellenőrizze!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox_LoginName.Text = "";
@@ -259,14 +259,14 @@ namespace AZ_Desktop
             }
             else
             {
-                Worker worker = new Worker();
+                User login = new User();
                 if (validateInputService())
                 {
-                    worker.W_name = textBox_LoginName.Text;
-                    worker.W_password = textBox_LoginPass.Text;
-                    worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
+                    login.Name = textBox_LoginName.Text;
+                    login.Password = textBox_LoginPass.Text;
+                    login.Role = comboBox_LoginRole.SelectedValue.ToString();
 
-                    var json = JsonConvert.SerializeObject(worker); //-- továbbítandó adat
+                    var json = JsonConvert.SerializeObject(login); //-- továbbítandó adat
                     var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
                     var response = await client.PostAsync(endPoint, data);
                     if (response.IsSuccessStatusCode)
@@ -286,17 +286,18 @@ namespace AZ_Desktop
         {
             if (string.IsNullOrEmpty(textBox_LoginName.Text))
             {
-                Worker worker = new Worker();
+                User login = new User();
 
-                worker.Id = long.Parse(textBox_LoginId.Text);
-                worker.W_name = textBox_LoginName.Text;
-                worker.W_password = textBox_LoginPass.Text;
-                worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
+                login.Id = long.Parse(textBox_LoginId.Text);
+                login.Name = textBox_LoginName.Text;
+                login.Password = textBox_LoginPass.Text;
+                login.Role = comboBox_LoginRole.SelectedValue.ToString();
 
 
-                var json = JsonConvert.SerializeObject(worker); //-- továbbítandó adat
+                var json = JsonConvert.SerializeObject(login); //-- továbbítandó adat
                 var data = new StringContent(json, Encoding.UTF8, "application/json"); //-- fejlécet adtunk hozzá
-                string endPointUpdate = $"{endPoint}/{worker.Id}";
+                string endPointUpdate = $"{endPoint}/{login.Id}";
+                // ez volt string endPointUpdate = $"{endPoint}/{login.Id}";
                 var response = client.PutAsync(endPointUpdate, data).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -313,17 +314,17 @@ namespace AZ_Desktop
         private void button_LoginDelete_Click(object sender, EventArgs e)  // ide még checkWorkerEx !!!!!!!!!! 
         {
             if (MessageBox.Show("Valóban törölni szeretné?") == DialogResult.OK)
-            {                          
-                Worker worker = new Worker();
+            {
+                User login = new User();
 
-                worker.Id = long.Parse(textBox_LoginId.Text);
-                string endPointDelete = $"{endPoint}/{worker.Id}";
-                worker.W_name = textBox_LoginName.Text;
-                worker.W_password = textBox_LoginPass.Text;
-                worker.W_permission = comboBox_LoginPermission.SelectedValue.ToString();
+                login.Id = long.Parse(textBox_LoginId.Text);
+                string endPointDelete = $"{endPoint}/{login.Id}";
+                login.Name = textBox_LoginName.Text;
+                login.Password = textBox_LoginPass.Text;
+                login.Role = comboBox_LoginRole.SelectedValue.ToString();
                 
 
-                string endPointUpdate = $"{endPoint}/{worker.Id}";
+                string endPointUpdate = $"{endPoint}/{login.Id}";
                 var response = client.DeleteAsync(endPointUpdate).Result;
                 if (response.IsSuccessStatusCode)
                 {

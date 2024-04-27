@@ -20,6 +20,47 @@ namespace AZ_Desktop
     public partial class User
     {
         [JsonProperty("id")]
+        [JsonConverter(typeof(ParseStringConverter))]
+        public long Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("email_verified_at")]
+        public DateTimeOffset EmailVerifiedAt { get; set; }
+
+        [JsonProperty("password")]
+        public string Password { get; set; }
+
+        [JsonProperty("remember_token")]
+        public string RememberToken { get; set; }
+
+        [JsonProperty("address")]
+        public string Address { get; set; }
+
+        [JsonProperty("phone")]
+        [JsonConverter(typeof(ParseStringConverter))]
+        public long Phone { get; set; }
+
+        [JsonProperty("role")]
+        public string Role { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTimeOffset CreatedAt { get; set; }
+
+        [JsonProperty("updated_at")]
+        public DateTimeOffset UpdatedAt { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        /*
+        [JsonProperty("id")]
         public long Id { get; set; }
 
         [JsonProperty("name")]
@@ -49,12 +90,14 @@ namespace AZ_Desktop
 
         [JsonProperty("updated_at")]
         public DateTimeOffset Updated_at { get; set; }
+       
 
-        public override string ToString()
-        {
-            return Name;
-        }
+
+        
+        */
     }
+
+    public enum Role { admin, worker, user };
 
     public partial class User
     {
@@ -66,7 +109,18 @@ namespace AZ_Desktop
         public static string ToJson(this User[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
     }
 
-    /***/
+    internal static class UserConverter
+    {
+        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+            DateParseHandling = DateParseHandling.None,
+            Converters =
+            {
+                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
+            },
+        };
+    }
 
     internal class ParseStringConverter : JsonConverter
     {
@@ -98,7 +152,111 @@ namespace AZ_Desktop
 
         public static readonly ParseStringConverter Singleton = new ParseStringConverter();
     }
+
+
+    /*
+    public static class UserSerialize
+    {
+        public static string ToJson(this User[] self) => JsonConvert.SerializeObject(self, AZ_Desktop.Converter.Settings);
+    }
+
+    internal static class Converter
+    {
+        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+            DateParseHandling = DateParseHandling.None,
+            Converters =
+            {
+                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
+            },
+        };
+    }
+    */
+
+    /*** enum ***/
+    internal class RoleConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(Role) || t == typeof(Role?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "admin":
+                    return Role.admin;
+                case "worker":
+                    return Role.worker;
+                case "user":
+                    return Role.user;
+            }
+            throw new Exception("RoleConverterRead Cannot unmarshal type Gender");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (Role)untypedValue;
+            switch (value)
+            {
+                case Role.admin:
+                    serializer.Serialize(writer, "admin");
+                    return;
+                case Role.worker:
+                    serializer.Serialize(writer, "worker");
+                    return;
+                case Role.user:
+                    serializer.Serialize(writer, "user");
+                    return;
+            }
+            throw new Exception("RoleConverterWrite Cannot marshal type Gender");
+        }
+
+        public static readonly Role Singleton = new Role();
+    }
 }
+
+    /***/
+    /*
+    internal class ParseStringConverter : JsonConverter  //???
+    {
+        public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            long longData;
+            if (Int64.TryParse(value, out longData))
+            {
+                return longData;
+            }
+            throw new Exception("user.cs Cannot unmarshal type long");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (long)untypedValue;
+            serializer.Serialize(writer, value.ToString());
+            return;
+        }
+
+        public static readonly ParseStringConverter Singleton = new ParseStringConverter();
+    }
+}
+
+*/
 
 /*
  

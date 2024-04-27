@@ -139,11 +139,10 @@ class GuestController extends Controller
     return response()->json($guest, 200);
     }
 
-
     public function chipUpdate(Request $request, $chipNumber)
     {
         $guest = Guest::where('g_chip', $chipNumber)->first();
-
+      
         if (!$guest) {
             return response()->json(['message' => 'Nincs ilyen vendég'], 404);
         }

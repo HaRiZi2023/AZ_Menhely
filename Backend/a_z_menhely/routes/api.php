@@ -21,20 +21,34 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+//Eredeti
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Users
+/***/
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+ //   return $request->user();
+//});
+
+
+//Users Mobil APP
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
-Route::get('/users', [UserController::class, 'allUsersData']);
-Route::delete('/guests/{id}', [GuestController::class, 'delete']);
+
+
+
+
+
+Route::apiResource("/users", UserController::class);
+
+//
+//Route::get('/users', [UserController::class, 'allUsersData']);
+//Route::delete('/guests/{id}', [GuestController::class, 'delete']);
 
 //Adoptions
-Route::apiResource("/adoptions", AdoptionController::class);
-//Route::post('/adoptions', [AdoptionController::class, 'store']);
+//Route::apiResource("/adoptions", AdoptionController::class);
+Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
 Route::post('storeFound', [FoundController::class,'storeFound']);
@@ -55,10 +69,10 @@ Route::delete('/guest/{id}', [GuestController::class, 'destroy']);  // a_insert 
 Route::get('/guests', [GuestController::class, 'allAdoptableAnimal']);  //a_insert
 
    // FormChip
-Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);  //c_
+Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber']);  // rendben
 Route::put('guests/chip/{chipNumber}', [GuestController::class, 'chipUpdate']);
 
-   // FormChoice
+   // FormChoice rendben
 Route::get('guests/all/cats', [GuestController::class, 'allCat']); //c_list
 Route::get('guests/all/dogs', [GuestController::class, 'allDog']); //c_list
 
