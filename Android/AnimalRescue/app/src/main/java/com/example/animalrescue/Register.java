@@ -4,6 +4,11 @@ public class Register {
     private String email;
     private String password;
 
+    /**
+     * Registered User class to authenticate
+     * @param email Email address of the registered user
+     * @param password Password of the registered user
+     */
     public Register(String email, String password) {
         this.email = email;
         this.password = password;

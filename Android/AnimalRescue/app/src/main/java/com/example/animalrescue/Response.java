@@ -4,6 +4,11 @@ public class Response {
     private int responseCode;
     private String content;
 
+    /**
+     * Response class to communication between backend and android
+     * @param responseCode
+     * @param content
+     */
     public Response(int responseCode, String content) {
         this.responseCode = responseCode;
         this.content = content;

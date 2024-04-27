@@ -9,6 +9,17 @@ public class Animal {
     private String f_other;
     private String f_image;
 
+    /**
+     * Animal class for reporting to the backend
+     * @param id AUTO_INCREMENT, primary key
+     * @param f_choice Choice to lost or find
+     * @param f_species Animal species - dog or cat
+     * @param f_gender Animal gender - unknown, female, male
+     * @param f_injury Visible injury - unknown, yes, no
+     * @param f_position Animal location
+     * @param f_other Comment
+     * @param f_image Picture
+     */
     public Animal(int id, String f_choice, String f_species, String f_gender, String f_injury, String f_position, String f_other, String f_image) {
         this.id = id;
         this.f_choice = f_choice;

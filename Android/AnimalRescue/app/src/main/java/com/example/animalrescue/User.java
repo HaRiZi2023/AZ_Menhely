@@ -9,6 +9,16 @@ public class User {
     private String phone;
     private String role;
 
+    /**
+     * User class for reporting to the backend
+     * @param id AUTO_INCREMENT, primary key
+     * @param email User email address
+     * @param password User password
+     * @param name User full name
+     * @param address User address
+     * @param phone User phonenumber
+     * @param role User policy - Admin, Worker, User
+     */
     public User(int id, String email, String password, String name, String address, String phone, String role) {
         this.id = id;
         this.email = email;

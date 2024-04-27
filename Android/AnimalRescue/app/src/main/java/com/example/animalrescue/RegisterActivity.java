@@ -37,6 +37,16 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText textInputEditTextNameRegister, textInputEditTextEmailRegister, textInputEditTextAddressRegister, textInputEditTextPhoneRegister, textInputEditTextPasswordRegister, textInputEditTextPasswordRegister2;
     private String requestUrl = "http://10.0.2.2:8000/api/register"; //emulátor IP címje, 8000:mert itt fut a beckend
 
+    /**
+     * User registration interface
+     * Enter user data
+     * with User name, email address, address, phone number and password fields
+     * Registration send and back/return buttons
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +63,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
+            /**
+             * When entering and modifying text in the password input field
+             * change the colour of the input text depending on the result of the password validation function
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
                 if(isValidPassword(s.toString())){
@@ -69,6 +85,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
+            /**
+             * When entering and modifying text in the password input field
+             * change the colour of the input text depending on the result of the password validation function
+             * @param s
+             */
             @Override
             public void afterTextChanged(Editable s) {
                 if(isValidPassword(s.toString())){
@@ -79,6 +101,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         buttonBack.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Press the Back button to return to the login interface
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
@@ -87,6 +113,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         buttonFinalRegister.setOnClickListener(new View.OnClickListener() {
+            /**
+             * If the Register button is clicked
+             * User data verification
+             * Send user data to database
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 //User adatok adatbázishoz:
@@ -113,12 +145,12 @@ public class RegisterActivity extends AppCompatActivity {
                     textInputLayoutEmailRegister.setError(null);
                 }
                 if (address.isEmpty()) {
-                    textInputLayoutAddressRegister.setError("A lakcím mező nem lehet üres!");
+                    textInputLayoutAddressRegister.setError("\u00a9 A lakcím mező nem lehet üres!");
                 }else{
                     textInputLayoutAddressRegister.setError(null);
                 }
                 if (phone.isEmpty()){
-                    textInputLayoutPhoneRegister.setError("A telefonszám mező nem lehet üres!");
+                    textInputLayoutPhoneRegister.setError("\u00a9 A telefonszám mező nem lehet üres!");
                 }else{
                     textInputLayoutPhoneRegister.setError(null);
                 }
@@ -150,6 +182,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Relationship between Layout and Activity
+     */
     public void init() {
         textInputLayoutNameRegister = findViewById(R.id.textInputLayoutNameRegister);
         textInputEditTextNameRegister = findViewById(R.id.textInputEditTextNameRegister);
@@ -167,6 +202,15 @@ public class RegisterActivity extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBack);
     }
 
+    /**
+     * Password validation function
+     * Whether it contains capital letters
+     * Contains lower case
+     * Contains special character
+     * Whether the length of the dictionary is up to 8 characters
+     * @param password bevitt jelszó a bekért paraméter
+     * @return helyes jelszó
+     */
     private boolean isValidPassword(String password){
 
         boolean nagybetuVanE = !password.equals(password.toLowerCase());
@@ -176,17 +220,32 @@ public class RegisterActivity extends AppCompatActivity {
         return nagybetuVanE && kisbetuVanE && vanbenneSpecial && hosszJoE;
     }
 
+    /**
+     * Database asynchronous communication
+     */
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;
         String requestParams;
 
+        /**
+         * Create a backend connection
+         * @param requestUrl is the Backend(api) route
+         * @param requestType is the communication method (POST)
+         * @param requestParams is the parameter specified when communicating with Backend
+         */
         public RequestTask(String requestUrl, String requestType, String requestParams) {
             this.requestUrl = requestUrl;
             this.requestType = requestType;
             this.requestParams = requestParams;
         }
 
+        /**
+         * doInBackground method to send the request
+         * @param voids The parameters of the task.
+         *
+         * @return response
+         */
         //doInBackground metódus létrehozása a kérés elküldéséhez
         @Override
         protected Response doInBackground(Void... voids) {
@@ -210,6 +269,11 @@ public class RegisterActivity extends AppCompatActivity {
             buttonFinalRegister.setEnabled(false);
         }
 
+        /**
+         * onPostExecute method to process the response
+         * @param response The result of the operation computed by {@link #doInBackground}.
+         *
+         */
         @Override
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);

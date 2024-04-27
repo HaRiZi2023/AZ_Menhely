@@ -16,8 +16,13 @@ public class RequestHandler {
     private RequestHandler() {
     }
 
-
-    //backend és a frontend közötti kommunikáció megvalósítása
+    /**
+     * Communication between the backend and android
+     * @param url
+     * @return
+     * @throws IOException throw error if no connection is established
+     */
+    //backend és az Android közötti kommunikáció megvalósítása
     private static HttpURLConnection setupConnection(String url) throws IOException {
         //urlObj létrehozása
         URL urlObj = new URL(url);
@@ -32,6 +37,12 @@ public class RequestHandler {
         return connection;
     }
 
+    /**
+     * getResponse method to retrieve responseCode and content
+     * @param connection
+     * @return
+     * @throws IOException throw error if no connection is established
+     */
     //getResponse metódus létrehozása a responseCode és a content lekérdezéséhez
     private static Response getResponse(HttpURLConnection connection) throws IOException {
         //responseCode lekérdezése
@@ -61,6 +72,12 @@ public class RequestHandler {
         return new Response(responseCode, content.toString());
     }
 
+    /**
+     * addRequestBody method to add requestBody
+     * @param connection
+     * @param requestBody
+     * @throws IOException throw error if no connection is established
+     */
     //addRequestBody metódus létrehozása a requestBody hozzáadásához
     private static void addRequestBody(HttpURLConnection connection, String requestBody) throws IOException {
         connection.setRequestProperty("Content-Type", "application/json");
@@ -78,6 +95,12 @@ public class RequestHandler {
         outputStream.close();
     }
 
+    /**
+     * get method for GET request
+     * @param url
+     * @return
+     * @throws IOException throw error if no connection is established
+     */
     //get metódus létrehozása a GET kéréshez
     public static Response get(String url) throws IOException {
         //connection létrehozása
@@ -88,6 +111,13 @@ public class RequestHandler {
         return getResponse(connection);
     }
 
+    /**
+     * post method for POST request
+     * @param url
+     * @param requestBody
+     * @return
+     * @throws IOException throw error if no connection is established
+     */
     //post metódus létrehozása a POST kéréshez
     public static Response post(String url, String requestBody) throws IOException {
         //connection létrehozása
@@ -100,6 +130,13 @@ public class RequestHandler {
         return getResponse(connection);
     }
 
+    /**
+     * put method for PUT request
+     * @param url
+     * @param requestBody
+     * @return
+     * @throws IOException throw error if no connection is established
+     */
     //put metódus létrehozása a PUT kéréshez
     public static Response put(String url, String requestBody) throws IOException {
         //connection létrehozása
@@ -112,6 +149,12 @@ public class RequestHandler {
         return getResponse(connection);
     }
 
+    /**
+     * delete method for DELETE request
+     * @param url
+     * @return
+     * @throws IOException throw error if no connection is established
+     */
     //delete metódus létrehozása a DELETE kéréshez
     public static Response delete(String url) throws IOException {
         //connection létrehozása

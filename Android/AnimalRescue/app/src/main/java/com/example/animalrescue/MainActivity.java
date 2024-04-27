@@ -18,8 +18,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 
 
-
-
 public class MainActivity extends AppCompatActivity {
     private MaterialButton buttonLogin, buttonRegister;
     private TextInputLayout textInputLayoutEmail;
@@ -27,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private String requestUrl = "http://10.0.2.2:8000/api/login";
     private ProgressBar progressBar;
 
+    /**
+     * Login screen
+     * Email and Password input fields
+     * Login and Registration buttons
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         buttonLogin.setOnClickListener(new View.OnClickListener(){
+            /**
+             * When pressing the login button
+             * Verify the information entered in the Email and Password input fields
+             * Sending the data to the backend,
+             * return
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 //Bejelentkezési adatok
@@ -60,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         buttonRegister.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Create registration by clicking on the button
+             * Redirect to the registration interface
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 //Intent létrehozása
@@ -71,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Relationship between Layout and Activity
+     */
     public void init() {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
@@ -80,18 +102,33 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar1);
     }
 
+    /**
+     * Database asynchronous communication
+     */
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;
         String requestParams;
 
+        /**
+         * Establish a backend connection
+         * @param requestUrl is the Backend(api) route
+         * @param requestType is the communication method (POST)
+         * @param requestParams is the parameter specified when communicating with Backend
+         */
         public RequestTask(String requestUrl, String requestType, String requestParams) {
             this.requestUrl = requestUrl;
             this.requestType = requestType;
             this.requestParams = requestParams;
         }
 
-        //doInBackground metódus létrehozása a kérés elküldéséhez, létezik-e a mail
+        /**
+         * doInBackground method to send a request if the email exists
+         * @param voids The parameters of the task.
+         *
+         * @return response
+         */
+        //doInBackground metódus létrehozása a kérés elküldéséhez, létezik-e az email
         @Override
         protected Response doInBackground(Void... voids) {
             Response response = null;
@@ -108,12 +145,20 @@ public class MainActivity extends AppCompatActivity {
             return response;
         }
 
+        /**
+         * Display the filling feedback (loading)
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
         }
 
+        /**
+         * onPostExecute method to process the response
+         * @param response The result of the operation computed by {@link #doInBackground}.
+         *
+         */
         //onPostExecute metódus létrehozása a válasz feldolgozásához
         @Override
         protected void onPostExecute(Response response) {

@@ -16,6 +16,16 @@ public class ChoicesActivity extends AppCompatActivity {
 
     private MaterialButton buttonFindSearch, buttonWeb, buttonLogOut;
 
+    /**
+     * Service exchange interface
+     * Animal Notification button
+     * Go to website for extra information button
+     * Logout button
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +37,10 @@ public class ChoicesActivity extends AppCompatActivity {
         init();
 
         buttonFindSearch.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Press the report animal button to be redirected to the reporting interface
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(ChoicesActivity.this, LostOrFindActivity.class);
@@ -36,6 +50,10 @@ public class ChoicesActivity extends AppCompatActivity {
         });
 
         buttonWeb.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Pressing the Go to website button will open the animal shelter's Frontend preojekt website in the bonger
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -47,6 +65,10 @@ public class ChoicesActivity extends AppCompatActivity {
             }
         });
         buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Press the logout button to return to the login screen
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ChoicesActivity.this, MainActivity.class);
@@ -56,6 +78,10 @@ public class ChoicesActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * Relationship between Layout and Activity
+     */
     public void init() {
         buttonFindSearch = findViewById(R.id.buttonFindSearch);
         buttonWeb = findViewById(R.id.buttonWeb);

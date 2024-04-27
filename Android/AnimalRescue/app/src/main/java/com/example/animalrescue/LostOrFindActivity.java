@@ -71,7 +71,17 @@ public class LostOrFindActivity extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     private FusedLocationProviderClient fusedLocationClient;
 
-
+    /**
+     * Search/Found animal reporting interface
+     * Pre-programmed drop-down menu (Select animal's pray meters)
+     * Determine animal position
+     * Option to take a photo of the animal
+     * Animal reporting
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +99,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         ArrayAdapter<String>adapter3 = new ArrayAdapter<String>(LostOrFindActivity.this, android.R.layout.simple_spinner_item, injury);
         spinnerFindSearchSp.setAdapter(adapter);
         spinnerFindSearchSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
@@ -100,6 +111,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         });
         spinnerASpecies.setAdapter(adapter1);
         spinnerASpecies.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
@@ -111,6 +123,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         });
         spinnerAGender.setAdapter(adapter2);
         spinnerAGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
@@ -122,6 +135,7 @@ public class LostOrFindActivity extends AppCompatActivity {
         });
         spinnerAInjury.setAdapter(adapter3);
         spinnerAInjury.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
@@ -158,6 +172,10 @@ public class LostOrFindActivity extends AppCompatActivity {
         };
 
         buttonAPosition.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Animal position
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
 
@@ -182,12 +200,22 @@ public class LostOrFindActivity extends AppCompatActivity {
         updateGPS();
 
         buttonFoto.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Take a photo
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {fenykepezes();
             }
         });
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Submit the notification(Animal)
+             * Check fields for completeness
+             * Advice on using the Animal position button if the Animal position field is empty
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 String f_choice = spinnerFindSearchSp.getSelectedItem().toString();
@@ -200,8 +228,7 @@ public class LostOrFindActivity extends AppCompatActivity {
 
                 if (f_position.isEmpty()) {
                     textInputLayoutAPosition.setError("A mező kitöltése kötelező");
-                    Toast.makeText(LostOrFindActivity.this,
-                            "Használd az Állat pozíciója gombot!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostOrFindActivity.this, "Use the Animal Position button!", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
                     textInputLayoutAPosition.setError(null);
@@ -217,6 +244,11 @@ public class LostOrFindActivity extends AppCompatActivity {
             }
         });
         buttonBack.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Go back button
+             * Return to the service selection interface
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LostOrFindActivity.this, ChoicesActivity.class);
@@ -226,6 +258,15 @@ public class LostOrFindActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Checking the existence of permits for positioning
+     * @param requestCode The request code passed
+     * @param permissions The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *     which is either {@link android.content.pm.PackageManager#PERMISSION_GRANTED}
+     *     or {@link android.content.pm.PackageManager#PERMISSION_DENIED}. Never null.
+     *
+     */
     //Lokáció
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -241,6 +282,9 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Update GPS data
+     */
     private void updateGPS() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(LostOrFindActivity.this);
 
@@ -260,6 +304,10 @@ public class LostOrFindActivity extends AppCompatActivity {
         };
     };
 
+    /**
+     * Update User Interface values
+     * @param location
+     */
     private void updateUIValues(Location location) {
 
         if (location != null) {
@@ -285,6 +333,9 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Location update start
+     */
     private void StartLocationUpdates() {
         textViewUpdate.setText("Követve vagy");
 
@@ -293,6 +344,10 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
+
+    /**
+     * Location update stop
+     */
     private void stopLocationUpdates() {
         textViewUpdate.setText("Nem elérhető");
         textViewLatitude.setText("Nem elérhető");
@@ -300,12 +355,28 @@ public class LostOrFindActivity extends AppCompatActivity {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
 
+    /**
+     * Take a picture, start camera
+     */
     //Fényképezés
     private void fenykepezes() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 1);
     }
 
+    /**
+     * Accepting the image taken by the camera afterwards when the software returns to the reporting interface
+     *
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode The integer result code returned by the child activity
+     *                   through its setResult().
+     * Retrieve the image data
+     * @param data An Intent, which can return result data to the caller
+     *               (various data can be attached to Intent "extras").
+     * Show the image
+     */
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Ha a kamera visszatért
@@ -321,6 +392,11 @@ public class LostOrFindActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Convert image to base64
+     * @param bitmap Convert image to byte array
+     * @return the base64 string
+     */
     private String convertImageToBase64(Bitmap bitmap) {
         // A kép átalakítása base64-be
         // A kép átalakítása byte tömbbé, majd base64-be
@@ -336,6 +412,11 @@ public class LostOrFindActivity extends AppCompatActivity {
         return Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
 
+    /**
+     * Convert base64 string to image
+     * @param base64String
+     * @return the image
+     */
     private Bitmap convertBase64ToImage(String base64String) {
         // A base64 string átalakítása képpé
         // A base64 string átalakítása byte tömbbé
@@ -345,6 +426,9 @@ public class LostOrFindActivity extends AppCompatActivity {
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 
+    /**
+     * Relationship between Layout and Activity
+     */
     public void init(){
         spinnerFindSearchSp = findViewById(R.id.spinnerFindSearchSp);
         spinnerASpecies = findViewById(R.id.spinnerASpecies);
@@ -366,18 +450,32 @@ public class LostOrFindActivity extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBack);
     }
 
+    /**
+     * Saving to database, sending to database
+     */
     //Adatbázisba történő mentés, küldés
     private class RequestTask extends AsyncTask<Void, Void, Response> {
         String requestUrl;
         String requestType;
         String requestParams;
-
+        /**
+         * Establish a backend connection
+         * @param requestUrl is the Backend(api) route
+         * @param requestType is the communication method (POST)
+         * @param requestParams is the parameter specified when communicating with Backend
+         */
         public RequestTask(String requestUrl, String requestType, String requestParams) {
             this.requestUrl = requestUrl;
             this.requestType = requestType;
             this.requestParams = requestParams;
         }
 
+        /**
+         * doInBackground method to send the request
+         * @param voids The parameters of the task.
+         *
+         * @return response
+         */
         //doInBackground metódus létrehozása a kérés elküldéséhez
         @Override
         protected Response doInBackground(Void... voids) {
@@ -401,6 +499,11 @@ public class LostOrFindActivity extends AppCompatActivity {
             buttonSave.setEnabled(false);
         }
 
+        /**
+         * onPostExecute method to process the response
+         * @param response The result of the operation computed by {@link #doInBackground}.
+         *
+         */
         //onPostExecute metódus létrehozása a válasz feldolgozásához
         @Override
         protected void onPostExecute(Response response) {
