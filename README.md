@@ -4,6 +4,9 @@ A projekt egy Laravel Backend [Adatbázis kapcsolat] rendszerrel készített, na
 
 ## Table of Contents
 
+- [Installation](#installation)
+- [License](#license)
+
 ## Installation
 
 1.  Repository klónozása:
