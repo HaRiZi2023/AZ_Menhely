@@ -1,6 +1,12 @@
 # Android README
 
-## WIKI oldal
+## Table of Contents
+
+- [Wiki](#wiki)
+- [Információ](#informacio)
+  - [Applikáció célja](#célja)
+
+## WIKI
 
 Látogasd meg a [Projekt Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki) weboldalt
 vagy az [AZ Menhely Android Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/Android) weboldalt.
