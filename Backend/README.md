@@ -1,4 +1,37 @@
-# History 
+
+
+## Installation
+
+1. Composer telepítés
+   
+   `composer install`
+   
+2. Environment másolása:
+   
+   `cp .env.example .env`
+
+3. Artisan telepítés:
+
+   `php artisan install`
+
+4. App key generálása:
+
+   `php artisan generate:key`
+
+5. Fejlesztői szerver indítása:
+
+   `php artisan serve`
+
+6. Swagger dokumentáció újragenerálása
+
+   `php artisan l5-swagger:generate`
+
+## Swagger
+
+- /api/documentation oldalon elérhető a swagger UI
+- Swagger dokumentáció /storage/api-docs/api-docs.json fájlban érhető el.
+
+## History 
 Version | Name    | Date     | Changes
      0.1| Cser    |2024-02-20| Backend mappa és readme elkészítése
      0.2| Szebeni |2024-03-03| Javítva Seedig
