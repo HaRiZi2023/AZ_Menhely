@@ -5,31 +5,14 @@ A projekt egy Laravel Backend [Adatbázis kapcsolat] rendszerrel készített, na
 ## Table of Contents
 
 - [Installation](#installation)
+- [Swagger](#swagger)
 - [License](#license)
 
 ## Installation
 
 1.  Repository klónozása:
 
-   `git clone https://github.com/username/project-name.git`
    `git clone https://github.com/HaRiZi2023/AZ_Menhely.git`
 
-2. Composer telepítés
-   
-   `composer install`
-   
-3. Environment másolása:
-   
-   `cp .env.example .env`
+## License
 
-4. Artisan telepítés:
-
-   `php artisan install`
-
-5. App key generálása:
-
-   `php artisan generate:key`
-
-6. Fejlesztői szerver indítása:
-
-   `php artisan serve`
