@@ -7,8 +7,12 @@
   - [Célja](#célja)
   - [Működése](#működése)
   - [Felépítése](#felépítése)
-- [Kockázatok és kihívások](#kockázatokéskihívások)
+- [Kockázatok_és_kihívások](#kockázatok_és_kihívások)
 - [Mérföldkövek](#mérföldkövek)
+- [Fejlesztési_lehetőségek](#fejlesztési_lehetőségek)
+- [Kézikönyv](#kézikönyv)
+- [Jegyzőkönyv](#jegyzökönyv)
+- [History](#history)
 
 ## WIKI
 
@@ -29,7 +33,7 @@ vagy az [AZ Menhely Android Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/
 
 * [Javadoc](https://github.com/HaRiZi2023/AZ_Menhely/Android/AnimalRescue/doc/index.html)
 
-### Kockázatok és kihívások
+### Kockázatok_és_kihívások
 
 * A mobilalkalmazás és a szerveroldali komponens (adatbázis) közötti kapcsolatok
 * GPS-koordináták olvasása
@@ -46,7 +50,7 @@ vagy az [AZ Menhely Android Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/
 * Jól müködő felhasználói autentikáció
 * A végleges, új és a modern kornak megfelelő dinamikus dizájn elkészítése
 
-### Fejlesztési lehetőségek
+### Fejlesztési_lehetőségek
 Véleményem szerint egy projekt fejlesztése során nincs olyan, hogy kész. 
 Mindig lesznek fejlesztési ötletek, újítások, frissítések. 
 Az A-Z menhely projektben is számtalan lehetőség van, melyekre az idő szűke miatt került sor.
@@ -55,11 +59,11 @@ Az A-Z menhely projektben is számtalan lehetőség van, melyekre az idő szűke
 * Maradjak bejelentkezve funkció
 * Kétlépcsős hitelesítés
 
-## Felhasználói kézikönyv
+## Kézikönyv
 
 * [Felhasználói kézikönyv](https://github.com/HaRiZi2023/AZ_Menhely/blob/main/Android/users_manual_handbook.pdf)
 
-## Teszt jegyzőkönyv
+## Jegyzőkönyv
 
 * [Tesztprotokoll](https://github.com/HaRiZi2023/AZ_Menhely/blob/main/Android/testprotocol.pdf)
 
