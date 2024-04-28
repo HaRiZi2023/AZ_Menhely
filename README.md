@@ -5,7 +5,6 @@ A projekt egy Laravel Backend [Adatbázis kapcsolat] rendszerrel készített, na
 ## Table of Contents
 
 - [Installation](#installation)
-- [Swagger](#swagger)
 - [License](#license)
 
 ## Installation
