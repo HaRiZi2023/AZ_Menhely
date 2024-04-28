@@ -3,25 +3,29 @@
 ## Table of Contents
 
 - [Wiki](#wiki)
-- [Információ](#informacio)
-  - [Applikáció célja](#célja)
+- [Applikáció](#applikáció)
+  - [Célja](#célja)
+  - [Működése](#működése)
+  - [Felépítése](#felépítése)
+-[Kockázatok és kihívások](#kockázatok)
+-[Mérföldkövek](#mérföldkövek)
 
 ## WIKI
 
 Látogasd meg a [Projekt Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki) weboldalt
 vagy az [AZ Menhely Android Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/Android) weboldalt.
 
-## Információ
+## Applikáció
 
-### Applikáció célja
+### Célja
 
 - Az applikáció célja, hogy gyors, egyszerű és könnyen kezelhető lehetőséget nyújtson azon felhasználók számára, akik a mindennapi életük során szeretnék bejelenteni talált vagy éppen elveszett állatot.
 
-### Applikáció működése
+### Működése
 
 <img width="499" alt="Folyamat" src="https://github.com/HaRiZi2023/AZ_Menhely/assets/127030468/69e310b8-a6b4-433a-8e83-fffa5d8e3a8f">
 
-### Applikáció felépítése
+### Felépítése
 
 * [Javadoc](https://github.com/HaRiZi2023/AZ_Menhely/Android/AnimalRescue/doc/index.html)
 
