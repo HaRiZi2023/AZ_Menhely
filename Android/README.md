@@ -32,6 +32,8 @@ vagy az [AZ Menhely Android Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/
 ### Applikáció_felépítése
 
 * [Javadoc](https://github.com/HaRiZi2023/AZ_Menhely/Android/AnimalRescue/doc/index.html)
+* /Android/AnimalRescue/doc/index.html oldalon elérhető a JavaDoc UI
+* JavaDoc dokumentáció /Android/AnimalRescue/doc mappában érhető el.
 
 ### Kockázatok_és_kihívások
 
