@@ -1,5 +1,11 @@
 
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Swagger](#swagger)
+- [History](#history)
+
 ## Installation
 
 1. Composer telepítés
@@ -32,6 +38,7 @@
 - Swagger dokumentáció /storage/api-docs/api-docs.json fájlban érhető el.
 
 ## History 
+
 Version | Name    | Date     | Changes
      0.1| Cser    |2024-02-20| Backend mappa és readme elkészítése
      0.2| Szebeni |2024-03-03| Javítva Seedig
