@@ -7,7 +7,7 @@
   - [Célja](#célja)
   - [Működése](#működése)
   - [Felépítése](#felépítése)
-- [Kockázatok és kihívások](#kockázatok)
+- [Kockázatok és kihívások](#kockázatok_és_kihívások)
 - [Mérföldkövek](#mérföldkövek)
 
 ## WIKI
