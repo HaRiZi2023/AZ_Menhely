@@ -142,7 +142,7 @@ class GuestController extends Controller
     public function chipUpdate(Request $request, $chipNumber)
     {
         $guest = Guest::where('g_chip', $chipNumber)->first();
-      
+
         if (!$guest) {
             return response()->json(['message' => 'Nincs ilyen vendég'], 404);
         }
@@ -192,20 +192,20 @@ class GuestController extends Controller
         $guest = new Guest();  // ha a modell megtalálható, akkor visszadaja a modellt
 
         // Frissíti a vendég adatait a kérésből
-        $guest->G_name = $request->get('G_name');
-        $guest->G_chip = $request->get('G_chip');
-        $guest->G_in_place = $request->get('G_in_place');
-        $guest->G_species = $request->get('G_species');
-        $guest->G_gender = $request->get('G_gender');
-        $guest->G_adoption = $request->get('G_adoption');
-        $guest->G_in_date = $request->get('G_in_date');
-        $guest->G_out_date = $request->get('G_out_date');
-        $guest->G_other = $request->get('G_other');
+        $guest->g_name = $request->get('g_name');
+        $guest->g_chip = $request->get('g_chip');
+        $guest->g_in_place = $request->get('g_in_place');
+        $guest->g_species = $request->get('g_species');
+        $guest->g_gender = $request->get('g_gender');
+        $guest->g_adoption = $request->get('g_adoption');
+        $guest->g_in_date = $request->get('g_in_date');
+        $guest->g_out_date = $request->get('g_out_date');
+        $guest->g_other = $request->get('g_other');
 
         // Frissíti a képet, ha van a kérésben
-        $image = $request->get('G_image');
+        $image = $request->get('g_image');
         if ($image) {
-            $guest->G_image = base64_encode($image);
+            $guest->g_image = base64_encode($image);
         }
 
         $guest->save();
@@ -218,20 +218,20 @@ class GuestController extends Controller
         $guest = Guest::findOrFail($id);  // ha a modell megtalálható, akkor visszadaja a modellt
 
         // Frissíti a vendég adatait a kérésből
-        $guest->G_name = $request->get('G_name');
-        $guest->G_chip = $request->get('G_chip');
-        $guest->G_in_place = $request->get('G_in_place');
-        $guest->G_species = $request->get('G_species');
-        $guest->G_gender = $request->get('G_gender');
-        $guest->G_adoption = $request->get('G_adoption');
-        $guest->G_in_date = $request->get('G_in_date');
-        $guest->G_out_date = $request->get('G_out_date');
-        $guest->G_other = $request->get('G_other');
+        $guest->g_name = $request->get('g_name');
+        $guest->g_chip = $request->get('g_chip');
+        $guest->g_in_place = $request->get('g_in_place');
+        $guest->g_species = $request->get('g_species');
+        $guest->g_gender = $request->get('g_gender');
+        $guest->g_adoption = $request->get('g_adoption');
+        $guest->g_in_date = $request->get('g_in_date');
+        $guest->g_out_date = $request->get('g_out_date');
+        $guest->g_other = $request->get('g_other');
 
         // Frissíti a képet, ha van a kérésben
-        $image = $request->get('G_image');
+        $image = $request->get('g_image');
         if ($image) {
-            $guest->G_image = base64_encode($image);
+            $guest->g_image = base64_encode($image);
         }
 
         $guest->save();

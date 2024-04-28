@@ -296,7 +296,7 @@ namespace AZ_Desktop
 
                 var response = await client.PostAsync(endPoint + "/guests", data);
 
-                response.EnsureSuccessStatusCode();
+                //response.EnsureSuccessStatusCode();
 
                 if (!response.IsSuccessStatusCode)
                 {
