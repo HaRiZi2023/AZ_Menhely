@@ -5,7 +5,6 @@ A projekt egy Laravel Backend [Adatbázis kapcsolat] rendszerrel készített, na
 ## Table of Contents
 
 - [Installation](#installation)
-- [License](#license)
 
 ## Installation
 
@@ -13,5 +12,4 @@ A projekt egy Laravel Backend [Adatbázis kapcsolat] rendszerrel készített, na
 
    `git clone https://github.com/HaRiZi2023/AZ_Menhely.git`
 
-## License
 
