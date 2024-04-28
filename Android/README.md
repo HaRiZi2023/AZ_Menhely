@@ -1,4 +1,5 @@
-# History 
+# Android README
+## History 
 Version | Name    | Date     | Changes
      0.1| Cser    |2024-02-20| Initial Commit: Android Design, Activitys, Layouts, Resources
         | Cser    |2024-02-20| Első próba, valami már megvan.
@@ -24,6 +25,10 @@ Version | Name    | Date     | Changes
      1.3| Cser    |2024-04-12| Login/Register/Animal store - dokumentálás elkezdése
         | Cser    |2024-04-12| MainActivity Toast javítása
      1.4| Cser    |2024-04-13| Application Icon
+
+## WIKIpage
+
+## Developer information
 
      
 
