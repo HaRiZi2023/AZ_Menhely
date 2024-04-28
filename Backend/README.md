@@ -68,3 +68,28 @@ vagy az [AZ Menhely Backend Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/
 13.     0.13| Cser    |2024-04-10| User-AuthController Felhasználó autentikáció
 14.     0.14| Cser    |2024-04-12| AuthController/Login method frissítése
 15.     0.15| Cser    |2024-04-13| FoundController javítása
+16.     0.16| Szebeni |2024-04-14| Sok minden
+17.     0.17| Szebeni |2024-04-16| Chip
+            | Szebeni |2024-04-16| Worker, Login
+            | Szebeni |2024-04-16| chip, guest, login
+            | Szebeni |2024-04-16| choice, guest
+18.     0.18| Szebeni |2024-04-17| login
+            | Szebeni |2024-04-17| chip, found, choice
+19.     0.19| Szebeni |2024-04-19| képek
+            | Szebeni |2024-04-19| found, kép félkész
+20.     0.20| Szebeni |2024-04-20| Adoption, guest, user
+            | Szebeni |2024-04-20| Adoption, guest, choice
+21.     0.21| Szebeni |2024-04-21| Guest
+            | Szebeni |2024-04-21| Found, adpotion kép ok
+            | Szebeni |2024-04-21| adatbázisba base64 képek, choice, found, guest, routes, képek mappába
+22.     0.22| Szebeni |2024-04-24| hiba keresés
+23.     0.23| Cser    |2024-04-25| AuthController message update
+            | Cser    |2024-04-25| FoundController store->storeFound; api routes update
+24.     0.24| Cser    |2024-04-27| Add RoleEnum, Role oszlop, tulajdonság, rules
+            | Cser    |2024-04-27| UserFactory módosítása a role tulajdonsággal seedhez
+25.     0.25| Szebeni |2024-04-27| javítás
+26.     0.26| Cser    |2024-04-27| Unique email role-hoz kötve
+            | Cser    |2024-04-27| Unique kiszedve az else ágból
+27.     0.27| Szebeni |2024-04-27| JAvítások user worker egybeolvasztás után
+            | Szebeni |2024-04-27| Javítások
+28.     0.28| Cser    |2024-04-28| Swagger AuthController, FoundController
