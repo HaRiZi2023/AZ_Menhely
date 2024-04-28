@@ -4,7 +4,12 @@ A projekt egy Laravel Backend [Adatbázis kapcsolat] rendszerrel készített, na
 
 ## Table of Contents
 
+- [Wiki](#wiki)
 - [Installation](#installation)
+
+## WIKI
+
+Látogasd meg a [Projekt Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki) weboldalt
 
 ## Installation
 
