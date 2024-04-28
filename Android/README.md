@@ -45,13 +45,13 @@ Az A-Z menhely projektben is számtalan lehetőség van, melyekre az idő szűke
 * Maradjak bejelentkezve funkció
 * Kétlépcsős hitelesítés
 
-## Felhasználói dokumentáció
+## Felhasználói kézikönyv
 
+* [Felhasználói kézikönyv](https://github.com/HaRiZi2023/AZ_Menhely/blob/main/Android/users_manual_handbook.pdf)
 
+## Teszt jegyzőkönyv
 
-## Tesztelői dokumentáció
-
-
+* [Tesztprotokoll](https://github.com/HaRiZi2023/AZ_Menhely/blob/main/Android/testprotocol.pdf)
 
 ## History 
 Az Android applikáció fejlesztése során készült változások/változtatások nyomonkövetése.
