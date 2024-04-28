@@ -8,10 +8,43 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use OpenApi\Annotations as OA;
+
 class AuthController extends Controller
 {
     /**
+     *
+     * Register a new user.
      * Regisztrál egy új felhasználót
+     *
+     * @OA\Post(
+     *     path="/api/register",
+     *     tags={"Authentication"},
+     *     operationId="register",
+     *     summary="Regisztrál egy új felhasználót",
+     *     description="Végpont egy új felhasználó regisztrálásához.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Felhasználó regisztrációs adatai",
+     *         @OA\JsonContent(
+     *             required={"name", "email", "password", "address", "phone", "role"},
+     *             @OA\Property(property="name", type="string", example="John Doe"),
+     *             @OA\Property(property="email", type="string", format="email", example="example@example.com"),
+     *             @OA\Property(property="password", type="string", example="password"),
+     *             @OA\Property(property="address", type="string", example="123 Street, City"),
+     *             @OA\Property(property="phone", type="string", example="123-456-789"),
+     *             @OA\Property(property="role", type="string", example="user")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Sikeres regisztráció",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Found")
+     *         ),
+     *     )
+     * )
      *
      * @param RegisterRequest $request A felhasználó adatai validáció után
      * @return JsonResponse a regisztrált felhasználó adatai
@@ -30,7 +63,37 @@ class AuthController extends Controller
     }
 
     /**
+     *
+     * Login user and generate authentication token.
      * Bejelentkezteti a felhasználót
+     *
+     * @OA\Post(
+     *     path="/api/login",
+     *     tags={"Authentication"},
+     *     operationId="login",
+     *     summary="Bejelentkezteti a felhasználót és hitelesítési tokent generál",
+     *     description="Végpont a felhasználó hitelesítéséhez és hitelesítési token generálásához.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Bejelentkezési adatok",
+     *         @OA\JsonContent(
+     *             required={"email", "password"},
+     *             @OA\Property(property="email", type="string", format="email", example="example@example.com"),
+     *             @OA\Property(property="password", type="string", example="password")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sikeres bejelentkezés",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="token", type="string", example="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Érvénytelen hitelesítő adatok!"
+     *     )
+     * )
      *
      * @param LoginRequest $request bejelentkezéshez megadott email és jelszó validálva
      * @return JsonResponse a későbbi műveletekhez használandó access-token.
@@ -53,6 +116,19 @@ class AuthController extends Controller
 
     /**
      * Kijelentkezteti a felhasználót
+     * Logout user by revoking the current access token.
+     *
+     * @OA\Post(
+     *     path="/api/logout",
+     *     tags={"Authentication"},
+     *     operationId="logout",
+     *     summary="Kijelentkezteti a felhasználót",
+     *     description="Végpont a felhasználó kijelentkezésére az aktuális hozzáférési token visszavonásával.",
+     *     @OA\Response(
+     *         response=204,
+     *         description="Sikeres kijelentkezés"
+     *     )
+     * )
      *
      * @return Response sikeres művelet végrehajtás jelzése.
      */

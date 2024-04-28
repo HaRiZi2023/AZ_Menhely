@@ -1,0 +1,272 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "AZ Menhely Backend",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Regisztrál egy új felhasználót",
+                "description": "Végpont egy új felhasználó regisztrálásához.",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "Felhasználó regisztrációs adatai",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "address",
+                                    "phone",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "example@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "123 Street, City"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "123-456-789"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sikeres regisztráció"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Bejelentkezteti a felhasználót és hitelesítési tokent generál",
+                "description": "Végpont a felhasználó hitelesítéséhez és hitelesítési token generálásához.",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Bejelentkezési adatok",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "example@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sikeres bejelentkezés",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Érvénytelen hitelesítő adatok!"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Kijelentkezteti a felhasználót",
+                "description": "Végpont a felhasználó kijelentkezésére az aktuális hozzáférési token visszavonásával.",
+                "operationId": "logout",
+                "responses": {
+                    "204": {
+                        "description": "Sikeres kijelentkezés"
+                    }
+                }
+            }
+        },
+        "/api/founds": {
+            "get": {
+                "tags": [
+                    "Found"
+                ],
+                "summary": "Összes bejelentett állat listázása",
+                "description": "Display a listing of the resource.",
+                "operationId": "05a4fb6040cdeeaf348c408b1be59297",
+                "responses": {
+                    "200": {
+                        "description": "Sikeres művelet"
+                    }
+                }
+            }
+        },
+        "/api/storeFound": {
+            "post": {
+                "tags": [
+                    "Found"
+                ],
+                "summary": "Bejelentett állat tárolása az adatbázisban",
+                "description": "Végpont az újonnan talált objektum tárolására",
+                "operationId": "storeFound",
+                "requestBody": {
+                    "description": "Tárolandó bejelentett állat objektum",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sikeres művelet"
+                    },
+                    "400": {
+                        "description": "Hiba a kérés feldolgozása során"
+                    }
+                }
+            }
+        },
+        "/api/found/{id}": {
+            "get": {
+                "tags": [
+                    "Found"
+                ],
+                "summary": "Bejelentett állat megjelenítése",
+                "description": "Végpont egy meglévő bejelentett állat megjelenítéséhez.",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "A megjelenítendő bejelentett állat azonosítója",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sikeres művelet"
+                    },
+                    "404": {
+                        "description": "A megadott azonosítóval nem található állat."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Found"
+                ],
+                "summary": "Bejelentett állat adatainak frissítése",
+                "description": "Végpont egy meglévő bejelentett állat frissítésére.",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "A frissítendő bejelentett állat azonosítója",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Bejelentett állat objektum",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sikeres frissítés"
+                    },
+                    "400": {
+                        "description": "Rossz kérés - az érvényesítés sikertelen"
+                    },
+                    "404": {
+                        "description": "A megadott azonosítóval nem található állat."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Found"
+                ],
+                "summary": "Bejelentett állat törlése",
+                "description": "Végpont egy meglévő bejelentett állat törlésére.",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "A törlendő bejelentett állat azonosítója",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Sikeres törlés"
+                    },
+                    "404": {
+                        "description": "A megadott azonosítóval nem található állat."
+                    }
+                }
+            }
+        }
+    }
+}
