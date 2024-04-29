@@ -74,14 +74,6 @@ class UserController extends Controller
             return response()->json(["message" => "Nincs dolgozó az alábbi azonosítóval: $id"], 404);
         }
         return response()->json($user);
-
-        /*
-        $user = User::find($id);
-        if (is_null($user)) {
-            return response()->json(["message" => "A megadott azonosítóval nem található állat."], 404);
-        }
-        return response()->json($user);
-        */
     }
 
     public function update(UpdateUserRequest $request, int $id)
@@ -125,19 +117,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (is_null($user)) {
-            return response()->json(["message" => "Nincs elem az alábbi azonosítóval: $id"], 404);
+            return response()->json(["message" => "Nincs dolgozó az alábbi azonosítóval: $id"], 404);
         }
         $user->delete();
         return response()->noContent();
-
-        /*
-        $user = User::find($id);
-        if (is_null($user)) {
-            return response()->json(["message" => "A megadott azonosítóval nem található bor."], 404);
-        }
-        User::destroy($id);
-        return response()->noContent();
-        */
     }
 
     /*********/

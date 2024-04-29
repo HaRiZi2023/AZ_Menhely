@@ -103,6 +103,20 @@ class GuestController extends Controller
         return response()->json($guest, 200);
     }*/
 
+    public function delete(int $id)
+    {
+        $guest = Guest::find($id);
+        if (is_null($guest)) {
+            return response()->json(["message" => "Az állat nem található."], 404);
+        }
+        $guest->delete();
+        return response()->json(null, 204);
+    }
+
+
+
+    //  **********************************
+
     // FormChoice-hoz
 
     public function allDog()
@@ -154,22 +168,15 @@ class GuestController extends Controller
         return response()->json($guest, 200);
     }
 
-    // Adoptionhoz
+    // Adoption-höz
+
     public function allAdoptableAnimal()
     {
         $guests = Guest::where('g_adoption', 'igen')->get();
         return response()->json($guests);
     }
 
-    public function delete(int $id)
-    {
-        $guest = Guest::find($id);
-        if (is_null($guest)) {
-            return response()->json(["message" => "Az állat nem található."], 404);
-        }
-        $guest->delete();
-        return response()->json(null, 204);
-    }
+
 
 
     /*

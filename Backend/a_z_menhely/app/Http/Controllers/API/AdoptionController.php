@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+//use App\Http\Requests\StoreAdoptionRequest;
+//use App\Http\Requests\UpdateAdoptionRequest;
 use App\Models\Adoption;
 use Illuminate\Http\Request;
 
@@ -68,17 +70,18 @@ class AdoptionController extends Controller
 
     /***/
 
-    public function store(Request $request)
+    public function store(Request $request)  //
     {
         $adoption = new Adoption;
-        $adoption->A_date = $request->A_date;
-        $adoption->G_name = $request->G_name;
-        $adoption->U_name = $request->U_name;
-        $adoption->Created_at = $request->Created_at;
-        $adoption->Updated_at = $request->Updated_at;
+        $adoption->a_date = $request->a_date;
+        $adoption->g_name = $request->g_name;
+        $adoption->u_name = $request->u_name;
+        //$adoption->created_at = $request->created_at;
+        //$adoption->updated_at = $request->updated_at;
         $adoption->save();
 
         return response()->json($adoption, 201);
+
     }
 
 }

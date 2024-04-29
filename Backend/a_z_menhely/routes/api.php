@@ -36,7 +36,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 
-
+//Founds Mobil APP
+Route::post('storeFound', [FoundController::class,'storeFound']);
 
 
 
@@ -51,7 +52,6 @@ Route::apiResource("/users", UserController::class);
 Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
-Route::post('storeFound', [FoundController::class,'storeFound']);
 Route::get('/founds', [FoundController::class, 'index']);
 Route::put('/founds/{id}', [FoundController::class, 'update']);
 Route::delete('/founds/{id}', [FoundController::class, 'destroy']);
@@ -60,8 +60,8 @@ Route::delete('/founds/{id}', [FoundController::class, 'destroy']);
 
 //Guests
 //Route::post('/guests', [GuestController::class, 'store']);
-Route::get('/guests/{id}', [GuestController::class, 'show']);       // g_adatlapok
-Route::put('/guests/{id}', [GuestController::class, 'update']);     // g_update kép miatt
+Route::get('/guests/{id}', [GuestController::class, 'show']);   // g_adatlapok
+Route::put('/guests/{id}', [GuestController::class, 'update']); // g_update kép miatt
 Route::post('/guests', [GuestController::class, 'saveGuest']); // g_insert kép miatt
 
 Route::delete('/guest/{id}', [GuestController::class, 'destroy']);  // a_insert és g_delelte kép miatt
@@ -73,12 +73,12 @@ Route::get('guests/chip/{chipNumber}', [GuestController::class, 'getByChipNumber
 Route::put('guests/chip/{chipNumber}', [GuestController::class, 'chipUpdate']);
 
    // FormChoice rendben
-Route::get('guests/all/cats', [GuestController::class, 'allCat']); //c_list
-Route::get('guests/all/dogs', [GuestController::class, 'allDog']); //c_list
+Route::get('guests/all/cats', [GuestController::class, 'allCat']); //R cat_list
+Route::get('guests/all/dogs', [GuestController::class, 'allDog']); //R dog_list
 
 //Route::get('/checkname', [GuestController::class, 'checkName']); // nem kell
 
 //Workers
-Route::apiResource("/workers", WorkerController::class);
+//Route::apiResource("/workers", WorkerController::class);
 //Route::get('workers/checkname', [WorkerController::class, 'inNameInDatabase']);
-Route::get('/checkname', 'WorkerController@checkName');
+//Route::get('/checkname', 'WorkerController@checkName');

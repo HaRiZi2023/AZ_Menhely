@@ -265,20 +265,20 @@ namespace AZ_Desktop
 
             try
             {
-                Guest guest = new Guest
-                {
-                    G_name = textBox_GuestName.Text,
-                    G_chip = textBox_GuestChip.Text,
-                    G_in_place = textBox_GuestWhere.Text,
-                    G_species = comboBox_GuestSpecies.Text,
-                    G_gender = comboBox_GuestGender.Text,
-                    G_adoption = comboBox_GuestAdoption.Text,
-                    G_in_date = dateTimePicker_GuestIn.Value,
-                    G_out_date = dateTimePicker_GuestOut.Value,
-                    G_other = richTextBox_GuestOther.Text,
+                Guest guest = new Guest();
 
-                    G_image = Convert.ToBase64String(selectedImageBin), // kép Base64 formátumba konvertálására.
-                };
+                guest.G_name = textBox_GuestName.Text;
+                guest.G_chip = textBox_GuestChip.Text;
+                guest.G_in_place = textBox_GuestWhere.Text;
+                guest.G_species = comboBox_GuestSpecies.Text;
+                guest.G_gender = comboBox_GuestGender.Text;
+                guest.G_adoption = comboBox_GuestAdoption.Text;
+                guest.G_in_date = dateTimePicker_GuestIn.Value;
+                guest.G_out_date = dateTimePicker_GuestOut.Value;
+                guest.G_other = richTextBox_GuestOther.Text;
+
+                guest.G_image = Convert.ToBase64String(selectedImageBin); // kép Base64 formátumba konvertálására.
+                
                 
 
                 guest.Created_at = DateTime.Now;
@@ -295,6 +295,8 @@ namespace AZ_Desktop
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
 
                 var response = await client.PostAsync(endPoint + "/guests", data);
+
+
 
                 //response.EnsureSuccessStatusCode();
 
@@ -359,6 +361,11 @@ namespace AZ_Desktop
                         MessageBox.Show("NNNNNNincs kiválasztott vendég!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                // Vissza a FormChoicera
+                FormChoice formChoice = new FormChoice();
+                formChoice.Show();
+                this.Close();
+
             }
         }
 

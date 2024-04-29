@@ -1,4 +1,5 @@
 ﻿using AZ_Desktop;
+using Mysqlx.Crud;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -263,7 +264,7 @@ namespace AZ_Desktop
 
         private async void button_AdoptionInsert_Click(object sender, EventArgs e)  //rögzítés gomb
         {
-                      
+            
                 //  új Adoption obj. az űrlap adatatokból
             Adoption newAdoption = new Adoption
             {
@@ -274,12 +275,12 @@ namespace AZ_Desktop
                 Updated_at = DateTime.Now,
                                 
             };
-
+            
             await InsertAdoption(newAdoption);
-
            
+            
 
-                     // Üzenet a felhasználónak a sikeres beszúrási műveletről
+            // Üzenet a felhasználónak a sikeres beszúrási műveletről
             MessageBox.Show("Az új elem sikeresen hozzá lett adva.", "Sikeres beszúrás", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
@@ -312,6 +313,7 @@ namespace AZ_Desktop
 
                 emptyFieldsAdoption();
                 placeholderAdoption();
+            
         }
         
 
