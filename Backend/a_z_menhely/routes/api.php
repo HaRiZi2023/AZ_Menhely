@@ -55,7 +55,6 @@ Route::apiResource("/users", UserController::class);
 Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
-Route::post('storeFound', [FoundController::class,'storeFound']);
 Route::get('/founds', [FoundController::class, 'index']);   //------>>> RICSI használom  <<<-------     ----->>> RICSI használom  <<<-------
 Route::put('/founds/{id}', [FoundController::class, 'update']);
 Route::delete('/founds/{id}', [FoundController::class, 'destroy']);
