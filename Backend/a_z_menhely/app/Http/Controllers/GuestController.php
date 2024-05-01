@@ -11,9 +11,17 @@ class GuestController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //Ricsi ezt adtam hozzá hogy a képeket megjelenítse    <<< ----------        ----------->>>         <<< ----------        ----------->>>
     public function index()
     {
-        //
+        $guest = Guest::all();
+        $guest->each(function ($guest) {
+            if ($guest->g_image) {
+                $imageBlob = $guest->g_image;
+                $guest->g_image = base64_encode($imageBlob);
+            }
+        });
+        return $guest;
     }
 
     /**

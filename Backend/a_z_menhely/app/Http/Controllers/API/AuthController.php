@@ -140,8 +140,18 @@ class AuthController extends Controller
          így minden eszközről kijelentkeztethetjük a felhasználót.
          */
         /** @disregard P1013 Undefinded method */
+
+        $user = auth()->user();// ---> Ricsi betette <-------       ---> Ricsi betette <-------      ---> Ricsi betette <-------         ---> Ricsi betette <-------
         auth()->user()->currentAccessToken()->delete();
 
+        return response()->noContent();
+    }
+
+    // ez is pluszba lett betéve ! ---> Ricsi betette <-------      ---> Ricsi betette <-------         ---> Ricsi betette <-------
+    public function logoutEverywhere() {
+        $user = auth()->user();
+        /** @disregard P1013 Undefined method */
+        $user->tokens()->delete();
         return response()->noContent();
     }
 }

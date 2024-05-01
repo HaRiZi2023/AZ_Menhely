@@ -31,6 +31,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  //   return $request->user();
 //});
 
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');   //----> Ricsi ez is be lett rakva !   <-----
+Route::post('/logout-everywhere', [AuthController::class, 'logoutEverywhere'])->middleware('auth:sanctum');   //----> Ricsi ez is be lett rakva !   <-----
+
 
 //Users Mobil APP
 Route::post('register',[AuthController::class,'register']);
@@ -52,16 +55,20 @@ Route::apiResource("/users", UserController::class);
 Route::post('/adoptions', [AdoptionController::class, 'store']);
 
 //Founds
-Route::get('/founds', [FoundController::class, 'index']);
+Route::post('storeFound', [FoundController::class,'storeFound']);
+Route::get('/founds', [FoundController::class, 'index']);   //------>>> RICSI használom  <<<-------     ----->>> RICSI használom  <<<-------
 Route::put('/founds/{id}', [FoundController::class, 'update']);
 Route::delete('/founds/{id}', [FoundController::class, 'destroy']);
 
-//Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);
+Route::get("/founds/{id}/image", [FoundController::class, 'getImage']);   //----> Ricsi ez is be lett rakva !   <-----  ----> Ricsi ez is be lett rakva !   <-----
+
 
 //Guests
 //Route::post('/guests', [GuestController::class, 'store']);
-Route::get('/guests/{id}', [GuestController::class, 'show']);   // g_adatlapok
-Route::put('/guests/{id}', [GuestController::class, 'update']); // g_update kép miatt
+Route::get('/all-guests', [GuestController::class, 'index']);   //----> Ricsi ez is be lett rakva !   <-----  ----> Ricsi ez is be lett rakva !   <-----
+Route::get('/all-guests/{id}/image', [GuestController::class, 'getImage']); //----> Ricsi ez is be lett rakva !   <-----  ----> Ricsi ez is be lett rakva !   <------
+Route::get('/guests/{id}', [GuestController::class, 'show']);       // g_adatlapok
+Route::put('/guests/{id}', [GuestController::class, 'update']);     // g_update kép miatt
 Route::post('/guests', [GuestController::class, 'saveGuest']); // g_insert kép miatt
 
 Route::delete('/guest/{id}', [GuestController::class, 'destroy']);  // a_insert és g_delelte kép miatt

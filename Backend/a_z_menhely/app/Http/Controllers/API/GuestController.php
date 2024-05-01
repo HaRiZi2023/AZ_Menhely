@@ -13,8 +13,18 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $guests = Guest::all();
-        return $guests;
+        $guest = Guest::all();             // itt a $guests csak guest     ----> Ricsi alakítva  <<<-----      ----> Ricsi alakítva  <<<-----
+        return response()->json($guest); // ----> Ricsi alakítva  <<<-----      ----> Ricsi alakítva  <<<-----      ----> Ricsi alakítva  <<<-----
+        //return $guests;
+    }
+    //Ricsi ezt adtam hozzá hogy a képeket megjelenítse    <<< ----------        ----------->>>         <<< ----------        ----------->>>
+    public function getImage($id)
+    {
+        $guest = Guest::find($id);
+        $imageBase64 = $guest->g_image;
+        // A Base64 string dekódolása és PNG képként való mentése
+        $imageBlob = base64_decode($imageBase64);
+        return response($imageBlob)->header('Content-Type', 'image/png');
     }
 
     /**

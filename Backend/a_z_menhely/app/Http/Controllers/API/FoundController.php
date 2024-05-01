@@ -238,6 +238,17 @@ class FoundController extends Controller
         return response()->json($found, 200);
     }
 
+    //Ricsi ezt adtam hozzá hogy a képeket megjelenítse     <<<------------------------------->>>           <<<------------------------------->>>       <<<------------------------------->>>
+    public function getImage($id)
+    {
+        $found = Found::find($id);
+        $imageBase64 = $found->f_image;
+        // A Base64 string dekódolása és PNG képként való mentése
+        $imageBlob = base64_decode($imageBase64);
+        return response($imageBlob)->header('Content-Type', 'image/png');
+    }
+
+
 
 
 
