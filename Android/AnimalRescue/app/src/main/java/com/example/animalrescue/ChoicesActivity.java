@@ -59,7 +59,7 @@ public class ChoicesActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("http://www.google.hu"));
+                intent.setData(Uri.parse("http://10.0.2.2:5173/"));
                 startActivity(intent);
                 finish();
             }
