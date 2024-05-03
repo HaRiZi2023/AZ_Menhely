@@ -102,6 +102,7 @@ Az Android applikáció fejlesztése során készült változások/változtatás
 17.     1.6| Cser    |2024-04-27| Role tulajdonság hozzáadása
            | Cser    |2024-04-27| Javadoc
            | Cser    |2024-04-27| Javadoc dependecy törlése mert errort okoz a build során
+18.     1.7| Cser    |2024-05-02| ChoiceActivity Frontendhez csatlakozás "http://10.0.2.2:5173/"
 
 
 
