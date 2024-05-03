@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";  /* npm install react - bootstrap@5 */
-import "bootstrap/dist/js/bootstrap.bundle";
+import "bootstrap/dist/js/bootstrap.bundle";  /*npm install react-bootstrap */
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserProfilePage from "./pages/UserProfilePage";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";   /*npm install react-router-dom */
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import { AuthProvider } from "./context/AuthContext";

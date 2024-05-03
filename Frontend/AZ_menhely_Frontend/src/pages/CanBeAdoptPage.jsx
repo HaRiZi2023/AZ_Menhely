@@ -45,9 +45,7 @@ function GuestPage() {
     }));
     return convertedData;
   };
-  const handleImageClick = (imageUrl) => {
-    alert(`A kép elérési útvonala: ${imageUrl}`);
-  };
+  
 
   
   return (
@@ -59,7 +57,7 @@ function GuestPage() {
         {guests.map((guest) => (
           <div className={styles.card} key={guest.id}>
             {guest.g_image && (
-              <img className={styles['card-image-top']} src={guest.g_image} alt="Vendég képe" onClick={() => handleImageClick(guest.imageUrl)} />
+              <img className={styles['card-image-top']} src={guest.g_image} alt="Vendég képe"  />
             )}
             <div className={styles['card-body']}>
               <h5 className={styles['card-title']}><strong>ID:</strong> {guest.id}</h5>
