@@ -27,7 +27,7 @@ vagy az [AZ Menhely Backend Wiki](https://github.com/HaRiZi2023/AZ_Menhely/wiki/
 
 4. App key generálása:
 
-   `php artisan generate:key`
+   `php artisan key:generate`
 
 5. Fejlesztői szerver indítása:
 
