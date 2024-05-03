@@ -1,12 +1,12 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import image1 from '../assets/istockphoto-1337866980-612x612.jpg';
-import image2 from '../assets/istockphoto-1468289341-612x612.jpg';
-import image3 from '../assets/pexels-vishnu-pv-12766880.jpg';
-import image4 from '../assets/istockphoto-1481344935-612x612.jpg';
-import aboutUsImage from '../assets/istockphoto-918369208-612x612.jpg';
-import missionImage from '../assets/istockphoto-872833826-612x612.jpg'
+import image1 from '../assets/front1.jpg';
+import image2 from '../assets/front2.jpg';
+import image3 from '../assets/front3.jpg';
+import image4 from '../assets/front4.jpg';
+import aboutUsImage from '../assets/front5.jpg';
+import missionImage from '../assets/front6.jpg'
 
 function AboutPage() {
   return (

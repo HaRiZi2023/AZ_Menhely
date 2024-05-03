@@ -1,0 +1,13 @@
+body {
+    background-color: rgba(242, 242, 242, 0.6);
+    background-image: 
+        linear-gradient(rgba(232, 255, 206, 0.5), rgba(232, 255, 206, 0.5)), 
+        url('../src/assets/mainhattaer.png');
+    background-blend-mode: overlay;
+}
+
+/*body {
+    background-color: #f2f2f2; /* Háttérszín beállítása 
+    background-image: url('../src/assets/mainhattaer.png'); /* Háttérkép beállítása 
+    background-blend-mode: overlay; /* A háttérszín és a háttérkép összekeverése 
+}*/

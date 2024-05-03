@@ -1,0 +1,10 @@
+.d-block {
+    width: 100%; /* A kép szélessége megegyezik a tartalmazó elem szélességével */
+    height: auto; /* A kép magassága automatikusan igazodik a szélességhez */
+    object-fit: cover; /* A kép kitölti a tartalmazó elemet anélkül, hogy torzulna */
+  }
+
+  .navbar-logo {
+    height: 50px; /* Állítsd be a logó magasságát*/
+    margin-right: auto; /* A logó balra igazítása*/
+  }
