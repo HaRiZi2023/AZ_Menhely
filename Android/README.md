@@ -103,6 +103,6 @@ Az Android applikáció fejlesztése során készült változások/változtatás
            | Cser    |2024-04-27| Javadoc
            | Cser    |2024-04-27| Javadoc dependecy törlése mert errort okoz a build során
 18.     1.7| Cser    |2024-05-02| ChoiceActivity Frontendhez csatlakozás "http://10.0.2.2:5173/"
-
+19.     1.8| Cser    |2024-05-03| IDE Update
 
 
