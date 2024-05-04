@@ -1,38 +1,63 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+  
+.card {
+    width: 38%; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
+    height: 500px;
+    margin-bottom: 5em; /* Hozzáadtam egy alsó margót a kártyákhoz, hogy legyen térközük egymás alatt */
+    border: 3px solid #87e9e1; /* Keret hozzáadása */
+    border-radius: 20px; /* Kerekített sarkok hozzáadása */
+    overflow: hidden; /* Kilógó részek eltüntetése */
+    box-shadow: 0 9px 45px 0 rgba(0,0,0,0.4); /* Kártya árnyékolása */
+    background-color: #F1F5A8; /* Háttérszín beállítása */
+    transition: transform 0.4s ease-in-out; /* Átmenet beállítása */ 
+}
+.card:hover {
+  transform: scale(1.1); /* Nagyítás beállítása */
+}
+
+
+.card-img-top {
+    width: 100%; /* A kép szélességének beállítása */
+    height: 100px; /* A kép magasságának beállítása */
+    object-fit: cover; /* A kép méretezésének beállítása */
+    object-position: center; /* A kép középre igazítása */
+    border-radius: 20px; /* Kép lekerekítése */
   }
-    
-  .card {
-      width: 38%; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
-      height: 500px;
-      margin-bottom: 5em; /* Hozzáadtam egy alsó margót a kártyákhoz, hogy legyen térközük egymás alatt */
-      border: 3px solid #87e9e1; /* Keret hozzáadása */
-      border-radius: 20px; /* Kerekített sarkok hozzáadása */
-      overflow: hidden; /* Kilógó részek eltüntetése */
-      box-shadow: 0 9px 45px 0 rgba(0,0,0,0.4); /* Kártya árnyékolása */
-      background-color: #F1F5A8; /* Háttérszín beállítása */
-      transition: transform 0.4s ease-in-out; /* Átmenet beállítása */ 
+
+.card-body {
+    text-align: center; /* Szöveg középre igazítása */
   }
-  .card:hover {
-    transform: scale(1.1); /* Nagyítás beállítása */
+
+.card-title {
+    margin-top: 20px; /* Felső margó hozzáadása */
   }
-  
-  
-  .card-img-top {
-      width: 100%; /* A kép szélességének beállítása */
-      height: 100px; /* A kép magasságának beállítása */
-      object-fit: cover; /* A kép méretezésének beállítása */
-      object-position: center; /* A kép középre igazítása */
-      border-radius: 20px; /* Kép lekerekítése */
-    }
-  
-  .card-body {
-      text-align: center; /* Szöveg középre igazítása */
-    }
-  
-  .card-title {
-      margin-top: 20px; /* Felső margó hozzáadása */
-    }
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background: conic-gradient(#25b09b 25%,#f03355 0 50%,#514b82 0 75%,#ffa516 0);
+  animation: l22 2s infinite linear;
+}
+.loader::before,
+.loader::after {
+   content: "";
+   grid-area: 1/1;
+   margin: 15%;
+   border-radius: 50%;
+   background: inherit;
+   animation: inherit;
+}
+.loader::after {
+   margin: 25%;
+   animation-duration: 3s;
+}
+@keyframes l22 {
+  100% {transform: rotate(1turn)}
+}
