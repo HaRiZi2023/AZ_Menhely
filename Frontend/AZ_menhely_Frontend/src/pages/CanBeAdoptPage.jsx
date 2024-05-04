@@ -45,12 +45,12 @@ function GuestPage() {
     }));
     return convertedData;
   };
-  
 
-  
+
+
   return (
     <>
-      
+
       <div>
         <h2 className="text-center my-4">Vendégek</h2>
       </div>
@@ -58,7 +58,7 @@ function GuestPage() {
         {guests.map((guest) => (
           <div className={styles.card} key={guest.id}>
             {guest.g_image && (
-              <img className={styles['card-image-top']} src={guest.g_image} alt="Vendég képe"  />
+              <img className={styles['card-image-top']} src={guest.g_image} alt="Vendég képe" />
             )}
             <div className={styles['card-body']}>
               <h5 className={styles['card-title']}><strong>ID:</strong> {guest.id}</h5>
@@ -93,7 +93,9 @@ function GuestPage() {
           </div>
         ))}
       </div>
-      <button onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button> 
+      <div style={{ textAlign: 'center' }}> {/* Új div a gomb középre igazításához */}
+        <button onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button>
+      </div>
     </>
 
 
