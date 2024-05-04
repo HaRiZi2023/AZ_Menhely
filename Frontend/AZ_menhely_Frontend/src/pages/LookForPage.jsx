@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/FoundLookPage.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function LookForPage() {
   const [founds, setFounds] = useState([]);
   const apiUrl = "http://localhost:8000/api"; // Az API végpont URL-je
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchFounds() {
@@ -46,6 +48,7 @@ function LookForPage() {
 
   return (
     <>
+      <button onClick={() => navigate('/foundlook')}>Vissza</button>
       <div>
         <h2 className="text-center my-4">Talált állatok</h2>
       </div>
@@ -77,6 +80,7 @@ function LookForPage() {
           </div>
         ))}
       </div>
+      <button onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button> 
     </>
   );
 }

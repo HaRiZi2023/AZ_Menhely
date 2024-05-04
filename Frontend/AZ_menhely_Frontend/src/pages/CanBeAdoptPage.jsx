@@ -50,6 +50,7 @@ function GuestPage() {
   
   return (
     <>
+      
       <div>
         <h2 className="text-center my-4">Vendégek</h2>
       </div>
@@ -92,6 +93,7 @@ function GuestPage() {
           </div>
         ))}
       </div>
+      <button onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button> 
     </>
 
 
