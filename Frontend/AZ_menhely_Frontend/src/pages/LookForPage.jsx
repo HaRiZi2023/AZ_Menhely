@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/FoundLookPage.module.css';
 
-function FoundPage() {
+function LookForPage() {
   const [founds, setFounds] = useState([]);
   const apiUrl = "http://localhost:8000/api"; // Az API végpont URL-je
 
@@ -47,12 +47,12 @@ function FoundPage() {
   return (
     <>
       <div>
-        <h2 className="text-center my-4">Elveszett állatok</h2>
+        <h2 className="text-center my-4">Talált állatok</h2>
       </div>
 
 
       <div className="row justify-content-center">
-      {founds.filter(found => found.f_choice === 'Keresem').map((found) => ( // Szűrés a "Talált" állatokra
+        {founds.filter(found => found.f_choice === 'Talált').map((found) => ( // Szűrés a "Talált" állatokra
           <div className="col-lg-5 col-md-8 col-sm-12 mb-4" key={found.id}>
             <div className={styles.card}>
               {found.f_image && (
@@ -81,4 +81,4 @@ function FoundPage() {
   );
 }
 
-export default FoundPage;
+export default LookForPage;
