@@ -1,33 +1,48 @@
 .donative-page {
-    text-align: center;
-  }
-  
-  .card {
-    margin: auto;
-    width: 20%;
-    border: 5px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  }
-  
-  .card-body {
-    text-align: center;
-  }
-  
-  .img-fluid {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .donation-info {
-    list-style-type: none;
-  }
-  
-  .footer {
-    margin-top: 4rem;
-    text-align: center;
-  }
-  .contact-info {
-    list-style-type: none;
+  text-align: center;
 }
+
+.card {
+  margin: auto;
+  width: 20%;
+  border: 5px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  animation: heartbeat 1.6s infinite; /* Hozzáadjuk az animációt */
+}
+
+/* Definiáljuk a szívverés animációt */
+@keyframes heartbeat {
+0% {
+  transform: scale(1.1);
+}
+50% {
+  transform: scale(1.2);
+}
+100% {
+  transform: scale(1.1);
+}
+}
+
+.card-body {
+  text-align: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.donation-info {
+  list-style-type: none;
+}
+
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+}
+.contact-info {
+  list-style-type: none;
+}
+
