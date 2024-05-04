@@ -14,6 +14,8 @@ import DonativePage from "./pages/DonativePage";
 import CanBeAdoptPage from "./pages/CanBeAdoptPage";
 import ContactPage from "./pages/ContactPage";
 import FoundLookPage from "./pages/FoundLookPage";
+import LookForPage from "./pages/LookForPage";
+import FoundPage from "./pages/FoundPage";
 
 
 function App() {
@@ -62,6 +64,15 @@ function App() {
           path: "/foundlook",
           element: <FoundLookPage />,
         },
+        {
+          path: "/look-for",
+          element: <LookForPage />,
+        },
+        {
+          path: "/found",
+          element: <FoundPage />,
+        },
+
 
       ],
     },
