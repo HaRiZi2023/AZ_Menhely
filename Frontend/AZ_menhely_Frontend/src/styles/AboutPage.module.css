@@ -1,10 +1,59 @@
-.d-block {
-    width: 100%; /* A kép szélessége megegyezik a tartalmazó elem szélességével */
-    height: auto; /* A kép magassága automatikusan igazodik a szélességhez */
-    object-fit: cover; /* A kép kitölti a tartalmazó elemet anélkül, hogy torzulna */
-  }
+.carousel-image-container {
+  width: 100%;
+  height: 470px;
+  /* Vagy bármilyen más fix magasság */
+  overflow: hidden;
 
-  .navbar-logo {
-    height: 50px; /* Állítsd be a logó magasságát*/
-    margin-right: auto; /* A logó balra igazítása*/
-  }
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-card {
+  margin: auto;
+  width: 100%;
+  border: 3px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
+.d-block {
+  width: 100%;
+  /* A kép szélessége megegyezik a tartalmazó elem szélességével */
+  height: auto;
+  /* A kép magassága automatikusan igazodik a szélességhez */
+  object-fit: cover;
+  /* A kép kitölti a tartalmazó elemet anélkül, hogy torzulna */
+}
+
+/*.navbar-logo {
+  height: 70px;
+  /* Állítsd be a logó magasságát*/
+  /*margin-right: auto;*/
+  /* A logó balra igazítása*/
+/*}*/
+
+
+.container2 {
+  margin: auto;
+  width: 100%;
+  border: 3px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+.card-img-top {
+  width: 100%; /* A kép szélességének beállítása */
+  height: 340px; /* A kép magasságának beállítása */
+  object-fit: cover; /* A kép méretezésének beállítása */
+  object-position: center; /* A kép középre igazítása */
+  border-radius: 20px; /* Kép lekerekítése */
+ 
+}
