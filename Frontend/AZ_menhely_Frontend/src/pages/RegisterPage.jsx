@@ -56,73 +56,40 @@ function RegisterPage() {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <h2>Regisztráció</h2>
-      <div className="mb-3">
-        <label className="form-label" htmlFor="email">
-          E-mail:
-        </label>
-        <input
-          className="form-control"
-          type="email"
-          id="email"
-          placeholder="E-mail"
-          ref={emailRef}
-        />
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <h2 className="mt-4 text-center">Regisztráció</h2>
+          <form onSubmit={handleFormSubmit} className="mt-4">
+            <div className="mb-3">
+              <label className="form-label" htmlFor="email">E-mail:</label>
+              <input className="form-control" type="email" id="email" placeholder="E-mail" ref={emailRef} />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="password">Jelszó</label>
+              <input className="form-control" type="password" id="password" placeholder="Jelszó" ref={passwordRef} />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="name">Név</label>
+              <input className="form-control" type="text" id="name" placeholder="Név" ref={nameRef} />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="address">Cím:</label>
+              <input className="form-control" type="text" id="address" placeholder="Cím" ref={addressRef} />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="phone">Telefon:</label>
+              <input className="form-control" type="tel" id="phone" placeholder="Telefon" ref={phoneRef} />
+            </div>
+            <div className="mb-3 text-center">
+              <button className="btn btn-primary" type="submit">Regisztráció</button>
+            </div>
+          </form>
+          <br />
+          <br />
+        </div>
       </div>
-      <div className="mb-3">
-        <label className="form-label" htmlFor="password">
-          Jelszó
-        </label>
-        <input
-          className="form-control"
-          type="password"
-          id="password"
-          placeholder="Jelszó"
-          ref={passwordRef}
-        />
-      </div>
-      <div className="mb-3">
-        <label className="form-label" htmlFor="name">
-          Név
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          id="name"
-          placeholder="Név"
-          ref={nameRef}
-        />
-      </div>
-      {/* Új mezők hozzáadása */}
-      <div className="mb-3">
-        <label className="form-label" htmlFor="address">
-          Cím:
-        </label>
-        <input
-          className="form-control"
-          type="text"
-          id="address"
-          placeholder="Cím"
-          ref={addressRef}
-        />
-      </div>
-      <div className="mb-3">
-        <label className="form-label" htmlFor="phone">
-          Telefon:
-        </label>
-        <input
-          className="form-control"
-          type="tel"
-          id="phone"
-          placeholder="Telefon"
-          ref={phoneRef}
-        />
-      </div>
-
-      {/* Új mezők hozzáadása vége */}
-      <button className="btn btn-primary" type="submit">Regisztráció</button>
-    </form>
+    </div>
   );
 }
 

@@ -23,36 +23,26 @@ function LoginPage() {
   }, [authToken, navigate]);
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <h2>Bejelentkezés</h2>
-      <div className="mb-3">
-        <label className="form-label" htmlFor="loginEmail">
-          E-mail:
-        </label>
-        <input
-          className="form-control"
-          type="email"
-          id="loginEmail"
-          placeholder="E-mail"
-          ref={emailRef}
-        />
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <h2 className="mt-4 text-center">Bejelentkezés</h2>
+          <form onSubmit={handleFormSubmit} className="mt-4">
+            <div className="mb-3">
+              <label className="form-label" htmlFor="loginEmail">E-mail:</label>
+              <input className="form-control" type="email" id="loginEmail" placeholder="E-mail" ref={emailRef} />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="loginPassword">Jelszó</label>
+              <input className="form-control" type="password" id="loginPassword" placeholder="Jelszó" ref={passwordRef} />
+            </div>
+            <div className="mb-3 text-center">
+              <button className="btn btn-primary" type="submit">Bejelentkezés</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div className="mb-3">
-        <label className="form-label" htmlFor="loginPassword">
-          Jelszó
-        </label>
-        <input
-          className="form-control"
-          type="password"
-          id="loginPassword"
-          placeholder="Jelszó"
-          ref={passwordRef}
-        />
-      </div>
-      <button className="btn btn-primary" type="submit">
-        Bejelentkezés
-      </button>
-    </form>
+    </div>
   );
 }
 
