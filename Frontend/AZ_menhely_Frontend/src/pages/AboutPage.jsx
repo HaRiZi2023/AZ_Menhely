@@ -1,5 +1,6 @@
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import image0 from '../assets/logo2.jpg';
 import image1 from '../assets/front1.jpg';
 import image2 from '../assets/front2.jpg';
 import image3 from '../assets/front3a.jpg';
@@ -12,6 +13,15 @@ function AboutPage() {
     <div className={styles['about-page']}>
       <header className={styles['about-page-header']}>
         <Carousel className={styles['carousel-card']}>
+          <Carousel.Item>
+            <div className={styles['carousel-image-container']}>
+              <img
+                className={styles['carousel-image']}
+                src={image0}
+                alt="First slide"
+              />
+            </div>
+          </Carousel.Item>
           <Carousel.Item>
             <div className={styles['carousel-image-container']}>
               <img
