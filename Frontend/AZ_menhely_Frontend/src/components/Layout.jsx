@@ -12,7 +12,7 @@ function Layout() {
 
   navbarLeftSide.push({to: "/", text: "Főoldal"});
   if (authToken) {
-    navbarLeftSide.push({to: "/AdoptionHomePet", text: "Találj új családtagot!"});
+    navbarRightSide.push({to: "/AdoptionHomePet", text: "Találj új családtagot!"});
     navbarRightSide.push({to: "/user-profile", text: "Saját profil"});
     navbarRightSideOthers.push(
       <button className="nav-link" onClick={() => logout()}>Kijelentkezés</button>
