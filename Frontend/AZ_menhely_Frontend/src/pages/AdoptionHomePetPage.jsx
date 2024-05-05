@@ -44,40 +44,46 @@ function AdoptionHomePetPage() {
   </div>
 
 
-  return (
-    <div>
-      <h2 className="mt-4">Örökbefogadás űrlap</h2>
-      <form onSubmit={handleSubmit} className="mt-4">
-        {/* Az input mezők és textarea megőrzik a változásokat és az állapotot */}
-        <div className="mb-3">
-          <label htmlFor="nev" className="form-label">Örökbefogadó neve:</label>
-          <input type="text" id="nev" name="nev" value={formData.nev} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="telefon" className="form-label">Telefonszám:</label>
-          <input type="text" id="telefon" name="telefon" value={formData.telefon} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="lakcim" className="form-label">Lakcím:</label>
-          <input type="text" id="lakcim" name="lakcim" value={formData.lakcim} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="egyebelerhetosegek" className="form-label">Egyéb elérhetőség:</label>
-          <input type="text" id="egyebelerhetoseg" name="egyebelerhetoseg" value={formData.egyebelerhetoseg} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="egyeb" className="form-label">Egyéb megjegyzés:</label>
-          <textarea id="egyeb" name="egyeb" value={formData.egyeb} onChange={handleChange} className="form-control"></textarea>
-        </div>
-        {/* További input mezők... */}
-        <button type="submit" className="btn btn-primary">Űrlap beküldése</button>
-      </form>
+return (
+  <div className="container">
+    <div className="row justify-content-center">
+      <div className="col-md-6">
+        <h2 className="mt-4 text-center">Örökbefogadási űrlap</h2>
+        <form onSubmit={handleSubmit} className="mt-4">
+          <div className="mb-3">
+            <label htmlFor="nev" className="form-label">Örökbefogadó neve:</label>
+            <input type="text" id="nev" name="nev" value={formData.nev} onChange={handleChange} className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="telefon" className="form-label">Telefonszám:</label>
+            <input type="text" id="telefon" name="telefon" value={formData.telefon} onChange={handleChange} className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="lakcim" className="form-label">Lakcím:</label>
+            <input type="text" id="lakcim" name="lakcim" value={formData.lakcim} onChange={handleChange} className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email:</label>
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="egyebelerhetosegek" className="form-label">Egyéb elérhetőség:</label>
+            <input type="text" id="egyebelerhetoseg" name="egyebelerhetoseg" value={formData.egyebelerhetoseg} onChange={handleChange} className="form-control" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="egyeb" className="form-label">Egyéb megjegyzés:</label>
+            <textarea id="egyeb" name="egyeb" value={formData.egyeb} onChange={handleChange} className="form-control"></textarea>
+          </div>
+          <div className="mb-3 text-center">
+            <button type="submit" className="btn btn-primary">Űrlap beküldése</button>
+          </div>
+        </form>
+        <br />
+        <br />
+      </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default AdoptionHomePetPage;
