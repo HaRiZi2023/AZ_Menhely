@@ -57,7 +57,7 @@ function LookForPage() {
 
         <>
           <div style={{ textAlign: 'left' }}> {/* Új div a gomb balra igazításához */}
-            <button onClick={() => navigate('/foundlook')}>Vissza</button> {/* Új */}
+            <button className="btn btn-info" type="button" onClick={() => navigate('/foundlook')}>Vissza</button> {/* Új */}
           </div>
           <div>
             <h2 className="text-center my-4">Talált állatok</h2>
@@ -90,8 +90,10 @@ function LookForPage() {
             ))}
           </div>
           <div style={{ textAlign: 'center' }}> {/* Új div a gomb középre igazításához */}
-            <button onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button> 
+            <button className="btn btn-secondary" type="button" onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button> 
           </div>
+          <br />
+          <br />
         </>
       )}
     </>

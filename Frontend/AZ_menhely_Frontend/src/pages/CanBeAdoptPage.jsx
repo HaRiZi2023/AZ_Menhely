@@ -100,8 +100,10 @@ function CanBeAdoptPage() {
             ))}
           </div>
           <div style={{ textAlign: 'center' }}> {/* Új div a gomb középre igazításához */}
-            <button onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button>
+            <button className="btn btn-secondary" type="button"  onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button>
           </div>
+          <br />
+          <br />
         </>
       )}
     </>
