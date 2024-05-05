@@ -43,6 +43,11 @@ export function AuthProvider(props) {
     }
   }, [authToken]);
 
+  
+
+  
+  
+
   const authObj = {
     authToken: authToken,
     user: user,
@@ -75,6 +80,75 @@ export function AuthProvider(props) {
         return false;
       }
     },
+    updateUser:  async (name, address, phone, email) => {
+      const url = apiUrl + "/users/" + user.id + "/profile";
+      const userDTO = {
+        name: name,
+        address: address,
+        phone: phone,
+        email: email,
+      };
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(userDTO),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authToken,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUser(data);
+        setError(null);
+      } else {
+        console.error(data);
+        setError(data.message);
+      }
+      return response;
+    },
+    deleteUser: async () => {
+      const url = apiUrl + "/users/" + user.id;
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + authToken,
+        },
+      });
+      if (response.ok) {
+        setUser(null);
+        setError(null);
+      } else {
+        const data = await response.json();
+        console.error(data);
+        setError(data.message);
+      }
+    },
+      changePassword: async (oldPassword, newPassword) => {
+        const url = apiUrl + "/users/" + user.id + "/password";
+        const passwordDTO = {
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        };
+        const response = await fetch(url, {
+          method: "PUT",
+          body: JSON.stringify(passwordDTO),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + authToken,
+          },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setError(null);
+        } else {
+          console.error(data);
+          setError(data.message);
+        }
+        return response;
+      },
     login: async (email, password) => {
       const url = apiUrl + "/login";
       // DTO - Data Transfer Object - Laravel "Request" objektumnak felel meg.
@@ -139,6 +213,7 @@ export function AuthProvider(props) {
         setError(data.message);
       }
     },
+    
   };
 
   return (

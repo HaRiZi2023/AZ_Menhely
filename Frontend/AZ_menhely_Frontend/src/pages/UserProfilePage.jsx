@@ -1,11 +1,40 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+
 function UserProfilePage() {
+  const nameRef = useRef(null);
+  const addressRef = useRef(null);
+  const phoneRef = useRef(null);
+  const emailRef = useRef(null);
+  const oldPasswordRef = useRef(null);
+  const newPasswordRef = useRef(null);
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const {user, authToken, logoutEverywhere} = authContext;
+  const {user, authToken, logoutEverywhere, updateUser, changePassword} = authContext;
+
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    const name = nameRef.current.value;
+    const address = addressRef.current.value;
+    const phone = phoneRef.current.value;
+    const email = emailRef.current.value;
+    const response = await updateUser(name, address, phone, email);
+    if (response.ok) {
+      alert('A profil adatai sikeresen frissítve!');
+    }
+  };
+
+  const handleChangePassword = async (event) => {
+    event.preventDefault();
+    const oldPassword = oldPasswordRef.current.value;
+    const newPassword = newPasswordRef.current.value;
+    const response = await changePassword(oldPassword, newPassword);
+    if (response.ok) {
+      alert('A jelszó sikeresen megváltoztatva!');
+    }
+  };
 
   useEffect(() => {
     if (!authToken) {
