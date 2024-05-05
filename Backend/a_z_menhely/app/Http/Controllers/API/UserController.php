@@ -130,4 +130,37 @@ class UserController extends Controller
         $users = User::all();
         return response()->json($users);
     }
+
+
+    public function changePassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $oldPassword = $request->input('oldPassword');
+        $newPassword = $request->input('newPassword');
+
+        if (Hash::check($oldPassword, $user->password)) {
+            $user->password = Hash::make($newPassword);
+            $user->save();
+
+            return response()->json($user);
+        } else {
+            return response()->json(['error' => 'The old password is incorrect'], 400);
+        }
+    }
+
+
+    public function updateProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->name = $request->input('name');
+        $user->address = $request->input('address');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+
+        $user->save();
+
+        return response()->json($user);
+    }
 }
