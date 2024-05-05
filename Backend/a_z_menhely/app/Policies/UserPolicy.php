@@ -7,6 +7,20 @@ use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
+    use HandlesAuthorization;
+
+    public function update(User $authenticatedUser, User $user)
+    {
+        // Csak a saját adatokat módosíthatja
+        return $authenticatedUser->id === $user->id;
+    }
+
+    public function delete(User $authenticatedUser, User $user)
+    {
+        // Csak a saját adatokat törölheti
+        return $authenticatedUser->id === $user->id;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -31,21 +45,6 @@ class UserPolicy
         //
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, User $model): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, User $model): bool
-    {
-        //
-    }
 
     /**
      * Determine whether the user can restore the model.
