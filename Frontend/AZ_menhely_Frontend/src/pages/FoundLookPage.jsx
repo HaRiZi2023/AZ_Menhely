@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from '../styles/FoundLookPage.module.css';
 import image1 from '../assets/front1.jpg';
-import image2 from '../assets/front2.jpg';
+import image2 from '../assets/front4.jpg';
 
 function FoundLookPage() {
   return (
