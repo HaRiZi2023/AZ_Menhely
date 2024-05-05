@@ -34,6 +34,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');   //----> Ricsi ez is be lett rakva !   <-----
 Route::post('/logout-everywhere', [AuthController::class, 'logoutEverywhere'])->middleware('auth:sanctum');   //----> Ricsi ez is be lett rakva !   <-----
 
+//Users Web APP
+Route::put('/users/{id}/profile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
+Route::put('/users/{id}/password', [UserController::class, 'changePassword'])->middleware('auth:sanctum');
 
 //Users Mobil APP
 Route::post('register',[AuthController::class,'register']);
