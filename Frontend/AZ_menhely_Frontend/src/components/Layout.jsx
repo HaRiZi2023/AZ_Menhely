@@ -10,16 +10,14 @@ function Layout() {
   const navbarRightSide = [];
   const navbarRightSideOthers = [];
 
-  navbarLeftSide.push({to: "/", text: "Rólunk"});
+  navbarLeftSide.push({to: "/", text: "Főoldal"});
   if (authToken) {
     navbarLeftSide.push({to: "/AdoptionHomePet", text: "Találj új családtagot!"});
-    navbarLeftSide.push({to: "/about", text: "Rólunk"});
     navbarRightSide.push({to: "/user-profile", text: "Saját profil"});
     navbarRightSideOthers.push(
       <button className="nav-link" onClick={() => logout()}>Kijelentkezés</button>
     );
   } else {
-    navbarLeftSide.push({to: "/about", text: "Rólunk"});
     navbarRightSide.push({to: "/foundlook", text: "Találtam / Keresem"});
     navbarRightSide.push({to: "/canbeadopt", text: "Örökbefogadható"});
     navbarRightSide.push({to: "/contact", text: "Kapcsolat"})

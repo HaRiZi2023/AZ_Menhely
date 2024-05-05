@@ -26,7 +26,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <HomePage />,
+          element: <AboutPage />,
         },
         {
           path: "/user-profile",
@@ -39,10 +39,6 @@ function App() {
         {
           path: "/login",
           element: <LoginPage />,
-        },
-        {
-          path: "/about",
-          element: <AboutPage />,
         },
         {
           path: "/AdoptionHomePet",
