@@ -16,7 +16,11 @@ function UserProfilePage() {
   return user ? (
     <div>
       <h2>Profil</h2>
-      <h4>Név: {user.name}</h4>
+      <h5>Név: {user.name}</h5>
+      <h5>Email: {user.email}</h5>
+      <h5>Lakcím: {user.address}</h5>
+      <h5>Telefonszám: {user.phone}</h5>
+      <h5>Jelszó: {user.password}</h5>
       <div className="d-grid gap-2">
         <button className="btn btn-primary" type="button" onClick={() => logoutEverywhere()}>
           Kijelentkezés 
