@@ -6,7 +6,6 @@ import RegisterPage from "./pages/RegisterPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";   /*npm install react-router-dom */
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
 import { AuthProvider } from "./context/AuthContext";
 import AboutPage from "./pages/AboutPage";
 import AdoptionHomePetPage from "./pages/AdoptionHomePetPage";
