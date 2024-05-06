@@ -100,7 +100,7 @@ function UserProfilePage() {
                 />
               </div>
               <div className="mb-3 text-center">
-                <button className="btn btn-primary" type="submit">
+                <button className="btn btn-warning" type="submit">
                   Adatok módosítása
                 </button>
               </div>
@@ -129,7 +129,7 @@ function UserProfilePage() {
                 />
               </div>
               <div className="mb-3 text-center">
-                <button className="btn btn-primary" type="submit">
+                <button className="btn btn-danger" type="submit">
                   Jelszó módosítása
                 </button>
               </div>
