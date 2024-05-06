@@ -16,7 +16,7 @@ class AdoptionController extends Controller
     public function index()
     {
         $adoptions = Adoption::all();
-        return $adoptions;
+        return response()->json($adoptions);
     }
 
     /**
@@ -38,7 +38,7 @@ class AdoptionController extends Controller
         if (is_null($adoption)) {
             return response()->json(["message" => "Nincs örökbefogadás az alábbi azonosítóval: $id"], 404);
         }
-        return $adoption;
+        return response()->json($adoption, 201);
     }
 
     /**
@@ -52,7 +52,7 @@ class AdoptionController extends Controller
         }
         $adoption->fill($request->all());
         $adoption->save();
-        return $adoption;
+        return response()->json($adoption, 201);
     }
 
     /**

@@ -25,7 +25,6 @@ class StoreAdoptionRequest extends FormRequest
             'a_date' => 'required|date',
             'g_name' => 'required|string|max:50',
             'u_name' => 'required|string|max:100'
-            //
         ];
     }
 }
