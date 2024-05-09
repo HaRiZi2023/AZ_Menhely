@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import logo from '../assets/az_logo.png';
+import logo from '../assets/az_logo.jpg';
 import styles from "../styles/Navbar.module.css";
 
 function Navbar(props) {

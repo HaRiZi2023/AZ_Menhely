@@ -4,13 +4,16 @@
 
 .card {
   margin: auto;
-  width: 20%;
+  width: 25%;
   border: 5px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   animation: heartbeat 1.6s infinite; /* Hozzáadjuk az animációt */
+  
 }
+
+
 
 /* Definiáljuk a szívverés animációt */
 @keyframes heartbeat {
