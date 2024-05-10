@@ -1,4 +1,4 @@
-import logo2 from "../assets/logoK.png";
+import logo2 from "../assets/LOGO11.png";
 import styles from '../styles/DonativePage.module.css';
 
 function DonativePage() {
