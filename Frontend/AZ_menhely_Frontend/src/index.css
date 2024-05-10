@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(242, 242, 242, 0.1);
+    background-color: rgba(242, 242, 242, 0.3); /* az utolsó értékkel állítom mennyire legyen erős a háttér kép láthatósága */ 
     background-image: 
         linear-gradient(rgba(232, 255, 206, 0.3), rgba(232, 255, 206, 0.3)), 
         url('../src/assets/mainhatter.png');
