@@ -1,8 +1,8 @@
 body {
-    background-color: rgba(242, 242, 242, 0.6);
+    background-color: rgba(242, 242, 242, 0.1);
     background-image: 
-        linear-gradient(rgba(232, 255, 206, 0.5), rgba(232, 255, 206, 0.5)), 
-        url('../src/assets/mainhattaer.png');
+        linear-gradient(rgba(232, 255, 206, 0.3), rgba(232, 255, 206, 0.3)), 
+        url('../src/assets/mainhatter.png');
     background-blend-mode: overlay;
 }
 .video-background {
