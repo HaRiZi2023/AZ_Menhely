@@ -12,7 +12,7 @@
     border: 3px solid #ccc; /* Keret hozzáadása */
     border-radius: 20px; /* Kerekített sarkok hozzáadása */
     overflow: hidden; /* Kilógó részek eltüntetése */
-    box-shadow: 0 9px 45px 0 rgba(0,0,0,0.4); /* Kártya árnyékolása */
+    box-shadow: 12px 12px 0 rgba(0,0,0,0.4); /* Kártya árnyékolása */
     background-color: #F1F5A8; /* Háttérszín beállítása */
     transition: transform 0.4s ease-in-out; /* Átmenet beállítása */ 
 }
