@@ -56,12 +56,14 @@ function LookForPage() {
       ) : (
 
         <>
-          <div style={{ textAlign: 'left' }}> {/* Új div a gomb balra igazításához */}
-            <button className="btn btn-info" type="button" onClick={() => navigate('/foundlook')}>Vissza</button> {/* Új */}
-          </div>
+         
           <div>
             <h2 className="text-center my-4">Talált állatok</h2>
           </div>
+          <div style={{ textAlign: 'left' }}> {/* Új div a gomb balra igazításához */}
+            <button className="btn btn-info" type="button" onClick={() => navigate('/foundlook')}>Vissza</button> {/* Új */}
+          </div>
+          <br />
 
           <div className="row justify-content-center">
             {founds.filter(found => found.f_choice === 'Talált').map((found) => ( // Szűrés a "Talált" állatokra

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import styles from '../styles/FormStyles.module.css';
 
 function LoginPage() {
   const emailRef = useRef(null);
@@ -25,7 +26,7 @@ function LoginPage() {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-lg-5 col-md-8 col-sm-12 mb-4">
           <h2 className="mt-4 text-center">Bejelentkezés</h2>
           <form onSubmit={handleFormSubmit} className="mt-4">
             <div className="mb-3">

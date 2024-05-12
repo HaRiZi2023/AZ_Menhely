@@ -1,20 +1,20 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid; /* Módosítva */
+  justify-content: center; /* Módosítva */
   width: 100%;
 }
   
 .card {
-    width: 38%; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
+    width: 365px; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
     height: 500px;
-    margin-bottom: 5em; /* Hozzáadtam egy alsó margót a kártyákhoz, hogy legyen térközük egymás alatt */
+    margin: 2.5em auto; /* Hozzáadtam egy alsó margót a kártyákhoz, hogy legyen térközük egymás alatt */
     border: 3px solid #ccc; /* Keret hozzáadása */
     border-radius: 20px; /* Kerekített sarkok hozzáadása */
     overflow: hidden; /* Kilógó részek eltüntetése */
     box-shadow: 12px 12px 0 rgba(0,0,0,0.4); /* Kártya árnyékolása */
     background-color: #F1F5A8; /* Háttérszín beállítása */
     transition: transform 0.4s ease-in-out; /* Átmenet beállítása */ 
+    
 }
 .card:hover {
   transform: scale(1.1); /* Nagyítás beállítása */
@@ -23,7 +23,7 @@
 
 .card-img-top {
     width: 100%; /* A kép szélességének beállítása */
-    height: 100px; /* A kép magasságának beállítása */
+    height: 340px; /* A kép magasságának beállítása */
     object-fit: cover; /* A kép méretezésének beállítása */
     object-position: center; /* A kép középre igazítása */
     border-radius: 20px; /* Kép lekerekítése */
@@ -38,7 +38,7 @@
   }
 
 .loader {
-  width: 50px;
+  width: 70px;  /*  a betöltés kijelző mérete  */
   aspect-ratio: 1;
   display: grid;
   border-radius: 50%;

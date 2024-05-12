@@ -1,13 +1,5 @@
-.container {
-    display: flex; /* A flexbox layout használata a kártyák egymás melletti elrendezéséhez */
-    flex-wrap: wrap; /* Ha a kártyák nem férnek el egy sorban, akkor több sorban jelennek meg */
-    justify-content: space-between; /* Az egyes kártyák közötti térköz egyenletes eloszlása */
-    width: 100%; /* Hozzáadtam ezt a sor */
-      
-  }
-  
 .card {
-    width: 85%; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
+    width: 100%; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
     margin-bottom: 5em; /* Hozzáadtam egy alsó margót a kártyákhoz, hogy legyen térközük egymás alatt */
     border: 3px solid #ccc; /* Keret hozzáadása */
     border-radius: 20px; /* Kerekített sarkok hozzáadása */
@@ -40,7 +32,7 @@
 }
 
 .loader {
-  width: 50px;
+  width: 70px;
   aspect-ratio: 1;
   display: grid;
   border-radius: 50%;

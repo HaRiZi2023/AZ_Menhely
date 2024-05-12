@@ -1,0 +1,8 @@
+h2 {
+    text-shadow: 15px 15px 20px #000000; /* Árnyékolás hozzáadása */
+    text-align: center;
+  }
+  
+  label {
+    font-weight: bold; /* Vastagítás */
+  }

@@ -5,7 +5,7 @@ function DonativePage() {
   return (
     <div className={styles['donative-page']}>
       <header>
-        <h1>Adományozás</h1>
+        <h2>Adományozás</h2>
         <ul className={styles['contact-info']}>
           <li>Adója 1% : 1819 6384-1-42</li>
           <li>Bankszámla szám : 91179117-200402040</li>

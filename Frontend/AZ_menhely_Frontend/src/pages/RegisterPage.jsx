@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 
+
 function RegisterPage() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -58,7 +59,7 @@ function RegisterPage() {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-lg-5 col-md-8 col-sm-12 mb-4">
           <h2 className="mt-4 text-center">Regisztráció</h2>
           <form onSubmit={handleFormSubmit} className="mt-4">
             <div className="mb-3">

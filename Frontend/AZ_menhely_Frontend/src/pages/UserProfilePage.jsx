@@ -45,7 +45,7 @@ function UserProfilePage() {
   return user ? (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-lg-5 col-md-8 col-sm-12 mb-4">
           <header className="text-center">
             <h2>Profil</h2>
           </header>
