@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/FoundLookPage.module.css';
+import commonStyles from '../styles/CommonStyles.module.css';
 import { useNavigate } from 'react-router-dom';
 
 function LookForPage() {
@@ -70,7 +71,7 @@ function LookForPage() {
               <div className="col-lg-5 col-md-8 col-sm-12 mb-4" key={found.id}>
                 <div className={styles.card}>
                   {found.f_image && (
-                    <img className={styles['card-img-top']} src={found.f_image} alt="Talált állat képe" />
+                    <img className={commonStyles['card-img-top']} src={found.f_image} alt="Talált állat képe" />
                   )}
                   <div className={styles['card-body']}>
                     <h5 className={styles['card-title']}><strong>Választás:</strong> {found.f_choice}</h5>
