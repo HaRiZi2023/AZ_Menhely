@@ -53,7 +53,7 @@ function LookForPage() {
   return (
     <>
       {isLoading ? ( // Új
-        <div className={styles.loader}></div> // Új
+        <div className={commonStyles.loader}></div> // Új
       ) : (
 
         <>
