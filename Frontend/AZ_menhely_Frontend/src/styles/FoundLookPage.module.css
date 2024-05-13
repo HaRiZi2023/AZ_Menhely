@@ -14,14 +14,7 @@
 }
 
 
-.card-img-top {
-  width: 100%; /* A kép szélességének beállítása */
-  height: 340px; /* A kép magasságának beállítása */
-  object-fit: cover; /* A kép méretezésének beállítása */
-  object-position: center; /* A kép középre igazítása */
-  border-radius: 20px; /* Kép lekerekítése */
- 
-}
+
 
 .card-body {
   text-align: center; /* Szöveg középre igazítása */
@@ -31,28 +24,4 @@
   margin-top: 20px; /* Felső margó hozzáadása */
 }
 
-.loader {
-  width: 70px;
-  aspect-ratio: 1;
-  display: grid;
-  border-radius: 50%;
-  background: conic-gradient(#25b09b 25%,#f03355 0 50%,#514b82 0 75%,#ffa516 0);
-  animation: l22 2s infinite linear;
-}
-.loader::before,
-.loader::after {
-   content: "";
-   grid-area: 1/1;
-   margin: 15%;
-   border-radius: 50%;
-   background: inherit;
-   animation: inherit;
-}
-.loader::after {
-   margin: 25%;
-   animation-duration: 3s;
-}
-@keyframes l22 {
-  100% {transform: rotate(1turn)}
-}
 
