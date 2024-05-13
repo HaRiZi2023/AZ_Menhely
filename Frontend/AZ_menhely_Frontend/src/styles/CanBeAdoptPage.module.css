@@ -8,10 +8,10 @@
     width: 365px; /* A kártyák szélességének beállítása, hogy két kártya elférjen egymás mellett, figyelembe véve a térközt */
     height: 500px;
     margin: 2.5em auto; /* Hozzáadtam egy alsó margót a kártyákhoz, hogy legyen térközük egymás alatt */
-    border: 3px solid #ccc; /* Keret hozzáadása */
+    border: 5px solid #d1c76d; /* Keret hozzáadása */
     border-radius: 20px; /* Kerekített sarkok hozzáadása */
     overflow: hidden; /* Kilógó részek eltüntetése */
-    box-shadow: 12px 12px 0 rgba(0,0,0,0.4); /* Kártya árnyékolása */
+    box-shadow: 12px 12px 0 rgba(168, 156, 114, 0.4);/* Kártya árnyékolása */
     background-color: #F1F5A8; /* Háttérszín beállítása */
     transition: transform 0.4s ease-in-out; /* Átmenet beállítása */ 
     
