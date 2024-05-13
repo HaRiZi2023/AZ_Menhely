@@ -21,13 +21,7 @@
 }
 
 
-.card-img-top {
-    width: 100%; /* A kép szélességének beállítása */
-    height: 340px; /* A kép magasságának beállítása */
-    object-fit: cover; /* A kép méretezésének beállítása */
-    object-position: center; /* A kép középre igazítása */
-    border-radius: 20px; /* Kép lekerekítése */
-  }
+
 
 .card-body {
     text-align: center; /* Szöveg középre igazítása */
