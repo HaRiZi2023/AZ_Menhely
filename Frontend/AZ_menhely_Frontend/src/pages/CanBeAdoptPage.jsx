@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/CanBeAdoptPage.module.css';
-
+import commonStyles from '../styles/CommonStyles.module.css';
 
 
 function CanBeAdoptPage() {
@@ -54,7 +54,7 @@ function CanBeAdoptPage() {
   return (
     <>
       {isLoading ? (
-        <div className={styles.loader}></div>
+        <div className={commonStyles.loader}></div>
       ) : (
         <>
           <div>

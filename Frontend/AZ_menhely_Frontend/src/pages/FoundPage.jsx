@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import styles from '../styles/FoundLookPage.module.css';
 import { useNavigate } from 'react-router-dom';
+import styles from '../styles/FoundLookPage.module.css';
+import commonStyles from '../styles/CommonStyles.module.css';
 
 function FoundPage() {
     const [founds, setFounds] = useState([]);
@@ -52,7 +53,7 @@ function FoundPage() {
     return (
         <>
           {isLoading ? ( // Új
-            <div className={styles.loader}></div> // Új
+            <div className={commonStyles.loader}></div> // Új
           ) : (
     
             <>
