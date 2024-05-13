@@ -16,10 +16,10 @@
 .carousel-card {
   margin: auto;
   width: 100%;
-  border: 3px solid #ccc;
+  border: 8px solid #d1c76d;
   border-radius: 20px;
   padding: 10px;
-  box-shadow: 12px 12px 0 rgba(0,0,0,0.4);
+  box-shadow: 12px 12px 0 rgba(168, 156, 114, 0.4);
 }
 
 
@@ -44,10 +44,10 @@
 .container2 {
   margin: auto;
   width: 100%;
-  border: 3px solid #ccc;
+  border: 5px solid #d1c76d;
   border-radius: 20px;
   padding: 10px;
-  box-shadow: 12px 12px 0 rgba(0,0,0,0.4);
+  box-shadow: 12px 12px 0 rgba(168, 156, 114, 0.4);
 
 }
 .card-img-top {
@@ -57,4 +57,24 @@
   object-position: center; /* A kép középre igazítása */
   border-radius: 20px; /* Kép lekerekítése */
  
+}
+
+
+.caption-text {
+  text-shadow: 15px 15px 20px #000000; /* Árnyékolás hozzáadása */
+  font-family: 'Rocher';
+  font-size: 30px;
+  height: 20vh;
+  
+  justify-content: center;
+}
+
+@font-face {
+  font-family: 'Rocher';
+  src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+}
+
+body {
+  font-family: 'Rocher';
+
 }
