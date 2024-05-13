@@ -1,4 +1,4 @@
-import { Carousel } from 'react-bootstrap';
+import { Carousel, CarouselCaption } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import image0 from '../assets/logo0.jpg';
 import image1 from '../assets/front1.jpg';
@@ -18,9 +18,12 @@ function AboutPage() {
               <img
                 className={styles['carousel-image']}
                 src={image0}
-                alt="First slide"
+                alt="logo0 slide"
               />
             </div>
+            <Carousel.Caption>
+              <h3>"A-Z menhel : Otthon minden állatnak"</h3>
+            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className={styles['carousel-image-container']}>
@@ -30,6 +33,9 @@ function AboutPage() {
                 alt="First slide"
               />
             </div>
+            <Carousel.Caption>
+              <h3>"Megtalált Barátok:Egy elveszett kutyus újra othonra lel"</h3>
+            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className={styles['carousel-image-container']}>
@@ -39,6 +45,9 @@ function AboutPage() {
                 alt="Second slide"
               />
             </div>
+            <Carousel.Caption>
+              <h3>"Gyógyulás Kezében:Állatorvosunk mindig a segítségedre van"</h3>
+            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className={styles['carousel-image-container']}>
@@ -48,6 +57,12 @@ function AboutPage() {
                 alt="Third slide"
               />
             </div>
+            <Carousel.Caption>
+              <h3>"Második Esély:Az utcán élő kutyák számára is van remény"</h3>
+            </Carousel.Caption>
+            <Carousel.Caption>
+              <h3></h3>
+            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className={styles['carousel-image-container']}>
@@ -57,6 +72,9 @@ function AboutPage() {
                 alt="Fourth slide"
               />
             </div>
+            <Carousel.Caption>
+              <h3>Családi Örömök:Egy új taggal gazdagabb család</h3>
+            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </header>
