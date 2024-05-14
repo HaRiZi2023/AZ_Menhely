@@ -67,8 +67,8 @@ function CanBeAdoptPage() {
                   {guest.g_image && (
                     <img className={commonStyles['card-img-top']} src={guest.g_image} alt="Vendég képe" />
                   )}
-                  <div className={styles['card-body']}>
-                    <h5 className={styles['card-title']}><strong>ID:</strong> {guest.id}</h5>
+                  <div className={commonStyles['card-body']}>
+                    <h5 className={commonStyles['card-title']}><strong>ID:</strong> {guest.id}</h5>
                     <div className="mb-3">
                       <p className="form-label"><strong>Név:</strong> {guest.g_name}</p>
                     </div>

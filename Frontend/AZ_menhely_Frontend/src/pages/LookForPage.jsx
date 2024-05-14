@@ -73,8 +73,8 @@ function LookForPage() {
                   {found.f_image && (
                     <img className={commonStyles['card-img-top']} src={found.f_image} alt="Talált állat képe" />
                   )}
-                  <div className={styles['card-body']}>
-                    <h5 className={styles['card-title']}><strong>Választás:</strong> {found.f_choice}</h5>
+                  <div className={commonStyles['card-body']}>
+                    <h5 className={commonStyles['card-title']}><strong>Választás:</strong> {found.f_choice}</h5>
                     <div className="mb-3">
                       <p className="form-label"><strong>Választás:</strong> {found.f_choice}</p>
                     </div>
