@@ -92,7 +92,7 @@ function LookForPage() {
               </div>
             ))}
           </div>
-          <div style={{ textAlign: 'center' }}> {/* Új div a gomb középre igazításához */}
+          <div className={commonStyles.center}> {/* Új div a gomb középre igazításához */}
             <button className="btn btn-secondary" type="button" onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button> 
           </div>
           <br />
