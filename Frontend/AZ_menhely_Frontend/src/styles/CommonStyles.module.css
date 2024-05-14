@@ -26,6 +26,10 @@
   .card-title {
     margin-top: 20px;
   }
+
+  .center {
+    text-align: center;
+  }
   
   .loader {
     width: 70px;
