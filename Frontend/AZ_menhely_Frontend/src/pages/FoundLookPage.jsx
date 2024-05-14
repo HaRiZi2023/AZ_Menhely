@@ -10,7 +10,7 @@ function FoundLookPage() {
       <div className="col-lg-5 col-md-8 col-sm-12 mb-4">
         <h2 className="my-4 ">Talált állatok</h2>
         <Link to="/look-for">
-          <div className={styles.card}>
+          <div className={`${commonStyles.card} ${styles.card}`}>
             <img className={commonStyles['card-img-top']} src={image1} alt="Talált állatok" />
           </div>
         </Link>
@@ -18,7 +18,7 @@ function FoundLookPage() {
       <div className="col-lg-5 col-md-8 col-sm-12 mb-4">
         <h2 className="my-4 ">Elveszett állatok</h2>
         <Link to="/found">
-          <div className={styles.card}>
+          <div className={`${commonStyles.card} ${styles.card}`}>
             <img className={commonStyles['card-img-top']} src={image2} alt="Elveszett állatok" />
           </div>
         </Link>

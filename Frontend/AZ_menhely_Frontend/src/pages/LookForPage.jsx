@@ -69,7 +69,7 @@ function LookForPage() {
           <div className="row justify-content-center">
             {founds.filter(found => found.f_choice === 'Talált').map((found) => ( // Szűrés a "Talált" állatokra
               <div className="col-lg-5 col-md-8 col-sm-12 mb-4" key={found.id}>
-                <div className={styles.card}>
+                <div className={`${commonStyles.card} ${styles.card}`}>
                   {found.f_image && (
                     <img className={commonStyles['card-img-top']} src={found.f_image} alt="Talált állat képe" />
                   )}
