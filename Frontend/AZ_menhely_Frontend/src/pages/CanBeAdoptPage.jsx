@@ -63,7 +63,7 @@ function CanBeAdoptPage() {
           <div className={styles.container} >
             {guests.map((guest) => (
               <div className="col-lg-5 col-md-8 col-sm-12 mb-4" key={guest.id}>
-                <div className={commonStyles.card}>
+                <div className={`${commonStyles.card} ${styles.card}`}>
                   {guest.g_image && (
                     <img className={commonStyles['card-img-top']} src={guest.g_image} alt="Vendég képe" />
                   )}
