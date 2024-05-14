@@ -8,6 +8,7 @@ import image4 from '../assets/front4.jpg';
 import aboutUsImage from '../assets/front5.jpg';
 import missionImage from '../assets/front6.jpg';
 import styles from '../styles/AboutPage.module.css';
+import commonStyles from '../styles/CommonStyles.module.css';
 function AboutPage() {
 
 
@@ -93,7 +94,7 @@ function AboutPage() {
         </section>
       </main>
       <footer>
-        <div style={{ textAlign: 'center' }}> {/* Új div a gomb középre igazításához */}
+        <div className={commonStyles.center}> {/* Új div a gomb középre igazításához */}
           <button className="btn btn-secondary" type="button"  onClick={() => window.scrollTo(0, 0)}>Ugrás a lap tetejére</button>
         </div>
       </footer>
