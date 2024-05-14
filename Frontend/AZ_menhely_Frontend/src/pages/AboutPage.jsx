@@ -83,13 +83,13 @@ function AboutPage() {
           <div className={styles['container2']}>
             <h2>Azért jöttünk létre . . .</h2>
             <p>Szeretnénk minnél több állaton segíteni!Őket is úgyan olyan jogok illetik meg ,csak mert nem tudnak beszélni ŐK is éreznek.Sajnos az emberek elfelejtik hogy az állatoknak is vannak érzéseik és nekik is tud fájni a Testük és Lelkük .Szeretnénk kiállni értük és képviselni Őket.Támaszt nyújtani bármilyen formában legyen az fizikális vagy szellemi.</p>
-            <img className={styles['card-img-top']} src={aboutUsImage} alt="Fourth slide" />
+            <img className={commonStyles['card-img-top']} src={aboutUsImage} alt="Fourth slide" />
           </div>
           <br />
           <div className={styles['container2']}>
             <h2>Küldetésünk </h2>
             <p>Küldetésünk minnél több állatot legyen szó kutyáról , macskáról!Segíteni ellátni .Gazdát keresni új lakhelyet találni befogadni akár 1 napra vagy teljes gondozásba venni .Minden állat egy lélek és ezzel nekünk is egy küldetés .Célünk továbbá a sérült állatok újra integrálása mind emberi közösségbe mind vissza a Természetbe.</p>
-            <img className={styles['card-img-top']} src={missionImage} alt="Fourth slide" />
+            <img className={commonStyles['card-img-top']} src={missionImage} alt="Fourth slide" />
           </div>
         </section>
       </main>
