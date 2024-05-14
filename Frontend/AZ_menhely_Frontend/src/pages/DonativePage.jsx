@@ -1,5 +1,6 @@
 import logo2 from "../assets/LOGO11.png";
 import styles from '../styles/DonativePage.module.css';
+import commonStyles from '../styles/CommonStyles.module.css';
 
 function DonativePage() {
   return (
@@ -16,7 +17,7 @@ function DonativePage() {
 
       <main>
         <div className={styles['card']}>
-          <div className={styles['card-body']}>
+          <div className={commonStyles['card-body']}>
             <img src={logo2} alt='Logo' className={styles['img-fluid']} />
           </div>
         </div>
