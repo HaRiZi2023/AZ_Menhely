@@ -4,7 +4,7 @@ import commonStyles from '../styles/CommonStyles.module.css';
 
 function DonativePage() {
   return (
-    <div className={styles['donative-page']}>
+    <div className={commonStyles['card-body']}>
       <header>
         <h2>Adományozás</h2>
         <ul className={styles['contact-info']}>
